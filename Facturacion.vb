@@ -12,7 +12,6 @@ Module GneraFactura
         Console.WriteLine("Inicia proceso")
         ErrorControl = New EventLog("Application", System.Net.Dns.GetHostName(), "GeneracionCFDI33")
         Dim D As New System.IO.DirectoryInfo(GeneraFactura.My.Settings.RutaOrigen)
-        ' procesa y genera txt-CFDI
         Dim F As FileInfo() = D.GetFiles("*.txt")
 
         Console.WriteLine("Generando CFDI Avio...")
