@@ -21,7 +21,7 @@ Module GneraFactura
         Console.WriteLine("leyendo " & GeneraFactura.My.Settings.RutaOrigen)
         Console.WriteLine("Generando CFDI...")
         GeneraArchivos()
-        ' borra archivos leidos
+
         D = New System.IO.DirectoryInfo(GeneraFactura.My.Settings.RutaOrigen)
         F = D.GetFiles("*.txt")
         Console.WriteLine("Borrando procesados...")
