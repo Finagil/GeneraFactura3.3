@@ -53,6 +53,268 @@ Module GneraFactura
         'End Try
     End Sub
 
+    Sub GeneraArchivosAvio()
+        Dim TasaIVACliente As Decimal
+        Dim RFC As String
+        Dim SubTT As Double
+        Dim IVA As Double
+        Dim Fega As Double
+        Dim Razon As String
+        Dim fecha As New DateTime
+        Dim taCli As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
+        Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioTableAdapter
+        Dim FAC As New GeneraFactura.ProduccionDS.FacturasAvioDataTable
+        Dim Detalles As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioDetalleTableAdapter
+        Dim DET As New GeneraFactura.ProduccionDS.FacturasAvioDetalleDataTable
+        Dim Folios As New GeneraFactura.ProduccionDSTableAdapters.LlavesTableAdapter
+
+        Dim RegAfec As Integer
+        Dim Concep As String
+        Dim ContLin As Integer
+
+        Dim ProducDS As New ProduccionDS
+        Dim CFDI_H As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
+        Dim CFDI_D As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
+        Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
+        Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
+
+        fecha = Date.Now.AddDays(-1)
+        Facturas.QuitarPagosEfectivo()
+        '***************************************************************
+        'quita seguros que nos sean de guanajuato y michoacan haste que se hagan dos conceptos de seguros
+        Detalles.FillBySeguro(DET)
+        For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
+            Facturas.Facturar("N/A", rr.Anexo, rr.Ciclo, rr.FechaFinal, rr.Concepto)
+        Next
+        '***************************************************************
+        Facturas.QuitarPagosEfectivo()
+        Facturas.Fill(FAC, fecha.ToString("yyyyMMdd"))
+
+        For Each r As GeneraFactura.ProduccionDS.FacturasAvioRow In FAC.Rows
+            TasaIVACliente = taCli.SacaTasaIVACliente(r.Cliente)
+            ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
+            ROWheader._1_Folio = Folios.SerieGVA
+            Console.WriteLine("Generando CFDI AVIO..." & r.Anexo & " " & ROWheader._1_Folio)
+
+            SubTT = 0
+            IVA = 0
+            Fega = 0
+            ContLin = 0
+
+            ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
+            ROWheader._3_RFC_Emisor = "FIN940905AX7"
+            ROWheader._4_Dom_Emisor_calle = "Leandro Valle"
+            ROWheader._5_Dom_Emisor_noExterior = "402"
+            ROWheader._6_Dom_Emisor_noInterior = ""
+            ROWheader._7_Dom_Emisor_colonia = "Reforma y F.F.C.C"
+            ROWheader._8_Dom_Emisor_localidad = "Toluca"
+            ROWheader._9_Dom_Emisor_referencia = ""
+            ROWheader._10_Dom_Emisor_municipio = "Toluca"
+            ROWheader._11_Dom_Emisor_estado = "Estado de México"
+            ROWheader._12_Dom_Emisor_pais = "México"
+            ROWheader._13_Dom_Emisor_codigoPostal = "50070"
+
+            ROWheader._26_Version = "3.3"
+            ROWheader._27_Serie_Comprobante = "AV"
+            ROWheader._29_FormaPago = "99"
+            ROWheader._30_Fecha = fecha.Date
+            ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
+            ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
+
+            RFC = Trim(r.RFC)
+            RFC = ValidaRFC(RFC, r.Tipo)
+            If RFC = "SDA070613KU6" Then
+                Razon = """SERVICIO DAYCO"" SA DE CV"
+            Else
+                Razon = r.Nombre
+            End If
+            ROWheader._42_Nombre_Receptor = Razon.Trim
+            ROWheader._43_RFC_Receptor = RFC.Trim
+            ROWheader._44_Dom_Receptor_calle = r.Calle.Trim
+            ROWheader._45_Dom_Receptor_noExterior = ""
+            ROWheader._46_Dom_Receptor_noInterior = ""
+            ROWheader._47_Dom_Receptor_colonia = r.Colonia.Trim
+            ROWheader._48_Dom_Receptor_localidad = ""
+            ROWheader._49_Dom_Receptor_referencia = ""
+            ROWheader._50_Dom_Receptor_municipio = r.Delegacion.Trim
+            ROWheader._51_Dom_Receptor_estado = r.Estado.Trim
+            ROWheader._52_Dom_Receptor_pais = "México"
+            ROWheader._53_Dom_Receptor_codigoPostal = r.Copos.Trim
+            ROWheader._57_Estado = 1
+            ROWheader._58_TipoCFD = "FA"
+            ROWheader._83_Cod_Moneda = r.Moneda.Trim
+            ROWheader._97_Condiciones_Pago = "Contado"
+            ROWheader._144_Misc32 = "G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
+            ROWheader._167_RegimentFiscal = 601
+            If ROWheader._83_Cod_Moneda = "MXN" Then
+                ROWheader._177_Tasa_Divisa = 0
+            Else
+                ROWheader._177_Tasa_Divisa = taCli.SacaTipoCambio(fecha, ROWheader._83_Cod_Moneda)
+            End If
+            ROWheader._180_LugarExpedicion = "50070"
+            ROWheader._190_Metodo_Pago = "PUE"
+            ROWheader._191_Efecto_Comprobante = "I"
+
+            Facturas.QuitarPagosEfectivo()
+            Detalles.Fill(DET, r.Anexo, r.Ciclo)
+            Dim TasaIVA As Decimal = 0
+            Dim TipoImpuesto As String
+            Fega = 0
+            For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
+                ROWdetail = ProducDS.CFDI_Detalle.NewCFDI_DetalleRow
+                TasaIVA = TasaIVACliente
+                TipoImpuesto = TasaIVACliente
+                If Trim(rr.Concepto) = "EFECTIVO" _
+                Or Trim(rr.Concepto) = "AGROQUIMICOS" _
+                    Or Trim(rr.Concepto) = "EFECTIVO2" _
+                Or Trim(rr.Concepto) = "EFECTIVO 2" _
+                Or Trim(rr.Concepto) = "VALE" _
+                Or Trim(rr.Concepto) = "ASISTENCIA" _
+                Or Trim(rr.Concepto) = "INTEGRACION" _
+                Or Trim(rr.Concepto) = "ANALISIS DE SUELOS" Then
+                    Fega += Math.Round(rr.FEGA, 4)
+                Else
+                    ContLin += 1
+                    Fega += Math.Round(rr.FEGA, 4)
+                    Concep = Trim(rr.Concepto)
+                    Select Case UCase(Concep)
+                        Case "NOTARIO"
+                            Concep = "GASTOS DE NOTARIO"
+                        Case "RPP"
+                            Concep = "REGISTRO PÚBLICO DE LA PROPIEDAD"
+                        Case "GASTOS"
+                            Concep = "GASTOS ADMINISTRATIVOS"
+                        Case "ASISTENCIA"
+                            Concep = "ASISTENCIA TÉCNICA"
+                        Case "SEGURO"
+                            If r.Tipar <> "C" Then
+                                If r.Tipo <> "F" Then
+                                    TipoImpuesto = "Exento"
+                                    Concep = "SEGURO AGRÍCOLA EXENTOS DE IVA"
+                                Else
+                                    Concep = "SEGURO AGRÍCOLA"
+                                End If
+                            End If
+                        Case "SEGURO DE VIDA"
+                            TipoImpuesto = "Exento"
+                            Concep = "SEGURO DE VIDA EXENTOS DE IVA (" & UCase(MonthName(CInt(Mid(r.FechaFinal, 5, 2)), True)) & "-" & Mid(r.FechaFinal, 1, 4) & ")"
+                        Case "INTERESES"
+                            If r.Tipo <> "F" Then
+                                TipoImpuesto = "Exento"
+                                Concep = Concep & " EXENTOS DE IVA"
+                            End If
+                        Case "INTERESES MORATORIOS"
+                            If r.Tipo <> "F" Then
+                                TipoImpuesto = "Exento"
+                                Concep = Concep & " EXENTOS DE IVA"
+                            End If
+                    End Select
+
+                    ROWdetail._1_Linea_Descripcion = Concep
+                    ROWdetail._2_Linea_Cantidad = 1
+                    ROWdetail._3_Linea_Unidad = "E48"
+                    ROWdetail._4_Linea_PrecioUnitario = rr.Importe.ToString("n2")
+                    ROWdetail._5_Linea_Importe = rr.Importe.ToString("n2")
+                    ROWdetail._16_Linea_Cod_Articulo = "84101700"
+                    ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
+                    ROWdetail._2_Impuesto_Descripcion = "TR"
+                    ROWdetail._3_Impuesto_Monto_base = rr.Importe.ToString("n2")
+                    ROWdetail._5_Impuesto_Clave = "002"
+                    ROWdetail._6_Impuesto_Tasa = "Tasa"
+                    If TipoImpuesto = "Exento" Then
+                        ROWdetail._7_Impuesto_Porcentaje = "EXE"
+                        ROWdetail._4_Impuesto_Monto_Impuesto = 0
+                    Else
+                        ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                        ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(rr.Importe * (TasaIVA / 100), 2)
+                    End If
+
+                    SubTT += ROWdetail._3_Impuesto_Monto_base
+                    IVA += ROWdetail._4_Impuesto_Monto_Impuesto
+
+                    ROWdetail.Detalle_Folio = ROWheader._1_Folio
+                    ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
+                    ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
+                End If
+
+                RegAfec = Facturas.Facturar("AV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, rr.FechaFinal, Trim(rr.Concepto))
+                If RegAfec = 0 Then
+                    EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
+                End If
+
+            Next
+            If Fega > 0 Then
+                ContLin += 1
+                ROWdetail = ProducDS.CFDI_Detalle.NewRow
+                Concep = "GARANTIA FEGA"
+                TasaIVA = TasaIVACliente
+                ROWdetail._1_Linea_Descripcion = Concep
+                ROWdetail._2_Linea_Cantidad = 1
+                ROWdetail._3_Linea_Unidad = "E48"
+                ROWdetail._4_Linea_PrecioUnitario = Fega.ToString("n2")
+                ROWdetail._5_Linea_Importe = Fega.ToString("n2")
+                ROWdetail._16_Linea_Cod_Articulo = "84101700"
+                ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
+                ROWdetail._2_Impuesto_Descripcion = "TR"
+                ROWdetail._3_Impuesto_Monto_base = Fega.ToString("n2")
+                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(Fega * (TasaIVA / 100), 2)
+                ROWdetail._5_Impuesto_Clave = "002" ' Clave IVA
+                ROWdetail._6_Impuesto_Tasa = "Tasa"
+                ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                ROWdetail.Detalle_Folio = ROWheader._1_Folio
+                ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
+
+                SubTT += ROWdetail._3_Impuesto_Monto_base
+                IVA += ROWdetail._4_Impuesto_Monto_Impuesto
+
+                ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
+            End If
+
+
+            ROWheader._90_Cantidad_LineasFactura = ContLin
+            ROWheader._54_Monto_SubTotal = SubTT.ToString("n2")
+            ROWheader._55_Monto_IVA = IVA.ToString("n2")
+            ROWheader._56_Monto_Total = Math.Round(SubTT + IVA, 2)
+            ROWheader._193_Monto_TotalImp_Trasladados = IVA.ToString("n2")
+            ROWheader._100_Letras_Monto_Total = Letras(Math.Round(ROWheader._56_Monto_Total, 2), "MXN")
+            ROWheader._114_Misc02 = r.AnexoCon & " " & r.CicloPagare
+            ROWheader._115_Misc03 = r.Anexo & "-" & r.Ciclo & "-" & r.FechaFinal
+            ROWheader._162_Misc50 = ""
+            ROWheader.Encabezado_Procesado = False
+
+            If r.Cliente = "05978 " Then
+                ROWheader._162_Misc50 = Trim(r.EMail1) & ";" & Trim(r.EMail2) & ";flen.estrada@ciasaconstruccion.com.mx;administacion@ciasaconstruccion.com.mx"
+            End If
+
+            If r.Tipar <> "C" Then
+                Select Case Trim(r.Sucursal)
+                    Case "MEXICALI"
+                        ROWheader._162_Misc50 += ";sduarte@finagil.com.mx"
+                    Case "NAVOJOA"
+                        ROWheader._162_Misc50 += ";mlopezb@finagil.com.mx"
+                    Case "IRAPUATO"
+                        ROWheader._162_Misc50 += ";vtezcuc@finagil.com.mx"
+                    Case Else
+                        ROWheader._162_Misc50 += ";vcruz@finagil.com.mx"
+                End Select
+            Else
+                ROWheader._162_Misc50 += ";vcruz@finagil.com.mx"
+            End If
+            ProducDS.CFDI_Encabezado.AddCFDI_EncabezadoRow(ROWheader)
+            ProducDS.CFDI_Encabezado.GetChanges()
+            ProducDS.CFDI_Detalle.GetChanges()
+            CFDI_H.Update(ProducDS.CFDI_Encabezado)
+            CFDI_D.Update(ProducDS.CFDI_Detalle)
+            Folios.ConsumeFolio()
+
+            ''Catch ex As Exception
+            ''    EnviaError(GeneraFactura.My.Settings.MailError, ex.Message, "Error CFDI AVIO" & r.Anexo)
+            ''End Try
+            'End If
+        Next
+
+    End Sub
+
     Sub GeneraArchivos()
         Const MontAux As String = "0"
         Dim x As Integer
@@ -191,19 +453,15 @@ Module GneraFactura
                             f1.WriteLine("idn:tipofactura                 =        FINANZAS")
                             f1.WriteLine("idn:planta                      =        TOLUCA")
                             f1.WriteLine("idn:tipodocto                   =        NACIONAL")
-                            If EsFinagil = True Then
-                                f1.WriteLine("idn:documanager                 =        FINAGIL")
-                            Else
-                                f1.WriteLine("idn:documanager                 =        ARFIN")
-                            End If
-                        If Datos(17) = "M.N." Then Datos(17) = "MXN"
-                        If Datos(17) = "MXP" Then Datos(17) = "MXN"
-
-
-                        If Datos(2) = "03473/0001" Or Datos(2) = "04235/0001" Then
-                            Datos(17) = "USD"
-                            Moneda = "USD"
+                        If EsFinagil = True Then
+                            f1.WriteLine("idn:documanager                 =        FINAGIL")
                         Else
+                            f1.WriteLine("idn:documanager                 =        ARFIN")
+                        End If
+
+                        If Moneda = "WWW" Then
+                            If Datos(17) = "M.N." Then Datos(17) = "MXN"
+                            If Datos(17) = "MXP" Then Datos(17) = "MXN"
                             Moneda = Datos(17)
                         End If
 
@@ -766,267 +1024,7 @@ Module GneraFactura
         ErrorControl.WriteEntry(ex.Message, EventLogEntryType.Error)
     End Sub
 
-    Sub GeneraArchivosAvio()
-        Dim TasaIVACliente As Decimal
-        Dim RFC As String
-        Dim SubTT As Double
-        Dim IVA As Double
-        Dim Fega As Double
-        Dim Razon As String
-        Dim fecha As New DateTime
-        Dim taCli As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
-        Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioTableAdapter
-        Dim FAC As New GeneraFactura.ProduccionDS.FacturasAvioDataTable
-        Dim Detalles As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioDetalleTableAdapter
-        Dim DET As New GeneraFactura.ProduccionDS.FacturasAvioDetalleDataTable
-        Dim Folios As New GeneraFactura.ProduccionDSTableAdapters.LlavesTableAdapter
 
-        Dim RegAfec As Integer
-        Dim Concep As String
-        Dim ContLin As Integer
-
-        Dim ProducDS As New ProduccionDS
-        Dim CFDI_H As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
-        Dim CFDI_D As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
-        Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
-        Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
-
-        fecha = Date.Now.AddDays(-1)
-        Facturas.QuitarPagosEfectivo()
-        '***************************************************************
-        'quita seguros que nos sean de guanajuato y michoacan haste que se hagan dos conceptos de seguros
-        Detalles.FillBySeguro(DET)
-        For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
-            Facturas.Facturar("N/A", rr.Anexo, rr.Ciclo, rr.FechaFinal, rr.Concepto)
-        Next
-        '***************************************************************
-        Facturas.QuitarPagosEfectivo()
-        Facturas.Fill(FAC, fecha.ToString("yyyyMMdd"))
-
-        For Each r As GeneraFactura.ProduccionDS.FacturasAvioRow In FAC.Rows
-            TasaIVACliente = taCli.SacaTasaIVACliente(r.Cliente)
-            ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
-            ROWheader._1_Folio = Folios.SerieGVA
-            Console.WriteLine("Generando CFDI AVIO..." & r.Anexo & " " & ROWheader._1_Folio)
-
-            SubTT = 0
-            IVA = 0
-            Fega = 0
-            ContLin = 0
-
-            ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
-            ROWheader._3_RFC_Emisor = "FIN940905AX7"
-            ROWheader._4_Dom_Emisor_calle = "Leandro Valle"
-            ROWheader._5_Dom_Emisor_noExterior = "402"
-            ROWheader._6_Dom_Emisor_noInterior = ""
-            ROWheader._7_Dom_Emisor_colonia = "Reforma y F.F.C.C"
-            ROWheader._8_Dom_Emisor_localidad = "Toluca"
-            ROWheader._9_Dom_Emisor_referencia = ""
-            ROWheader._10_Dom_Emisor_municipio = "Toluca"
-            ROWheader._11_Dom_Emisor_estado = "Estado de México"
-            ROWheader._12_Dom_Emisor_pais = "México"
-            ROWheader._13_Dom_Emisor_codigoPostal = "50070"
-
-            ROWheader._26_Version = "3.3"
-            ROWheader._27_Serie_Comprobante = "AV"
-            ROWheader._29_FormaPago = "99"
-            ROWheader._30_Fecha = fecha.Date
-            ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
-            ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
-
-            RFC = Trim(r.RFC)
-            RFC = ValidaRFC(RFC, r.Tipo)
-            If RFC = "SDA070613KU6" Then
-                Razon = """SERVICIO DAYCO"" SA DE CV"
-            Else
-                Razon = r.Nombre
-            End If
-            ROWheader._42_Nombre_Receptor = Razon.Trim
-            ROWheader._43_RFC_Receptor = RFC.Trim
-            ROWheader._44_Dom_Receptor_calle = r.Calle.Trim
-            ROWheader._45_Dom_Receptor_noExterior = ""
-            ROWheader._46_Dom_Receptor_noInterior = ""
-            ROWheader._47_Dom_Receptor_colonia = r.Colonia.Trim
-            ROWheader._48_Dom_Receptor_localidad = ""
-            ROWheader._49_Dom_Receptor_referencia = ""
-            ROWheader._50_Dom_Receptor_municipio = r.Delegacion.Trim
-            ROWheader._51_Dom_Receptor_estado = r.Estado.Trim
-            ROWheader._52_Dom_Receptor_pais = "México"
-            ROWheader._53_Dom_Receptor_codigoPostal = r.Copos.Trim
-            ROWheader._57_Estado = 1
-            ROWheader._58_TipoCFD = "FA"
-            ROWheader._83_Cod_Moneda = r.Moneda.Trim
-            ROWheader._97_Condiciones_Pago = "Contado"
-            ROWheader._144_Misc32 = "G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
-            ROWheader._167_RegimentFiscal = 601
-            If ROWheader._83_Cod_Moneda = "MXN" Then
-                ROWheader._177_Tasa_Divisa = 0
-            Else
-                ROWheader._177_Tasa_Divisa = taCli.SacaTipoCambio(fecha, ROWheader._83_Cod_Moneda)
-            End If
-            ROWheader._180_LugarExpedicion = "50070"
-            ROWheader._190_Metodo_Pago = "PUE"
-            ROWheader._191_Efecto_Comprobante = "I"
-
-            Facturas.QuitarPagosEfectivo()
-            Detalles.Fill(DET, r.Anexo, r.Ciclo)
-            Dim TasaIVA As Decimal = 0
-            Dim TipoImpuesto As String
-            Fega = 0
-            For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
-                ROWdetail = ProducDS.CFDI_Detalle.NewCFDI_DetalleRow
-                TasaIVA = TasaIVACliente
-                TipoImpuesto = TasaIVACliente
-                If Trim(rr.Concepto) = "EFECTIVO" _
-                Or Trim(rr.Concepto) = "AGROQUIMICOS" _
-                    Or Trim(rr.Concepto) = "EFECTIVO2" _
-                Or Trim(rr.Concepto) = "EFECTIVO 2" _
-                Or Trim(rr.Concepto) = "VALE" _
-                Or Trim(rr.Concepto) = "ASISTENCIA" _
-                Or Trim(rr.Concepto) = "INTEGRACION" _
-                Or Trim(rr.Concepto) = "ANALISIS DE SUELOS" Then
-                    Fega += Math.Round(rr.FEGA, 4)
-                Else
-                    ContLin += 1
-                    Fega += Math.Round(rr.FEGA, 4)
-                    Concep = Trim(rr.Concepto)
-                    Select Case UCase(Concep)
-                        Case "NOTARIO"
-                            Concep = "GASTOS DE NOTARIO"
-                        Case "RPP"
-                            Concep = "REGISTRO PÚBLICO DE LA PROPIEDAD"
-                        Case "GASTOS"
-                            Concep = "GASTOS ADMINISTRATIVOS"
-                        Case "ASISTENCIA"
-                            Concep = "ASISTENCIA TÉCNICA"
-                        Case "SEGURO"
-                            If r.Tipar <> "C" Then
-                                If r.Tipo <> "F" Then
-                                    TipoImpuesto = "Exento"
-                                    Concep = "SEGURO AGRÍCOLA EXENTOS DE IVA"
-                                Else
-                                    Concep = "SEGURO AGRÍCOLA"
-                                End If
-                            End If
-                        Case "SEGURO DE VIDA"
-                            TipoImpuesto = "Exento"
-                            Concep = "SEGURO DE VIDA EXENTOS DE IVA (" & UCase(MonthName(CInt(Mid(r.FechaFinal, 5, 2)), True)) & "-" & Mid(r.FechaFinal, 1, 4) & ")"
-                        Case "INTERESES"
-                            If r.Tipo <> "F" Then
-                                TipoImpuesto = "Exento"
-                                Concep = Concep & " EXENTOS DE IVA"
-                            End If
-                        Case "INTERESES MORATORIOS"
-                            If r.Tipo <> "F" Then
-                                TipoImpuesto = "Exento"
-                                Concep = Concep & " EXENTOS DE IVA"
-                            End If
-                    End Select
-
-                    ROWdetail._1_Linea_Descripcion = Concep
-                    ROWdetail._2_Linea_Cantidad = 1
-                    ROWdetail._3_Linea_Unidad = "E48"
-                    ROWdetail._4_Linea_PrecioUnitario = rr.Importe.ToString("n2")
-                    ROWdetail._5_Linea_Importe = rr.Importe.ToString("n2")
-                    ROWdetail._16_Linea_Cod_Articulo = "84101700"
-                    ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
-                    ROWdetail._2_Impuesto_Descripcion = "TR"
-                    ROWdetail._3_Impuesto_Monto_base = rr.Importe.ToString("n2")
-                    ROWdetail._5_Impuesto_Clave = "002"
-                    ROWdetail._6_Impuesto_Tasa = "Tasa"
-                    If TipoImpuesto = "Excento" Then
-                        ROWdetail._7_Impuesto_Porcentaje = "EXE"
-                        ROWdetail._4_Impuesto_Monto_Impuesto = 0
-                    Else
-                        ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                        ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(rr.Importe * (TasaIVA / 100), 2)
-                    End If
-
-                    SubTT += ROWdetail._3_Impuesto_Monto_base
-                    IVA += ROWdetail._4_Impuesto_Monto_Impuesto
-
-                    ROWdetail.Detalle_Folio = ROWheader._1_Folio
-                    ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
-                    ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
-                End If
-
-                RegAfec = Facturas.Facturar("AV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, rr.FechaFinal, Trim(rr.Concepto))
-                If RegAfec = 0 Then
-                    EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
-                End If
-
-            Next
-            If Fega > 0 Then
-                ContLin += 1
-                ROWdetail = ProducDS.CFDI_Detalle.NewRow
-                Concep = "GARANTIA FEGA"
-                TasaIVA = TasaIVACliente
-                ROWdetail._1_Linea_Descripcion = Concep
-                ROWdetail._2_Linea_Cantidad = 1
-                ROWdetail._3_Linea_Unidad = "E48"
-                ROWdetail._4_Linea_PrecioUnitario = Fega.ToString("n2")
-                ROWdetail._5_Linea_Importe = Fega.ToString("n2")
-                ROWdetail._16_Linea_Cod_Articulo = "84101700"
-                ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
-                ROWdetail._2_Impuesto_Descripcion = "TR"
-                ROWdetail._3_Impuesto_Monto_base = Fega.ToString("n2")
-                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(Fega * (TasaIVA / 100), 2)
-                ROWdetail._5_Impuesto_Clave = "002" ' Clave IVA
-                ROWdetail._6_Impuesto_Tasa = "Tasa"
-                ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                ROWdetail.Detalle_Folio = ROWheader._1_Folio
-                ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
-
-                SubTT += ROWdetail._3_Impuesto_Monto_base
-                IVA += ROWdetail._4_Impuesto_Monto_Impuesto
-
-                ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
-            End If
-
-
-            ROWheader._90_Cantidad_LineasFactura = ContLin
-            ROWheader._54_Monto_SubTotal = SubTT.ToString("n2")
-            ROWheader._55_Monto_IVA = IVA.ToString("n2")
-            ROWheader._56_Monto_Total = Math.Round(SubTT + IVA, 2)
-            ROWheader._193_Monto_TotalImp_Trasladados = IVA.ToString("n2")
-            ROWheader._100_Letras_Monto_Total = Letras(Math.Round(ROWheader._56_Monto_Total, 2), "MXN")
-            ROWheader._114_Misc02 = r.AnexoCon & " " & r.CicloPagare
-            ROWheader._115_Misc03 = r.Anexo & "-" & r.Ciclo & "-" & r.FechaFinal
-            ROWheader._162_Misc50 = ""
-            ROWheader.Encabezado_Procesado = False
-
-            If r.Cliente = "05978 " Then
-                ROWheader._162_Misc50 = Trim(r.EMail1) & ";" & Trim(r.EMail2) & ";flen.estrada@ciasaconstruccion.com.mx;administacion@ciasaconstruccion.com.mx"
-            End If
-
-            If r.Tipar <> "C" Then
-                Select Case Trim(r.Sucursal)
-                    Case "MEXICALI"
-                        ROWheader._162_Misc50 += ";sduarte@finagil.com.mx"
-                    Case "NAVOJOA"
-                        ROWheader._162_Misc50 += ";mlopezb@finagil.com.mx"
-                    Case "IRAPUATO"
-                        ROWheader._162_Misc50 += ";vtezcuc@finagil.com.mx"
-                    Case Else
-                        ROWheader._162_Misc50 += ";vcruz@finagil.com.mx"
-                End Select
-            Else
-                ROWheader._162_Misc50 += ";vcruz@finagil.com.mx"
-            End If
-            ProducDS.CFDI_Encabezado.AddCFDI_EncabezadoRow(ROWheader)
-            ProducDS.CFDI_Encabezado.GetChanges()
-            ProducDS.CFDI_Detalle.GetChanges()
-            CFDI_H.Update(ProducDS.CFDI_Encabezado)
-            CFDI_D.Update(ProducDS.CFDI_Detalle)
-            Folios.ConsumeFolio()
-
-            ''Catch ex As Exception
-            ''    EnviaError(GeneraFactura.My.Settings.MailError, ex.Message, "Error CFDI AVIO" & r.Anexo)
-            ''End Try
-            'End If
-        Next
-
-    End Sub
 
     Sub GeneraArchivosEXternas()
         Dim x As Integer
@@ -1196,7 +1194,7 @@ Module GneraFactura
                         tasa = 16
                     Case "0 %"
                         tasa = 0
-                    Case "EXCENTO"
+                    Case "EXENTO"
                         tasa = -1
                 End Select
             Next
@@ -1288,7 +1286,7 @@ Module GneraFactura
 
     End Sub
 
-    Sub LecturaPrevia(RutaArchivo As String, NombreArchivo As String)
+    Sub LecturaPrevia(RutaArchivo As String, NombreArchivo As String, ByRef Moneda As String)
         OpcionCompraAF = ""
         Dim Numero As Integer = 1
         Dim f2 As System.IO.StreamReader
@@ -1303,7 +1301,8 @@ Module GneraFactura
                 Linea = f2.ReadLine
                 Datos = Linea.Split("|")
                 If Numero = 1 And Datos.Length > 3 Then
-                    Tipar = taTipar.Tipar(Datos(2))
+                    Moneda = taTipar.SacaMoneda(Datos(2))
+                    Tipar = taTipar.TipaR(Datos(2))
                     If Tipar = "F" Then
                         Select Case Datos(0)
                             Case "M1"
