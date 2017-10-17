@@ -116,7 +116,7 @@ Module GneraFactura
 
             ROWheader._26_Version = "3.3"
             ROWheader._27_Serie_Comprobante = "AV"
-            ROWheader._29_FormaPago = "99"
+            ROWheader._29_FormaPago = "27" '27 A satisfacción del acreedor
             ROWheader._30_Fecha = fecha.Date
             ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
@@ -162,7 +162,7 @@ Module GneraFactura
             Fega = 0
             For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
                 ROWdetail = ProducDS.CFDI_Detalle.NewCFDI_DetalleRow
-                TasaIVA = TasaIVACliente
+                TasaIVA = TasaIVACliente / 100
                 TipoImpuesto = TasaIVACliente
                 If Trim(rr.Concepto) = "EFECTIVO" _
                 Or Trim(rr.Concepto) = "AGROQUIMICOS" _
@@ -172,10 +172,10 @@ Module GneraFactura
                 Or Trim(rr.Concepto) = "ASISTENCIA" _
                 Or Trim(rr.Concepto) = "INTEGRACION" _
                 Or Trim(rr.Concepto) = "ANALISIS DE SUELOS" Then
-                    Fega += Math.Round(rr.FEGA, 4)
+                    Fega += rr.FEGA
                 Else
                     ContLin += 1
-                    Fega += Math.Round(rr.FEGA, 4)
+                    Fega += rr.FEGA
                     Concep = Trim(rr.Concepto)
                     Select Case UCase(Concep)
                         Case "NOTARIO"
@@ -215,7 +215,7 @@ Module GneraFactura
                     ROWdetail._3_Linea_Unidad = "E48"
                     ROWdetail._4_Linea_PrecioUnitario = rr.Importe.ToString("n2")
                     ROWdetail._5_Linea_Importe = rr.Importe.ToString("n2")
-                    ROWdetail._16_Linea_Cod_Articulo = "84101700"
+                    ROWdetail._16_Linea_Cod_Articulo = "84101700" ' Manejo de deuda
                     ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
                     ROWdetail._2_Impuesto_Descripcion = "TR"
                     ROWdetail._3_Impuesto_Monto_base = rr.Importe.ToString("n2")
@@ -226,7 +226,7 @@ Module GneraFactura
                         ROWdetail._4_Impuesto_Monto_Impuesto = 0
                     Else
                         ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                        ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(rr.Importe * (TasaIVA / 100), 2)
+                        ROWdetail._4_Impuesto_Monto_Impuesto = TruncarDecimales((ROWdetail._5_Linea_Importe * TasaIVA))
                     End If
 
                     SubTT += ROWdetail._3_Impuesto_Monto_base
@@ -247,7 +247,7 @@ Module GneraFactura
                 ContLin += 1
                 ROWdetail = ProducDS.CFDI_Detalle.NewRow
                 Concep = "GARANTIA FEGA"
-                TasaIVA = TasaIVACliente
+                TasaIVA = TasaIVACliente / 100
                 ROWdetail._1_Linea_Descripcion = Concep
                 ROWdetail._2_Linea_Cantidad = 1
                 ROWdetail._3_Linea_Unidad = "E48"
@@ -257,7 +257,7 @@ Module GneraFactura
                 ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
                 ROWdetail._2_Impuesto_Descripcion = "TR"
                 ROWdetail._3_Impuesto_Monto_base = Fega.ToString("n2")
-                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(Fega * (TasaIVA / 100), 2)
+                ROWdetail._4_Impuesto_Monto_Impuesto = TruncarDecimales((ROWdetail._5_Linea_Importe * TasaIVA))
                 ROWdetail._5_Impuesto_Clave = "002" ' Clave IVA
                 ROWdetail._6_Impuesto_Tasa = "Tasa"
                 ROWdetail._7_Impuesto_Porcentaje = TasaIVA
@@ -272,11 +272,11 @@ Module GneraFactura
 
 
             ROWheader._90_Cantidad_LineasFactura = ContLin
-            ROWheader._54_Monto_SubTotal = SubTT.ToString("n2")
-            ROWheader._55_Monto_IVA = IVA.ToString("n2")
-            ROWheader._56_Monto_Total = Math.Round(SubTT + IVA, 2)
-            ROWheader._193_Monto_TotalImp_Trasladados = IVA.ToString("n2")
-            ROWheader._100_Letras_Monto_Total = Letras(Math.Round(ROWheader._56_Monto_Total, 2), "MXN")
+            ROWheader._54_Monto_SubTotal = SubTT
+            ROWheader._55_Monto_IVA = IVA
+            ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
+            ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
+            ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, "MXN")
             ROWheader._114_Misc02 = r.AnexoCon & " " & r.CicloPagare
             ROWheader._115_Misc03 = r.Anexo & "-" & r.Ciclo & "-" & r.FechaFinal
             ROWheader._162_Misc50 = ""
@@ -371,8 +371,8 @@ Module GneraFactura
                 Next
                 x = 0
                 suma = 0
-                LecturaPrevia(F(i).FullName, F(i).Name)
-                f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
+            LecturaPrevia(F(i).FullName, F(i).Name, Moneda)
+            f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
                 If Mid(F(i).Name, 1, 3) <> "FIN" And Mid(F(i).Name, 1, 3) <> "XXA" And IsNumeric(Mid(F(i).Name, 1, 4)) = True Then
                     fecha = New DateTime(Mid(F(i).Name, 1, 4), Mid(F(i).Name, 5, 2), Mid(F(i).Name, 7, 2), Mid(F(i).Name, 9, 2), Mid(F(i).Name, 11, 2), Mid(F(i).Name, 13, 2))
                     horas = DateDiff(DateInterval.Hour, fecha, Date.Now)
@@ -1024,8 +1024,6 @@ Module GneraFactura
         ErrorControl.WriteEntry(ex.Message, EventLogEntryType.Error)
     End Sub
 
-
-
     Sub GeneraArchivosEXternas()
         Dim x As Integer
         Dim EsNotaCredito As Boolean = False
@@ -1373,5 +1371,10 @@ Module GneraFactura
         End If
         Return rfc
     End Function
+
+    Function TruncarDecimales(Numero As Decimal) As Decimal
+        TruncarDecimales = Math.Truncate(Numero) + (Math.Truncate((Numero - Math.Truncate(Numero)) * 100) / 100)
+    End Function
+
 
 End Module
