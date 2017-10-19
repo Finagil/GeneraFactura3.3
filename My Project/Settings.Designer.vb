@@ -80,18 +80,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("\\192.168.10.37\arfin_sar951230n5a2ZZZ\")>  _
-        Public Property ServerCFDIArf() As String
-            Get
-                Return CType(Me("ServerCFDIArf"),String)
-            End Get
-            Set
-                Me("ServerCFDIArf") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\CFDI33\")>  _
         Public Property NoPasa() As String
             Get
@@ -99,30 +87,6 @@ Namespace My
             End Get
             Set
                 Me("NoPasa") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("\\192.168.10.37\finagil_fin940905ax7ZZZ\")>  _
-        Public Property ServerCFDIFin() As String
-            Get
-                Return CType(Me("ServerCFDIFin"),String)
-            End Get
-            Set
-                Me("ServerCFDIFin") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("r:\CFDI33\CFDI\")>  _
-        Public Property RutaCFDI() As String
-            Get
-                Return CType(Me("RutaCFDI"),String)
-            End Get
-            Set
-                Me("RutaCFDI") = value
             End Set
         End Property
         
@@ -147,6 +111,18 @@ Namespace My
             Get
                 Return CType(Me("ConnectionStringFACTURA"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("r:\CFDI33\")>  _
+        Public Property Raiz() As String
+            Get
+                Return CType(Me("Raiz"),String)
+            End Get
+            Set
+                Me("Raiz") = value
+            End Set
         End Property
     End Class
 End Namespace

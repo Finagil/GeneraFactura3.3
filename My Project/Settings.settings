@@ -8,17 +8,8 @@
     <Setting Name="RutaBackup" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\server-nas\FacturasCFDI\CFDI33\CFDIbackup\</Value>
     </Setting>
-    <Setting Name="ServerCFDIArf" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\192.168.10.37\arfin_sar951230n5a2ZZZ\</Value>
-    </Setting>
     <Setting Name="NoPasa" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\server-nas\FacturasCFDI\CFDI33\</Value>
-    </Setting>
-    <Setting Name="ServerCFDIFin" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\192.168.10.37\finagil_fin940905ax7ZZZ\</Value>
-    </Setting>
-    <Setting Name="RutaCFDI" Type="System.String" Scope="User">
-      <Value Profile="(Default)">r:\CFDI33\CFDI\</Value>
     </Setting>
     <Setting Name="RutaOrigen" Type="System.String" Scope="User">
       <Value Profile="(Default)">r:\CFDI33\ORGtxt\</Value>
@@ -30,6 +21,9 @@
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=server-raid;Initial Catalog=Production_AUX;Persist Security Info=True;User ID=User_PRO;Password=User_PRO2015</Value>
+    </Setting>
+    <Setting Name="Raiz" Type="System.String" Scope="User">
+      <Value Profile="(Default)">r:\CFDI33\</Value>
     </Setting>
   </Settings>
 </SettingsFile>
