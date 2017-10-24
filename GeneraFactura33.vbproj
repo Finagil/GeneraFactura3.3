@@ -108,6 +108,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProduccionDS.vb">
+      <DependentUpon>ProduccionDS.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
