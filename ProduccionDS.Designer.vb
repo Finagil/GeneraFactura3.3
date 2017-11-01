@@ -657,6 +657,8 @@ Partial Public Class ProduccionDS
         
         Private columnUnidad As Global.System.Data.DataColumn
         
+        Private columnCodigoART As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -789,6 +791,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CodigoARTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCodigoART
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -825,9 +835,9 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddFacturasExternasDETRow(ByVal Serie As String, ByVal Factura As Decimal, ByVal Consec As Decimal, ByVal Detalle As String, ByVal Cantidad As Decimal, ByVal Unitario As Decimal, ByVal Iva As Decimal, ByVal Importe As Decimal, ByVal fecha As Date, ByVal Moneda As String, ByVal TasaIva As String, ByVal Unidad As String) As FacturasExternasDETRow
+        Public Overloads Function AddFacturasExternasDETRow(ByVal Serie As String, ByVal Factura As Decimal, ByVal Consec As Decimal, ByVal Detalle As String, ByVal Cantidad As Decimal, ByVal Unitario As Decimal, ByVal Iva As Decimal, ByVal Importe As Decimal, ByVal fecha As Date, ByVal Moneda As String, ByVal TasaIva As String, ByVal Unidad As String, ByVal CodigoART As String) As FacturasExternasDETRow
             Dim rowFacturasExternasDETRow As FacturasExternasDETRow = CType(Me.NewRow,FacturasExternasDETRow)
-            Dim columnValuesArray() As Object = New Object() {Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad}
+            Dim columnValuesArray() As Object = New Object() {Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad, CodigoART}
             rowFacturasExternasDETRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFacturasExternasDETRow)
             Return rowFacturasExternasDETRow
@@ -868,6 +878,7 @@ Partial Public Class ProduccionDS
             Me.columnMoneda = MyBase.Columns("Moneda")
             Me.columnTasaIva = MyBase.Columns("TasaIva")
             Me.columnUnidad = MyBase.Columns("Unidad")
+            Me.columnCodigoART = MyBase.Columns("CodigoART")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -897,6 +908,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnTasaIva)
             Me.columnUnidad = New Global.System.Data.DataColumn("Unidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUnidad)
+            Me.columnCodigoART = New Global.System.Data.DataColumn("CodigoART", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCodigoART)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSerie, Me.columnFactura, Me.columnConsec}, true))
             Me.columnSerie.AllowDBNull = false
             Me.columnSerie.MaxLength = 3
@@ -906,6 +919,7 @@ Partial Public Class ProduccionDS
             Me.columnMoneda.MaxLength = 3
             Me.columnTasaIva.MaxLength = 10
             Me.columnUnidad.MaxLength = 3
+            Me.columnCodigoART.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2550,6 +2564,8 @@ Partial Public Class ProduccionDS
         
         Private columnCuenta As Global.System.Data.DataColumn
         
+        Private columnMetodoPagoSAT As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2706,6 +2722,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MetodoPagoSATColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMetodoPagoSAT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2742,9 +2766,25 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddFacturasExternasRow(ByVal Serie As String, ByVal Factura As Decimal, ByVal fecha As Date, ByVal Moneda As String, ByVal Nombre As String, ByVal Calle As String, ByVal Colonia As String, ByVal Municipio As String, ByVal Estado As String, ByVal CP As String, ByVal RFC As String, ByVal Mail1 As String, ByVal Mail2 As String, ByVal MetodoPago As String, ByVal Cuenta As String) As FacturasExternasRow
+        Public Overloads Function AddFacturasExternasRow( _
+                    ByVal Serie As String,  _
+                    ByVal Factura As Decimal,  _
+                    ByVal fecha As Date,  _
+                    ByVal Moneda As String,  _
+                    ByVal Nombre As String,  _
+                    ByVal Calle As String,  _
+                    ByVal Colonia As String,  _
+                    ByVal Municipio As String,  _
+                    ByVal Estado As String,  _
+                    ByVal CP As String,  _
+                    ByVal RFC As String,  _
+                    ByVal Mail1 As String,  _
+                    ByVal Mail2 As String,  _
+                    ByVal MetodoPago As String,  _
+                    ByVal Cuenta As String,  _
+                    ByVal MetodoPagoSAT As String) As FacturasExternasRow
             Dim rowFacturasExternasRow As FacturasExternasRow = CType(Me.NewRow,FacturasExternasRow)
-            Dim columnValuesArray() As Object = New Object() {Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta}
+            Dim columnValuesArray() As Object = New Object() {Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT}
             rowFacturasExternasRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFacturasExternasRow)
             Return rowFacturasExternasRow
@@ -2788,6 +2828,7 @@ Partial Public Class ProduccionDS
             Me.columnMail2 = MyBase.Columns("Mail2")
             Me.columnMetodoPago = MyBase.Columns("MetodoPago")
             Me.columnCuenta = MyBase.Columns("Cuenta")
+            Me.columnMetodoPagoSAT = MyBase.Columns("MetodoPagoSAT")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2823,6 +2864,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnMetodoPago)
             Me.columnCuenta = New Global.System.Data.DataColumn("Cuenta", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCuenta)
+            Me.columnMetodoPagoSAT = New Global.System.Data.DataColumn("MetodoPagoSAT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMetodoPagoSAT)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSerie, Me.columnFactura}, true))
             Me.columnSerie.AllowDBNull = false
             Me.columnSerie.MaxLength = 3
@@ -2839,6 +2882,7 @@ Partial Public Class ProduccionDS
             Me.columnMail2.MaxLength = 50
             Me.columnMetodoPago.MaxLength = 50
             Me.columnCuenta.MaxLength = 4
+            Me.columnMetodoPagoSAT.MaxLength = 3
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9722,6 +9766,21 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CodigoART() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturasExternasDET.CodigoARTColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CodigoART' de la tabla 'FacturasExternasDET' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturasExternasDET.CodigoARTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsDetalleNull() As Boolean
             Return Me.IsNull(Me.tableFacturasExternasDET.DetalleColumn)
         End Function
@@ -9826,6 +9885,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetUnidadNull()
             Me(Me.tableFacturasExternasDET.UnidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCodigoARTNull() As Boolean
+            Return Me.IsNull(Me.tableFacturasExternasDET.CodigoARTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCodigoARTNull()
+            Me(Me.tableFacturasExternasDET.CodigoARTColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -10730,6 +10801,21 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MetodoPagoSAT() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturasExternas.MetodoPagoSATColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'MetodoPagoSAT' de la tabla 'FacturasExternas' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturasExternas.MetodoPagoSATColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsfechaNull() As Boolean
             Return Me.IsNull(Me.tableFacturasExternas.fechaColumn)
         End Function
@@ -10882,6 +10968,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetCuentaNull()
             Me(Me.tableFacturasExternas.CuentaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMetodoPagoSATNull() As Boolean
+            Return Me.IsNull(Me.tableFacturasExternas.MetodoPagoSATColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMetodoPagoSATNull()
+            Me(Me.tableFacturasExternas.MetodoPagoSATColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -20108,6 +20206,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Moneda", "Moneda")
             tableMapping.ColumnMappings.Add("TasaIva", "TasaIva")
             tableMapping.ColumnMappings.Add("Unidad", "Unidad")
+            tableMapping.ColumnMappings.Add("CodigoART", "CodigoART")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -20121,7 +20220,9 @@ Namespace ProduccionDSTableAdapters
                 "sNull_fecha = 1 AND [fecha] IS NULL) OR ([fecha] = @Original_fecha)) AND ((@IsNu"& _ 
                 "ll_Moneda = 1 AND [Moneda] IS NULL) OR ([Moneda] = @Original_Moneda)) AND ((@IsN"& _ 
                 "ull_TasaIva = 1 AND [TasaIva] IS NULL) OR ([TasaIva] = @Original_TasaIva)) AND ("& _ 
-                "(@IsNull_Unidad = 1 AND [Unidad] IS NULL) OR ([Unidad] = @Original_Unidad)))"
+                "(@IsNull_Unidad = 1 AND [Unidad] IS NULL) OR ([Unidad] = @Original_Unidad)) AND "& _ 
+                "((@IsNull_CodigoART = 1 AND [CodigoART] IS NULL) OR ([CodigoART] = @Original_Cod"& _ 
+                "igoART)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Serie", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Factura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -20144,14 +20245,17 @@ Namespace ProduccionDSTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TasaIva", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TasaIva", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Unidad", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Unidad", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CodigoART", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CodigoART", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [FacturasExternas] ([Serie], [Factura], [Consec], [Detalle], [Cantida"& _ 
-                "d], [Unitario], [Iva], [Importe], [fecha], [Moneda], [TasaIva], [Unidad]) VALUES"& _ 
-                " (@Serie, @Factura, @Consec, @Detalle, @Cantidad, @Unitario, @Iva, @Importe, @fe"& _ 
-                "cha, @Moneda, @TasaIva, @Unidad);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Serie, Factura, Consec, Detalle, Canti"& _ 
-                "dad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad FROM FacturasExterna"& _ 
-                "s WHERE (Consec = @Consec) AND (Factura = @Factura) AND (Serie = @Serie)"
+                "d], [Unitario], [Iva], [Importe], [fecha], [Moneda], [TasaIva], [Unidad], [Codig"& _ 
+                "oART]) VALUES (@Serie, @Factura, @Consec, @Detalle, @Cantidad, @Unitario, @Iva, "& _ 
+                "@Importe, @fecha, @Moneda, @TasaIva, @Unidad, @CodigoART);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Serie, Factur"& _ 
+                "a, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Un"& _ 
+                "idad, CodigoART FROM FacturasExternas WHERE (Consec = @Consec) AND (Factura = @F"& _ 
+                "actura) AND (Serie = @Serie)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Factura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -20165,25 +20269,28 @@ Namespace ProduccionDSTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Moneda", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Moneda", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TasaIva", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TasaIva", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Unidad", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodigoART", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [FacturasExternas] SET [Serie] = @Serie, [Factura] = @Factura, [Consec] = "& _ 
                 "@Consec, [Detalle] = @Detalle, [Cantidad] = @Cantidad, [Unitario] = @Unitario, ["& _ 
                 "Iva] = @Iva, [Importe] = @Importe, [fecha] = @fecha, [Moneda] = @Moneda, [TasaIv"& _ 
-                "a] = @TasaIva, [Unidad] = @Unidad WHERE (([Serie] = @Original_Serie) AND ([Factu"& _ 
-                "ra] = @Original_Factura) AND ([Consec] = @Original_Consec) AND ((@IsNull_Detalle"& _ 
-                " = 1 AND [Detalle] IS NULL) OR ([Detalle] = @Original_Detalle)) AND ((@IsNull_Ca"& _ 
-                "ntidad = 1 AND [Cantidad] IS NULL) OR ([Cantidad] = @Original_Cantidad)) AND ((@"& _ 
-                "IsNull_Unitario = 1 AND [Unitario] IS NULL) OR ([Unitario] = @Original_Unitario)"& _ 
-                ") AND ((@IsNull_Iva = 1 AND [Iva] IS NULL) OR ([Iva] = @Original_Iva)) AND ((@Is"& _ 
-                "Null_Importe = 1 AND [Importe] IS NULL) OR ([Importe] = @Original_Importe)) AND "& _ 
-                "((@IsNull_fecha = 1 AND [fecha] IS NULL) OR ([fecha] = @Original_fecha)) AND ((@"& _ 
-                "IsNull_Moneda = 1 AND [Moneda] IS NULL) OR ([Moneda] = @Original_Moneda)) AND (("& _ 
-                "@IsNull_TasaIva = 1 AND [TasaIva] IS NULL) OR ([TasaIva] = @Original_TasaIva)) A"& _ 
-                "ND ((@IsNull_Unidad = 1 AND [Unidad] IS NULL) OR ([Unidad] = @Original_Unidad)))"& _ 
-                ";"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fec"& _ 
-                "ha, Moneda, TasaIva, Unidad FROM FacturasExternas WHERE (Consec = @Consec) AND ("& _ 
-                "Factura = @Factura) AND (Serie = @Serie)"
+                "a] = @TasaIva, [Unidad] = @Unidad, [CodigoART] = @CodigoART WHERE (([Serie] = @O"& _ 
+                "riginal_Serie) AND ([Factura] = @Original_Factura) AND ([Consec] = @Original_Con"& _ 
+                "sec) AND ((@IsNull_Detalle = 1 AND [Detalle] IS NULL) OR ([Detalle] = @Original_"& _ 
+                "Detalle)) AND ((@IsNull_Cantidad = 1 AND [Cantidad] IS NULL) OR ([Cantidad] = @O"& _ 
+                "riginal_Cantidad)) AND ((@IsNull_Unitario = 1 AND [Unitario] IS NULL) OR ([Unita"& _ 
+                "rio] = @Original_Unitario)) AND ((@IsNull_Iva = 1 AND [Iva] IS NULL) OR ([Iva] ="& _ 
+                " @Original_Iva)) AND ((@IsNull_Importe = 1 AND [Importe] IS NULL) OR ([Importe] "& _ 
+                "= @Original_Importe)) AND ((@IsNull_fecha = 1 AND [fecha] IS NULL) OR ([fecha] ="& _ 
+                " @Original_fecha)) AND ((@IsNull_Moneda = 1 AND [Moneda] IS NULL) OR ([Moneda] ="& _ 
+                " @Original_Moneda)) AND ((@IsNull_TasaIva = 1 AND [TasaIva] IS NULL) OR ([TasaIv"& _ 
+                "a] = @Original_TasaIva)) AND ((@IsNull_Unidad = 1 AND [Unidad] IS NULL) OR ([Uni"& _ 
+                "dad] = @Original_Unidad)) AND ((@IsNull_CodigoART = 1 AND [CodigoART] IS NULL) O"& _ 
+                "R ([CodigoART] = @Original_CodigoART)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Serie, Factura, Consec, Detalle"& _ 
+                ", Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad, CodigoART FR"& _ 
+                "OM FacturasExternas WHERE (Consec = @Consec) AND (Factura = @Factura) AND (Serie"& _ 
+                " = @Serie)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Factura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -20197,6 +20304,7 @@ Namespace ProduccionDSTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Moneda", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Moneda", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TasaIva", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TasaIva", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Unidad", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodigoART", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Serie", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Factura", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Consec", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "Consec", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -20218,6 +20326,8 @@ Namespace ProduccionDSTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TasaIva", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TasaIva", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Unidad", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Unidad", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Unidad", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CodigoART", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CodigoART", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoART", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20234,8 +20344,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, "& _ 
-                "fecha, Moneda, TasaIva, Unidad"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            FacturasExternas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
-                "Facturado = 0) AND (Serie = @Serie) AND (Factura = @Factura)"
+                "fecha, Moneda, TasaIva, Unidad, CodigoART"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            FacturasExternas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHE"& _ 
+                "RE        (Facturado = 0) AND (Serie = @Serie) AND (Factura = @Factura)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Factura", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -20309,7 +20419,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Serie As String, ByVal Original_Factura As Decimal, ByVal Original_Consec As Decimal, ByVal Original_Detalle As String, ByVal Original_Cantidad As Global.System.Nullable(Of Decimal), ByVal Original_Unitario As Global.System.Nullable(Of Decimal), ByVal Original_Iva As Global.System.Nullable(Of Decimal), ByVal Original_Importe As Global.System.Nullable(Of Decimal), ByVal Original_fecha As Global.System.Nullable(Of Date), ByVal Original_Moneda As String, ByVal Original_TasaIva As String, ByVal Original_Unidad As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_Serie As String, ByVal Original_Factura As Decimal, ByVal Original_Consec As Decimal, ByVal Original_Detalle As String, ByVal Original_Cantidad As Global.System.Nullable(Of Decimal), ByVal Original_Unitario As Global.System.Nullable(Of Decimal), ByVal Original_Iva As Global.System.Nullable(Of Decimal), ByVal Original_Importe As Global.System.Nullable(Of Decimal), ByVal Original_fecha As Global.System.Nullable(Of Date), ByVal Original_Moneda As String, ByVal Original_TasaIva As String, ByVal Original_Unidad As String, ByVal Original_CodigoART As String) As Integer
             If (Original_Serie Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Serie")
             Else
@@ -20380,6 +20490,13 @@ Namespace ProduccionDSTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
                 Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_Unidad,String)
             End If
+            If (Original_CodigoART Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_CodigoART,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -20399,7 +20516,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Serie As String, ByVal Factura As Decimal, ByVal Consec As Decimal, ByVal Detalle As String, ByVal Cantidad As Global.System.Nullable(Of Decimal), ByVal Unitario As Global.System.Nullable(Of Decimal), ByVal Iva As Global.System.Nullable(Of Decimal), ByVal Importe As Global.System.Nullable(Of Decimal), ByVal fecha As Global.System.Nullable(Of Date), ByVal Moneda As String, ByVal TasaIva As String, ByVal Unidad As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal Serie As String, ByVal Factura As Decimal, ByVal Consec As Decimal, ByVal Detalle As String, ByVal Cantidad As Global.System.Nullable(Of Decimal), ByVal Unitario As Global.System.Nullable(Of Decimal), ByVal Iva As Global.System.Nullable(Of Decimal), ByVal Importe As Global.System.Nullable(Of Decimal), ByVal fecha As Global.System.Nullable(Of Date), ByVal Moneda As String, ByVal TasaIva As String, ByVal Unidad As String, ByVal CodigoART As String) As Integer
             If (Serie Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Serie")
             Else
@@ -20452,6 +20569,11 @@ Namespace ProduccionDSTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = CType(Unidad,String)
             End If
+            If (CodigoART Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(CodigoART,String)
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -20484,6 +20606,7 @@ Namespace ProduccionDSTableAdapters
                     ByVal Moneda As String,  _
                     ByVal TasaIva As String,  _
                     ByVal Unidad As String,  _
+                    ByVal CodigoART As String,  _
                     ByVal Original_Serie As String,  _
                     ByVal Original_Factura As Decimal,  _
                     ByVal Original_Consec As Decimal,  _
@@ -20495,7 +20618,8 @@ Namespace ProduccionDSTableAdapters
                     ByVal Original_fecha As Global.System.Nullable(Of Date),  _
                     ByVal Original_Moneda As String,  _
                     ByVal Original_TasaIva As String,  _
-                    ByVal Original_Unidad As String) As Integer
+                    ByVal Original_Unidad As String,  _
+                    ByVal Original_CodigoART As String) As Integer
             If (Serie Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Serie")
             Else
@@ -20548,75 +20672,87 @@ Namespace ProduccionDSTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Unidad,String)
             End If
+            If (CodigoART Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(CodigoART,String)
+            End If
             If (Original_Serie Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Serie")
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_Serie,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Serie,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_Factura,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Consec,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_Factura,Decimal)
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_Consec,Decimal)
             If (Original_Detalle Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Detalle,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_Detalle,String)
             End If
             If (Original_Cantidad.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_Cantidad.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_Cantidad.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
             If (Original_Unitario.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Unitario.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Unitario.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             If (Original_Iva.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Iva.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_Iva.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
             If (Original_Importe.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Importe.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_Importe.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
             If (Original_fecha.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_fecha.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_fecha.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             If (Original_Moneda Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_Moneda,String)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_Moneda,String)
             End If
             If (Original_TasaIva Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_TasaIva,String)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_TasaIva,String)
             End If
             If (Original_Unidad Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_Unidad,String)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_Unidad,String)
+            End If
+            If (Original_CodigoART Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_CodigoART,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -20647,6 +20783,7 @@ Namespace ProduccionDSTableAdapters
                     ByVal Moneda As String,  _
                     ByVal TasaIva As String,  _
                     ByVal Unidad As String,  _
+                    ByVal CodigoART As String,  _
                     ByVal Original_Serie As String,  _
                     ByVal Original_Factura As Decimal,  _
                     ByVal Original_Consec As Decimal,  _
@@ -20658,8 +20795,9 @@ Namespace ProduccionDSTableAdapters
                     ByVal Original_fecha As Global.System.Nullable(Of Date),  _
                     ByVal Original_Moneda As String,  _
                     ByVal Original_TasaIva As String,  _
-                    ByVal Original_Unidad As String) As Integer
-            Return Me.Update(Original_Serie, Original_Factura, Original_Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad, Original_Serie, Original_Factura, Original_Consec, Original_Detalle, Original_Cantidad, Original_Unitario, Original_Iva, Original_Importe, Original_fecha, Original_Moneda, Original_TasaIva, Original_Unidad)
+                    ByVal Original_Unidad As String,  _
+                    ByVal Original_CodigoART As String) As Integer
+            Return Me.Update(Original_Serie, Original_Factura, Original_Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha, Moneda, TasaIva, Unidad, CodigoART, Original_Serie, Original_Factura, Original_Consec, Original_Detalle, Original_Cantidad, Original_Unitario, Original_Iva, Original_Importe, Original_fecha, Original_Moneda, Original_TasaIva, Original_Unidad, Original_CodigoART)
         End Function
     End Class
     
@@ -22204,6 +22342,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Mail2", "Mail2")
             tableMapping.ColumnMappings.Add("MetodoPago", "MetodoPago")
             tableMapping.ColumnMappings.Add("Cuenta", "Cuenta")
+            tableMapping.ColumnMappings.Add("MetodoPagoSAT", "MetodoPagoSAT")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -22217,13 +22356,14 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, E"& _ 
-                "stado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            FacturasExtern"& _ 
-                "as"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Facturado = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Serie, Factura, fecha, Moneda, Nombre"& _ 
-                ", Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta"
+                "stado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM           "& _ 
+                " FacturasExternas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Facturado = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Serie, Factura, fecha,"& _ 
+                " Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, Metod"& _ 
+                "oPago, Cuenta, MetodoPagoSAT"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -22233,6 +22373,13 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.NVarChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Serie", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Factura", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Factura", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Consec", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "Consec", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        ISNULL(MAX(TipoCambio), 1) AS TipoCambio"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CONT_Tipo"& _ 
+                "sDeCambio"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Fecha = @Fecha) AND (Moneda = @Moneda)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Moneda", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Moneda", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22286,6 +22433,38 @@ Namespace ProduccionDSTableAdapters
                 End If
             End Try
             Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function SacaTipoCambio(ByVal Fecha As Date, ByVal Moneda As String) As Global.System.Nullable(Of Decimal)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
+            command.Parameters(0).Value = CType(Fecha,Date)
+            If (Moneda Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Moneda")
+            Else
+                command.Parameters(1).Value = CType(Moneda,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return New Global.System.Nullable(Of Decimal)()
+            Else
+                Return New Global.System.Nullable(Of Decimal)(CType(returnValue,Decimal))
+            End If
         End Function
     End Class
     
