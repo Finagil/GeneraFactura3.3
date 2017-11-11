@@ -411,9 +411,8 @@ Module GneraFactura
                             End If
                             If Metodo_Pago = "PAGO" Then
                                 Folio = CFDI_H.SacaFolio()
-                                Serie = Metodo_Pago
+                                Serie = "COMP"
                                 GUID = CFDI_H.sacaGUID(Aviso)
-                                Metodo_Pago = "COMP"
                             End If
 
                             If Datos(2).Length <> 10 Then
@@ -672,15 +671,15 @@ Module GneraFactura
                 End While
                 If Datos(0) <> "X" Then
                     ROWheader._90_Cantidad_LineasFactura = 0
-                    ROWheader._54_Monto_SubTotal = SubTT
-                    ROWheader._55_Monto_IVA = IVA
-                    ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
-                    ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
-                    ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, Moneda)
-                    ROWheader._113_Misc01 = "[CPG]"
+                    ROWheader._54_Monto_SubTotal = 0 ' SubTT
+                    ROWheader._55_Monto_IVA = 0 'IVA
+                    ROWheader._56_Monto_Total = 0 'ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
+                    ROWheader._193_Monto_TotalImp_Trasladados = 0 'ROWheader._55_Monto_IVA
+                    ROWheader._100_Letras_Monto_Total = "" ' Letras(ROWheader._56_Monto_Total, Moneda)
+                    ROWheader._113_Misc01 = "CPG"
                     ROWheader._114_Misc02 = Datos(2)
                     ROWheader._115_Misc03 = Datos(1)
-                    ROWheader._132_Misc20 = "[CPG]"
+                    ROWheader._132_Misc20 = "CPG"
                     ROWheader._159_Misc47 = Aviso
                     ROWheader._162_Misc50 = ""
                     'ROWheader._161_Misc49 = ""
@@ -729,13 +728,15 @@ Module GneraFactura
                 f2.Close()
                 If Errores = False Then
                     Try
+                        Dim Total As Decimal = Math.Round(IVA + SubTT, 2)
+                        Dim SaldoFactura As Decimal = Total
                         ProducDS.CFDI_Encabezado.GetChanges()
                         ProducDS.CFDI_Detalle.GetChanges()
                         CFDI_D.Update(ProducDS.CFDI_Detalle)
                         CFDI_H.Update(ProducDS.CFDI_Encabezado)
-                        CFDI_P.Insert("[CPG]", "Pagos", "HD", 1, fecha.ToUniversalTime.ToString, "03", Moneda, "", ROWheader._56_Monto_Total, "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("[CPG]", "Pago", "HD", "", "", "1", "", "", "PPD", "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("[CPG]", "DoctoRelacionado", "HD", GUID, "A", "1", "", "AA", Moneda, "", "PPD", "1", ROWheader._56_Monto_Total, ROWheader._56_Monto_Total, "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), "03", Moneda, "", Total, "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "Pago", "HD", "", "", "", Moneda, "", "", "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, "", "PPD", "1", SaldoFactura, Total, "0.0", "", "", "", "", "", Folio, Serie, Folio, Serie)
                         CFDI_H.ConsumeFolio()
 
                         ProducDS.CFDI_Encabezado.Clear()
