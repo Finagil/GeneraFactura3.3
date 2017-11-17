@@ -289,7 +289,7 @@ Module GneraFactura
 
     Sub GeneraArchivos()
         Dim NoFactError As Integer
-        Dim Folio As Integer
+        Dim Folio, FolioORG As Integer
         Dim Serie As String = ""
         Dim GUID As String = ""
         Dim taCli As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
@@ -323,7 +323,7 @@ Module GneraFactura
         Dim Adenda, Errores As Boolean
         Dim D As New System.IO.DirectoryInfo(GeneraFactura.My.Settings.RutaOrigen)
         Dim F As System.IO.FileInfo() = D.GetFiles("*.txt").OrderBy(Function(fi) fi.CreationTime).ToArray()
-        Dim Aviso As String
+        Dim Aviso, SerieORG As String
 
         Dim Datos() As String
         Dim f2 As System.IO.StreamReader
@@ -336,6 +336,7 @@ Module GneraFactura
         Dim cAnexo, cAnexoAux As String
         Dim LeyendaCapital, Metodo_Pago, FormaPago As String
         Dim EsPago As Boolean
+        Dim TipoCambioSTR As String
         'Try
         NoFactError = 0
         For i = 0 To F.Length - 1
@@ -361,10 +362,13 @@ Module GneraFactura
                 EnviarGisela = False
                 Adenda = False
                 LeyendaCapital = ""
+                FolioORG = 0
+                SerieORG = ""
                 Errores = False
                 ReDim Datos(1)
                 Datos(0) = "X"
                 cAnexoAux = ""
+                TipoCambioSTR = ""
                 While Not f2.EndOfStream
                     Linea = f2.ReadLine
                     If UCase(Linea) = "X" Then
@@ -405,7 +409,17 @@ Module GneraFactura
                         Case "H3"
                             If Datos.Length > 28 Then
                                 Aviso = CFDI_H.SacaAviso(Datos(28), Datos(29))
-                                If Aviso = "0" Then Aviso = ""
+                                If Aviso = "0" Then
+                                    Aviso = ""
+                                Else
+                                    SerieORG = CFDI_H.SacaSerieORG(Aviso)
+                                    FolioORG = CFDI_H.SacaFolioORG(Aviso)
+                                    If SerieORG = "XX" Then
+                                        'Errores = True
+                                        'EnviacORREO("vcruz@finagil.com.mx", "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                        'EnviacORREO("ecacerest@finagil.com.mx", "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    End If
+                                End If
                             Else
                                 Aviso = ""
                             End If
@@ -440,7 +454,7 @@ Module GneraFactura
 
                             ROWheader._26_Version = "3.3"
                             ROWheader._27_Serie_Comprobante = Serie
-                            ROWheader._29_FormaPago = FormaPago '"27" '27 A satisfacción del acreedor
+                            ROWheader._29_FormaPago = "" 'FormaPago '"27" '27 A satisfacción del acreedor
                             ROWheader._30_Fecha = fecha.Date
                             ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
                             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
@@ -449,6 +463,10 @@ Module GneraFactura
                                 If Datos(17) = "M.N." Then Datos(17) = "MXN"
                                 If Datos(17) = "MXP" Then Datos(17) = "MXN"
                                 Moneda = Datos(17)
+                            End If
+
+                            If Moneda <> "MXN" Then
+                                TipoCambioSTR = CFDI_P.SacaTipoCambio(fecha, Moneda).ToString
                             End If
 
                             Datos(16) = ValidaRFC(Datos(16), TipoPersona)
@@ -475,11 +493,11 @@ Module GneraFactura
 
                             ROWheader._83_Cod_Moneda = Moneda
                             ROWheader._97_Condiciones_Pago = ""
-                            UsoCFDI = taCodigo.SacaUsoCFDI(cAnexo)
-                            If UsoCFDI.Trim = "" Then
-                                UsoCFDI = taCodigo.SacaUsoCFDI(Tipar)
-                            End If
-                            ROWheader._144_Misc32 = UsoCFDI 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
+                            'UsoCFDI = taCodigo.SacaUsoCFDI(cAnexo)
+                            'If UsoCFDI.Trim = "" Then
+                            'UsoCFDI = taCodigo.SacaUsoCFDI(Tipar)
+                            'End If
+                            ROWheader._144_Misc32 = "P01" 'UsoCFDI 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
                             ROWheader._167_RegimentFiscal = 601
                             If ROWheader._83_Cod_Moneda = "MXN" Then
                                 ROWheader._177_Tasa_Divisa = 0
@@ -592,45 +610,42 @@ Module GneraFactura
                                     End Select
                                 End If
 
-                                taCodigo.Fill(tCodigo, Tipar, Concepto)
-                                If tCodigo.Rows.Count > 0 Then
-                                    rCod = tCodigo.Rows(0)
-                                    Unidad = rCod.Unidad
-                                    Codigo = rCod.Codigo
-                                    If Codigo = "" Then
-                                        Codigo = "84101700"
-                                        Errores = True
-                                    End If
-                                    If Unidad = "" Then
-                                        Unidad = "E48"
-                                        Errores = True
-                                    End If
-                                    If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
-                                        Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                    End If
-                                    If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
-                                        Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                    End If
+                                'taCodigo.Fill(tCodigo, Tipar, Concepto)
+                                'If tCodigo.Rows.Count > 0 Then
+                                '    rCod = tCodigo.Rows(0)
+                                '    Unidad = rCod.Unidad
+                                '    Codigo = rCod.Codigo
+                                '    If Codigo = "" Then
+                                '        Codigo = "84101700"
+                                '        Errores = True
+                                '    End If
+                                '    If Unidad = "" Then
+                                '        Unidad = "E48"
+                                '        Errores = True
+                                '    End If
+                                '    If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
+                                '        Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                '    End If
+                                '    If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
+                                '        Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                '    End If
 
-                                Else
-                                    If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
-                                        taCodigo.Insert(Tipar, Concepto, "", "", False)
-                                    End If
-                                    Unidad = "E48"
-                                    Codigo = "84101700"
-                                    Errores = True
-                                End If
-                                If Errores = True Then
-                                    'EnviacORREO("vcruz@finagil.com.mx", "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                    'EnviacORREO("ecacerest@finagil.com.mx", "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                End If
+                                'Else
+                                '    If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
+                                '        taCodigo.Insert(Tipar, Concepto, "", "", False)
+                                '    End If
+                                '    Unidad = "E48"
+                                '    Codigo = "84101700"
+                                '    Errores = True
+                                'End If
+
 
                                 ROWdetail._1_Linea_Descripcion = "Pago"
                                 ROWdetail._2_Linea_Cantidad = 1
                                 ROWdetail._3_Linea_Unidad = "ACT"
                                 ROWdetail._4_Linea_PrecioUnitario = 0
                                 ROWdetail._5_Linea_Importe = 0
-                                ROWdetail._16_Linea_Cod_Articulo = Codigo ' Manejo de deuda
+                                ROWdetail._16_Linea_Cod_Articulo = "84111506" 'Codigo ' Manejo de deuda
                                 'ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
                                 'ROWdetail._2_Impuesto_Descripcion = "TR"
                                 'ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
@@ -676,10 +691,10 @@ Module GneraFactura
                     ROWheader._56_Monto_Total = 0 'ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
                     ROWheader._193_Monto_TotalImp_Trasladados = 0 'ROWheader._55_Monto_IVA
                     ROWheader._100_Letras_Monto_Total = "" ' Letras(ROWheader._56_Monto_Total, Moneda)
-                    ROWheader._113_Misc01 = "CPG"
+                    ROWheader._113_Misc01 = "[CPG]"
                     ROWheader._114_Misc02 = Datos(2)
                     ROWheader._115_Misc03 = Datos(1)
-                    ROWheader._132_Misc20 = "CPG"
+                    ROWheader._132_Misc20 = "[CPG]"
                     ROWheader._159_Misc47 = Aviso
                     ROWheader._162_Misc50 = ""
                     'ROWheader._161_Misc49 = ""
@@ -729,14 +744,20 @@ Module GneraFactura
                 If Errores = False Then
                     Try
                         Dim Total As Decimal = Math.Round(IVA + SubTT, 2)
-                        Dim SaldoFactura As Decimal = Total
+                        Dim SaldoFactura, SaldoInsolFactura As Decimal
+                        SaldoFactura = CFDI_P.SaldoFactura(FolioORG, SerieORG)
+                        SaldoFactura = Total 'LINEA DE PRUEBAS
+                        SaldoInsolFactura = SaldoInsolFactura - Total
+                        If SaldoInsolFactura < 0 Then
+                            SaldoInsolFactura = 0
+                        End If
                         ProducDS.CFDI_Encabezado.GetChanges()
                         ProducDS.CFDI_Detalle.GetChanges()
                         CFDI_D.Update(ProducDS.CFDI_Detalle)
                         CFDI_H.Update(ProducDS.CFDI_Encabezado)
-                        CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), "03", Moneda, "", Total, "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "Pago", "HD", "", "", "", Moneda, "", "", "", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, "", "PPD", "1", SaldoFactura, Total, "0.0", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, "REF_NO OPRACION", "RFC CEUNTA CLIENTE", "banco cliente", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", "NoPago", SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                         CFDI_H.ConsumeFolio()
 
                         ProducDS.CFDI_Encabezado.Clear()
@@ -815,7 +836,7 @@ Module GneraFactura
                             Metodo_Pago = Datos(2)
                             FormaPago = Datos(3)
                         Case "H3"
-                            If Datos.Length > 28 Then
+                            If Datos.Length > 28 And Serie <> "F" Then
                                 Aviso = CFDI_H.SacaAviso(Datos(28), Datos(29))
                                 If Aviso = "0" Then Aviso = ""
                             Else
@@ -829,6 +850,9 @@ Module GneraFactura
                             End If
 
                             TipoPersona = taTipar.TipoPersona(Datos(1))
+                            If IsNothing(TipoPersona) And Serie = "F" Then
+                                TipoPersona = "M"
+                            End If
                             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
                             TasaIVACliente = taCli.SacaTasaIVACliente(Datos(1))
                             ROWheader._1_Folio = Val(Datos(4))
@@ -914,7 +938,7 @@ Module GneraFactura
                                 ROWheader._58_TipoCFD = "FA"
                             End If
                         Case "D1"
-                            Dim TasaIVA As Decimal = 0
+                            Dim TasaIVA As Decimal = 0.16
                             Dim TipoImpuesto As String
                             If InStr(UCase(Datos(8)), "IVA") <= 0 Then
                                 Datos(8) = Trim(Datos(8))
@@ -931,6 +955,13 @@ Module GneraFactura
                                 TasaIVA = TasaIVACliente / 100
                                 TipoImpuesto = TasaIVACliente
                                 NoLineas += 1
+                                If InStr(Datos(8), "Comisión del") Then
+                                    If ROWheader._27_Serie_Comprobante = "F" Then
+                                        ReDim Preserve Datos(11)
+                                        Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
+                                    End If
+                                End If
+
                                 If Tipar <> "F" And Tipar <> "P" Then
                                     Select Case Datos(8)
                                         Case "ADELANTO CAPITAL EQUIPO"
@@ -1060,31 +1091,32 @@ Module GneraFactura
                                     Datos(6) = "SER"
                                 End If
                                 ROWdetail._53_Linea_Misc22 = Datos(6)
-                                If TipoImpuesto = "Exento" Then
-                                    ROWdetail._7_Impuesto_Porcentaje = "EXE"
-                                    ROWdetail._4_Impuesto_Monto_Impuesto = 0
-                                Else
-                                    ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                                    If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
+                                Try
+                                    If TipoImpuesto = "Exento" Then
+                                        ROWdetail._7_Impuesto_Porcentaje = "EXE"
                                         ROWdetail._4_Impuesto_Monto_Impuesto = 0
                                     Else
-                                        ROWdetail._4_Impuesto_Monto_Impuesto = CDec(Datos(11)).ToString("n2")
-                                        MontoBaseIVA = CDec(Datos(11)) / TasaIVA
-                                        If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base Then
-                                            ROWdetail._3_Impuesto_Monto_base = MontoBaseIVA
+                                        ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                                        If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = 0
+                                        Else
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = CDec(Datos(11)).ToString("n2")
+                                            MontoBaseIVA = CDec(Datos(11)) / TasaIVA
+                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base Then
+                                                ROWdetail._3_Impuesto_Monto_base = MontoBaseIVA
+                                            End If
                                         End If
                                     End If
-                                End If
 
-                                SubTT += ROWdetail._5_Linea_Importe
-                                IVA += ROWdetail._4_Impuesto_Monto_Impuesto
+                                    SubTT += ROWdetail._5_Linea_Importe
+                                    IVA += ROWdetail._4_Impuesto_Monto_Impuesto
 
-                                ROWdetail.Detalle_Folio = ROWheader._1_Folio
-                                ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
-                                Try
+                                    ROWdetail.Detalle_Folio = ROWheader._1_Folio
+                                    ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
+
                                     ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
                                 Catch ex As Exception
-                                    Errores = False
+                                    Errores = True
                                     EnviacORREO("ecacerest@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End Try
 
@@ -1426,33 +1458,6 @@ Module GneraFactura
             f2.Close()
         End Try
     End Sub
-
-    Public Function Estado_de_Cuenta_Avio(ByVal cAnexo As String, ByVal cCiclo As String, ByVal Proyectado As Integer, ByVal Usuario As String, Mensual As String)
-        Dim cnAgil As New SqlConnection("Server=SERVER-RAID; DataBase=Production; User ID=User_PRO; pwd=User_PRO2015")
-        Dim Res As Object
-        Dim cm1 As New SqlCommand()
-        With cm1
-            .CommandType = CommandType.StoredProcedure
-            If Mensual.ToUpper = "SI" Then
-                .CommandText = "dbo.EstadoCuentaAvio_MENSUAL"
-            Else
-                .CommandText = "dbo.EstadoCuentaAvio"
-            End If
-
-            .CommandTimeout = 50
-            .Parameters.AddWithValue("Anexo", cAnexo)
-            .Parameters.AddWithValue("Ciclo", cCiclo)
-            .Parameters.AddWithValue("Proyectado", Proyectado)
-            .Parameters.AddWithValue("usuario", Usuario)
-            .Connection = cnAgil
-        End With
-        cnAgil.Open()
-        Res = cm1.ExecuteScalar()
-        cnAgil.Close()
-        cnAgil.Dispose()
-        cm1.Dispose()
-        Return (Res)
-    End Function
 
     Function ValidaRFC(rfc As String, tipo As String)
         If IsNumeric(Mid(rfc, 4, 1)) Then
