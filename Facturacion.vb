@@ -227,7 +227,7 @@ Module GneraFactura
 
                 RegAfec = Facturas.Facturar("AV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, rr.FechaFinal, Trim(rr.Concepto))
                 If RegAfec = 0 Then
-                    EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
+                    'EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
                 End If
 
             Next
@@ -359,7 +359,30 @@ Module GneraFactura
             Console.WriteLine("Generando CFDI..." & F(i).Name)
             NoLineas = 0
             suma = 0
+            Mail = ""
             EsPago = False
+            EsNotaCredito = False
+            SubTT = 0
+            IVA = 0
+            EnviarGisela = False
+            Adenda = False
+            LeyendaCapital = ""
+            FolioORG = 0
+            SerieORG = ""
+            Errores = False
+            ReDim Datos(1)
+            Datos(0) = "X"
+            cAnexoAux = ""
+            RFC_BancoCliente = ""
+            NombreBancoCliente = ""
+            NoCuentaCliente = ""
+            RFC_BancoFinagil = ""
+            CuentaFinagil = ""
+            TipoCambioSTR = ""
+            Spei = ""
+            SpeiCert = ""
+            SpeiCadOrg = ""
+            SpeiSello = ""
             LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsFactura, EsPago, SerieORG, FolioORG, GUID, Referencia)
             'If LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsPago) Then
             '    File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
@@ -378,28 +401,7 @@ Module GneraFactura
                         fecha = fecha.AddHours(horas - 71)
                     End If
                 End If
-                EsNotaCredito = False
-                SubTT = 0
-                IVA = 0
-                EnviarGisela = False
-                Adenda = False
-                LeyendaCapital = ""
-                FolioORG = 0
-                SerieORG = ""
-                Errores = False
-                ReDim Datos(1)
-                Datos(0) = "X"
-                cAnexoAux = ""
-                RFC_BancoCliente = ""
-                NombreBancoCliente = ""
-                NoCuentaCliente = ""
-                RFC_BancoFinagil = ""
-                CuentaFinagil = ""
-                TipoCambioSTR = ""
-                Spei = ""
-                SpeiCert = ""
-                SpeiCadOrg = ""
-                SpeiSello = ""
+
                 While Not f2.EndOfStream
                     Linea = f2.ReadLine
                     If UCase(Linea) = "X" Then
@@ -768,16 +770,8 @@ Module GneraFactura
                         fecha = fecha.AddHours(horas - 71)
                     End If
                 End If
-                EsNotaCredito = False
-                SubTT = 0
-                IVA = 0
-                EnviarGisela = False
-                Adenda = False
-                LeyendaCapital = ""
-                Errores = False
                 ReDim Datos(1)
                 Datos(0) = "X"
-                cAnexoAux = ""
                 While Not f2.EndOfStream
                     Linea = f2.ReadLine
                     If UCase(Linea) = "X" Then
@@ -929,7 +923,7 @@ Module GneraFactura
                                 If tCodigo.Rows.Count > 0 Then
                                     rCod = tCodigo.Rows(0)
                                     If rCod.Adenda = True Then
-                                        LeyendaCapital += Concepto & " " & CDec(Datos(10)).ToString("n2") & vbCrLf
+                                        LeyendaCapital += "* " & Concepto & " " & CDec(Datos(10)).ToString("n2") & vbCrLf
                                         Continue While
                                     End If
                                 End If
@@ -1324,7 +1318,7 @@ Module GneraFactura
             If ROWheader._83_Cod_Moneda = "MXN" Then
                 ROWheader._177_Tasa_Divisa = 0
             Else
-                ROWheader._177_Tasa_Divisa = Facturas.SacaTipoCambio(Today.AddDays(-1).Date, ROWheader._83_Cod_Moneda)
+                ROWheader._177_Tasa_Divisa = Facturas.SacaTipoCambio(Today.Date, ROWheader._83_Cod_Moneda)
             End If
             ROWheader._180_LugarExpedicion = "50070"
             ROWheader._190_Metodo_Pago = r.MetodoPagoSAT 'PPD pago en parcialidades PUE pago en una sola exhibision
