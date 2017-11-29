@@ -391,7 +391,7 @@ Module GneraFactura
             'Else
             '    Continue For
             'End If
-            If EsPago = True And EsFactura = False Then
+            If EsPago = True And EsFactura = False And Serie <> "C" Then
 #Region "Espago"
                 f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
                 If Mid(F(i).Name, 1, 3) <> "FIN" And Mid(F(i).Name, 1, 3) <> "XXA" And IsNumeric(Mid(F(i).Name, 1, 4)) = True Then
@@ -760,7 +760,7 @@ Module GneraFactura
                     NoFactError += 1
                 End If
 #End Region
-            ElseIf EsPago = False And EsFactura = True Then
+            ElseIf EsPago = False And EsFactura = True And Serie <> "C" Then
 #Region "Factura"
                 f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
                 If Mid(F(i).Name, 1, 3) <> "FIN" And Mid(F(i).Name, 1, 3) <> "XXA" And IsNumeric(Mid(F(i).Name, 1, 4)) = True Then
@@ -1097,8 +1097,8 @@ Module GneraFactura
                                         Else
                                             ROWdetail._4_Impuesto_Monto_Impuesto = Datos(11)
                                             MontoBaseIVA = CDec(Datos(11)) / TasaIVA
-                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base Then
-                                                ROWdetail._3_Impuesto_Monto_base = MontoBaseIVA
+                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And Mid(Datos(8), 1, 7) = "INTERES" Then
+                                                ROWdetail._3_Impuesto_Monto_base = MontoBaseIVA.ToString("n2")
                                             End If
                                         End If
                                     End If
@@ -1203,7 +1203,7 @@ Module GneraFactura
                 End If
 #End Region
             Else
-                If EsFactura = False Then
+                If EsFactura = False Or Serie = "C" Then
                     File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
                     File.Delete(F(i).FullName)
                 End If
