@@ -27,11 +27,11 @@ Module GneraFactura
         GeneraArchivosEXternas()
         Console.WriteLine("leyendo " & GeneraFactura.My.Settings.RutaOrigen)
         Console.WriteLine("Generando CFDI...")
-        ObtieneGUID()
+        'ObtieneGUID()
         GeneraArchivos(True) 'fACTURAS
-        ObtieneGUID()
+        'ObtieneGUID()
         GeneraArchivos(False) 'COMPLEMENTOS
-        ObtieneGUID()
+        'ObtieneGUID()
 
         Console.WriteLine("Terminado...")
     End Sub
@@ -667,10 +667,10 @@ Module GneraFactura
                     ROWheader._56_Monto_Total = 0 'ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
                     ROWheader._193_Monto_TotalImp_Trasladados = 0 'ROWheader._55_Monto_IVA
                     ROWheader._100_Letras_Monto_Total = "" ' Letras(ROWheader._56_Monto_Total, Moneda)
-                    ROWheader._113_Misc01 = "[CPG]"
+                    ROWheader._113_Misc01 = "[CPG_FINAGIL]"
                     ROWheader._114_Misc02 = Datos(2)
                     ROWheader._115_Misc03 = Datos(1)
-                    ROWheader._132_Misc20 = "[CPG]"
+                    ROWheader._132_Misc20 = "[CPG_FINAGIL]"
                     ROWheader._158_Misc46 = TipoCredito.Trim
                     ROWheader._159_Misc47 = "" 'Aviso
                     ROWheader._162_Misc50 = ""
@@ -819,7 +819,6 @@ Module GneraFactura
                             End If
 
                             If Metodo_Pago = "PPD" Then FormaPago = "99"
-
                             TipoPersona = taTipar.TipoPersona(Datos(1))
                             If IsNothing(TipoPersona) And Serie = "F" Then
                                 TipoPersona = "M"
@@ -1425,6 +1424,8 @@ Module GneraFactura
         Dim Datos() As String
         Dim Anexo As String = ""
         Dim Aviso As String = ""
+        Dim FechaAviso As Date = "01/01/1900"
+
         f2 = New System.IO.StreamReader(RutaArchivo, Text.Encoding.GetEncoding(1252))
         Try
             While Not f2.EndOfStream
@@ -1466,6 +1467,7 @@ Module GneraFactura
                                 Else
                                     SerieORG = CFDI_H.SacaSerieORG(Aviso)
                                     FolioORG = CFDI_H.SacaFolioORG(Aviso)
+                                    FechaAviso = CFDI_H.SacaAvisoFecha(Datos(28), Datos(29))
                                     If SerieORG = "XX" Then
                                         EsPAgo = False
                                         EsFactura = False
@@ -1478,7 +1480,8 @@ Module GneraFactura
                             Serie = "REP"
                             GUID = CFDI_H.sacaGUID(Aviso)
                             GUID = GUID.ToUpper
-                            If EsFactura = False And EsPAgo = False Then
+                            If EsFactura = False And EsPAgo = False And FechaAviso > CDate("01/01/2000") And FechaAviso < CDate("28/11/2000") Then
+                                ' para avisos y pagos de avisos anteriores ala fecha de Inicio 3.3
                                 Folio = Val(Datos(4))
                                 Serie = Datos(3)
                                 EsFactura = True
