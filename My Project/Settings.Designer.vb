@@ -124,6 +124,18 @@ Namespace My
                 Me("Raiz") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("R:\CFDI33\ORGtxt\Complementos\")>  _
+        Public Property Complementos() As String
+            Get
+                Return CType(Me("Complementos"),String)
+            End Get
+            Set
+                Me("Complementos") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

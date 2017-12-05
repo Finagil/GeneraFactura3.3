@@ -101,15 +101,15 @@ Module Funciones
         ElseIf moneda = "USD" Then
             If dec <> "" Then
                 If Trim(cCant_Mill) <> "" And Trim(cCant_Mil) = "" Or Trim(cCant_Mil) = "CERO" Then
-                    Letras = "(" & cCant & "DE DOLAES " & dec & "/100 M.E.)"
+                    Letras = "(" & cCant & "DE DOLAES " & dec & "/100 " & moneda & ")"
                 Else
-                    Letras = "(" & cCant & "DOLARES " & dec & "/100 M.E.)"
+                    Letras = "(" & cCant & "DOLARES " & dec & "/100 " & moneda & ")"
                 End If
             Else
                 If Trim(cCant_Mill) <> "" And Trim(cCant_Mil) = "" Or Trim(cCant_Mil) = "CERO" Then
-                    Letras = "(" & cCant & "DE DOLARES 00/100 M.E.)"
+                    Letras = "(" & cCant & "DE DOLARES 00/100 " & moneda & ")"
                 Else
-                    Letras = "(" & cCant & "DOLARES 00/100 M.E.)"
+                    Letras = "(" & cCant & "DOLARES 00/100 " & moneda & ")"
                 End If
             End If
         End If

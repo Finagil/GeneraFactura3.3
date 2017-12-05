@@ -25,5 +25,8 @@
     <Setting Name="Raiz" Type="System.String" Scope="User">
       <Value Profile="(Default)">r:\CFDI33\</Value>
     </Setting>
+    <Setting Name="Complementos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">R:\CFDI33\ORGtxt\Complementos\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
