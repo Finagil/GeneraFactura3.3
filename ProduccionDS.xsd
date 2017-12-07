@@ -1946,6 +1946,66 @@ SET                CFDI_Pago = CFDI_Pago + 1</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_Encabezado" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByNoProcesadosFACT" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByNoProcesadosFACT" GeneratorSourceName="FillByNoProcesadosFACT" GetMethodModifier="Public" GetMethodName="GetDataByNoProcesadosFACT" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByNoProcesadosFACT" UserSourceName="FillByNoProcesadosFACT">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_empaques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus], [107_Numero_Emisor], [108_Monto_Merma], 
+                         [109_Monto_SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Solicitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc04], [117_Misc05], [118_Misc06], 
+                         [119_Misc07], [11_Dom_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Misc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12_Dom_Emisor_pais], [130_Misc18],
+                          [131_Misc19], [132_Misc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [138_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc29], [142_Misc30], [143_Misc31], 
+                         [144_Misc32], [145_Misc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], [150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc43], [156_Misc44], [157_Misc45], 
+                         [158_Misc46], [159_Misc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_Porc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_RegimentFiscal], [168_Num_CtaPago], 
+                         [169_Num_contrarecibo], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Comprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Aduana], 
+                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], [177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], 
+                         [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig], [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Descuentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], 
+                         [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Efecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladados], [19_Dom_Sucursal_localidad], [1_Folio], 
+                         [20_Dom_Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Version], [27_Serie_Comprobante], 
+                         [28_Numero_Aprobacion], [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_calle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom_LugarExpide_colonia], 
+                         [36_Dom_LugarExpide_localidad], [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_LugarExpide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_codigoPostal], 
+                         [42_Nombre_Receptor], [43_RFC_Receptor], [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInterior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], 
+                         [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_municipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_codigoPostal], [54_Monto_SubTotal], [55_Monto_IVA], 
+                         [56_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior], [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_Prov], [64_EAN_Proveedor], [65_Numero_Factura], 
+                         [66_Numero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tienda], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_Tienda_calle], 
+                         [73_Dom_Tienda_noExterior], [74_Dom_Tienda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tienda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], 
+                         [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codigoPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_ProntoPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], 
+                         [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cantidad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor], [94_Cod_Vendedor], [95_Nombre_Vendedor], 
+                         [96_Via_Embarque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Emisor_referencia], Encabezado_Procesado, Guid
+FROM            CFDI_Encabezado
+WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] &lt;&gt; 'REP')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_Encabezado" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByNoProcesadosREP" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByNoProcesadosREP" GeneratorSourceName="FillByNoProcesadosREP" GetMethodModifier="Public" GetMethodName="GetDataByNoProcesadosREP" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByNoProcesadosREP" UserSourceName="FillByNoProcesadosREP">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_empaques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus], [107_Numero_Emisor], [108_Monto_Merma], 
+                         [109_Monto_SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Solicitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc04], [117_Misc05], [118_Misc06], 
+                         [119_Misc07], [11_Dom_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Misc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12_Dom_Emisor_pais], [130_Misc18],
+                          [131_Misc19], [132_Misc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [138_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc29], [142_Misc30], [143_Misc31], 
+                         [144_Misc32], [145_Misc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], [150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc43], [156_Misc44], [157_Misc45], 
+                         [158_Misc46], [159_Misc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_Porc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_RegimentFiscal], [168_Num_CtaPago], 
+                         [169_Num_contrarecibo], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Comprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Aduana], 
+                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], [177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], 
+                         [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig], [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Descuentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], 
+                         [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Efecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladados], [19_Dom_Sucursal_localidad], [1_Folio], 
+                         [20_Dom_Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Version], [27_Serie_Comprobante], 
+                         [28_Numero_Aprobacion], [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_calle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom_LugarExpide_colonia], 
+                         [36_Dom_LugarExpide_localidad], [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_LugarExpide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_codigoPostal], 
+                         [42_Nombre_Receptor], [43_RFC_Receptor], [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInterior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], 
+                         [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_municipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_codigoPostal], [54_Monto_SubTotal], [55_Monto_IVA], 
+                         [56_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior], [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_Prov], [64_EAN_Proveedor], [65_Numero_Factura], 
+                         [66_Numero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tienda], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_Tienda_calle], 
+                         [73_Dom_Tienda_noExterior], [74_Dom_Tienda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tienda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], 
+                         [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codigoPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_ProntoPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], 
+                         [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cantidad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor], [94_Cod_Vendedor], [95_Nombre_Vendedor], 
+                         [96_Via_Embarque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Emisor_referencia], Encabezado_Procesado, Guid
+FROM            CFDI_Encabezado
+WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] = 'REP')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySinGUID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBySinGUID" GeneratorSourceName="FillBySinGUID" GetMethodModifier="Public" GetMethodName="GetDataBySinGUID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBySinGUID" UserSourceName="FillBySinGUID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -1989,6 +2049,20 @@ WHERE        ([4_DetalleAux_Misc02] = @GUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ProcesarFactura" Modifier="Public" Name="ProcesarFactura" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="ProcesarFactura">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       CFDI_Encabezado
+SET                Encabezado_Procesado = @procesado
+WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="procesado" ColumnName="Encabezado_Procesado" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@procesado" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="Encabezado_Procesado" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Folio" ColumnName="1_Folio" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Folio" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="1_Folio" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Serie" ColumnName="27_Serie_Comprobante" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(55)" DbType="AnsiString" Direction="Input" ParameterName="@Serie" Precision="0" ProviderType="VarChar" Scale="0" Size="55" SourceColumn="27_Serie_Comprobante" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
               <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAviso" Modifier="Public" Name="SacaAviso" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="SacaAviso">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -2002,7 +2076,7 @@ WHERE        (Anexo = @Anexo) AND (Letra = @Letra)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoAV" Modifier="Public" Name="SacaAvisoAV" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="SacaAvisoAV">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoAV" Modifier="Public" Name="SacaAvisoAV" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SacaAvisoAV">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(CicloPagare) AS CicloPagare
@@ -2015,7 +2089,7 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoCFDI" Modifier="Public" Name="SacaAvisoCFDI" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SacaAvisoCFDI">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoCFDI" Modifier="Public" Name="SacaAvisoCFDI" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SacaAvisoCFDI">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX([159_Misc47]) AS Aviso
@@ -2028,7 +2102,7 @@ WHERE        ([27_Serie_Comprobante] = @Serie) AND ([1_Folio] = @Folio)</Command
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFecha" Modifier="Public" Name="SacaAvisoFecha" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SacaAvisoFecha">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFecha" Modifier="Public" Name="SacaAvisoFecha" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="SacaAvisoFecha">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        CONVERT(datetime, ISNULL(MAX(Feven), N'19000101'), 112) AS Fecha
@@ -2041,7 +2115,7 @@ WHERE        (Anexo = @Anexo) AND (Letra = @Letra)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFechaAV" Modifier="Public" Name="SacaAvisoFechaAV" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="SacaAvisoFechaAV">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFechaAV" Modifier="Public" Name="SacaAvisoFechaAV" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="SacaAvisoFechaAV">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        CONVERT(datetime, ISNULL(MAX(FechaTerminacion), N'19000101'), 112) AS Fecha
@@ -2054,7 +2128,7 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioORG" Modifier="Public" Name="SacaFolioORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="SacaFolioORG">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioORG" Modifier="Public" Name="SacaFolioORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="SacaFolioORG">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX([1_Folio]), 0) AS Folio
@@ -2067,7 +2141,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioPago" Modifier="Public" Name="SacaFolioPago" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="SacaFolioPago">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioPago" Modifier="Public" Name="SacaFolioPago" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="SacaFolioPago">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(CFDI_Pago) + 1 AS CFD_Pago
@@ -2076,7 +2150,7 @@ FROM            Llaves</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="sacaGUID" Modifier="Public" Name="sacaGUID" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="sacaGUID">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="sacaGUID" Modifier="Public" Name="sacaGUID" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="sacaGUID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Guid), 'SIN FOLIO FISCAL') AS Guid
@@ -2089,7 +2163,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="SacaSerieORG">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="SacaSerieORG">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie
@@ -2102,7 +2176,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="TieneFactura33">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="TieneFactura33">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        COUNT(*) AS Expr1
@@ -2115,7 +2189,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="UpdateGUID">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="UpdateGUID">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CFDI_Encabezado
@@ -2531,6 +2605,21 @@ SELECT [1_DetalleAux_Tipo], [2_DetalleAux_DescTipo], [3_DetalleAux_Misc01], [4_D
               <Mapping SourceColumn="id_Complemento" DataSetColumn="id_Complemento" />
             </Mappings>
             <Sources>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_ComplementoPago" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByFactura" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFactura" GeneratorSourceName="FillByFactura" GetMethodModifier="Public" GetMethodName="GetDataByFactura" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFactura" UserSourceName="FillByFactura">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [10_DetalleAux_Misc08], [11_DetalleAux_Misc09], [12_DetalleAux_Misc10], [13_DetalleAux_Misc11], [14_DetalleAux_Misc12], [15_DetalleAux_Misc13], [16_DetalleAux_Misc14], [17_DetalleAux_Misc15], 
+                         [18_DetalleAux_Misc16], [19_DetalleAux_Folio], [1_DetalleAux_Tipo], [20_DetalleAux_Serie], [2_DetalleAux_DescTipo], [3_DetalleAux_Misc01], [4_DetalleAux_Misc02], [5_DetalleAux_Misc03], [6_DetalleAux_Misc04], 
+                         [7_DetalleAux_Misc05], [8_DetalleAux_Misc06], [9_DetalleAux_Misc07], id_Complemento
+FROM            CFDI_ComplementoPago
+WHERE        ([19_DetalleAux_Folio] = @Folio) AND ([20_DetalleAux_Serie] = @Serie)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Folio" ColumnName="19_DetalleAux_Folio" DataSourceName="Production.dbo.CFDI_ComplementoPago" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Folio" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="19_DetalleAux_Folio" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Serie" ColumnName="20_DetalleAux_Serie" DataSourceName="Production.dbo.CFDI_ComplementoPago" DataTypeServer="varchar(99)" DbType="AnsiString" Direction="Input" ParameterName="@Serie" Precision="0" ProviderType="VarChar" Scale="0" Size="99" SourceColumn="20_DetalleAux_Serie" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaTipoCambio" Modifier="Public" Name="SacaTipoCambio" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="SacaTipoCambio">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -3364,7 +3453,37 @@ SELECT [1_Linea_Descripcion], [2_Linea_Cantidad], [3_Linea_Unidad], [4_Linea_Pre
               <Mapping SourceColumn="Detalle_Serie" DataSetColumn="Detalle_Serie" />
               <Mapping SourceColumn="id_Detalle" DataSetColumn="id_Detalle" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_Detalle" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByFactura" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByFactura" GeneratorSourceName="FillByFactura" GetMethodModifier="Public" GetMethodName="GetDataByFactura" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByFactura" UserSourceName="FillByFactura">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [1_Linea_Descripcion], [2_Linea_Cantidad], [3_Linea_Unidad], [4_Linea_PrecioUnitario], [5_Linea_Importe], [6_Linea_Aduana_NumDoc], 
+                         [7_Linea_Aduana_FechDoc], [8_Linea_Aduana_Nombre], [9_Linea_CuentaPredial_Numero], [10_Linea_FraccionArancelaria], [11_Linea_Notas], [12_Linea_Cod_UPC],
+                          [13_Linea_Piezas_Empaque], [14_Linea_DUN], [15_Linea_Cod_Barras], [16_Linea_Cod_Articulo], [17_Linea_Cod_Desc], [18_Linea_Porc_Desc], 
+                         [19_Linea_Monto_Desc], [20_Linea_PrecioUnitario_SinDesc], [21_Linea_Cant_Empaques_Fac], [22_Linea_Cant_Empaques_Emb], [23_Linea_Porc_IVA], 
+                         [24_Linea_Monto_IVA], [25_Linea_Porc_IEPS], [26_Linea_Monto_IEPS], [27_Linea_PrecioUnitario_ConImp], [28_Linea_Importe_ConImp], [29_Linea_Frontera], 
+                         [30_Línea_PaisOrigen], [31_Linea_EAN_Aduana], [32_Linea_Misc01], [33_Linea_Misc02], [34_Linea_Misc03], [35_Linea_Misc04], [36_Linea_Misc05], 
+                         [37_Linea_Misc06], [38_Linea_Misc07], [39_Linea_Misc08], [40_Linea_Misc09], [41_Linea_Misc10], [42_Linea_Misc11], [43_Linea_Misc12], [44_Linea_Misc13], 
+                         [45_Linea_Misc14], [46_Linea_Misc15], [47_Linea_Misc16], [48_Linea_Misc17], [49_Linea_Misc18], [50_Linea_Misc19], [51_Linea_Misc20], [52_Linea_Misc21], 
+                         [53_Linea_Misc22], [54_Linea_Misc23], [55_Linea_Misc24], [56_Linea_Misc25], [57_Linea_Misc26], [58_Linea_Misc27], [59_Linea_Misc28], [60_Linea_Misc29], 
+                         [61_Linea_Misc30], [62_Linea_Misc31], [63_Linea_Misc32], [64_Linea_Misc33], [65_Linea_Misc34], [66_Linea_Misc35], [67_Linea_Misc36], [68_Linea_Misc37], 
+                         [69_Linea_Misc38], [70_Linea_Misc39], [71_Linea_Misc40], [72_Linea_Misc41], [73_Linea_Misc42], [74_Linea_Misc43], [75_Linea_Misc44], [76_Linea_Misc45], 
+                         [77_Linea_Misc46], [78_Linea_Misc47], [79_Linea_Misc48], [80_Linea_Misc49], [81_Linea_Misc50], [82_Linea_MedicionSecundaria], 
+                         [83_Linea_TipoIdent_Adicional], [84_Linea_DescripIdioma], [85_Linea_Cant_Adicional], [86_Linea_Cant_Adicional_Tipo], [87_Linea_Tipo_Referencia], 
+                         [88_Linea_Calif_NumIdentidad], [89_Linea_TipoEmpaquetado], [90_Linea_Metodo_Pago], [91_Linea_Numero_Lote], [92_Linea_Fecha_ProdLote], 
+                         [93_Linea_Ind_CargoDescuento], [94_Linea_Inf_CargoDescuento], [95_Linea_Secuencia_Calculo], [96_Linea_Tipo_ServiciosEsp], [97_Linea_Ident_Impuesto], 
+                         [98_Linea_Cod_EAN], [99_Linea_NoIdentificacion], [1_Impuesto_TipoImpuesto], [2_Impuesto_Descripcion], [3_Impuesto_Monto_base], 
+                         [4_Impuesto_Monto_Impuesto], [5_Impuesto_Clave], [6_Impuesto_Tasa], [7_Impuesto_Porcentaje], Detalle_Folio, Detalle_Serie, id_Detalle
+FROM            CFDI_Detalle
+WHERE (Detalle_Folio = @Folio) AND (Detalle_Serie = @Serie)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Folio" ColumnName="Detalle_Folio" DataSourceName="Production.dbo.CFDI_Detalle" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Folio" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Detalle_Folio" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Serie" ColumnName="Detalle_Serie" DataSourceName="Production.dbo.CFDI_Detalle" DataTypeServer="varchar(99)" DbType="AnsiString" Direction="Input" ParameterName="@Serie" Precision="0" ProviderType="VarChar" Scale="0" Size="99" SourceColumn="Detalle_Serie" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DatosCuentasTableAdapter" GeneratorDataComponentClassName="DatosCuentasTableAdapter" Name="DatosCuentas" UserDataComponentName="DatosCuentasTableAdapter">
             <MainSource>
@@ -3454,6 +3573,284 @@ ORDER BY FechaFinal, Vw_AvioGastosXfacturar.Anexo, Vw_AvioGastosXfacturar.Ciclo<
               <Mapping SourceColumn="Moneda" DataSetColumn="Moneda" />
             </Mappings>
             <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CFDI_RecibosPAGOTableAdapter" GeneratorDataComponentClassName="CFDI_RecibosPAGOTableAdapter" Name="CFDI_RecibosPAGO" UserDataComponentName="CFDI_RecibosPAGOTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.Vw_CFDI_RecibosPAGO" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Vw_CFDI_RecibosPAGO.*
+FROM            Vw_CFDI_RecibosPAGO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="27_Serie_Comprobante" DataSetColumn="27_Serie_Comprobante" />
+              <Mapping SourceColumn="1_Folio" DataSetColumn="1_Folio" />
+              <Mapping SourceColumn="42_Nombre_Receptor" DataSetColumn="42_Nombre_Receptor" />
+              <Mapping SourceColumn="43_RFC_Receptor" DataSetColumn="43_RFC_Receptor" />
+              <Mapping SourceColumn="114_Misc02" DataSetColumn="114_Misc02" />
+              <Mapping SourceColumn="157_Misc45" DataSetColumn="157_Misc45" />
+              <Mapping SourceColumn="158_Misc46" DataSetColumn="158_Misc46" />
+              <Mapping SourceColumn="159_Misc47" DataSetColumn="159_Misc47" />
+              <Mapping SourceColumn="Encabezado_Procesado" DataSetColumn="Encabezado_Procesado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TraeUdisTableAdapter" GeneratorDataComponentClassName="TraeUdisTableAdapter" Name="TraeUdis" UserDataComponentName="TraeUdisTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.TraeUdis1" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.TraeUdis1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Vigencia" DataSetColumn="Vigencia" />
+              <Mapping SourceColumn="Udi" DataSetColumn="Udi" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AvisosCFDITableAdapter" GeneratorDataComponentClassName="AvisosCFDITableAdapter" Name="AvisosCFDI" UserDataComponentName="AvisosCFDITableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillporDIA" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataporDia" GeneratorSourceName="FillporDIA" GetMethodModifier="Public" GetMethodName="GetDataporDia" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataporDia" UserSourceName="FillporDIA">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Facturas.Factura, Facturas.Anexo, Facturas.Letra, Facturas.Cliente, Facturas.Feven, Facturas.Fepag, Facturas.Saldo, Facturas.Salse, Facturas.SaldOt, Facturas.RenPr, Facturas.IntPr, Facturas.Bonifica, Facturas.IvaCapital, 
+                         Facturas.VarPr, Facturas.IvaPr, Facturas.RenSe, Facturas.IntSe, Facturas.VarSe, Facturas.IvaSe, Facturas.Opcion, Facturas.IvaOpcion, Facturas.CapitalOt, Facturas.InteresOt, Facturas.VarOt, Facturas.IvaOt, Facturas.SeguroVida, 
+                         Facturas.ImporteFEGA, Facturas.Tipmon, Facturas.Dias, Facturas.Tasa, Facturas.Difer, Facturas.UDI1, Facturas.UDI2, Facturas.TasaIVA, Facturas.ImporteFac, Facturas.SaldoFac, Facturas.IndPag, Facturas.Enviado, 
+                         Facturas.Bloqueo, Facturas.FechaCreacion, Facturas.FacturaCFDI, 'No' AS [Ult.Venc], 0 AS Adeudo, Facturas.SerieCFDI, Facturas.NoFacturaCFDI, Anexos.Tipar, Clientes.Tipo, Clientes.Sucursal, Clientes.TasaIVACliente
+FROM            Facturas INNER JOIN
+                         Anexos ON Facturas.Anexo = Anexos.Anexo INNER JOIN
+                         Clientes ON Facturas.Cliente = Clientes.Cliente
+WHERE        (Facturas.FacturaCFDI = 0) AND (Facturas.Feven = @Fecha)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Fecha" ColumnName="Feven" DataSourceName="Production.dbo.Facturas" DataTypeServer="nchar(8)" DbType="String" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="NChar" Scale="0" Size="8" SourceColumn="Feven" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Factura" DataSetColumn="Factura" />
+              <Mapping SourceColumn="Anexo" DataSetColumn="Anexo" />
+              <Mapping SourceColumn="Letra" DataSetColumn="Letra" />
+              <Mapping SourceColumn="Cliente" DataSetColumn="Cliente" />
+              <Mapping SourceColumn="Feven" DataSetColumn="Feven" />
+              <Mapping SourceColumn="Fepag" DataSetColumn="Fepag" />
+              <Mapping SourceColumn="Saldo" DataSetColumn="Saldo" />
+              <Mapping SourceColumn="Salse" DataSetColumn="Salse" />
+              <Mapping SourceColumn="SaldOt" DataSetColumn="SaldOt" />
+              <Mapping SourceColumn="RenPr" DataSetColumn="RenPr" />
+              <Mapping SourceColumn="IntPr" DataSetColumn="IntPr" />
+              <Mapping SourceColumn="Bonifica" DataSetColumn="Bonifica" />
+              <Mapping SourceColumn="IvaCapital" DataSetColumn="IvaCapital" />
+              <Mapping SourceColumn="VarPr" DataSetColumn="VarPr" />
+              <Mapping SourceColumn="IvaPr" DataSetColumn="IvaPr" />
+              <Mapping SourceColumn="RenSe" DataSetColumn="RenSe" />
+              <Mapping SourceColumn="IntSe" DataSetColumn="IntSe" />
+              <Mapping SourceColumn="VarSe" DataSetColumn="VarSe" />
+              <Mapping SourceColumn="IvaSe" DataSetColumn="IvaSe" />
+              <Mapping SourceColumn="Opcion" DataSetColumn="Opcion" />
+              <Mapping SourceColumn="IvaOpcion" DataSetColumn="IvaOpcion" />
+              <Mapping SourceColumn="CapitalOt" DataSetColumn="CapitalOt" />
+              <Mapping SourceColumn="InteresOt" DataSetColumn="InteresOt" />
+              <Mapping SourceColumn="VarOt" DataSetColumn="VarOt" />
+              <Mapping SourceColumn="IvaOt" DataSetColumn="IvaOt" />
+              <Mapping SourceColumn="SeguroVida" DataSetColumn="SeguroVida" />
+              <Mapping SourceColumn="ImporteFEGA" DataSetColumn="ImporteFEGA" />
+              <Mapping SourceColumn="Tipmon" DataSetColumn="Tipmon" />
+              <Mapping SourceColumn="Dias" DataSetColumn="Dias" />
+              <Mapping SourceColumn="Tasa" DataSetColumn="Tasa" />
+              <Mapping SourceColumn="Difer" DataSetColumn="Difer" />
+              <Mapping SourceColumn="UDI1" DataSetColumn="UDI1" />
+              <Mapping SourceColumn="UDI2" DataSetColumn="UDI2" />
+              <Mapping SourceColumn="TasaIVA" DataSetColumn="TasaIVA" />
+              <Mapping SourceColumn="ImporteFac" DataSetColumn="ImporteFac" />
+              <Mapping SourceColumn="SaldoFac" DataSetColumn="SaldoFac" />
+              <Mapping SourceColumn="IndPag" DataSetColumn="IndPag" />
+              <Mapping SourceColumn="Enviado" DataSetColumn="Enviado" />
+              <Mapping SourceColumn="Bloqueo" DataSetColumn="Bloqueo" />
+              <Mapping SourceColumn="FechaCreacion" DataSetColumn="FechaCreacion" />
+              <Mapping SourceColumn="FacturaCFDI" DataSetColumn="FacturaCFDI" />
+              <Mapping SourceColumn="Ult.Venc" DataSetColumn="Ult_Venc" />
+              <Mapping SourceColumn="Adeudo" DataSetColumn="Adeudo" />
+              <Mapping SourceColumn="SerieCFDI" DataSetColumn="SerieCFDI" />
+              <Mapping SourceColumn="NoFacturaCFDI" DataSetColumn="NoFacturaCFDI" />
+              <Mapping SourceColumn="Tipar" DataSetColumn="Tipar" />
+              <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
+              <Mapping SourceColumn="Sucursal" DataSetColumn="Sucursal" />
+              <Mapping SourceColumn="TasaIVACliente" DataSetColumn="TasaIVACliente" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturarAviso" Modifier="Public" Name="FacturarAviso" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FacturarAviso">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       Facturas
+SET                FacturaCFDI = @FacturaCFDI, SerieCFDI = @SerieCFDI, NoFacturaCFDI = @NoFacturaCFDI
+WHERE        (Factura = @Aviso) AND (Anexo = @Anexo); 
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="FacturaCFDI" ColumnName="FacturaCFDI" DataSourceName="Production.dbo.Facturas" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@FacturaCFDI" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="FacturaCFDI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="SerieCFDI" ColumnName="SerieCFDI" DataSourceName="Production.dbo.Facturas" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@SerieCFDI" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="SerieCFDI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NoFacturaCFDI" ColumnName="NoFacturaCFDI" DataSourceName="Production.dbo.Facturas" DataTypeServer="numeric(18, 0)" DbType="Decimal" Direction="Input" ParameterName="@NoFacturaCFDI" Precision="18" ProviderType="Decimal" Scale="0" Size="9" SourceColumn="NoFacturaCFDI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Aviso" ColumnName="Factura" DataSourceName="Production.dbo.Facturas" DataTypeServer="decimal(7, 0)" DbType="Decimal" Direction="Input" ParameterName="@Aviso" Precision="7" ProviderType="Decimal" Scale="0" Size="5" SourceColumn="Factura" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Anexo" ColumnName="Anexo" DataSourceName="Production.dbo.Facturas" DataTypeServer="nchar(9)" DbType="String" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="9" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByAnteriores" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAnteriores" GeneratorSourceName="FillByAnteriores" GetMethodModifier="Public" GetMethodName="GetDataByAnteriores" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAnteriores" UserSourceName="FillByAnteriores">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Facturas.Factura, Facturas.Anexo, Facturas.Letra, Facturas.Cliente, Facturas.Feven, Facturas.Fepag, Facturas.Saldo, Facturas.Salse, Facturas.SaldOt, Facturas.RenPr, Facturas.IntPr, Facturas.Bonifica, Facturas.IvaCapital, 
+                         Facturas.VarPr, Facturas.IvaPr, Facturas.RenSe, Facturas.IntSe, Facturas.VarSe, Facturas.IvaSe, Facturas.Opcion, Facturas.IvaOpcion, Facturas.CapitalOt, Facturas.InteresOt, Facturas.VarOt, Facturas.IvaOt, Facturas.SeguroVida, 
+                         Facturas.ImporteFEGA, Facturas.Tipmon, Facturas.Dias, Facturas.Tasa, Facturas.Difer, Facturas.UDI1, Facturas.UDI2, Facturas.TasaIVA, Facturas.ImporteFac, Facturas.SaldoFac, Facturas.IndPag, Facturas.Enviado, 
+                         Facturas.Bloqueo, Facturas.FechaCreacion, Facturas.FacturaCFDI, 'No' AS [Ult.Venc], 0 AS Adeudo, Facturas.SerieCFDI, Facturas.NoFacturaCFDI, Anexos.Tipar, Clientes.Tipo, Clientes.Sucursal, Clientes.TasaIVACliente
+FROM            Facturas INNER JOIN
+                         Anexos ON Facturas.Anexo = Anexos.Anexo INNER JOIN
+                         Clientes ON Facturas.Cliente = Clientes.Cliente
+WHERE        (Facturas.FacturaCFDI = 0) AND (Facturas.Feven &lt; @Fecha) AND (Facturas.Fepag = N'')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Fecha" ColumnName="Feven" DataSourceName="Production.dbo.Facturas" DataTypeServer="nchar(8)" DbType="String" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="NChar" Scale="0" Size="8" SourceColumn="Feven" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPrepagos" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPrepagos" GeneratorSourceName="FillByPrepagos" GetMethodModifier="Public" GetMethodName="GetDataByPrepagos" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPrepagos" UserSourceName="FillByPrepagos">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Facturas.Factura, Facturas.Anexo, Facturas.Letra, Facturas.Cliente, Facturas.Feven, Facturas.Fepag, Facturas.Saldo, Facturas.Salse, Facturas.SaldOt, Facturas.RenPr, Facturas.IntPr, Facturas.Bonifica, Facturas.IvaCapital, 
+                         Facturas.VarPr, Facturas.IvaPr, Facturas.RenSe, Facturas.IntSe, Facturas.VarSe, Facturas.IvaSe, Facturas.Opcion, Facturas.IvaOpcion, Facturas.CapitalOt, Facturas.InteresOt, Facturas.VarOt, Facturas.IvaOt, Facturas.SeguroVida, 
+                         Facturas.ImporteFEGA, Facturas.Tipmon, Facturas.Dias, Facturas.Tasa, Facturas.Difer, Facturas.UDI1, Facturas.UDI2, Facturas.TasaIVA, Facturas.ImporteFac, Facturas.SaldoFac, Facturas.IndPag, Facturas.Enviado, 
+                         Facturas.Bloqueo, Facturas.FechaCreacion, Facturas.FacturaCFDI, 'No' AS [Ult.Venc], 0 AS Adeudo, Facturas.SerieCFDI, Facturas.NoFacturaCFDI, Anexos.Tipar, Clientes.Tipo, Clientes.Sucursal, Clientes.TasaIVACliente
+FROM            Facturas INNER JOIN
+                         Anexos ON Facturas.Anexo = Anexos.Anexo INNER JOIN
+                         Clientes ON Facturas.Cliente = Clientes.Cliente
+WHERE        (Facturas.FacturaCFDI = 0) AND (Facturas.Feven &gt; @Fecha) AND (Facturas.Fepag &gt; N'') AND (Facturas.Fepag &gt;= @FechaArranque)
+ORDER BY Facturas.Feven</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Fecha" ColumnName="Feven" DataSourceName="Production.dbo.Facturas" DataTypeServer="nchar(8)" DbType="String" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="NChar" Scale="0" Size="8" SourceColumn="Feven" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="FechaArranque" ColumnName="Fepag" DataSourceName="Production.dbo.Facturas" DataTypeServer="nchar(8)" DbType="String" Direction="Input" ParameterName="@FechaArranque" Precision="0" ProviderType="NChar" Scale="0" Size="8" SourceColumn="Fepag" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TraspasosAvioCCTableAdapter" GeneratorDataComponentClassName="TraspasosAvioCCTableAdapter" Name="TraspasosAvioCC" UserDataComponentName="TraspasosAvioCCTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CONT_TraspasosAvioCC.id_Traspaso, CONT_TraspasosAvioCC.Anexo, CONT_TraspasosAvioCC.Ciclo, CONT_TraspasosAvioCC.SaldoAdeudo, CONT_TraspasosAvioCC.Importe, CONT_TraspasosAvioCC.Intereses, 
+                         CONT_TraspasosAvioCC.GarantiaLiq, CONT_TraspasosAvioCC.Tipar, CONT_TraspasosAvioCC.Fega, CONT_TraspasosAvioCC.Fecha, CONT_TraspasosAvioCC.InteresesDias, CONT_TraspasosAvioCC.FacturaCFDI, 
+                         CONT_TraspasosAvioCC.Serie, CONT_TraspasosAvioCC.Folio, Clientes.Cliente, Clientes.Descr, Clientes.Tipo, Clientes.Calle, Clientes.Colonia, Clientes.TipoAsent, Clientes.Delegacion, Clientes.Ciudad, Clientes.Estado, 
+                         Clientes.Copos, Clientes.RFC, Clientes.EMail1, Clientes.EMail2, Clientes.Sucursal, Clientes.TasaIVACliente, CASE WHEN avios.tipar = 'C' THEN 'Pagare ' + avios.ciclo ELSE descCiclo END AS CicloPagare
+FROM            CONT_TraspasosAvioCC INNER JOIN
+                         Avios ON CONT_TraspasosAvioCC.Ciclo = Avios.Ciclo AND CONT_TraspasosAvioCC.Anexo = Avios.Anexo INNER JOIN
+                         Clientes ON Avios.Cliente = Clientes.Cliente INNER JOIN
+                         Ciclos ON CONT_TraspasosAvioCC.Ciclo = Ciclos.Ciclo
+WHERE        (CONT_TraspasosAvioCC.FacturaCFDI = 0) AND (CONT_TraspasosAvioCC.Fecha = @Fecha)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Fecha" ColumnName="Fecha" DataSourceName="Production.dbo.CONT_TraspasosAvioCC" DataTypeServer="nchar(8)" DbType="String" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="NChar" Scale="0" Size="8" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id_Traspaso" DataSetColumn="id_Traspaso" />
+              <Mapping SourceColumn="Anexo" DataSetColumn="Anexo" />
+              <Mapping SourceColumn="Ciclo" DataSetColumn="Ciclo" />
+              <Mapping SourceColumn="SaldoAdeudo" DataSetColumn="SaldoAdeudo" />
+              <Mapping SourceColumn="Importe" DataSetColumn="Importe" />
+              <Mapping SourceColumn="Intereses" DataSetColumn="Intereses" />
+              <Mapping SourceColumn="GarantiaLiq" DataSetColumn="GarantiaLiq" />
+              <Mapping SourceColumn="Tipar" DataSetColumn="Tipar" />
+              <Mapping SourceColumn="Fega" DataSetColumn="Fega" />
+              <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
+              <Mapping SourceColumn="InteresesDias" DataSetColumn="InteresesDias" />
+              <Mapping SourceColumn="FacturaCFDI" DataSetColumn="FacturaCFDI" />
+              <Mapping SourceColumn="Serie" DataSetColumn="Serie" />
+              <Mapping SourceColumn="Folio" DataSetColumn="Folio" />
+              <Mapping SourceColumn="Cliente" DataSetColumn="Cliente" />
+              <Mapping SourceColumn="Descr" DataSetColumn="Descr" />
+              <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
+              <Mapping SourceColumn="Calle" DataSetColumn="Calle" />
+              <Mapping SourceColumn="Colonia" DataSetColumn="Colonia" />
+              <Mapping SourceColumn="TipoAsent" DataSetColumn="TipoAsent" />
+              <Mapping SourceColumn="Delegacion" DataSetColumn="Delegacion" />
+              <Mapping SourceColumn="Ciudad" DataSetColumn="Ciudad" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="Copos" DataSetColumn="Copos" />
+              <Mapping SourceColumn="RFC" DataSetColumn="RFC" />
+              <Mapping SourceColumn="EMail1" DataSetColumn="EMail1" />
+              <Mapping SourceColumn="EMail2" DataSetColumn="EMail2" />
+              <Mapping SourceColumn="Sucursal" DataSetColumn="Sucursal" />
+              <Mapping SourceColumn="TasaIVACliente" DataSetColumn="TasaIVACliente" />
+              <Mapping SourceColumn="CicloPagare" DataSetColumn="CicloPagare" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeSerieA" Modifier="Public" Name="ConsumeSerieA" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ConsumeSerieA">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       Llaves
+SET                IDSerieA = IDSerieA + 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeSerieMXL" Modifier="Public" Name="ConsumeSerieMXL" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ConsumeSerieMXL">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       Llaves
+SET                IDSerieMXL = IDSerieMXL + 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturarTraspaso" Modifier="Public" Name="FacturarTraspaso" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FacturarTraspaso">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       CONT_TraspasosAvioCC
+SET                FacturaCFDI = @FacturaCFDI, Serie = @Serie, Folio = @Folio
+WHERE        (id_Traspaso = @Original_id_Traspaso); </CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="FacturaCFDI" ColumnName="FacturaCFDI" DataSourceName="Production.dbo.CONT_TraspasosAvioCC" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@FacturaCFDI" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="FacturaCFDI" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Serie" ColumnName="Serie" DataSourceName="Production.dbo.CONT_TraspasosAvioCC" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Serie" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Serie" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Folio" ColumnName="Folio" DataSourceName="Production.dbo.CONT_TraspasosAvioCC" DataTypeServer="numeric(18, 0)" DbType="Decimal" Direction="Input" ParameterName="@Folio" Precision="18" ProviderType="Decimal" Scale="0" Size="9" SourceColumn="Folio" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Original_id_Traspaso" ColumnName="id_Traspaso" DataSourceName="Production.dbo.CONT_TraspasosAvioCC" DataTypeServer="numeric" DbType="Decimal" Direction="Input" ParameterName="@Original_id_Traspaso" Precision="18" ProviderType="Decimal" Scale="0" Size="9" SourceColumn="id_Traspaso" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieA" Modifier="Public" Name="SerieA" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SerieA">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IDSerieA + 1 AS Expr1
+FROM            Llaves</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieMXL" Modifier="Public" Name="SerieMXL" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SerieMXL">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IDSerieMXL + 1 AS Expr1
+FROM            Llaves</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -5982,6 +6379,372 @@ ORDER BY FechaFinal, Vw_AvioGastosXfacturar.Anexo, Vw_AvioGastosXfacturar.Ciclo<
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="CFDI_RecibosPAGO" msprop:Generator_TableClassName="CFDI_RecibosPAGODataTable" msprop:Generator_TableVarName="tableCFDI_RecibosPAGO" msprop:Generator_RowChangedName="CFDI_RecibosPAGORowChanged" msprop:Generator_TablePropName="CFDI_RecibosPAGO" msprop:Generator_RowDeletingName="CFDI_RecibosPAGORowDeleting" msprop:Generator_RowChangingName="CFDI_RecibosPAGORowChanging" msprop:Generator_RowEvHandlerName="CFDI_RecibosPAGORowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_RecibosPAGORowDeleted" msprop:Generator_RowClassName="CFDI_RecibosPAGORow" msprop:Generator_UserTableName="CFDI_RecibosPAGO" msprop:Generator_RowEvArgName="CFDI_RecibosPAGORowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
+              <xs:element name="_x0034_2_Nombre_Receptor" msprop:Generator_ColumnVarNameInTable="column42_Nombre_Receptor" msprop:Generator_ColumnPropNameInRow="_42_Nombre_Receptor" msprop:Generator_ColumnPropNameInTable="_42_Nombre_ReceptorColumn" msprop:Generator_UserColumnName="42_Nombre_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_3_RFC_Receptor" msprop:Generator_ColumnVarNameInTable="column43_RFC_Receptor" msprop:Generator_ColumnPropNameInRow="_43_RFC_Receptor" msprop:Generator_ColumnPropNameInTable="_43_RFC_ReceptorColumn" msprop:Generator_UserColumnName="43_RFC_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_14_Misc02" msprop:Generator_ColumnVarNameInTable="column114_Misc02" msprop:Generator_ColumnPropNameInRow="_114_Misc02" msprop:Generator_ColumnPropNameInTable="_114_Misc02Column" msprop:Generator_UserColumnName="114_Misc02" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_57_Misc45" msprop:Generator_ColumnVarNameInTable="column157_Misc45" msprop:Generator_ColumnPropNameInRow="_157_Misc45" msprop:Generator_ColumnPropNameInTable="_157_Misc45Column" msprop:Generator_UserColumnName="157_Misc45" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_58_Misc46" msprop:Generator_ColumnVarNameInTable="column158_Misc46" msprop:Generator_ColumnPropNameInRow="_158_Misc46" msprop:Generator_ColumnPropNameInTable="_158_Misc46Column" msprop:Generator_UserColumnName="158_Misc46" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_59_Misc47" msprop:Generator_ColumnVarNameInTable="column159_Misc47" msprop:Generator_ColumnPropNameInRow="_159_Misc47" msprop:Generator_ColumnPropNameInTable="_159_Misc47Column" msprop:Generator_UserColumnName="159_Misc47" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Encabezado_Procesado" msprop:Generator_ColumnVarNameInTable="columnEncabezado_Procesado" msprop:Generator_ColumnPropNameInRow="Encabezado_Procesado" msprop:Generator_ColumnPropNameInTable="Encabezado_ProcesadoColumn" msprop:Generator_UserColumnName="Encabezado_Procesado" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TraeUdis" msprop:Generator_TableClassName="TraeUdisDataTable" msprop:Generator_TableVarName="tableTraeUdis" msprop:Generator_TablePropName="TraeUdis" msprop:Generator_RowDeletingName="TraeUdisRowDeleting" msprop:Generator_RowChangingName="TraeUdisRowChanging" msprop:Generator_RowEvHandlerName="TraeUdisRowChangeEventHandler" msprop:Generator_RowDeletedName="TraeUdisRowDeleted" msprop:Generator_UserTableName="TraeUdis" msprop:Generator_RowChangedName="TraeUdisRowChanged" msprop:Generator_RowEvArgName="TraeUdisRowChangeEvent" msprop:Generator_RowClassName="TraeUdisRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vigencia" msprop:Generator_ColumnVarNameInTable="columnVigencia" msprop:Generator_ColumnPropNameInRow="Vigencia" msprop:Generator_ColumnPropNameInTable="VigenciaColumn" msprop:Generator_UserColumnName="Vigencia">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Udi" msprop:Generator_ColumnVarNameInTable="columnUdi" msprop:Generator_ColumnPropNameInRow="Udi" msprop:Generator_ColumnPropNameInTable="UdiColumn" msprop:Generator_UserColumnName="Udi" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AvisosCFDI" msprop:Generator_TableClassName="AvisosCFDIDataTable" msprop:Generator_TableVarName="tableAvisosCFDI" msprop:Generator_TablePropName="AvisosCFDI" msprop:Generator_RowDeletingName="AvisosCFDIRowDeleting" msprop:Generator_RowChangingName="AvisosCFDIRowChanging" msprop:Generator_RowEvHandlerName="AvisosCFDIRowChangeEventHandler" msprop:Generator_RowDeletedName="AvisosCFDIRowDeleted" msprop:Generator_UserTableName="AvisosCFDI" msprop:Generator_RowChangedName="AvisosCFDIRowChanged" msprop:Generator_RowEvArgName="AvisosCFDIRowChangeEvent" msprop:Generator_RowClassName="AvisosCFDIRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Factura" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" type="xs:decimal" />
+              <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Letra" msprop:Generator_ColumnVarNameInTable="columnLetra" msprop:Generator_ColumnPropNameInRow="Letra" msprop:Generator_ColumnPropNameInTable="LetraColumn" msprop:Generator_UserColumnName="Letra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Feven" msprop:Generator_ColumnVarNameInTable="columnFeven" msprop:Generator_ColumnPropNameInRow="Feven" msprop:Generator_ColumnPropNameInTable="FevenColumn" msprop:Generator_UserColumnName="Feven" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fepag" msprop:Generator_ColumnVarNameInTable="columnFepag" msprop:Generator_ColumnPropNameInRow="Fepag" msprop:Generator_ColumnPropNameInTable="FepagColumn" msprop:Generator_UserColumnName="Fepag" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Saldo" msprop:Generator_ColumnVarNameInTable="columnSaldo" msprop:Generator_ColumnPropNameInRow="Saldo" msprop:Generator_ColumnPropNameInTable="SaldoColumn" msprop:Generator_UserColumnName="Saldo" type="xs:decimal" />
+              <xs:element name="Salse" msprop:Generator_ColumnVarNameInTable="columnSalse" msprop:Generator_ColumnPropNameInRow="Salse" msprop:Generator_ColumnPropNameInTable="SalseColumn" msprop:Generator_UserColumnName="Salse" type="xs:decimal" />
+              <xs:element name="SaldOt" msprop:Generator_ColumnVarNameInTable="columnSaldOt" msprop:Generator_ColumnPropNameInRow="SaldOt" msprop:Generator_ColumnPropNameInTable="SaldOtColumn" msprop:Generator_UserColumnName="SaldOt" type="xs:decimal" />
+              <xs:element name="RenPr" msprop:Generator_ColumnVarNameInTable="columnRenPr" msprop:Generator_ColumnPropNameInRow="RenPr" msprop:Generator_ColumnPropNameInTable="RenPrColumn" msprop:Generator_UserColumnName="RenPr" type="xs:decimal" />
+              <xs:element name="IntPr" msprop:Generator_ColumnVarNameInTable="columnIntPr" msprop:Generator_ColumnPropNameInRow="IntPr" msprop:Generator_ColumnPropNameInTable="IntPrColumn" msprop:Generator_UserColumnName="IntPr" type="xs:decimal" />
+              <xs:element name="Bonifica" msprop:Generator_ColumnVarNameInTable="columnBonifica" msprop:Generator_ColumnPropNameInRow="Bonifica" msprop:Generator_ColumnPropNameInTable="BonificaColumn" msprop:Generator_UserColumnName="Bonifica" type="xs:decimal" />
+              <xs:element name="IvaCapital" msprop:Generator_ColumnVarNameInTable="columnIvaCapital" msprop:Generator_ColumnPropNameInRow="IvaCapital" msprop:Generator_ColumnPropNameInTable="IvaCapitalColumn" msprop:Generator_UserColumnName="IvaCapital" type="xs:decimal" />
+              <xs:element name="VarPr" msprop:Generator_ColumnVarNameInTable="columnVarPr" msprop:Generator_ColumnPropNameInRow="VarPr" msprop:Generator_ColumnPropNameInTable="VarPrColumn" msprop:Generator_UserColumnName="VarPr" type="xs:decimal" />
+              <xs:element name="IvaPr" msprop:Generator_ColumnVarNameInTable="columnIvaPr" msprop:Generator_ColumnPropNameInRow="IvaPr" msprop:Generator_ColumnPropNameInTable="IvaPrColumn" msprop:Generator_UserColumnName="IvaPr" type="xs:decimal" />
+              <xs:element name="RenSe" msprop:Generator_ColumnVarNameInTable="columnRenSe" msprop:Generator_ColumnPropNameInRow="RenSe" msprop:Generator_ColumnPropNameInTable="RenSeColumn" msprop:Generator_UserColumnName="RenSe" type="xs:decimal" />
+              <xs:element name="IntSe" msprop:Generator_ColumnVarNameInTable="columnIntSe" msprop:Generator_ColumnPropNameInRow="IntSe" msprop:Generator_ColumnPropNameInTable="IntSeColumn" msprop:Generator_UserColumnName="IntSe" type="xs:decimal" />
+              <xs:element name="VarSe" msprop:Generator_ColumnVarNameInTable="columnVarSe" msprop:Generator_ColumnPropNameInRow="VarSe" msprop:Generator_ColumnPropNameInTable="VarSeColumn" msprop:Generator_UserColumnName="VarSe" type="xs:decimal" />
+              <xs:element name="IvaSe" msprop:Generator_ColumnVarNameInTable="columnIvaSe" msprop:Generator_ColumnPropNameInRow="IvaSe" msprop:Generator_ColumnPropNameInTable="IvaSeColumn" msprop:Generator_UserColumnName="IvaSe" type="xs:decimal" />
+              <xs:element name="Opcion" msprop:Generator_ColumnVarNameInTable="columnOpcion" msprop:Generator_ColumnPropNameInRow="Opcion" msprop:Generator_ColumnPropNameInTable="OpcionColumn" msprop:Generator_UserColumnName="Opcion" type="xs:decimal" />
+              <xs:element name="IvaOpcion" msprop:Generator_ColumnVarNameInTable="columnIvaOpcion" msprop:Generator_ColumnPropNameInRow="IvaOpcion" msprop:Generator_ColumnPropNameInTable="IvaOpcionColumn" msprop:Generator_UserColumnName="IvaOpcion" type="xs:decimal" />
+              <xs:element name="CapitalOt" msprop:Generator_ColumnVarNameInTable="columnCapitalOt" msprop:Generator_ColumnPropNameInRow="CapitalOt" msprop:Generator_ColumnPropNameInTable="CapitalOtColumn" msprop:Generator_UserColumnName="CapitalOt" type="xs:decimal" />
+              <xs:element name="InteresOt" msprop:Generator_ColumnVarNameInTable="columnInteresOt" msprop:Generator_ColumnPropNameInRow="InteresOt" msprop:Generator_ColumnPropNameInTable="InteresOtColumn" msprop:Generator_UserColumnName="InteresOt" type="xs:decimal" />
+              <xs:element name="VarOt" msprop:Generator_ColumnVarNameInTable="columnVarOt" msprop:Generator_ColumnPropNameInRow="VarOt" msprop:Generator_ColumnPropNameInTable="VarOtColumn" msprop:Generator_UserColumnName="VarOt" type="xs:decimal" />
+              <xs:element name="IvaOt" msprop:Generator_ColumnVarNameInTable="columnIvaOt" msprop:Generator_ColumnPropNameInRow="IvaOt" msprop:Generator_ColumnPropNameInTable="IvaOtColumn" msprop:Generator_UserColumnName="IvaOt" type="xs:decimal" />
+              <xs:element name="SeguroVida" msprop:Generator_ColumnVarNameInTable="columnSeguroVida" msprop:Generator_ColumnPropNameInRow="SeguroVida" msprop:Generator_ColumnPropNameInTable="SeguroVidaColumn" msprop:Generator_UserColumnName="SeguroVida" type="xs:decimal" />
+              <xs:element name="ImporteFEGA" msprop:Generator_ColumnVarNameInTable="columnImporteFEGA" msprop:Generator_ColumnPropNameInRow="ImporteFEGA" msprop:Generator_ColumnPropNameInTable="ImporteFEGAColumn" msprop:Generator_UserColumnName="ImporteFEGA" type="xs:decimal" />
+              <xs:element name="Tipmon" msprop:Generator_ColumnVarNameInTable="columnTipmon" msprop:Generator_ColumnPropNameInRow="Tipmon" msprop:Generator_ColumnPropNameInTable="TipmonColumn" msprop:Generator_UserColumnName="Tipmon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Dias" msprop:Generator_ColumnVarNameInTable="columnDias" msprop:Generator_ColumnPropNameInRow="Dias" msprop:Generator_ColumnPropNameInTable="DiasColumn" msprop:Generator_UserColumnName="Dias" type="xs:int" />
+              <xs:element name="Tasa" msprop:Generator_ColumnVarNameInTable="columnTasa" msprop:Generator_ColumnPropNameInRow="Tasa" msprop:Generator_ColumnPropNameInTable="TasaColumn" msprop:Generator_UserColumnName="Tasa" type="xs:decimal" />
+              <xs:element name="Difer" msprop:Generator_ColumnVarNameInTable="columnDifer" msprop:Generator_ColumnPropNameInRow="Difer" msprop:Generator_ColumnPropNameInTable="DiferColumn" msprop:Generator_UserColumnName="Difer" type="xs:decimal" />
+              <xs:element name="UDI1" msprop:Generator_ColumnVarNameInTable="columnUDI1" msprop:Generator_ColumnPropNameInRow="UDI1" msprop:Generator_ColumnPropNameInTable="UDI1Column" msprop:Generator_UserColumnName="UDI1" type="xs:decimal" />
+              <xs:element name="UDI2" msprop:Generator_ColumnVarNameInTable="columnUDI2" msprop:Generator_ColumnPropNameInRow="UDI2" msprop:Generator_ColumnPropNameInTable="UDI2Column" msprop:Generator_UserColumnName="UDI2" type="xs:decimal" />
+              <xs:element name="TasaIVA" msprop:Generator_ColumnVarNameInTable="columnTasaIVA" msprop:Generator_ColumnPropNameInRow="TasaIVA" msprop:Generator_ColumnPropNameInTable="TasaIVAColumn" msprop:Generator_UserColumnName="TasaIVA" type="xs:decimal" />
+              <xs:element name="ImporteFac" msprop:Generator_ColumnVarNameInTable="columnImporteFac" msprop:Generator_ColumnPropNameInRow="ImporteFac" msprop:Generator_ColumnPropNameInTable="ImporteFacColumn" msprop:Generator_UserColumnName="ImporteFac" type="xs:decimal" />
+              <xs:element name="SaldoFac" msprop:Generator_ColumnVarNameInTable="columnSaldoFac" msprop:Generator_ColumnPropNameInRow="SaldoFac" msprop:Generator_ColumnPropNameInTable="SaldoFacColumn" msprop:Generator_UserColumnName="SaldoFac" type="xs:decimal" />
+              <xs:element name="IndPag" msprop:Generator_ColumnVarNameInTable="columnIndPag" msprop:Generator_ColumnPropNameInRow="IndPag" msprop:Generator_ColumnPropNameInTable="IndPagColumn" msprop:Generator_UserColumnName="IndPag">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Enviado" msprop:Generator_ColumnVarNameInTable="columnEnviado" msprop:Generator_ColumnPropNameInRow="Enviado" msprop:Generator_ColumnPropNameInTable="EnviadoColumn" msprop:Generator_UserColumnName="Enviado">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Bloqueo" msprop:Generator_ColumnVarNameInTable="columnBloqueo" msprop:Generator_ColumnPropNameInRow="Bloqueo" msprop:Generator_ColumnPropNameInTable="BloqueoColumn" msprop:Generator_UserColumnName="Bloqueo" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FechaCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaCreacion" msprop:Generator_ColumnPropNameInRow="FechaCreacion" msprop:Generator_ColumnPropNameInTable="FechaCreacionColumn" msprop:Generator_UserColumnName="FechaCreacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FacturaCFDI" msprop:Generator_ColumnVarNameInTable="columnFacturaCFDI" msprop:Generator_ColumnPropNameInRow="FacturaCFDI" msprop:Generator_ColumnPropNameInTable="FacturaCFDIColumn" msprop:Generator_UserColumnName="FacturaCFDI" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Ult_Venc" msdata:ReadOnly="true" msdata:Caption="Ult.Venc" msprop:Generator_ColumnVarNameInTable="columnUlt_Venc" msprop:Generator_ColumnPropNameInRow="Ult_Venc" msprop:Generator_ColumnPropNameInTable="Ult_VencColumn" msprop:Generator_UserColumnName="Ult_Venc" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Adeudo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAdeudo" msprop:Generator_ColumnPropNameInRow="Adeudo" msprop:Generator_ColumnPropNameInTable="AdeudoColumn" msprop:Generator_UserColumnName="Adeudo" type="xs:int" minOccurs="0" />
+              <xs:element name="SerieCFDI" msprop:Generator_ColumnVarNameInTable="columnSerieCFDI" msprop:Generator_ColumnPropNameInRow="SerieCFDI" msprop:Generator_ColumnPropNameInTable="SerieCFDIColumn" msprop:Generator_UserColumnName="SerieCFDI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoFacturaCFDI" msprop:Generator_ColumnVarNameInTable="columnNoFacturaCFDI" msprop:Generator_ColumnPropNameInRow="NoFacturaCFDI" msprop:Generator_ColumnPropNameInTable="NoFacturaCFDIColumn" msprop:Generator_UserColumnName="NoFacturaCFDI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tipar" msprop:Generator_ColumnVarNameInTable="columnTipar" msprop:Generator_ColumnPropNameInRow="Tipar" msprop:Generator_ColumnPropNameInTable="TiparColumn" msprop:Generator_UserColumnName="Tipar">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sucursal" msprop:Generator_ColumnVarNameInTable="columnSucursal" msprop:Generator_ColumnPropNameInRow="Sucursal" msprop:Generator_ColumnPropNameInTable="SucursalColumn" msprop:Generator_UserColumnName="Sucursal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TasaIVACliente" msprop:Generator_ColumnVarNameInTable="columnTasaIVACliente" msprop:Generator_ColumnPropNameInRow="TasaIVACliente" msprop:Generator_ColumnPropNameInTable="TasaIVAClienteColumn" msprop:Generator_UserColumnName="TasaIVACliente" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TraspasosAvioCC" msprop:Generator_TableClassName="TraspasosAvioCCDataTable" msprop:Generator_TableVarName="tableTraspasosAvioCC" msprop:Generator_TablePropName="TraspasosAvioCC" msprop:Generator_RowDeletingName="TraspasosAvioCCRowDeleting" msprop:Generator_RowChangingName="TraspasosAvioCCRowChanging" msprop:Generator_RowEvHandlerName="TraspasosAvioCCRowChangeEventHandler" msprop:Generator_RowDeletedName="TraspasosAvioCCRowDeleted" msprop:Generator_UserTableName="TraspasosAvioCC" msprop:Generator_RowChangedName="TraspasosAvioCCRowChanged" msprop:Generator_RowEvArgName="TraspasosAvioCCRowChangeEvent" msprop:Generator_RowClassName="TraspasosAvioCCRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_Traspaso" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_Traspaso" msprop:Generator_ColumnPropNameInRow="id_Traspaso" msprop:Generator_ColumnPropNameInTable="id_TraspasoColumn" msprop:Generator_UserColumnName="id_Traspaso" type="xs:decimal" />
+              <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ciclo" msprop:Generator_ColumnVarNameInTable="columnCiclo" msprop:Generator_ColumnPropNameInRow="Ciclo" msprop:Generator_ColumnPropNameInTable="CicloColumn" msprop:Generator_UserColumnName="Ciclo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SaldoAdeudo" msprop:Generator_ColumnVarNameInTable="columnSaldoAdeudo" msprop:Generator_ColumnPropNameInRow="SaldoAdeudo" msprop:Generator_ColumnPropNameInTable="SaldoAdeudoColumn" msprop:Generator_UserColumnName="SaldoAdeudo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Importe" msprop:Generator_ColumnVarNameInTable="columnImporte" msprop:Generator_ColumnPropNameInRow="Importe" msprop:Generator_ColumnPropNameInTable="ImporteColumn" msprop:Generator_UserColumnName="Importe" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Intereses" msprop:Generator_ColumnVarNameInTable="columnIntereses" msprop:Generator_ColumnPropNameInRow="Intereses" msprop:Generator_ColumnPropNameInTable="InteresesColumn" msprop:Generator_UserColumnName="Intereses" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GarantiaLiq" msprop:Generator_ColumnVarNameInTable="columnGarantiaLiq" msprop:Generator_ColumnPropNameInRow="GarantiaLiq" msprop:Generator_ColumnPropNameInTable="GarantiaLiqColumn" msprop:Generator_UserColumnName="GarantiaLiq" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tipar" msprop:Generator_ColumnVarNameInTable="columnTipar" msprop:Generator_ColumnPropNameInRow="Tipar" msprop:Generator_ColumnPropNameInTable="TiparColumn" msprop:Generator_UserColumnName="Tipar" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fega" msprop:Generator_ColumnVarNameInTable="columnFega" msprop:Generator_ColumnPropNameInRow="Fega" msprop:Generator_ColumnPropNameInTable="FegaColumn" msprop:Generator_UserColumnName="Fega" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InteresesDias" msprop:Generator_ColumnVarNameInTable="columnInteresesDias" msprop:Generator_ColumnPropNameInRow="InteresesDias" msprop:Generator_ColumnPropNameInTable="InteresesDiasColumn" msprop:Generator_UserColumnName="InteresesDias" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FacturaCFDI" msprop:Generator_ColumnVarNameInTable="columnFacturaCFDI" msprop:Generator_ColumnPropNameInRow="FacturaCFDI" msprop:Generator_ColumnPropNameInTable="FacturaCFDIColumn" msprop:Generator_UserColumnName="FacturaCFDI" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Folio" msprop:Generator_ColumnVarNameInTable="columnFolio" msprop:Generator_ColumnPropNameInRow="Folio" msprop:Generator_ColumnPropNameInTable="FolioColumn" msprop:Generator_UserColumnName="Folio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Descr" msprop:Generator_ColumnVarNameInTable="columnDescr" msprop:Generator_ColumnPropNameInRow="Descr" msprop:Generator_ColumnPropNameInTable="DescrColumn" msprop:Generator_UserColumnName="Descr">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Calle" msprop:Generator_ColumnVarNameInTable="columnCalle" msprop:Generator_ColumnPropNameInRow="Calle" msprop:Generator_ColumnPropNameInTable="CalleColumn" msprop:Generator_UserColumnName="Calle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Colonia" msprop:Generator_ColumnVarNameInTable="columnColonia" msprop:Generator_ColumnPropNameInRow="Colonia" msprop:Generator_ColumnPropNameInTable="ColoniaColumn" msprop:Generator_UserColumnName="Colonia">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TipoAsent" msprop:Generator_ColumnVarNameInTable="columnTipoAsent" msprop:Generator_ColumnPropNameInRow="TipoAsent" msprop:Generator_ColumnPropNameInTable="TipoAsentColumn" msprop:Generator_UserColumnName="TipoAsent" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Delegacion" msprop:Generator_ColumnVarNameInTable="columnDelegacion" msprop:Generator_ColumnPropNameInRow="Delegacion" msprop:Generator_ColumnPropNameInTable="DelegacionColumn" msprop:Generator_UserColumnName="Delegacion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ciudad" msprop:Generator_ColumnVarNameInTable="columnCiudad" msprop:Generator_ColumnPropNameInRow="Ciudad" msprop:Generator_ColumnPropNameInTable="CiudadColumn" msprop:Generator_UserColumnName="Ciudad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Copos" msprop:Generator_ColumnVarNameInTable="columnCopos" msprop:Generator_ColumnPropNameInRow="Copos" msprop:Generator_ColumnPropNameInTable="CoposColumn" msprop:Generator_UserColumnName="Copos">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RFC" msprop:Generator_ColumnVarNameInTable="columnRFC" msprop:Generator_ColumnPropNameInRow="RFC" msprop:Generator_ColumnPropNameInTable="RFCColumn" msprop:Generator_UserColumnName="RFC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMail1" msprop:Generator_ColumnVarNameInTable="columnEMail1" msprop:Generator_ColumnPropNameInRow="EMail1" msprop:Generator_ColumnPropNameInTable="EMail1Column" msprop:Generator_UserColumnName="EMail1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMail2" msprop:Generator_ColumnVarNameInTable="columnEMail2" msprop:Generator_ColumnPropNameInRow="EMail2" msprop:Generator_ColumnPropNameInTable="EMail2Column" msprop:Generator_UserColumnName="EMail2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sucursal" msprop:Generator_ColumnVarNameInTable="columnSucursal" msprop:Generator_ColumnPropNameInRow="Sucursal" msprop:Generator_ColumnPropNameInTable="SucursalColumn" msprop:Generator_UserColumnName="Sucursal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TasaIVACliente" msprop:Generator_ColumnVarNameInTable="columnTasaIVACliente" msprop:Generator_ColumnPropNameInRow="TasaIVACliente" msprop:Generator_ColumnPropNameInTable="TasaIVAClienteColumn" msprop:Generator_UserColumnName="TasaIVACliente" type="xs:decimal" />
+              <xs:element name="CicloPagare" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCicloPagare" msprop:Generator_ColumnPropNameInRow="CicloPagare" msprop:Generator_ColumnPropNameInTable="CicloPagareColumn" msprop:Generator_UserColumnName="CicloPagare" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -6044,6 +6807,20 @@ ORDER BY FechaFinal, Vw_AvioGastosXfacturar.Anexo, Vw_AvioGastosXfacturar.Ciclo<
       <xs:selector xpath=".//mstns:FacturasAvio" />
       <xs:field xpath="mstns:Anexo" />
       <xs:field xpath="mstns:Ciclo" />
+    </xs:unique>
+    <xs:unique name="CFDI_RecibosPAGO_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CFDI_RecibosPAGO" />
+      <xs:field xpath="mstns:_x0032_7_Serie_Comprobante" />
+      <xs:field xpath="mstns:_x0031__Folio" />
+    </xs:unique>
+    <xs:unique name="TraeUdis_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TraeUdis" />
+      <xs:field xpath="mstns:Vigencia" />
+    </xs:unique>
+    <xs:unique name="AvisosCFDI_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AvisosCFDI" />
+      <xs:field xpath="mstns:Factura" />
+      <xs:field xpath="mstns:Anexo" />
     </xs:unique>
   </xs:element>
 </xs:schema>

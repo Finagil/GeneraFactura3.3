@@ -14,6 +14,7 @@ Module GneraFactura
     Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
     Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
     Dim SE_PROCESARON_FACTURAS As Boolean = False
+    Dim Arg() As String
 
     Sub Main()
         Dim mf As Date = Date.Now.AddHours(-72)
@@ -22,21 +23,69 @@ Module GneraFactura
         Dim D As New System.IO.DirectoryInfo(GeneraFactura.My.Settings.RutaOrigen)
         Dim F As FileInfo() = D.GetFiles("*.txt")
 
-        Console.WriteLine("Generando CFDI Avio...")
-        GeneraArchivosAvio()
-        Console.WriteLine("Generando CFDI Facturas Externas...")
-        GeneraArchivosEXternas()
-        Console.WriteLine("leyendo " & GeneraFactura.My.Settings.RutaOrigen)
-        Console.WriteLine("Generando CFDI...")
-        ObtieneGUID()
-        GeneraArchivos(True) 'fACTURAS
-        ObtieneGUID()
-        If SE_PROCESARON_FACTURAS = False Then
-            GeneraArchivos(False) 'COMPLEMENTOS
+        Arg = Environment.GetCommandLineArgs()
+        If Arg.Length > 1 Then
+            Select Case UCase(Arg(1))
+                Case "FOLIOS"
+                    Console.WriteLine("Leyendo Folios CFDI ...")
+                    CFDI33.LeeFoliosFiscales()
+                Case "AVISOS"
+                    Console.WriteLine("Generando Avisos CFDI ...")
+                    CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                    CFDI33.FacturarCFDI(Date.Now.Date, "ANTERIORES")
+                    CFDI33.FacturarCFDI(Date.Now.Date, "PREPAGO")
+                    CFDI33.FacturarCFDI(Date.Now.Date, "DIA")
+                Case "FACURAS"
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
+                    Console.WriteLine("Generando CFDI Externas...")
+                    GeneraArchivosEXternas()
+                    Console.WriteLine("Generando CFDI Finagil...")
+                    GeneraArchivos(True)
+                Case "PAGOS"
+                    Console.WriteLine("Generando CFDI Pago...")
+                    GeneraArchivos(False) 'COMPLEMENTOS
+                Case "FACURAS_EKO"
+                    Console.WriteLine("Generando CFDI Facturas EKomercio...")
+                    CFDI33.GeneraFacturaEkomercio()
+                Case "PAGOS_EKO"
+                    Console.WriteLine("Generando CFDI Pagos EKomercio...")
+                    CFDI33.GeneraComplementoEkomercio()
+                Case "FTP"
+                    Console.WriteLine("Subiendo Archivos EKomercio...")
+                    CFDI33.SubeFTP()
+                Case "TODO"
+                    Console.WriteLine("Leyendo Folios CFDI ...")
+                    CFDI33.LeeFoliosFiscales()
+
+                    Console.WriteLine("Generando Avisos CFDI ...")
+                    CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                    CFDI33.FacturarCFDI(Date.Now.Date, "ANTERIORES")
+                    CFDI33.FacturarCFDI(Date.Now.Date, "PREPAGO")
+                    CFDI33.FacturarCFDI(Date.Now.Date, "DIA")
+
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
+
+                    Console.WriteLine("Generando CFDI Externas...")
+                    GeneraArchivosEXternas()
+
+                    Console.WriteLine("Generando CFDI Finagil...")
+                    GeneraArchivos(True)
+
+                    Console.WriteLine("Generando CFDI Pago...")
+                    GeneraArchivos(False) 'COMPLEMENTOS
+
+                    Console.WriteLine("Generando CFDI Facturas EKomercio...")
+                    CFDI33.GeneraFacturaEkomercio()
+
+                    Console.WriteLine("Generando CFDI Pagos EKomercio...")
+                    CFDI33.GeneraComplementoEkomercio()
+
+                    Console.WriteLine("Subiendo Archivos EKomercio...")
+                    CFDI33.SubeFTP()
+            End Select
         End If
-
-        ObtieneGUID()
-
         Console.WriteLine("Terminado...")
     End Sub
 
@@ -115,6 +164,8 @@ Module GneraFactura
             Else
                 Razon = r.Nombre
             End If
+
+
             ROWheader._42_Nombre_Receptor = Razon.Trim
             ROWheader._43_RFC_Receptor = RFC.Trim
             ROWheader._44_Dom_Receptor_calle = r.Calle.Trim
@@ -364,7 +415,8 @@ Module GneraFactura
         Dim RFC_BancoFinagil, CuentaFinagil As String
         Dim Spei, SpeiCert, SpeiCadOrg, SpeiSello As String
         Dim EsPago As Boolean
-        Dim TipoCambioSTR As String
+        Dim TipoCambioSTR, ErrorMSG As String
+        Dim SinFolio As String = ""
         'Try
         NoFactError = 0
         For i = 0 To F.Length - 1
@@ -408,7 +460,7 @@ Module GneraFactura
             If EsPago = True And EsFactura = False And Serie <> "C" Then
 #Region "Espago"
                 If GUID = "SIN FOLIO FISCAL" Then
-                    EnviacORREO("ecacerest@finagil.com.mx", "Tipo de Cambio : 1 Concepto: " & "SIN FOLIO FISCAL" & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                    SinFolio += "Tipo de Cambio : 1 Concepto: " & "SIN FOLIO FISCAL" & vbCrLf & " TipoCredito : " & Tipar & " Anexo : " & cAnexo & " Factura sin Procesar " & Serie & Folio & "<BR>"
                     Continue For
                 End If
                 f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
@@ -500,6 +552,10 @@ Module GneraFactura
                             If Trim(Datos(16)) = "CARD840606LEA" Then
                                 Datos(5) = "DANIEL CADENA RUVALCABA"
                             End If
+                            If Trim(Datos(16)) = "GET090828K63" Then
+                                Errores = True
+                                ErrorMSG = "!!No se Factura de Grupo empresarian transforma!!"
+                            End If
 
                             If FormaPago = "03" Then ' tranferencias
                                 RFC_BancoFinagil = CUENTAS.DatosBancoFinagil(Datos(3), Datos(4))
@@ -540,8 +596,8 @@ Module GneraFactura
                                 ROWheader._177_Tasa_Divisa = taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
                                 If ROWheader._177_Tasa_Divisa = 1 Then
                                     Errores = True
-                                    EnviacORREO("vcruz@finagil.com.mx", "Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                    EnviacORREO("ecacerest@finagil.com.mx", "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & " Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End If
                             End If
                             ROWheader._180_LugarExpedicion = "50070"
@@ -674,7 +730,7 @@ Module GneraFactura
                                     End If
                                 Catch ex As Exception
                                     Errores = False
-                                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End Try
 
                             End If
@@ -696,9 +752,9 @@ Module GneraFactura
                     ROWheader._162_Misc50 = ""
                     'ROWheader._161_Misc49 = ""
                     If OpcionCompraAF.Trim.Length > 0 Then
-                        ROWheader._160_Misc48 = LeyendaCapital.Trim & " " & OpcionCompraAF.Trim
+                        ROWheader._157_Misc45 = LeyendaCapital.Trim & " " & OpcionCompraAF.Trim
                     Else
-                        ROWheader._160_Misc48 = LeyendaCapital.Trim
+                        ROWheader._157_Misc45 = LeyendaCapital.Trim
                     End If
 
 
@@ -904,6 +960,10 @@ Module GneraFactura
                             If Trim(Datos(16)) = "CARD840606LEA" Then
                                 Datos(5) = "DANIEL CADENA RUVALCABA"
                             End If
+                            If Trim(Datos(16)) = "GET090828K63" Then
+                                Errores = True
+                                ErrorMSG = "!!No se Factura de Grupo empresarian transforma!!"
+                            End If
 
                             ROWheader._42_Nombre_Receptor = Datos(5).Trim
                             ROWheader._43_RFC_Receptor = Datos(16).ToUpper
@@ -933,8 +993,8 @@ Module GneraFactura
                                 ROWheader._177_Tasa_Divisa = taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
                                 If ROWheader._177_Tasa_Divisa = 1 Then
                                     Errores = True
-                                    EnviacORREO("vcruz@finagil.com.mx", "Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                    EnviacORREO("ecacerest@finagil.com.mx", "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End If
                             End If
                             ROWheader._180_LugarExpedicion = "50070"
@@ -967,6 +1027,8 @@ Module GneraFactura
                                                     Concepto = "SALDO INSOLUTO"
                                                 Case "CAPITAL EQUIPO"
                                                     Concepto = "CAPITAL"
+                                                Case "PAGO CREDITO DE AVIO"
+                                                    Concepto = "CREDITO DE AVIO"
                                             End Select
                                             If InStr(Concepto, "CAPITAL EQUIPO VEN") > 0 Then
                                                 Concepto = "CAPITAL VENCIMIENTO" '& Right(Concepto, 7)
@@ -980,17 +1042,22 @@ Module GneraFactura
                                 TasaIVA = TasaIVACliente / 100
                                 TipoImpuesto = TasaIVACliente
                                 NoLineas += 1
-                                If InStr(Datos(8), "Comisión del") And
-                                    ROWheader._27_Serie_Comprobante = "F" Then
+
+                                If InStr(Datos(8), "Comisión del") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
                                 End If
 
-                                If InStr(Datos(8), "Int. Ord.") And
-                                    ROWheader._27_Serie_Comprobante = "F" Then
+                                If InStr(Datos(8), "Int. Ord.") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"
+                                End If
+                                If Datos(8) = "INTERESES AL VENCIMIENTO" And ROWheader._27_Serie_Comprobante = "F" Then
+                                    ReDim Preserve Datos(11)
+                                    Datos(11) = 0
+                                    TipoImpuesto = "Exento"
+                                    ROWheader._29_FormaPago = "03"
                                 End If
 
                                 If Tipar <> "F" And Tipar <> "P" Then 'se puede borrar
@@ -1096,6 +1163,7 @@ Module GneraFactura
                                         If Codigo = "" Then
                                             Codigo = "84101700"
                                             Errores = True
+                                            ErrorMSG = "Falta codigo "
                                         End If
                                     End If
                                     If Unidad = "" Then
@@ -1104,6 +1172,7 @@ Module GneraFactura
                                         Else
                                             Unidad = "E48"
                                             Errores = True
+                                            ErrorMSG = "Falta Unidad "
                                         End If
 
                                     End If
@@ -1122,6 +1191,7 @@ Module GneraFactura
                                                 taCodigo.Insert(Tipar, Concepto, "", "", False)
                                             End If
                                             Errores = True
+                                            ErrorMSG = "Falta Concepto "
                                         End If
                                     Else
 
@@ -1132,8 +1202,9 @@ Module GneraFactura
                                     Unidad = "E48"
                                     Codigo = "84101700"
                                     Errores = True
+                                    ErrorMSG = "Falta codigo "
                                     If ROWheader._27_Serie_Comprobante = "B" Then
-                                        Errores = False ' PARA PRUEBAS
+                                        ''Errores = False ' PARA PRUEBAS
                                     End If
                                     If Serie = "F" Then
                                         Errores = True ' quitamos el error de factoraje
@@ -1141,8 +1212,8 @@ Module GneraFactura
 
                                 End If
                                 If Errores = True Then
-                                    EnviacORREO("vcruz@finagil.com.mx", "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                    EnviacORREO("ecacerest@finagil.com.mx", "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End If
 
                                 ROWdetail._1_Linea_Descripcion = Datos(8).Trim
@@ -1172,7 +1243,7 @@ Module GneraFactura
                                         Else
                                             ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(CDec(Datos(11)), 2)
                                             MontoBaseIVA = CDec(Datos(11)) / TasaIVA
-                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And Mid(Datos(8), 1, 7) = "INTERES" Then
+                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
                                                 ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
                                             End If
                                         End If
@@ -1189,7 +1260,7 @@ Module GneraFactura
                                     ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
                                 Catch ex As Exception
                                     Errores = True
-                                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End Try
 
                             End If
@@ -1209,9 +1280,9 @@ Module GneraFactura
                     ROWheader._162_Misc50 = ""
                     'ROWheader._161_Misc49 = ""
                     If OpcionCompraAF.Trim.Length > 0 Then
-                        ROWheader._160_Misc48 = LeyendaCapital.Trim & " * " & OpcionCompraAF.Trim
+                        ROWheader._157_Misc45 = LeyendaCapital.Trim & " * " & OpcionCompraAF.Trim
                     Else
-                        ROWheader._160_Misc48 = LeyendaCapital.Trim
+                        ROWheader._157_Misc45 = LeyendaCapital.Trim
                     End If
 
 
@@ -1265,14 +1336,14 @@ Module GneraFactura
                         File.Delete(F(i).FullName)
 
                     Catch ex As Exception
-                        EnviacORREO("ecacerest@finagil.com.mx", "Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                        EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & " Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                         ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                     End Try
                 Else
                     ProducDS.CFDI_Encabezado.Clear()
                     ProducDS.CFDI_Detalle.Clear()
-                    File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
+                    File.Copy(F(i).FullName, GeneraFactura.My.Settings.NoPasa & F(i).Name, True)
                     File.Delete(F(i).FullName)
                     NoFactError += 1
                 End If
@@ -1283,11 +1354,14 @@ Module GneraFactura
                     File.Delete(F(i).FullName)
                 End If
                 If EsFactura = False Or Serie = "C" Then
-                    File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
+                    File.Copy(F(i).FullName, GeneraFactura.My.Settings.NoPasa & F(i).Name, True)
                     File.Delete(F(i).FullName)
                 End If
             End If
         Next
+        If SinFolio.Length > 0 Then
+            EnviacORREO("ecacerest@finagil.com.mx", SinFolio, "Factura sin Procesar " & Serie & Folio, "CFDI33@finagil.com.mx")
+        End If
         If NoFactError > 0 Then
             EnviacORREO("ecacerest@finagil.com.mx", "Error  de Facturas sin procesar:  " & NoFactError, "Error  de Facturas sin procesar:  " & NoFactError, "CFDI33@finagil.com.mx")
         End If
@@ -1464,7 +1538,7 @@ Module GneraFactura
             ROWheader._114_Misc02 = "" ' contrato
             ROWheader._115_Misc03 = "" ' Cliente
             ROWheader._162_Misc50 = ""
-            ROWheader._160_Misc48 = "" ' Adenda
+            ROWheader._157_Misc45 = "" ' Adenda
             ROWheader._161_Misc49 = ""
             ROWheader.Encabezado_Procesado = False
             ROWheader._162_Misc50 = r.Mail1.Trim
@@ -1672,15 +1746,6 @@ Module GneraFactura
         Return Cad.Trim
     End Function
 
-    Sub ObtieneGUID()
-        Dim ID As Guid
-        Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
-        Dim tFacts As New ProduccionDS.CFDI_EncabezadoDataTable
-        taFact.FillBySinGUID(tFacts)
-        For Each r As ProduccionDS.CFDI_EncabezadoRow In tFacts.Rows
-            ID = Guid.NewGuid
-            taFact.UpdateGUID(ID.ToString, r._1_Folio, r._27_Serie_Comprobante)
-        Next
-    End Sub
+
 
 End Module
