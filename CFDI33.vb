@@ -176,11 +176,6 @@ Module CFDI33
         cm2.Dispose()
         cm3.Dispose()
         cm4.Dispose()
-
-
-
-
-
     End Sub
 
     Sub FacturarCFDI_AV(FechaProc As Date)
@@ -316,9 +311,9 @@ Module CFDI33
         F = D.GetFiles("*.txt")
         For i As Integer = 0 To F.Length - 1
 
+            Console.WriteLine("Subiendo " & F(i).Name)
             wrUpload = DirectCast(WebRequest.Create("ftp://ftplamoderna.ekomercio.com/TXT_Entrada/" & F(i).Name), FtpWebRequest)
             wrUpload.Credentials = New NetworkCredential("lmoderna", "Ekomercio.1")
-
             wrUpload.Method = WebRequestMethods.Ftp.UploadFile
             btfile = File.ReadAllBytes(My.Settings.RutaFTP & F(i).Name)
             strFile = wrUpload.GetRequestStream()
