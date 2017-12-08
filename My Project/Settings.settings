@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="MailError" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ecacerest@Finagil.com.mx</Value>
+      <Value Profile="(Default)">ecacerest@finagil.com.mx</Value>
     </Setting>
     <Setting Name="RutaBackup" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\server-nas\FacturasCFDI\CFDIbackup\</Value>

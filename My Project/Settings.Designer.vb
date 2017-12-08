@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("ecacerest@Finagil.com.mx")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ecacerest@finagil.com.mx")>  _
         Public Property MailError() As String
             Get
                 Return CType(Me("MailError"),String)

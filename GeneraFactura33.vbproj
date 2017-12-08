@@ -7,8 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{864364F4-000B-495B-8735-4967555B07AA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>GeneraFactura</RootNamespace>
     <AssemblyName>GeneraFactura33</AssemblyName>
     <FileAlignment>512</FileAlignment>

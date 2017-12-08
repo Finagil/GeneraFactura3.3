@@ -598,6 +598,7 @@ Module GneraFactura
                                     Errores = True
                                     EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & " Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                     EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("martin.dorantes@finagil.com.mx", ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                 End If
                             End If
                             ROWheader._180_LugarExpedicion = "50070"
@@ -731,6 +732,8 @@ Module GneraFactura
                                 Catch ex As Exception
                                     Errores = False
                                     EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    EnviacORREO("martin.dorantes@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+
                                 End Try
 
                             End If
@@ -825,6 +828,7 @@ Module GneraFactura
 
                     Catch ex As Exception
                         EnviacORREO("ecacerest@finagil.com.mx", "Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                        EnviacORREO("martin.dorantes@finagil.com.mx", "Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                         ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                     End Try
@@ -1336,7 +1340,7 @@ Module GneraFactura
                         File.Delete(F(i).FullName)
 
                     Catch ex As Exception
-                        EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & " Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                        EnviacORREO("ecacerest@finagil.com.mx", ex.Message & ErrorMSG & " Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                         ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                     End Try
@@ -1361,9 +1365,11 @@ Module GneraFactura
         Next
         If SinFolio.Length > 0 Then
             EnviacORREO("ecacerest@finagil.com.mx", SinFolio, "Factura sin Procesar " & Serie & Folio, "CFDI33@finagil.com.mx")
+            EnviacORREO("martin.dorantes@finagil.com.mx", SinFolio, "Factura sin Procesar " & Serie & Folio, "CFDI33@finagil.com.mx")
         End If
         If NoFactError > 0 Then
             EnviacORREO("ecacerest@finagil.com.mx", "Error  de Facturas sin procesar:  " & NoFactError, "Error  de Facturas sin procesar:  " & NoFactError, "CFDI33@finagil.com.mx")
+            EnviacORREO("martin.dorantes@finagil.com.mx", "Error  de Facturas sin procesar:  " & NoFactError, "Error  de Facturas sin procesar:  " & NoFactError, "CFDI33@finagil.com.mx")
         End If
     End Sub
 
@@ -1524,6 +1530,7 @@ Module GneraFactura
                 Catch ex As Exception
                     Errores = True
                     EnviacORREO("ecacerest@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                    EnviacORREO("martin.dorantes@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                 End Try
                 Facturas.Facturar(r.Serie, r.Factura, rr.Consec)
             Next
@@ -1557,6 +1564,7 @@ Module GneraFactura
 
                 Catch ex As Exception
                     EnviacORREO("ecacerest@finagil.com.mx", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                    EnviacORREO("martin.dorantes@finagil.com.mx", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                     ProducDS.CFDI_Encabezado.Clear()
                     ProducDS.CFDI_Detalle.Clear()
                 End Try
