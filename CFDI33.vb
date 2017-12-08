@@ -384,12 +384,12 @@ Module CFDI33
 
                 Cad = "¬" ' PREPARO PARA DETALLES
                 CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
-
+                cfilas += 1
+                ctasa = 0
+                cpcero = 0
+                cexento = 0
                 For Each Detalle In Production_AUXDataSet.CFDI_Detalle.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
-                    cfilas += 1
-                    ctasa = 0
-                    cpcero = 0
-                    cexento = 0
+
                     For Each Col In Production_AUXDataSet.CFDI_Detalle.Columns ' CONCATENO EL RENGLON DE DETALLE CON IMPUESTOS
 
                         If Col.ColumnName = "1_Impuesto_TipoImpuesto" Then
