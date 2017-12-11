@@ -35,7 +35,7 @@ Module GneraFactura
                     CFDI33.FacturarCFDI(Date.Now.Date, "ANTERIORES")
                     CFDI33.FacturarCFDI(Date.Now.Date, "PREPAGO")
                     CFDI33.FacturarCFDI(Date.Now.Date, "DIA")
-                Case "FACURAS"
+                Case "FACTURAS"
                     Console.WriteLine("Generando CFDI Avio...")
                     GeneraArchivosAvio()
                     Console.WriteLine("Generando CFDI Externas...")
@@ -45,7 +45,7 @@ Module GneraFactura
                 Case "PAGOS"
                     Console.WriteLine("Generando CFDI Pago...")
                     GeneraArchivos(False) 'COMPLEMENTOS
-                Case "FACURAS_EKO"
+                Case "FACTURAS_EKO"
                     Console.WriteLine("Generando CFDI Facturas EKomercio...")
                     CFDI33.GeneraFacturaEkomercio()
                 Case "PAGOS_EKO"
@@ -710,6 +710,8 @@ Module GneraFactura
                                     Select Case Mid(Datos(8), 1, 11)
                                         Case "MENSUALIDAD"
                                             Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
+                                        Case "MORATORIOS "
+                                            TipoImpuesto = "Exento"
                                     End Select
                                 End If
 
@@ -1064,21 +1066,22 @@ Module GneraFactura
                                     ROWheader._29_FormaPago = "03"
                                 End If
 
-                                If Tipar <> "F" And Tipar <> "P" Then 'se puede borrar
-                                    Select Case Datos(8)
-                                        Case "ADELANTO CAPITAL EQUIPO"
-                                            Datos(8) = "ADELANTO CAPITAL"
-                                        Case "SALDO INSOLUTO EQUIPO"
-                                            Datos(8) = "SALDO INSOLUTO"
-                                        Case "SALDO INSOLUTO DEL EQUIPO"
-                                            Datos(8) = "SALDO INSOLUTO"
-                                        Case "CAPITAL EQUIPO"
-                                            Datos(8) = "CAPITAL"
-                                    End Select
-                                    If InStr(Datos(8), "CAPITAL EQUIPO VEN") > 0 Then
-                                        Datos(8) = "CAPITAL VENCIMIENTO" '& Right(Datos(8), 7)
-                                    End If
-                                End If
+                                'If Tipar <> "F" And Tipar <> "P" Then 'se puede borrar
+                                '    Select Case Datos(8)
+                                '        Case "ADELANTO CAPITAL EQUIPO"
+                                '            Datos(8) = "ADELANTO CAPITAL"
+                                '        Case "SALDO INSOLUTO EQUIPO"
+                                '            Datos(8) = "SALDO INSOLUTO"
+                                '        Case "SALDO INSOLUTO DEL EQUIPO"
+                                '            Datos(8) = "SALDO INSOLUTO"
+                                '        Case "CAPITAL EQUIPO"
+                                '            Datos(8) = "CAPITAL"
+                                '    End Select
+                                '    If InStr(Datos(8), "CAPITAL EQUIPO VEN") > 0 Then
+                                '        Datos(8) = "CAPITAL VENCIMIENTO" '& Right(Datos(8), 7)
+                                '    End If
+                                'End If
+
                                 If (Tipar = "F") And TipoPersona <> "F" Then
                                     Select Case Mid(Datos(8), 1, 12)
                                         Case "INTERES OTRO", "INTERES SEGU"
@@ -1091,6 +1094,14 @@ Module GneraFactura
                                             TipoImpuesto = "Exento"
                                         Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
                                             TipoImpuesto = "Exento"
+                                    End Select
+                                End If
+                                If (Tipar = "R" Or Tipar = "S" Or Tipar = "F") And TipoPersona = "F" And CDec(Datos(11)) = 0 Then ' para fisicas sin iva por inflacion
+                                    Select Case Mid(Datos(8), 1, 12)
+                                        Case "MORATORIOS V"
+                                            TipoImpuesto = "No Objeto"
+                                        Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
+                                            TipoImpuesto = "No Objeto"
                                     End Select
                                 End If
                                 If Tipar = "F" And cAnexo = "038240001" Then
@@ -1148,6 +1159,8 @@ Module GneraFactura
                                     Select Case Mid(Datos(8), 1, 11)
                                         Case "MENSUALIDAD"
                                             Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
+                                        Case "MORATORIOS "
+                                            TipoImpuesto = "Exento"
                                     End Select
                                 End If
 
@@ -1239,7 +1252,11 @@ Module GneraFactura
                                     If TipoImpuesto = "Exento" Then
                                         ROWdetail._7_Impuesto_Porcentaje = ""
                                         ROWdetail._4_Impuesto_Monto_Impuesto = ""
-                                        ROWdetail._6_Impuesto_Tasa = "Exento"
+                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
+                                    ElseIf TipoImpuesto = "No Objeto" Then
+                                        ROWdetail._7_Impuesto_Porcentaje = ""
+                                        ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
                                     Else
                                         ROWdetail._7_Impuesto_Porcentaje = TasaIVA
                                         If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then

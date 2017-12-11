@@ -393,12 +393,15 @@ Module CFDI33
                     For Each Col In Production_AUXDataSet.CFDI_Detalle.Columns ' CONCATENO EL RENGLON DE DETALLE CON IMPUESTOS
 
                         If Col.ColumnName = "1_Impuesto_TipoImpuesto" Then
-                            Cad += "\Impuesto|" ' DIVIDO SESSION DE IMPOUESTOS EN DETALLE
-                            If Detalle(Col) = "EXE" Then
-                                vTipoImpuesto = "EXE"
+                            If Detalle.Item("6_Impuesto_Tasa") = "No Objeto" Then
+                                Exit For
                             End If
-                        Else
-                            If Col.ColumnName <> "Detalle_Folio" And Col.ColumnName <> "Detalle_Serie" And Col.ColumnName <> "id_Detalle" Then
+                            Cad += "\Impuesto|" ' DIVIDO SESSION DE IMPOUESTOS EN DETALLE
+                                If Detalle(Col) = "EXE" Then
+                                    vTipoImpuesto = "EXE"
+                                End If
+                            Else
+                                If Col.ColumnName <> "Detalle_Folio" And Col.ColumnName <> "Detalle_Serie" And Col.ColumnName <> "id_Detalle" Then
                                 If Col.ColumnName <> "99_Linea_NoIdentificacion" Then
                                     If Col.ColumnName = "4_Impuesto_Monto_Impuesto" Then
                                         If vTipoImpuesto = "EXE" Then
