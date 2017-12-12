@@ -805,7 +805,7 @@ Module GneraFactura
                         Dim SaldoFactura, SaldoInsolFactura As Decimal
                         Dim NoPago As Integer = 0
                         SaldoFactura = CFDI_P.SaldoFactura(FolioORG, SerieORG)
-                        SaldoFactura = Total 'LINEA DE PRUEBAS
+                        'SaldoFactura = Total 'LINEA DE PRUEBAS
                         SaldoInsolFactura = SaldoFactura - Total
                         If SaldoInsolFactura < 0 Then
                             SaldoInsolFactura = 0
