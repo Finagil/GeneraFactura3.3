@@ -364,7 +364,7 @@ Module CFDI33
 
                 ' Recorrido de Columnas o Campos de Tabla Encabezado 
                 For Each Col In Production_AUXDataSet.CFDI_Encabezado.Columns ' CONCATENO EL RENGLON DEL ENCABEZADO
-                    If Col.ColumnName <> "Encabezado_Procesado" Then
+                    If Col.ColumnName <> "Encabezado_Procesado" And Col.ColumnName <> "Fecha" Then
                         If Col.ColumnName <> "193_Monto_TotalImp_Trasladados" Then
                             ' 25 Octubre 2017
                             ' 6 de Noviembre se Agrego un Campo
@@ -502,7 +502,7 @@ Module CFDI33
             If Encabezado._83_Cod_Moneda = "XXX" And Encabezado._191_Efecto_Comprobante = "P" Then
                 ' Recorrido de Columnas o Campos de Tabla Encabezado 
                 For Each Col In Production_AUXDataSet.CFDI_Encabezado.Columns ' CONCATENO EL RENGLON DEL ENCABEZADO
-                    If Col.ColumnName <> "Encabezado_Procesado" Then
+                    If Col.ColumnName <> "Encabezado_Procesado" And Col.ColumnName <> "Fecha" Then
                         If Col.ColumnName <> "193_Monto_TotalImp_Trasladados" Then
                             ' 25 Octubre 2017
                             ' 6 de Noviembre se Agrego un Campo

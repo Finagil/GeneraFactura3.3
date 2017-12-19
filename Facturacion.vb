@@ -17,6 +17,8 @@ Module GneraFactura
     Dim Arg() As String
 
     Sub Main()
+        'LecturaPreviaAUX()
+
         Dim mf As Date = Date.Now.AddHours(-72)
         Console.WriteLine("Inicia proceso")
         ErrorControl = New EventLog("Application", System.Net.Dns.GetHostName(), "GeneracionCFDI33")
@@ -154,6 +156,7 @@ Module GneraFactura
             ROWheader._27_Serie_Comprobante = "AV"
             ROWheader._29_FormaPago = "27" '27 A satisfacción del acreedor
             ROWheader._30_Fecha = fecha.Date
+            ROWheader.Fecha = fecha.Date
             ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
@@ -405,6 +408,7 @@ Module GneraFactura
         Dim f2 As System.IO.StreamReader
         Dim fecha As New DateTime
         Dim horas As Integer
+        Dim IvaAux As Decimal
         Dim Tipar As String = ""
         Dim TipoPersona As String = ""
         Dim Moneda As String = ""
@@ -532,6 +536,7 @@ Module GneraFactura
                             ROWheader._27_Serie_Comprobante = Serie
                             ROWheader._29_FormaPago = "" 'FormaPago '"27" '27 A satisfacción del acreedor
                             ROWheader._30_Fecha = fecha.Date.ToString("yyyy-MM-dd")
+                            ROWheader.Fecha = fecha.Date
                             ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
                             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
@@ -713,6 +718,11 @@ Module GneraFactura
                                         Case "MORATORIOS "
                                             TipoImpuesto = "Exento"
                                     End Select
+                                End If
+
+                                IvaAux = Math.Round(CDec(Datos(11)) / CDec(Datos(10)), 3)
+                                If IvaAux > TasaIVA Then
+                                    Datos(11) = Math.Round(CDec(Datos(10)) * TasaIVA, 2)
                                 End If
 
                                 ROWdetail._1_Linea_Descripcion = "Pago"
@@ -940,6 +950,7 @@ Module GneraFactura
                             ROWheader._27_Serie_Comprobante = Left(Serie, 8)
                             ROWheader._29_FormaPago = FormaPago '"27" '27 A satisfacción del acreedor
                             ROWheader._30_Fecha = fecha.Date
+                            ROWheader.Fecha = fecha.Date
                             ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
                             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
@@ -1059,12 +1070,13 @@ Module GneraFactura
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"
                                 End If
-                                If Datos(8) = "INTERESES AL VENCIMIENTO" And ROWheader._27_Serie_Comprobante = "F" Then
+                                If (Datos(8) = "INTERESES AL VENCIMIENTO" Or Datos(8) = "INTERESES MORATORIOS") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"
                                     ROWheader._29_FormaPago = "03"
                                 End If
+
 
                                 'If Tipar <> "F" And Tipar <> "P" Then 'se puede borrar
                                 '    Select Case Datos(8)
@@ -1084,7 +1096,7 @@ Module GneraFactura
 
                                 If (Tipar = "F") And TipoPersona <> "F" Then
                                     Select Case Mid(Datos(8), 1, 12)
-                                        Case "INTERES OTRO", "INTERES SEGU"
+                                        Case "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
                                             TipoImpuesto = "Exento"
                                     End Select
                                 End If
@@ -1103,6 +1115,9 @@ Module GneraFactura
                                         Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
                                             TipoImpuesto = "No Objeto"
                                     End Select
+                                    If Datos(8) = "INTERESES" Then
+                                        TipoImpuesto = "No Objeto"
+                                    End If
                                 End If
                                 If Tipar = "F" And cAnexo = "038240001" Then
                                     TipoImpuesto = "Exento"
@@ -1221,7 +1236,10 @@ Module GneraFactura
                                     Errores = True
                                     ErrorMSG = "Falta codigo "
                                     If ROWheader._27_Serie_Comprobante = "B" Then
-                                        ''Errores = False ' PARA PRUEBAS
+                                        Errores = False 'quitamos el error
+                                        Codigo = Datos(12)
+                                        ROWheader._144_Misc32 = Datos(13)
+                                        Unidad = Datos(14)
                                     End If
                                     If Serie = "F" Then
                                         Errores = True ' quitamos el error de factoraje
@@ -1266,6 +1284,10 @@ Module GneraFactura
                                             MontoBaseIVA = CDec(Datos(11)) / TasaIVA
                                             If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
                                                 ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
+                                            End If
+                                            IvaAux = Math.Round(ROWdetail._4_Impuesto_Monto_Impuesto / ROWdetail._3_Impuesto_Monto_base, 3)
+                                            If IvaAux > TasaIVA Then
+                                                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(ROWdetail._3_Impuesto_Monto_base * TasaIVA, 2)
                                             End If
                                         End If
                                     End If
@@ -1457,6 +1479,7 @@ Module GneraFactura
             ROWheader._27_Serie_Comprobante = r.Serie.Trim
             ROWheader._29_FormaPago = r.MetodoPago.Trim '"27" '27 A satisfacción del acreedor
             ROWheader._30_Fecha = Today.Date
+            ROWheader.Fecha = Today.Date
             ROWheader._31_Hora = Today.ToString("HH:mm:ss")
             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
@@ -1489,7 +1512,7 @@ Module GneraFactura
 
             ROWheader._83_Cod_Moneda = r.Moneda
             ROWheader._97_Condiciones_Pago = "Contado"
-            ROWheader._144_Misc32 = "G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
+            ROWheader._144_Misc32 = r.UsoCFDI '"G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
             ROWheader._167_RegimentFiscal = 601
             If ROWheader._83_Cod_Moneda = "MXN" Then
                 ROWheader._177_Tasa_Divisa = 0
@@ -1613,11 +1636,6 @@ Module GneraFactura
 
                 Select Case Datos(0)
                     Case "H1"
-                        If Datos(2) = "PAGO" Then
-                            EsPAgo = True
-                        Else
-                            EsPAgo = False
-                        End If
                         If Datos.Length >= 5 Then
                             Referencia = Datos(4)
                         Else
@@ -1627,6 +1645,11 @@ Module GneraFactura
                         Anexo = Mid(Datos(2), 1, 5) & Mid(Datos(2), 7, 4)
                         Folio = Val(Datos(4))
                         Serie = Datos(3)
+                        If Serie = "REP" Or Serie = "REPP" Then
+                            EsPAgo = True
+                        Else
+                            EsPAgo = False
+                        End If
                         If Serie = "F" Then
                             Moneda = Datos(17)
                             Tipar = "X"
@@ -1664,48 +1687,6 @@ Module GneraFactura
                         Else
                             aviso = ""
                         End If
-
-                        'If EsFactura = False And EsPAgo = False And FechaAviso > CDate("01/01/2000") And FechaAviso < CDate("01/11/2017") Then
-                        '    ' para avisos y pagos de avisos anteriores ala fecha de Inicio 3.3
-                        '    Folio = Val(Datos(4))
-                        '    Serie = Datos(3)
-                        '    EsFactura = True
-                        '    SerieORG = "PUE"
-                        'End If
-
-                        'If EsPAgo = True Then
-                        '    If Datos.Length > 28 Then
-                        '        If Datos(29).Trim.Length = 2 Then
-                        '            Aviso = CFDI_H.SacaAvisoAV(Datos(28), Datos(29)).Trim
-                        '        Else
-                        '            Aviso = CFDI_H.SacaAviso(Datos(28), Datos(29))
-                        '        End If
-                        '        If Aviso = "0" Then
-                        '            Aviso = ""
-                        '        Else
-                        '            SerieORG = CFDI_H.SacaSerieORG(Aviso, Datos(2))
-                        '            FolioORG = CFDI_H.SacaFolioORG(Aviso, Datos(2))
-                        '            FechaAviso = CFDI_H.SacaAvisoFecha(Datos(28), Datos(29))
-                        '            If SerieORG = "XX" Then
-                        '                EsPAgo = False
-                        '                EsFactura = False
-                        '            End If
-                        '        End If
-                        '    Else
-                        '        Aviso = ""
-                        '    End If
-                        '    Folio = CFDI_H.SacaFolioPago()
-                        '    Serie = "REP"
-                        '    GUID = CFDI_H.sacaGUID(Aviso, Datos(2))
-                        '    GUID = GUID.ToUpper
-                        '    If EsFactura = False And EsPAgo = False And FechaAviso > CDate("01/01/2000") And FechaAviso < CDate("01/11/2017") Then
-                        '        ' para avisos y pagos de avisos anteriores ala fecha de Inicio 3.3
-                        '        Folio = Val(Datos(4))
-                        '        Serie = Datos(3)
-                        '        EsFactura = True
-                        '        SerieORG = "PUE"
-                        '    End If
-                        'End If
                         If Tipar <> "F" Then 'YA NO SEGUIR
                             Exit While
                         End If
@@ -1716,17 +1697,6 @@ Module GneraFactura
                         End If
                 End Select
             End While
-            'Dim s() As String = {"002240010", "007730027", "007730028", "007730029", "007730030", "026070002",
-            '                    "038240001", "030750016", "030750022", "030750024", "030750025", "030760002",
-            '                    "005350015", "007060011", "010360014", "018420005", "004810013", "002200007",
-            '                    "025670003", "029110002", "033880003", "036160001", "036930001", "042050001",
-            '                    "000170083", "000170084", "000170085", "000170089"}
-            'If s.Contains(Anexo) Then
-            '    Return (False)
-            'Else
-            '    Return (True)
-            'End If
-
         Catch ex As Exception
             EnviaError(GeneraFactura.My.Settings.MailError, ex.Message, "Error CFDI " & NombreArchivo)
             Console.WriteLine(GeneraFactura.My.Settings.NoPasa & NombreArchivo)
@@ -1734,6 +1704,9 @@ Module GneraFactura
             File.Copy(NombreArchivo, GeneraFactura.My.Settings.NoPasa & NombreArchivo, True)
         Finally
             f2.Close()
+            If Serie = "B" Then
+                JuntaDescripcion(RutaArchivo, NombreArchivo)
+            End If
         End Try
     End Function
 
@@ -1771,6 +1744,96 @@ Module GneraFactura
         Return Cad.Trim
     End Function
 
+    Sub JuntaDescripcion(RutaArchivo As String, NombreArchivo As String)
+        Dim f1 As System.IO.StreamWriter
+        Dim f2 As System.IO.StreamReader
+        Dim Cont As Integer = 0
+        Dim Linea As String = ""
+        Dim Linea1 As String = ""
+        Dim Datos() As String
+        Dim Descrip As String = ""
 
+        f1 = New System.IO.StreamWriter(RutaArchivo & ".tmp")
+        f2 = New System.IO.StreamReader(RutaArchivo, Text.Encoding.GetEncoding(1252))
+
+        Try
+            While Not f2.EndOfStream
+                Linea = f2.ReadLine
+                Datos = Linea.Split("|")
+                If Datos(0) = "D1" Then
+                    Cont += 1
+                    If Cont = 1 And Val(Datos(10)) > 0 Then
+                        Linea1 = Linea
+                        Descrip = Datos(8).Trim
+                    Else
+                        Descrip += " " & Datos(8).Trim
+                    End If
+                Else
+                    If Cont > 1 Then
+                        Datos = Linea1.Split("|")
+                        Linea1 = ""
+                        For x = 0 To Datos.Length - 1
+                            If x = 0 Then
+                                Linea1 += Datos(x)
+                            ElseIf x = 8 Then
+                                Linea1 += "|" & Descrip
+                            Else
+                                Linea1 += "|" & Datos(x)
+                            End If
+                        Next
+                        f1.WriteLine(Linea1)
+                        Cont = 0
+                    Else
+                        f1.WriteLine(Linea)
+                    End If
+                End If
+            End While
+            f1.Close()
+            f2.Close()
+            File.Delete(RutaArchivo)
+            My.Computer.FileSystem.RenameFile(RutaArchivo & ".tmp", NombreArchivo)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Function LecturaPreviaAUX() As Boolean
+
+        Dim D As New System.IO.DirectoryInfo("R:\CFDIbackup\")
+        Dim F As FileInfo() = D.GetFiles("*.txt")
+
+
+        Dim Numero As Integer = 1
+        Dim f2 As System.IO.StreamReader
+        Dim f1 As System.IO.StreamWriter
+        Dim taTipar As New GeneraFactura.ProduccionDSTableAdapters.LlavesTableAdapter
+        Dim Linea As String
+        Dim Datos() As String
+        Dim Anexo As String = ""
+        Dim FechaAviso As Date = "01/01/1900"
+        Dim Iva As Decimal
+
+        f1 = New System.IO.StreamWriter("c:\Temp\ErroresIVA.txt")
+        For i = 0 To F.Length - 1
+            f2 = New System.IO.StreamReader(F(i).FullName, Text.Encoding.GetEncoding(1252))
+            Console.WriteLine(F(i).FullName)
+            While Not f2.EndOfStream
+                Linea = f2.ReadLine
+                Datos = Linea.Split("|")
+                Select Case Datos(0)
+                    Case "D1"
+                        If Datos(11).Length > 0 Then
+                            Iva = Math.Round(CDec(Datos(11)) / CDec(Datos(10)), 2)
+                            If Iva > 0.16 Then
+                                f1.WriteLine(Linea)
+                            End If
+                        End If
+                End Select
+            End While
+            f2.Close()
+        Next
+        f1.Close()
+    End Function
 
 End Module
