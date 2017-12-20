@@ -377,6 +377,7 @@ Module GneraFactura
         Dim Folios As New GeneraFactura.ProduccionDSTableAdapters.LlavesTableAdapter
         Dim ProducDS As New ProduccionDS
         Dim TasaIVACliente As Decimal
+        Dim IVACapital As String
         Dim SubTT, IVA, MontoBaseIVA As Decimal
         Dim NoLineas As Integer
         Dim EsNotaCredito As Boolean = False
@@ -453,7 +454,7 @@ Module GneraFactura
             SpeiCert = ""
             SpeiCadOrg = ""
             SpeiSello = ""
-            LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsFactura, EsPago, SerieORG, FolioORG, GUID, Referencia, Aviso)
+            LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsFactura, EsPago, SerieORG, FolioORG, GUID, Referencia, Aviso, IVACapital)
             'If LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsPago) Then
             '    File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
             '    File.Delete(F(i).FullName)
@@ -831,7 +832,7 @@ Module GneraFactura
                         CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
                         'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                         CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_H.ConsumeFolio()
+                        'CFDI_H.ConsumeFolio()
 
                         ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
@@ -1121,8 +1122,7 @@ Module GneraFactura
                                 End If
                                 If Tipar = "F" And cAnexo = "038240001" Then
                                     TipoImpuesto = "Exento"
-                                End If
-                                If Tipar = "F" And cAnexo = "025620003" Then '#ECT Solicitado por Valentin 24/09/2015
+                                ElseIf Tipar = "F" And cAnexo = "025620003" Then '#ECT Solicitado por Valentin 24/09/2015
                                     Select Case Datos(8)
                                         Case "ADELANTO CAPITAL EQUIPO"
                                             Datos(8) = Datos(8) '& " A TASA IVA 0%"
@@ -1137,176 +1137,188 @@ Module GneraFactura
                                     If Mid(Datos(8), 1, 9) = "INTERESES" Then
                                         TipoImpuesto = "Exento"
                                     End If
+                                ElseIf Tipar = "F" And InStr(Datos(8), "CAPITAL") Then
+                                    Select Case IVACapital
+                                        Case "NOO"
+                                            TipoImpuesto = "No Objeto"
+                                        Case "EXE"
+                                            TipoImpuesto = "Exento"
+                                        Case "16%"
+                                        Case ""
+                                        Case "0%"
+                                            TasaIVA = 0
+                                    End Select
                                 End If
 
+
                                 If (Tipar = "A" Or Tipar = "H" Or Tipar = "C") Then
-                                    If Tipar = "C" Then
-                                        Select Case Mid(Datos(8), 1, 12)
-                                            Case "INTERESES AV"
-                                                Datos(8) = "INTERESES CUENTA CORRIENTE"
-                                            Case "INTERESES MO"
-                                                Datos(8) = "INTERESES MORATORIO CUENTA CORRIENTE"
-                                            Case "PAGO CREDITO"
-                                                Datos(8) = "PAGO CREDITO EN CUENTA CORRIENTE"
+                                        If Tipar = "C" Then
+                                            Select Case Mid(Datos(8), 1, 12)
+                                                Case "INTERESES AV"
+                                                    Datos(8) = "INTERESES CUENTA CORRIENTE"
+                                                Case "INTERESES MO"
+                                                    Datos(8) = "INTERESES MORATORIO CUENTA CORRIENTE"
+                                                Case "PAGO CREDITO"
+                                                    Datos(8) = "PAGO CREDITO EN CUENTA CORRIENTE"
+                                            End Select
+                                        End If
+
+                                        If TipoPersona <> "F" And Mid(Datos(8), 1, 9) = "INTERESES" Then
+                                            TipoImpuesto = "Exento"
+                                        End If
+                                    End If
+
+                                    If InStr(Datos(8), "SEGURO DE VI") > 0 Then
+                                        TipoImpuesto = "Exento"
+                                    End If
+
+                                    If Tipar = "P" Then
+                                        Select Case Datos(8)
+                                            Case "AMORTIZACION INICIAL"
+                                                Datos(8) = "RENTA INICIAL"
+                                        End Select
+                                        If CDec(Datos(11)) = 0 Then
+                                            TipoImpuesto = "Exento"
+                                        End If
+                                    End If
+
+                                    If Tipar = "B" Then
+                                        Select Case Mid(Datos(8), 1, 11)
+                                            Case "MENSUALIDAD"
+                                                Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
+                                            Case "MORATORIOS "
+                                                TipoImpuesto = "Exento"
                                         End Select
                                     End If
 
-                                    If TipoPersona <> "F" And Mid(Datos(8), 1, 9) = "INTERESES" Then
+                                    If Datos(8) = "AJUSTE INTERES" Then
                                         TipoImpuesto = "Exento"
                                     End If
-                                End If
 
-                                If InStr(Datos(8), "SEGURO DE VI") > 0 Then
-                                    TipoImpuesto = "Exento"
-                                End If
-
-                                If Tipar = "P" Then
-                                    Select Case Datos(8)
-                                        Case "AMORTIZACION INICIAL"
-                                            Datos(8) = "RENTA INICIAL"
-                                    End Select
-                                    If CDec(Datos(11)) = 0 Then
-                                        TipoImpuesto = "Exento"
-                                    End If
-                                End If
-
-                                If Tipar = "B" Then
-                                    Select Case Mid(Datos(8), 1, 11)
-                                        Case "MENSUALIDAD"
-                                            Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
-                                        Case "MORATORIOS "
-                                            TipoImpuesto = "Exento"
-                                    End Select
-                                End If
-
-                                If Datos(8) = "AJUSTE INTERES" Then
-                                    TipoImpuesto = "Exento"
-                                End If
-
-                                taCodigo.Fill(tCodigo, Tipar, Concepto)
-                                If tCodigo.Rows.Count > 0 Then
-                                    rCod = tCodigo.Rows(0)
-                                    Unidad = rCod.Unidad
-                                    Codigo = rCod.Codigo
-                                    If Codigo = "" Then
-                                        If Tipar = "P" Then
-                                            Codigo = taCodigo.SacaCodigoAnexo(cAnexo)
-                                        End If
+                                    taCodigo.Fill(tCodigo, Tipar, Concepto)
+                                    If tCodigo.Rows.Count > 0 Then
+                                        rCod = tCodigo.Rows(0)
+                                        Unidad = rCod.Unidad
+                                        Codigo = rCod.Codigo
                                         If Codigo = "" Then
-                                            Codigo = "84101700"
-                                            Errores = True
-                                            ErrorMSG = "Falta codigo "
+                                            If Tipar = "P" Then
+                                                Codigo = taCodigo.SacaCodigoAnexo(cAnexo)
+                                            End If
+                                            If Codigo = "" Then
+                                                Codigo = "84101700"
+                                                Errores = True
+                                                ErrorMSG = "Falta codigo "
+                                            End If
                                         End If
-                                    End If
-                                    If Unidad = "" Then
+                                        If Unidad = "" Then
+                                            If Tipar = "P" Then
+                                                Unidad = "E48"
+                                            Else
+                                                Unidad = "E48"
+                                                Errores = True
+                                                ErrorMSG = "Falta Unidad "
+                                            End If
+
+                                        End If
+                                        If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
+                                            'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                        End If
+                                        If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
+                                            'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                        End If
+
+                                    Else
                                         If Tipar = "P" Then
                                             Unidad = "E48"
+                                            If Codigo = "" Then
+                                                If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
+                                                    taCodigo.Insert(Tipar, Concepto, "", "", False)
+                                                End If
+                                                Errores = True
+                                                ErrorMSG = "Falta Concepto "
+                                            End If
                                         Else
-                                            Unidad = "E48"
-                                            Errores = True
-                                            ErrorMSG = "Falta Unidad "
+
                                         End If
-
-                                    End If
-                                    If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
-                                        'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                    End If
-                                    If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
-                                        'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                    End If
-
-                                Else
-                                    If Tipar = "P" Then
+                                        If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
+                                            taCodigo.Insert(Tipar, Concepto, "", "", False)
+                                        End If
                                         Unidad = "E48"
-                                        If Codigo = "" Then
-                                            If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
-                                                taCodigo.Insert(Tipar, Concepto, "", "", False)
-                                            End If
-                                            Errores = True
-                                            ErrorMSG = "Falta Concepto "
+                                        Codigo = "84101700"
+                                        Errores = True
+                                        ErrorMSG = "Falta codigo "
+                                        If ROWheader._27_Serie_Comprobante = "B" Then
+                                            Errores = False 'quitamos el error
+                                            Codigo = Datos(12)
+                                            ROWheader._144_Misc32 = Datos(13)
+                                            Unidad = Datos(14)
                                         End If
-                                    Else
+                                        If Serie = "F" Then
+                                            Errores = True ' quitamos el error de factoraje
+                                        End If
 
                                     End If
-                                    If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
-                                        taCodigo.Insert(Tipar, Concepto, "", "", False)
-                                    End If
-                                    Unidad = "E48"
-                                    Codigo = "84101700"
-                                    Errores = True
-                                    ErrorMSG = "Falta codigo "
-                                    If ROWheader._27_Serie_Comprobante = "B" Then
-                                        Errores = False 'quitamos el error
-                                        Codigo = Datos(12)
-                                        ROWheader._144_Misc32 = Datos(13)
-                                        Unidad = Datos(14)
-                                    End If
-                                    If Serie = "F" Then
-                                        Errores = True ' quitamos el error de factoraje
+                                    If Errores = True Then
+                                        EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                        EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
                                     End If
 
-                                End If
-                                If Errores = True Then
-                                    EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                    EnviacORREO("ecacerest@finagil.com.mx", ErrorMSG & "Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                End If
-
-                                ROWdetail._1_Linea_Descripcion = Datos(8).Trim
-                                ROWdetail._2_Linea_Cantidad = 1
-                                ROWdetail._3_Linea_Unidad = Unidad
-                                ROWdetail._4_Linea_PrecioUnitario = CDec(Datos(10)).ToString("n2")
-                                ROWdetail._5_Linea_Importe = CDec(Datos(10)).ToString("n2")
-                                ROWdetail._16_Linea_Cod_Articulo = Codigo ' Manejo de deuda
-                                ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
-                                ROWdetail._2_Impuesto_Descripcion = "TR"
-                                ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
-                                ROWdetail._5_Impuesto_Clave = "002"
-                                ROWdetail._6_Impuesto_Tasa = "Tasa"
-                                If Datos(6).Trim = "" Or Serie = "F" Then
-                                    Datos(6) = "SER"
-                                End If
-                                ROWdetail._53_Linea_Misc22 = Datos(6)
-                                Try
-                                    If TipoImpuesto = "Exento" Then
-                                        ROWdetail._7_Impuesto_Porcentaje = ""
-                                        ROWdetail._4_Impuesto_Monto_Impuesto = ""
-                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
-                                    ElseIf TipoImpuesto = "No Objeto" Then
-                                        ROWdetail._7_Impuesto_Porcentaje = ""
-                                        ROWdetail._4_Impuesto_Monto_Impuesto = ""
-                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
-                                    Else
-                                        ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                                        If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
-                                            ROWdetail._4_Impuesto_Monto_Impuesto = 0
+                                    ROWdetail._1_Linea_Descripcion = Datos(8).Trim
+                                    ROWdetail._2_Linea_Cantidad = 1
+                                    ROWdetail._3_Linea_Unidad = Unidad
+                                    ROWdetail._4_Linea_PrecioUnitario = CDec(Datos(10)).ToString("n2")
+                                    ROWdetail._5_Linea_Importe = CDec(Datos(10)).ToString("n2")
+                                    ROWdetail._16_Linea_Cod_Articulo = Codigo ' Manejo de deuda
+                                    ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
+                                    ROWdetail._2_Impuesto_Descripcion = "TR"
+                                    ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
+                                    ROWdetail._5_Impuesto_Clave = "002"
+                                    ROWdetail._6_Impuesto_Tasa = "Tasa"
+                                    If Datos(6).Trim = "" Or Serie = "F" Then
+                                        Datos(6) = "SER"
+                                    End If
+                                    ROWdetail._53_Linea_Misc22 = Datos(6)
+                                    Try
+                                        If TipoImpuesto = "Exento" Then
+                                            ROWdetail._7_Impuesto_Porcentaje = ""
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                                            ROWdetail._6_Impuesto_Tasa = TipoImpuesto
+                                        ElseIf TipoImpuesto = "No Objeto" Then
+                                            ROWdetail._7_Impuesto_Porcentaje = ""
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                                            ROWdetail._6_Impuesto_Tasa = TipoImpuesto
                                         Else
-                                            ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(CDec(Datos(11)), 2)
-                                            MontoBaseIVA = CDec(Datos(11)) / TasaIVA
-                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
-                                                ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
-                                            End If
-                                            IvaAux = Math.Round(ROWdetail._4_Impuesto_Monto_Impuesto / ROWdetail._3_Impuesto_Monto_base, 3)
-                                            If IvaAux > TasaIVA Then
-                                                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(ROWdetail._3_Impuesto_Monto_base * TasaIVA, 2)
+                                            ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                                            If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
+                                                ROWdetail._4_Impuesto_Monto_Impuesto = 0
+                                            Else
+                                                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(CDec(Datos(11)), 2)
+                                                MontoBaseIVA = CDec(Datos(11)) / TasaIVA
+                                                If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
+                                                    ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
+                                                End If
+                                                IvaAux = Math.Round(ROWdetail._4_Impuesto_Monto_Impuesto / ROWdetail._3_Impuesto_Monto_base, 3)
+                                                If IvaAux > TasaIVA Then
+                                                    ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(ROWdetail._3_Impuesto_Monto_base * TasaIVA, 2)
+                                                End If
                                             End If
                                         End If
-                                    End If
 
-                                    SubTT += ROWdetail._5_Linea_Importe
-                                    If IsNumeric(ROWdetail._4_Impuesto_Monto_Impuesto) Then
-                                        IVA += CDec(ROWdetail._4_Impuesto_Monto_Impuesto).ToString("n2")
-                                    End If
+                                        SubTT += ROWdetail._5_Linea_Importe
+                                        If IsNumeric(ROWdetail._4_Impuesto_Monto_Impuesto) Then
+                                            IVA += CDec(ROWdetail._4_Impuesto_Monto_Impuesto).ToString("n2")
+                                        End If
 
-                                    ROWdetail.Detalle_Folio = ROWheader._1_Folio
-                                    ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
+                                        ROWdetail.Detalle_Folio = ROWheader._1_Folio
+                                        ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
 
-                                    ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
-                                Catch ex As Exception
-                                    Errores = True
-                                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                                End Try
+                                        ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
+                                    Catch ex As Exception
+                                        Errores = True
+                                        EnviacORREO("ecacerest@finagil.com.mx", ex.Message & " " & ErrorMSG, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                                    End Try
 
-                            End If
+                                End If
                     End Select
                 End While
                 If Datos(0) <> "X" Then
@@ -1462,11 +1474,18 @@ Module GneraFactura
             Errores = False
             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
             ROWheader._1_Folio = Val(r.Factura)
-            ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
-            ROWheader._3_RFC_Emisor = "FIN940905AX7"
+            If r.Finagil = True Then
+                ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
+                ROWheader._3_RFC_Emisor = "FIN940905AX7"
+                ROWheader._6_Dom_Emisor_noInterior = ""
+            Else
+                ROWheader._2_Nombre_Emisor = "SERVICIOS ARFIN S.A. DE C.V."
+                ROWheader._3_RFC_Emisor = "SAR951230N5A"
+                ROWheader._6_Dom_Emisor_noInterior = "SEGUNDO PISO"
+            End If
+
             ROWheader._4_Dom_Emisor_calle = "Leandro Valle"
             ROWheader._5_Dom_Emisor_noExterior = "402"
-            ROWheader._6_Dom_Emisor_noInterior = ""
             ROWheader._7_Dom_Emisor_colonia = "Reforma y F.F.C.C"
             ROWheader._8_Dom_Emisor_localidad = "Toluca"
             ROWheader._9_Dom_Emisor_referencia = ""
@@ -1618,7 +1637,7 @@ Module GneraFactura
 
     Function LecturaPrevia(RutaArchivo As String, NombreArchivo As String, ByRef Moneda As String, ByRef Tipar As String, ByRef Folio As Integer, ByRef Serie As String,
                            ByRef EsFactura As Boolean, ByRef EsPAgo As Boolean, ByRef SerieORG As String, ByRef FolioORG As Integer, ByRef GUID As String,
-                           ByRef Referencia As String, Optional ByRef aviso As String = "") As Boolean
+                           ByRef Referencia As String, Optional ByRef aviso As String = "", Optional ByRef IVACapital As String = "") As Boolean
         OpcionCompraAF = ""
         Dim Numero As Integer = 1
         Dim f2 As System.IO.StreamReader
@@ -1659,6 +1678,7 @@ Module GneraFactura
                             Moneda = taTipar.SacaMoneda(Datos(2))
                             Tipar = taTipar.TipaR(Datos(2))
                             TipoCredito = taTipar.TipoCredito(Tipar)
+                            IVACapital = taTipar.SacaIvaCapital(Anexo)
                         End If
 
                         If Datos.Length > 28 And Serie <> "F" Then
@@ -1679,7 +1699,7 @@ Module GneraFactura
                                         EsFactura = False
                                     End If
                                     'Folio = CFDI_H.SacaFolioPago()
-                                    Serie = "REP"
+                                    'Serie = "REP"
                                     GUID = CFDI_H.sacaGUID(aviso, Datos(2))
                                     GUID = GUID.ToUpper
                                 End If

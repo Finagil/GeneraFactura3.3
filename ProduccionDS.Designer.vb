@@ -1796,6 +1796,8 @@ Partial Public Class ProduccionDS
         
         Private columnUsoCFDI As Global.System.Data.DataColumn
         
+        Private columnFinagil As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1968,6 +1970,14 @@ Partial Public Class ProduccionDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FinagilColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFinagil
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2021,9 +2031,10 @@ Partial Public Class ProduccionDS
                     ByVal MetodoPago As String,  _
                     ByVal Cuenta As String,  _
                     ByVal MetodoPagoSAT As String,  _
-                    ByVal UsoCFDI As String) As FacturasExternasRow
+                    ByVal UsoCFDI As String,  _
+                    ByVal Finagil As Boolean) As FacturasExternasRow
             Dim rowFacturasExternasRow As FacturasExternasRow = CType(Me.NewRow,FacturasExternasRow)
-            Dim columnValuesArray() As Object = New Object() {Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI}
+            Dim columnValuesArray() As Object = New Object() {Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI, Finagil}
             rowFacturasExternasRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowFacturasExternasRow)
             Return rowFacturasExternasRow
@@ -2069,6 +2080,7 @@ Partial Public Class ProduccionDS
             Me.columnCuenta = MyBase.Columns("Cuenta")
             Me.columnMetodoPagoSAT = MyBase.Columns("MetodoPagoSAT")
             Me.columnUsoCFDI = MyBase.Columns("UsoCFDI")
+            Me.columnFinagil = MyBase.Columns("Finagil")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2108,6 +2120,8 @@ Partial Public Class ProduccionDS
             MyBase.Columns.Add(Me.columnMetodoPagoSAT)
             Me.columnUsoCFDI = New Global.System.Data.DataColumn("UsoCFDI", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnUsoCFDI)
+            Me.columnFinagil = New Global.System.Data.DataColumn("Finagil", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFinagil)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSerie, Me.columnFactura}, true))
             Me.columnSerie.AllowDBNull = false
             Me.columnSerie.MaxLength = 3
@@ -13642,6 +13656,21 @@ Partial Public Class ProduccionDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Finagil() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableFacturasExternas.FinagilColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Finagil' de la tabla 'FacturasExternas' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableFacturasExternas.FinagilColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsfechaNull() As Boolean
             Return Me.IsNull(Me.tableFacturasExternas.fechaColumn)
         End Function
@@ -13818,6 +13847,18 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetUsoCFDINull()
             Me(Me.tableFacturasExternas.UsoCFDIColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFinagilNull() As Boolean
+            Return Me.IsNull(Me.tableFacturasExternas.FinagilColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFinagilNull()
+            Me(Me.tableFacturasExternas.FinagilColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -26694,7 +26735,7 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(8) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(9) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        IDSerieGAV"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Llaves"
@@ -26711,38 +26752,44 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Metodo", Global.System.Data.SqlDbType.VarChar, 37, Global.System.Data.ParameterDirection.Input, 0, 0, "Metodo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        ISNULL(MAX(Metodo), 'NA No Aplica') AS metodo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            GEN_"& _ 
-                "MetodoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id_metodo = @idMetodo)"
+            Me._commandCollection(3).CommandText = "SELECT        ISNULL(MAX(TasaIvaCapital), '') AS Cap"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHE"& _ 
+                "RE        (Anexo = @Anexo)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idMetodo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "id_metodo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT        ISNULL(MAX(moneda), 'WWW') AS moneda"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_AnexosResu"& _ 
-                "men"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnexoCon = @AnexoCon)"
+            Me._commandCollection(4).CommandText = "SELECT        ISNULL(MAX(Metodo), 'NA No Aplica') AS metodo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            GEN_"& _ 
+                "MetodoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id_metodo = @idMetodo)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@idMetodo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "id_metodo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT MAX(idSERIEgav)+1 FROM Llaves"
+            Me._commandCollection(5).CommandText = "SELECT        ISNULL(MAX(moneda), 'WWW') AS moneda"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_AnexosResu"& _ 
+                "men"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (AnexoCon = @AnexoCon)"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "SELECT        ISNULL(MAX(Tipar), 'X') AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
-                "       (AnexoCon = @Anexo)"
+            Me._commandCollection(6).CommandText = "SELECT MAX(idSERIEgav)+1 FROM Llaves"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "SELECT        ISNULL(MAX(Producto), '') AS Producto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            GEN_Producto"& _ 
-                "sFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Tipar = @Tipar)"
+            Me._commandCollection(7).CommandText = "SELECT        ISNULL(MAX(Tipar), 'X') AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
+                "       (AnexoCon = @Anexo)"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tipar", Global.System.Data.SqlDbType.NChar, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "Tipar", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NVarChar, 11, Global.System.Data.ParameterDirection.Input, 0, 0, "AnexoCon", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT        MAX(Tipo) AS TipoPersona"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Clientes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (C"& _ 
-                "liente = @Cliente)"
+            Me._commandCollection(8).CommandText = "SELECT        ISNULL(MAX(Producto), '') AS Producto"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            GEN_Producto"& _ 
+                "sFinagil"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Tipar = @Tipar)"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cliente", Global.System.Data.SqlDbType.NChar, 5, Global.System.Data.ParameterDirection.Input, 0, 0, "Cliente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tipar", Global.System.Data.SqlDbType.NChar, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "Tipar", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(9).Connection = Me.Connection
+            Me._commandCollection(9).CommandText = "SELECT        MAX(Tipo) AS TipoPersona"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Clientes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (C"& _ 
+                "liente = @Cliente)"
+            Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cliente", Global.System.Data.SqlDbType.NChar, 5, Global.System.Data.ParameterDirection.Input, 0, 0, "Cliente", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26878,8 +26925,39 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function SacaMetodo(ByVal idMetodo As String) As Object
+        Public Overloads Overridable Function SacaIvaCapital(ByVal Anexo As String) As String
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
+            If (Anexo Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Anexo")
+            Else
+                command.Parameters(0).Value = CType(Anexo,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,String)
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function SacaMetodo(ByVal idMetodo As String) As Object
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             If (idMetodo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("idMetodo")
             Else
@@ -26910,7 +26988,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaMoneda(ByVal AnexoCon As String) As String
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
             If (AnexoCon Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -26941,7 +27019,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SerieGVA() As Global.System.Nullable(Of Decimal)
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(6)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -26967,7 +27045,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function TipaR(ByVal Anexo As String) As String
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(6)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
             If (Anexo Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -26998,7 +27076,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function TipoCredito(ByVal Tipar As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
             If (Tipar Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Tipar")
             Else
@@ -27029,7 +27107,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function TipoPersona(ByVal Cliente As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
             If (Cliente Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Cliente")
             Else
@@ -27523,6 +27601,7 @@ Namespace ProduccionDSTableAdapters
             tableMapping.ColumnMappings.Add("Cuenta", "Cuenta")
             tableMapping.ColumnMappings.Add("MetodoPagoSAT", "MetodoPagoSAT")
             tableMapping.ColumnMappings.Add("UsoCFDI", "UsoCFDI")
+            tableMapping.ColumnMappings.Add("Finagil", "Finagil")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -27540,10 +27619,10 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Serie, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, E"& _ 
-                "stado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM  "& _ 
-                "          FacturasExternas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Facturado = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Serie, Factur"& _ 
-                "a, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, Mail1, Mai"& _ 
-                "l2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI"
+                "stado, CP, RFC, Mail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI, Finagi"& _ 
+                "l"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            FacturasExternas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Facturado = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"GROUP BY Seri"& _ 
+                "e, Factura, fecha, Moneda, Nombre, Calle, Colonia, Municipio, Estado, CP, RFC, M"& _ 
+                "ail1, Mail2, MetodoPago, Cuenta, MetodoPagoSAT, UsoCFDI, Finagil"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -30250,7 +30329,7 @@ Namespace ProduccionDSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(17) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(16) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        [1_Folio], [2_Nombre_Emisor], [3_RFC_Emisor], [4_Dom_Emisor_calle],"& _ 
@@ -30315,7 +30394,67 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "UPDATE       Llaves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                CFDI_Pago = CFDI_Pago + 1"
+            Me._commandCollection(1).CommandText = "SELECT        [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_em"& _ 
+                "paques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus]"& _ 
+                ", [107_Numero_Emisor], [108_Monto_Merma], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [109_Monto_"& _ 
+                "SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Sol"& _ 
+                "icitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc0"& _ 
+                "4], [117_Misc05], [118_Misc06], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [119_Misc07], [11_Dom"& _ 
+                "_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Mi"& _ 
+                "sc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12"& _ 
+                "_Dom_Emisor_pais], [130_Misc18],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          [131_Misc19], [132_M"& _ 
+                "isc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [1"& _ 
+                "38_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc2"& _ 
+                "9], [142_Misc30], [143_Misc31], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [144_Misc32], [145_Mi"& _ 
+                "sc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], "& _ 
+                "[150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc4"& _ 
+                "3], [156_Misc44], [157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [158_Misc46], [159_Mi"& _ 
+                "sc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_P"& _ 
+                "orc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_Reg"& _ 
+                "imentFiscal], [168_Num_CtaPago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [169_Num_contrarecib"& _ 
+                "o], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Co"& _ 
+                "mprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Adua"& _ 
+                "na], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], ["& _ 
+                "177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_"& _ 
+                "Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                    [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig],"& _ 
+                " [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Desc"& _ 
+                "uentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "   [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Ef"& _ 
+                "ecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladad"& _ 
+                "os], [19_Dom_Sucursal_localidad], [1_Folio], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [20_Dom_"& _ 
+                "Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23"& _ 
+                "_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Vers"& _ 
+                "ion], [27_Serie_Comprobante], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [28_Numero_Aprobacion],"& _ 
+                " [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_c"& _ 
+                "alle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom"& _ 
+                "_LugarExpide_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [36_Dom_LugarExpide_localidad]"& _ 
+                ", [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_Lugar"& _ 
+                "Expide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_c"& _ 
+                "odigoPostal], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [42_Nombre_Receptor], [43_RFC_Receptor]"& _ 
+                ", [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInte"& _ 
+                "rior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_m"& _ 
+                "unicipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_co"& _ 
+                "digoPostal], [54_Monto_SubTotal], [55_Monto_IVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [56"& _ 
+                "_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior],"& _ 
+                " [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_"& _ 
+                "Prov], [64_EAN_Proveedor], [65_Numero_Factura], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [66_N"& _ 
+                "umero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tiend"& _ 
+                "a], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_T"& _ 
+                "ienda_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [73_Dom_Tienda_noExterior], [74_Dom_Tie"& _ 
+                "nda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tie"& _ 
+                "nda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codi"& _ 
+                "goPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_Pront"& _ 
+                "oPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "   [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cant"& _ 
+                "idad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor]"& _ 
+                ", [94_Cod_Vendedor], [95_Nombre_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [96_Via_Em"& _ 
+                "barque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Em"& _ 
+                "isor_referencia], Encabezado_Procesado, Fecha, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabe"& _ 
+                "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] <> 'RE"& _ 
+                "P' AND [27_Serie_Comprobante] <> 'REPP')"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
@@ -30378,76 +30517,12 @@ Namespace ProduccionDSTableAdapters
                 ", [94_Cod_Vendedor], [95_Nombre_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [96_Via_Em"& _ 
                 "barque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Em"& _ 
                 "isor_referencia], Encabezado_Procesado, Fecha, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabe"& _ 
-                "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] <> 'RE"& _ 
-                "P' AND [27_Serie_Comprobante] <> 'REPP')"
+                "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] = 'REP"& _ 
+                "' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [27_Serie_Comprobante] = 'REPP')"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_em"& _ 
-                "paques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus]"& _ 
-                ", [107_Numero_Emisor], [108_Monto_Merma], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [109_Monto_"& _ 
-                "SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Sol"& _ 
-                "icitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc0"& _ 
-                "4], [117_Misc05], [118_Misc06], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [119_Misc07], [11_Dom"& _ 
-                "_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Mi"& _ 
-                "sc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12"& _ 
-                "_Dom_Emisor_pais], [130_Misc18],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          [131_Misc19], [132_M"& _ 
-                "isc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [1"& _ 
-                "38_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc2"& _ 
-                "9], [142_Misc30], [143_Misc31], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [144_Misc32], [145_Mi"& _ 
-                "sc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], "& _ 
-                "[150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc4"& _ 
-                "3], [156_Misc44], [157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [158_Misc46], [159_Mi"& _ 
-                "sc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_P"& _ 
-                "orc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_Reg"& _ 
-                "imentFiscal], [168_Num_CtaPago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [169_Num_contrarecib"& _ 
-                "o], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Co"& _ 
-                "mprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Adua"& _ 
-                "na], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], ["& _ 
-                "177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_"& _ 
-                "Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                    [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig],"& _ 
-                " [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Desc"& _ 
-                "uentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
-                "   [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Ef"& _ 
-                "ecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladad"& _ 
-                "os], [19_Dom_Sucursal_localidad], [1_Folio], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [20_Dom_"& _ 
-                "Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23"& _ 
-                "_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Vers"& _ 
-                "ion], [27_Serie_Comprobante], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [28_Numero_Aprobacion],"& _ 
-                " [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_c"& _ 
-                "alle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom"& _ 
-                "_LugarExpide_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [36_Dom_LugarExpide_localidad]"& _ 
-                ", [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_Lugar"& _ 
-                "Expide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_c"& _ 
-                "odigoPostal], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [42_Nombre_Receptor], [43_RFC_Receptor]"& _ 
-                ", [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInte"& _ 
-                "rior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
-                "          [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_m"& _ 
-                "unicipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_co"& _ 
-                "digoPostal], [54_Monto_SubTotal], [55_Monto_IVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [56"& _ 
-                "_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior],"& _ 
-                " [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_"& _ 
-                "Prov], [64_EAN_Proveedor], [65_Numero_Factura], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [66_N"& _ 
-                "umero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tiend"& _ 
-                "a], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_T"& _ 
-                "ienda_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [73_Dom_Tienda_noExterior], [74_Dom_Tie"& _ 
-                "nda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tie"& _ 
-                "nda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codi"& _ 
-                "goPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_Pront"& _ 
-                "oPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
-                "   [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cant"& _ 
-                "idad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor]"& _ 
-                ", [94_Cod_Vendedor], [95_Nombre_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [96_Via_Em"& _ 
-                "barque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Em"& _ 
-                "isor_referencia], Encabezado_Procesado, Fecha, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabe"& _ 
-                "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] = 'REP"& _ 
-                "' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [27_Serie_Comprobante] = 'REPP')"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT        [1_Folio], [2_Nombre_Emisor], [3_RFC_Emisor], [4_Dom_Emisor_calle],"& _ 
+            Me._commandCollection(3).CommandText = "SELECT        [1_Folio], [2_Nombre_Emisor], [3_RFC_Emisor], [4_Dom_Emisor_calle],"& _ 
                 " [5_Dom_Emisor_noExterior], [6_Dom_Emisor_noInterior], [7_Dom_Emisor_colonia], ["& _ 
                 "8_Dom_Emisor_localidad], [9_Dom_Emisor_referencia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ["& _ 
                 "10_Dom_Emisor_municipio], [11_Dom_Emisor_estado], [12_Dom_Emisor_pais], [13_Dom_"& _ 
@@ -30506,100 +30581,102 @@ Namespace ProduccionDSTableAdapters
                 "ago], [191_Efecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_Total"& _ 
                 "Imp_Trasladados], Encabezado_Procesado, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"W"& _ 
                 "HERE        (Guid IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Guid = '')"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT        COUNT(*) + 1 AS NoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_ComplementoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE"& _ 
+                "        ([4_DetalleAux_Misc02] = @GUID)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GUID", Global.System.Data.SqlDbType.VarChar, 99, Global.System.Data.ParameterDirection.Input, 0, 0, "4_DetalleAux_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT        COUNT(*) + 1 AS NoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_ComplementoPago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE"& _ 
-                "        ([4_DetalleAux_Misc02] = @GUID)"
+            Me._commandCollection(5).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Encabezado_Procesado = @procesad"& _ 
+                "o"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie)"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GUID", Global.System.Data.SqlDbType.VarChar, 99, Global.System.Data.ParameterDirection.Input, 0, 0, "4_DetalleAux_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@procesado", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "Encabezado_Procesado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Encabezado_Procesado = @procesad"& _ 
-                "o"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie)"
+            Me._commandCollection(6).CommandText = "SELECT        ISNULL(MAX(Factura), 0) AS Aviso"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Facturas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
+                "      (Anexo = @Anexo) AND (Letra = @Letra)"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@procesado", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "Encabezado_Procesado", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Letra", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Letra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "SELECT        ISNULL(MAX(Factura), 0) AS Aviso"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Facturas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
-                "      (Anexo = @Anexo) AND (Letra = @Letra)"
+            Me._commandCollection(7).CommandText = "SELECT        MAX(CicloPagare) AS CicloPagare"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
+                "      (Anexo = @Anexo) AND (Ciclo = @Ciclo)"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Letra", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Letra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(7).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ciclo", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "SELECT        MAX(CicloPagare) AS CicloPagare"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_Anexos"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
-                "      (Anexo = @Anexo) AND (Ciclo = @Ciclo)"
+            Me._commandCollection(8).CommandText = "SELECT        MAX([159_Misc47]) AS Aviso"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
+                "       ([27_Serie_Comprobante] = @Serie) AND ([1_Folio] = @Folio)"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ciclo", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(9) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(9).Connection = Me.Connection
-            Me._commandCollection(9).CommandText = "SELECT        MAX([159_Misc47]) AS Aviso"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
-                "       ([27_Serie_Comprobante] = @Serie) AND ([1_Folio] = @Folio)"
+            Me._commandCollection(9).CommandText = "SELECT        CONVERT(datetime, ISNULL(MAX(Feven), N'19000101'), 112) AS Fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"F"& _ 
+                "ROM            Facturas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @Anexo) AND (Letra = @Letra)"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Letra", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Letra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(10) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(10).Connection = Me.Connection
-            Me._commandCollection(10).CommandText = "SELECT        CONVERT(datetime, ISNULL(MAX(Feven), N'19000101'), 112) AS Fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"F"& _ 
-                "ROM            Facturas"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @Anexo) AND (Letra = @Letra)"
-            Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Letra", Global.System.Data.SqlDbType.NChar, 3, Global.System.Data.ParameterDirection.Input, 0, 0, "Letra", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(11) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(11).Connection = Me.Connection
-            Me._commandCollection(11).CommandText = "SELECT        CONVERT(datetime, ISNULL(MAX(FechaTerminacion), N'19000101'), 112) "& _ 
+            Me._commandCollection(10).CommandText = "SELECT        CONVERT(datetime, ISNULL(MAX(FechaTerminacion), N'19000101'), 112) "& _ 
                 "AS Fecha"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Avios"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Anexo = @Anexo) AND (Ciclo = @Cic"& _ 
                 "lo)"
+            Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ciclo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(11) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(11).Connection = Me.Connection
+            Me._commandCollection(11).CommandText = "SELECT        ISNULL(MAX([1_Folio]), 0) AS Folio"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_S"& _ 
+                "erie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP') AND ([27_Serie_"& _ 
+                "Comprobante] <> 'M')"
             Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Anexo", Global.System.Data.SqlDbType.NChar, 9, Global.System.Data.ParameterDirection.Input, 0, 0, "Anexo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ciclo", Global.System.Data.SqlDbType.NChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Ciclo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(12) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(12).Connection = Me.Connection
-            Me._commandCollection(12).CommandText = "SELECT        ISNULL(MAX([1_Folio]), 0) AS Folio"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_S"& _ 
-                "erie_Comprobante] <> 'REP') AND ([27_Serie_Comprobante] <> 'M')"
+            Me._commandCollection(12).CommandText = "SELECT        MAX(CFDI_Pago) + 1 AS CFD_Pago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Llaves"
             Me._commandCollection(12).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(12).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(12).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(13) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(13).Connection = Me.Connection
-            Me._commandCollection(13).CommandText = "SELECT        MAX(CFDI_Pago) + 1 AS CFD_Pago"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Llaves"
+            Me._commandCollection(13).CommandText = "SELECT        ISNULL(MAX(Guid), 'SIN FOLIO FISCAL') AS Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI"& _ 
+                "_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)"& _ 
+                " AND ([27_Serie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP')"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(13).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(13).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(14) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(14).Connection = Me.Connection
-            Me._commandCollection(14).CommandText = "SELECT        ISNULL(MAX(Guid), 'SIN FOLIO FISCAL') AS Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI"& _ 
-                "_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)"& _ 
-                ""
+            Me._commandCollection(14).CommandText = "SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM           "& _ 
+                " CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @Anex"& _ 
+                "oCon) AND ([27_Serie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP')"& _ 
+                " AND ([27_Serie_Comprobante] <> 'M')"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(15).Connection = Me.Connection
-            Me._commandCollection(15).CommandText = "SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM           "& _ 
-                " CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @Anex"& _ 
-                "oCon) AND ([27_Serie_Comprobante] <> 'REP') AND ([27_Serie_Comprobante] <> 'M')"
+            Me._commandCollection(15).CommandText = "SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (["& _ 
+                "159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)"
             Me._commandCollection(15).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(16) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(16).Connection = Me.Connection
-            Me._commandCollection(16).CommandText = "SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (["& _ 
-                "159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)"
-            Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(17) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(17).Connection = Me.Connection
-            Me._commandCollection(17).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Guid = @Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([1_F"& _ 
+            Me._commandCollection(16).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Guid = @Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([1_F"& _ 
                 "olio] = @Folio) AND ([27_Serie_Comprobante] = @Serie); "
-            Me._commandCollection(17).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(17).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Guid", Global.System.Data.SqlDbType.VarChar, 36, Global.System.Data.ParameterDirection.Input, 0, 0, "Guid", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(17).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._commandCollection(17).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(16).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Guid", Global.System.Data.SqlDbType.VarChar, 36, Global.System.Data.ParameterDirection.Input, 0, 0, "Guid", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(16).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -30631,7 +30708,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByNoProcesadosFACT(ByVal dataTable As ProduccionDS.CFDI_EncabezadoDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -30644,7 +30721,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByNoProcesadosFACT() As ProduccionDS.CFDI_EncabezadoDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
             Dim dataTable As ProduccionDS.CFDI_EncabezadoDataTable = New ProduccionDS.CFDI_EncabezadoDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -30655,7 +30732,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByNoProcesadosREP(ByVal dataTable As ProduccionDS.CFDI_EncabezadoDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -30668,7 +30745,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByNoProcesadosREP() As ProduccionDS.CFDI_EncabezadoDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             Dim dataTable As ProduccionDS.CFDI_EncabezadoDataTable = New ProduccionDS.CFDI_EncabezadoDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -30679,7 +30756,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillBySinGUID(ByVal dataTable As ProduccionDS.CFDI_EncabezadoDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -30692,7 +30769,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataBySinGUID() As ProduccionDS.CFDI_EncabezadoDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Dim dataTable As ProduccionDS.CFDI_EncabezadoDataTable = New ProduccionDS.CFDI_EncabezadoDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -36666,31 +36743,9 @@ Namespace ProduccionDSTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function ConsumeFolio() As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(1)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
-            End If
-            Dim returnValue As Integer
-            Try 
-                returnValue = command.ExecuteNonQuery
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
-                End If
-            End Try
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function NoPago(ByVal GUID As String) As Global.System.Nullable(Of Integer)
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
             If (GUID Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -36722,7 +36777,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function ProcesarFactura(ByVal procesado As Global.System.Nullable(Of Boolean), ByVal Folio As Integer, ByVal Serie As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(6)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(5)
             If (procesado.HasValue = true) Then
                 command.Parameters(0).Value = CType(procesado.Value,Boolean)
             Else
@@ -36754,7 +36809,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaAviso(ByVal Anexo As String, ByVal Letra As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(6)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
@@ -36790,7 +36845,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaAvisoAV(ByVal Anexo As String, ByVal Ciclo As String) As String
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(7)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
@@ -36826,7 +36881,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaAvisoCFDI(ByVal Serie As String, ByVal Folio As Integer) As String
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(8)
             If (Serie Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Serie")
             Else
@@ -36858,7 +36913,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaAvisoFecha(ByVal Anexo As String, ByVal Letra As String) As Global.System.Nullable(Of Date)
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(10)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
@@ -36894,7 +36949,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaAvisoFechaAV(ByVal Anexo As String, ByVal Ciclo As String) As Global.System.Nullable(Of Date)
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(11)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(10)
             If (Anexo Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Anexo")
             Else
@@ -36930,7 +36985,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaFolioORG(ByVal Aviso As String, ByVal AnexoCon As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(12)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(11)
             If (Aviso Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -36966,7 +37021,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaFolioPago() As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(13)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(12)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -36992,7 +37047,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function sacaGUID(ByVal Aviso As String, ByVal AnexoCon As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(14)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(13)
             If (Aviso Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -37028,7 +37083,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function SacaSerieORG(ByVal Aviso As String, ByVal AnexoCon As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(15)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(14)
             If (Aviso Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -37064,7 +37119,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function TieneFactura33(ByVal Aviso As String, ByVal AnexoCon As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(16)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(15)
             If (Aviso Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -37101,7 +37156,7 @@ Namespace ProduccionDSTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateGUID(ByVal Guid As String, ByVal Folio As Integer, ByVal Serie As String) As Integer
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(17)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(16)
             If (Guid Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
