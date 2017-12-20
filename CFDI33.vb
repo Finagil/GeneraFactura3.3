@@ -196,7 +196,7 @@ Module CFDI33
             End If
 
 
-            Dim stmWriter As New StreamWriter("C:\Facturas\FACTURA_" & cSerie & "_" & nRecibo & ".txt")
+            Dim stmWriter As New StreamWriter(My.Settings.RutaOrigen & "FACTURA_" & cSerie & "_" & nRecibo & ".txt")
 
             stmWriter.WriteLine("H1|" & FechaProc.ToShortDateString & "|PPD|99|")
 
