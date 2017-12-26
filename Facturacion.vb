@@ -599,7 +599,7 @@ Module GneraFactura
                             If ROWheader._83_Cod_Moneda = "MXN" Then
                                 ROWheader._177_Tasa_Divisa = 0
                             Else
-                                ROWheader._177_Tasa_Divisa = taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
+                                ROWheader._177_Tasa_Divisa = "" ' taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
                                 If ROWheader._177_Tasa_Divisa = 1 Then
                                     Errores = True
                                     EnviacORREO("vcruz@finagil.com.mx", ErrorMSG & " Tipo de Cambio : 1 Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo, "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
@@ -831,7 +831,7 @@ Module GneraFactura
                         'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
                         CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
                         'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                         'CFDI_H.ConsumeFolio()
 
                         ProducDS.CFDI_Encabezado.Clear()

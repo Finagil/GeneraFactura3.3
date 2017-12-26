@@ -44949,7 +44949,9 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Vw_CFDI_RecibosPAGO.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CFDI_RecibosPAGO"
+            Me._commandCollection(0).CommandText = "SELECT        [27_Serie_Comprobante], [1_Folio], [42_Nombre_Receptor], [43_RFC_Re"& _ 
+                "ceptor], [114_Misc02], [157_Misc45], [158_Misc46], [159_Misc47], Encabezado_Proc"& _ 
+                "esado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Vw_CFDI_RecibosPAGO"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
