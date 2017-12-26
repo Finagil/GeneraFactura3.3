@@ -1071,7 +1071,7 @@ Module GneraFactura
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"
                                 End If
-                                If (Datos(8) = "INTERESES AL VENCIMIENTO" Or Datos(8) = "INTERESES MORATORIOS") And ROWheader._27_Serie_Comprobante = "F" Then
+                                If (Datos(8) = "INTERESES AL VENCIMIENTO" Or Datos(8) = "INTERESES MORATORIOS" Or Datos(8) = "INTERES MORATORIO") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"
@@ -1409,8 +1409,8 @@ Module GneraFactura
                     File.Delete(F(i).FullName)
                 End If
                 If EsFactura = False Or Serie = "C" Then
-                    File.Copy(F(i).FullName, GeneraFactura.My.Settings.NoPasa & F(i).Name, True)
-                    File.Delete(F(i).FullName)
+                    'File.Copy(F(i).FullName, GeneraFactura.My.Settings.NoPasa & F(i).Name, True)
+                    'File.Delete(F(i).FullName)
                 End If
             End If
         Next
@@ -1507,7 +1507,7 @@ Module GneraFactura
             Else
                 TipoPersona = "F"
             End If
-            RFC = ValidaRFC(RFC, TipoPersona)
+            RFC = ValidaRFC(r.RFC, TipoPersona)
 
             If RFC = "SDA070613KU6" Then
                 Razon = """SERVICIO DAYCO"" SA DE CV"
@@ -1516,7 +1516,7 @@ Module GneraFactura
             End If
 
             ROWheader._42_Nombre_Receptor = Razon.Trim
-            ROWheader._43_RFC_Receptor = RFC
+            ROWheader._43_RFC_Receptor = RFC.Trim
             ROWheader._44_Dom_Receptor_calle = r.Calle.Trim
             ROWheader._45_Dom_Receptor_noExterior = ""
             ROWheader._46_Dom_Receptor_noInterior = ""
@@ -1540,7 +1540,11 @@ Module GneraFactura
             End If
             ROWheader._180_LugarExpedicion = "50070"
             ROWheader._190_Metodo_Pago = r.MetodoPagoSAT 'PPD pago en parcialidades PUE pago en una sola exhibision
-            ROWheader._191_Efecto_Comprobante = "I"
+            If ROWheader._27_Serie_Comprobante = "C" Then
+                ROWheader._191_Efecto_Comprobante = "E"
+            Else
+                ROWheader._191_Efecto_Comprobante = "I"
+            End If
             ROWheader._58_TipoCFD = "FA"
 
             Detalles.Fill(DET, r.Serie, r.Factura)
@@ -1563,6 +1567,10 @@ Module GneraFactura
                     ROWdetail._7_Impuesto_Porcentaje = ""
                     ROWdetail._4_Impuesto_Monto_Impuesto = ""
                     ROWdetail._6_Impuesto_Tasa = "Exento"
+                ElseIf rr.TasaIva = "No Objeto" Then
+                    ROWdetail._7_Impuesto_Porcentaje = ""
+                    ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                    ROWdetail._6_Impuesto_Tasa = rr.TasaIva
                 Else
                     TasaIVACliente = Val(rr.TasaIva.Substring(0, 2)) / 100
                     ROWdetail._7_Impuesto_Porcentaje = TasaIVACliente

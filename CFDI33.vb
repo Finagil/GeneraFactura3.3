@@ -270,7 +270,7 @@ Module CFDI33
         If Directory.Exists(My.Settings.RutaFolios) = False Then
             Directory.CreateDirectory(My.Settings.RutaFolios)
         End If
-        For x = 0 To 4
+        For x = 0 To 5
             Console.WriteLine("Leyendo folios Fiscales " & x)
             NombreLOG = "Ejecutor" & Date.Now.AddDays(x * -1).ToString("yyyyMMdd") & ".log"
             If File.Exists(My.Settings.RutaFolios & NombreLOG) Then
@@ -278,8 +278,12 @@ Module CFDI33
                 While Not Lectura.EndOfStream
                     Linea = Lectura.ReadLine
                     Datos = Linea.Split("|")
-                    taFact.UpdateGUID(Datos(3), Datos(2), Datos(1))
-                    contador += 1
+                    If Datos.Length > 4 Then
+                        If IsNumeric(Datos(2)) Then
+                            taFact.UpdateGUID(Datos(3), Datos(2), Datos(1))
+                            contador += 1
+                        End If
+                    End If
                 End While
                 Lectura.Close()
             End If
@@ -453,6 +457,25 @@ Module CFDI33
 
                 If cexento > 0 Then
                     f.WriteLine("¬TR|002|0.0000|0.000000|Exento")
+                End If
+
+                If Encabezado._27_Serie_Comprobante = "C" Then
+                    Cad = "¬*" ' PREPARO PARA DETALLES
+                    CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
+
+                    For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
+
+                        For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
+                            If Col.ColumnName = "18_DetalleAux_Misc16" Then
+                                Cad += Complemento(Col).ToString.Trim
+                                Exit For
+                            Else
+                                Cad += Complemento(Col).ToString.Trim & "|"
+                            End If
+                        Next
+                        f.WriteLine(Cad)
+                        Cad = "" 'LIPIO PARA SIGUIENTE LINEA
+                    Next
                 End If
 
                 TotalImpuesto16 = 0

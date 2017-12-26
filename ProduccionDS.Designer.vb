@@ -30458,67 +30458,116 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_em"& _ 
-                "paques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus]"& _ 
-                ", [107_Numero_Emisor], [108_Monto_Merma], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [109_Monto_"& _ 
-                "SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Sol"& _ 
-                "icitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc0"& _ 
-                "4], [117_Misc05], [118_Misc06], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [119_Misc07], [11_Dom"& _ 
-                "_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Mi"& _ 
-                "sc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12"& _ 
-                "_Dom_Emisor_pais], [130_Misc18],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          [131_Misc19], [132_M"& _ 
-                "isc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [1"& _ 
-                "38_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc2"& _ 
-                "9], [142_Misc30], [143_Misc31], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [144_Misc32], [145_Mi"& _ 
-                "sc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], "& _ 
-                "[150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc4"& _ 
-                "3], [156_Misc44], [157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [158_Misc46], [159_Mi"& _ 
-                "sc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_P"& _ 
-                "orc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_Reg"& _ 
-                "imentFiscal], [168_Num_CtaPago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [169_Num_contrarecib"& _ 
-                "o], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Co"& _ 
-                "mprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Adua"& _ 
-                "na], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], ["& _ 
-                "177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_"& _ 
-                "Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                    [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig],"& _ 
-                " [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Desc"& _ 
-                "uentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
-                "   [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Ef"& _ 
-                "ecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladad"& _ 
-                "os], [19_Dom_Sucursal_localidad], [1_Folio], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [20_Dom_"& _ 
-                "Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23"& _ 
-                "_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Vers"& _ 
-                "ion], [27_Serie_Comprobante], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [28_Numero_Aprobacion],"& _ 
-                " [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_c"& _ 
-                "alle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom"& _ 
-                "_LugarExpide_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [36_Dom_LugarExpide_localidad]"& _ 
-                ", [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_Lugar"& _ 
-                "Expide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_c"& _ 
-                "odigoPostal], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [42_Nombre_Receptor], [43_RFC_Receptor]"& _ 
-                ", [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInte"& _ 
-                "rior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
-                "          [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_m"& _ 
-                "unicipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_co"& _ 
-                "digoPostal], [54_Monto_SubTotal], [55_Monto_IVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [56"& _ 
-                "_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior],"& _ 
-                " [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_"& _ 
-                "Prov], [64_EAN_Proveedor], [65_Numero_Factura], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [66_N"& _ 
-                "umero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tiend"& _ 
-                "a], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_T"& _ 
-                "ienda_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [73_Dom_Tienda_noExterior], [74_Dom_Tie"& _ 
-                "nda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tie"& _ 
-                "nda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codi"& _ 
-                "goPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_Pront"& _ 
-                "oPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
-                "   [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cant"& _ 
-                "idad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor]"& _ 
-                ", [94_Cod_Vendedor], [95_Nombre_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [96_Via_Em"& _ 
-                "barque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Em"& _ 
-                "isor_referencia], Encabezado_Procesado, Fecha, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabe"& _ 
-                "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] = 'REP"& _ 
-                "' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         [27_Serie_Comprobante] = 'REPP')"
+            Me._commandCollection(2).CommandText = "SELECT DISTINCT "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[100_Letras_Monto_Tota"& _ 
+                "l], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[102_Cantidad_empaq"& _ 
+                "ues], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_EAN_LugarExpide],"& _ 
+                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[105_IEPS_Id], CFDI_Encabezado.[106_"& _ 
+                "Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado.[108_Monto_Merma]"& _ 
+                ", CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_En"& _ 
+                "cabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[110_Transportista], CFDI_En"& _ 
+                "cabezado.[111_Numero_Solicitud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabez"& _ 
+                "ado.[113_Misc01], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[114_Misc02], CFDI_"& _ 
+                "Encabezado.[115_Misc03], CFDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc"& _ 
+                "05], CFDI_Encabezado.[118_Misc06], CFDI_Encabezado.[119_Misc07], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
+                "            CFDI_Encabezado.[11_Dom_Emisor_estado], CFDI_Encabezado.[120_Misc08]"& _ 
+                ", CFDI_Encabezado.[121_Misc09], CFDI_Encabezado.[122_Misc10], CFDI_Encabezado.[1"& _ 
+                "23_Misc11], CFDI_Encabezado.[124_Misc12], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabe"& _ 
+                "zado.[125_Misc13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], C"& _ 
+                "FDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_Encabezado.[12_D"& _ 
+                "om_Emisor_pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[130_Misc18], CFDI_E"& _ 
+                "ncabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20], CFDI_Encabezado.[133_Misc2"& _ 
+                "1], CFDI_Encabezado.[134_Misc22], CFDI_Encabezado.[135_Misc23], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "           CFDI_Encabezado.[136_Misc24], CFDI_Encabezado.[137_Misc25], CFDI_Enca"& _ 
+                "bezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], CFDI_Encabezado.[13_Dom_Emiso"& _ 
+                "r_codigoPostal], CFDI_Encabezado.[140_Misc28], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_E"& _ 
+                "ncabezado.[141_Misc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc3"& _ 
+                "1], CFDI_Encabezado.[144_Misc32], CFDI_Encabezado.[145_Misc33], CFDI_Encabezado."& _ 
+                "[146_Misc34], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[147_Misc35], CFDI_Enca"& _ 
+                "bezado.[148_Misc36], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[14_Tel_Emiso"& _ 
+                "r], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado.[151_Misc39], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "           CFDI_Encabezado.[152_Misc40], CFDI_Encabezado.[153_Misc41], CFDI_Enca"& _ 
+                "bezado.[154_Misc42], CFDI_Encabezado.[155_Misc43], CFDI_Encabezado.[156_Misc44],"& _ 
+                " CFDI_Encabezado.[157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[158_M"& _ 
+                "isc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabezado.[15_Dom_Sucursal_calle], C"& _ 
+                "FDI_Encabezado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_"& _ 
+                "Misc50], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[163_Porc_IVA], CFDI_Encabez"& _ 
+                "ado.[164_Monto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[16"& _ 
+                "6_Delivery_Date], CFDI_Encabezado.[167_RegimentFiscal], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "   CFDI_Encabezado.[168_Num_CtaPago], CFDI_Encabezado.[169_Num_contrarecibo], CF"& _ 
+                "DI_Encabezado.[16_Dom_Sucursal_noExterior], CFDI_Encabezado.[170_Fecha_Num_contr"& _ 
+                "arecibo], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[171_Contacto_Comprar], CFD"& _ 
+                "I_Encabezado.[172_Customs_gln], CFDI_Encabezado.[173_Alternante_identificacion_g"& _ 
+                "ln], CFDI_Encabezado.[174_Nombre_Aduana], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabe"& _ 
+                "zado.[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabez"& _ 
+                "ado.[177_Tasa_Divisa], CFDI_Encabezado.[178_Ref_Tiempo_Pago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[17_Dom_"& _ 
+                "Sucursal_noInterior], CFDI_Encabezado.[180_LugarExpedicion], CFDI_Encabezado.[18"& _ 
+                "1_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[182_Tipo_Es"& _ 
+                "pecial_de_Servicio], CFDI_Encabezado.[183_FechaFolioFiscalOrig], CFDI_Encabezado"& _ 
+                ".[184_Porcentaje_no_aplicado], CFDI_Encabezado.[185_MontoFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      CFDI_Encabezado.[186_Monto_Total_Descuentos], CFDI_Encabez"& _ 
+                "ado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_Ano_Aprobacion], CFDI_Encabeza"& _ 
+                "do.[189_Motivo_Descuento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[18_Dom_Su"& _ 
+                "cursal_colonia], CFDI_Encabezado.[190_Metodo_Pago], CFDI_Encabezado.[191_Efecto_"& _ 
+                "Comprobante], CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         CFDI_Encabezado.[193_Monto_TotalImp_Trasladados], CFDI_Encabezado.[19_D"& _ 
+                "om_Sucursal_localidad], CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[20_Dom_Sucur"& _ 
+                "sal_referencia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[21_Dom_Sucursal_mun"& _ 
+                "icipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], CFDI_Encabezado.[23_Dom_Sucur"& _ 
+                "sal_pais], CFDI_Encabezado.[24_Dom_Sucursal_codigoPostal], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "      CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CFDI_Enca"& _ 
+                "bezado.[27_Serie_Comprobante], CFDI_Encabezado.[28_Numero_Aprobacion], CFDI_Enca"& _ 
+                "bezado.[29_FormaPago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[2_Nombre_Emis"& _ 
+                "or], CFDI_Encabezado.[30_Fecha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_"& _ 
+                "Dom_LugarExpide_calle], CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                    CFDI_Encabezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabe"& _ 
+                "zado.[35_Dom_LugarExpide_colonia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad"& _ 
+                "], CFDI_Encabezado.[37_Dom_LugarExpide_referencia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         C"& _ 
+                "FDI_Encabezado.[38_Dom_LugarExpide_municipio], CFDI_Encabezado.[39_Dom_LugarExpi"& _ 
+                "de_estado], CFDI_Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[40_Dom_LugarExpide_"& _ 
+                "pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[41_Dom_LugarExpide_codigoPost"& _ 
+                "al], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.[43_RFC_Receptor], CF"& _ 
+                "DI_Encabezado.[44_Dom_Receptor_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezad"& _ 
+                "o.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Receptor_noInterior], CF"& _ 
+                "DI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48_Dom_Receptor_locali"& _ 
+                "dad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[49_Dom_Receptor_referencia], C"& _ 
+                "FDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado.[50_Dom_Receptor_municipio]"& _ 
+                ", CFDI_Encabezado.[51_Dom_Receptor_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Enca"& _ 
+                "bezado.[52_Dom_Receptor_pais], CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], C"& _ 
+                "FDI_Encabezado.[54_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabez"& _ 
+                "ado.[56_Monto_Total], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[57_Estado], CF"& _ 
+                "DI_Encabezado.[58_TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[5_Dom_E"& _ 
+                "misor_noExterior], CFDI_Encabezado.[60_Notas02], CFDI_Encabezado.[61_Notas03], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[62_TradingPartner_Prov], CFDI_Encabez"& _ 
+                "ado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_Proveedor], CFDI_Enc"& _ 
+                "abezado.[65_Numero_Factura], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[66_Nume"& _ 
+                "ro_OrdenCompra], CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI_Encabezado.[68_Num"& _ 
+                "ero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabezado.[6_Dom_Emisor_n"& _ 
+                "oInterior], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[70_Numero_Tienda], CFDI_"& _ 
+                "Encabezado.[71_Nombre_Tienda], CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encab"& _ 
+                "ezado.[73_Dom_Tienda_noExterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         CFDI_Encabezado.[75_Dom_Tienda_colonia], CFDI_Encabezad"& _ 
+                "o.[76_Dom_Tienda_localidad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_En"& _ 
+                "cabezado.[78_Dom_Tienda_municipio], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.["& _ 
+                "79_Dom_Tienda_estado], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.["& _ 
+                "80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal], CFDI_Encabeza"& _ 
+                "do.[82_RFC_Tienda], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[83_Cod_Moneda], "& _ 
+                "CFDI_Encabezado.[84_Dias_Pago], CFDI_Encabezado.[85_Porc_Desc_ProntoPago], CFDI_"& _ 
+                "Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_Descuento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_M"& _ 
+                "onto_Descuento], CFDI_Encabezado.[8_Dom_Emisor_localidad], CFDI_Encabezado.[90_C"& _ 
+                "antidad_LineasFactura], CFDI_Encabezado.[91_Fecha_Vencimiento], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "           CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabezado.[93_Numero_Receptor], "& _ 
+                "CFDI_Encabezado.[94_Cod_Vendedor], CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_En"& _ 
+                "cabezado.[96_Via_Embarque], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[97_Condi"& _ 
+                "ciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFDI_Encabezado.[99_Fecha_Pedi"& _ 
+                "do], CFDI_Encabezado.[9_Dom_Emisor_referencia], CFDI_Encabezado.Encabezado_Proce"& _ 
+                "sado, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.Fecha, CFDI_Encabezado.Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM            CFDI_Encabezado INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabeza"& _ 
+                "do AS CFDI_Encabezado_1 ON CFDI_Encabezado.[1_Folio] = CFDI_Encabezado_1.[1_Foli"& _ 
+                "o] AND CFDI_Encabezado.[27_Serie_Comprobante] = CFDI_Encabezado_1.[27_Serie_Comp"& _ 
+                "robante]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CFDI_Encabezado.Encabezado_Procesado = 0) AND (CFDI_Enca"& _ 
+                "bezado.[27_Serie_Comprobante] = 'REP' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabeza"& _ 
+                "do.[27_Serie_Comprobante] = 'REPP')"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
