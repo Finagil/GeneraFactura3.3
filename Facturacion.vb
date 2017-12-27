@@ -1481,7 +1481,7 @@ Module GneraFactura
             Else
                 ROWheader._2_Nombre_Emisor = "SERVICIOS ARFIN S.A. DE C.V."
                 ROWheader._3_RFC_Emisor = "SAR951230N5A"
-                ROWheader._6_Dom_Emisor_noInterior = "SEGUNDO PISO"
+                ROWheader._6_Dom_Emisor_noInterior = "2do PISO"
             End If
 
             ROWheader._4_Dom_Emisor_calle = "Leandro Valle"

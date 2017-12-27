@@ -459,12 +459,10 @@ Module CFDI33
                     f.WriteLine("¬TR|002|0.0000|0.000000|Exento")
                 End If
 
-                If Encabezado._27_Serie_Comprobante = "C" Then
+                CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
+                If Production_AUXDataSet.CFDI_ComplementoPago.Rows.Count > 0 Then
                     Cad = "¬*" ' PREPARO PARA DETALLES
-                    CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
-
                     For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
-
                         For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
                             If Col.ColumnName = "18_DetalleAux_Misc16" Then
                                 Cad += Complemento(Col).ToString.Trim
