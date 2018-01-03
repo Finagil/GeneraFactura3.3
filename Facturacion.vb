@@ -1455,6 +1455,7 @@ Module GneraFactura
         Dim SubTT As Double
         Dim IVA As Double
         Dim TOt As Double
+        Dim Fec As Date
         Dim Errores As Boolean
         Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.FacturasExternasTableAdapter
         Dim FAC As New GeneraFactura.ProduccionDS.FacturasExternasDataTable
@@ -1467,6 +1468,9 @@ Module GneraFactura
 
         Facturas.Fill(FAC)
         For Each r As GeneraFactura.ProduccionDS.FacturasExternasRow In FAC.Rows
+            Fec = r.fecha
+            Fec = Fec.AddHours(Today.Now.AddHours(1).Hour)
+            Fec = Fec.AddMinutes(Today.Now.Minute)
             Console.WriteLine("Generando CFDI Facturas Externas..." & r.Factura)
             SubTT = 0
             TOt = 0
@@ -1497,9 +1501,9 @@ Module GneraFactura
             ROWheader._26_Version = "3.3"
             ROWheader._27_Serie_Comprobante = r.Serie.Trim
             ROWheader._29_FormaPago = r.MetodoPago.Trim '"27" '27 A satisfacción del acreedor
-            ROWheader._30_Fecha = Today.Date
-            ROWheader.Fecha = Today.Date
-            ROWheader._31_Hora = Today.ToString("HH:mm:ss")
+            ROWheader._30_Fecha = Fec.Date
+            ROWheader.Fecha = Fec.Date
+            ROWheader._31_Hora = Fec.ToString("HH:mm:ss")
             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
             If IsNumeric(Mid(r.RFC, 4, 1)) Then
