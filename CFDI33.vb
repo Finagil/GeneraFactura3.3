@@ -157,18 +157,18 @@ Module CFDI33
                 MetodoPago = "PPD"
                 cLetra = r.Letra
                 Acepagov(cAnexo, cLetra, nMontoPago, nMoratorios, nIvaMoratorios, cBanco, cCheque, dtMovimientos, cFechaAplicacion, cFechaPago, cSerie, nRecibo, InstrumentoMonetario, FechaProc, MetodoPago)
-            End If
 
-            If cSerie = "A" And nRecibo <> 0 Then
-                strUpdate = "UPDATE Llaves SET IDSerieA = " & nRecibo
-            ElseIf cSerie = "MXL" And nRecibo <> 0 Then
-                strUpdate = "UPDATE Llaves SET IDSerieMXL = " & nRecibo
+                If cSerie = "A" And nRecibo <> 0 Then
+                    strUpdate = "UPDATE Llaves SET IDSerieA = " & nRecibo
+                ElseIf cSerie = "MXL" And nRecibo <> 0 Then
+                    strUpdate = "UPDATE Llaves SET IDSerieMXL = " & nRecibo
+                End If
+                TaAvisos.FacturarAviso(True, cSerie.Trim, nRecibo, r.Factura, r.Anexo)
+                cm1 = New SqlCommand(strUpdate, cnAgil)
+                cnAgil.Open()
+                cm1.ExecuteNonQuery()
+                cnAgil.Close()
             End If
-            TaAvisos.FacturarAviso(True, cSerie.Trim, nRecibo, r.Factura, r.Anexo)
-            cm1 = New SqlCommand(strUpdate, cnAgil)
-            cnAgil.Open()
-            cm1.ExecuteNonQuery()
-            cnAgil.Close()
         Next
 
         cnAgil.Dispose()
