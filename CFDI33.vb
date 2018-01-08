@@ -115,8 +115,13 @@ Module CFDI33
         drUdis = ProdDS.TraeUdis.Rows
         For Each r As ProduccionDS.AvisosCFDIRow In ProdDS.AvisosCFDI.Rows
             Console.WriteLine("Aviso:" & r.Factura)
-            cAnexo = r.Anexo
 
+            If TaAvisos.AnexosNoFacturables(r.Anexo) > 0 Then
+                TaAvisos.FacturarAviso(True, "", 0, r.Factura, r.Anexo)
+                Continue For
+            End If
+
+            cAnexo = r.Anexo
             cFechaPago = cFechaAplicacion
             cBanco = ""
             cReferencia = ""
