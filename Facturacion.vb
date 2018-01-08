@@ -28,6 +28,8 @@ Module GneraFactura
         Arg = Environment.GetCommandLineArgs()
         If Arg.Length > 1 Then
             Select Case UCase(Arg(1))
+                Case "ENVIA_RECIBOS"
+                    Envia_RecibosPAGO()
                 Case "FOLIOS"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()

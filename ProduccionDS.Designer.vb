@@ -59,6 +59,8 @@ Partial Public Class ProduccionDS
     
     Private tableFacturasExternasDET As FacturasExternasDETDataTable
     
+    Private tableRecibosDePago As RecibosDePagoDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -138,6 +140,9 @@ Partial Public Class ProduccionDS
             End If
             If (Not (ds.Tables("FacturasExternasDET")) Is Nothing) Then
                 MyBase.Tables.Add(New FacturasExternasDETDataTable(ds.Tables("FacturasExternasDET")))
+            End If
+            If (Not (ds.Tables("RecibosDePago")) Is Nothing) Then
+                MyBase.Tables.Add(New RecibosDePagoDataTable(ds.Tables("RecibosDePago")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -328,6 +333,16 @@ Partial Public Class ProduccionDS
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property RecibosDePago() As RecibosDePagoDataTable
+        Get
+            Return Me.tableRecibosDePago
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -443,6 +458,9 @@ Partial Public Class ProduccionDS
             End If
             If (Not (ds.Tables("FacturasExternasDET")) Is Nothing) Then
                 MyBase.Tables.Add(New FacturasExternasDETDataTable(ds.Tables("FacturasExternasDET")))
+            End If
+            If (Not (ds.Tables("RecibosDePago")) Is Nothing) Then
+                MyBase.Tables.Add(New RecibosDePagoDataTable(ds.Tables("RecibosDePago")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -578,6 +596,12 @@ Partial Public Class ProduccionDS
                 Me.tableFacturasExternasDET.InitVars
             End If
         End If
+        Me.tableRecibosDePago = CType(MyBase.Tables("RecibosDePago"),RecibosDePagoDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableRecibosDePago) Is Nothing) Then
+                Me.tableRecibosDePago.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -622,6 +646,8 @@ Partial Public Class ProduccionDS
         MyBase.Tables.Add(Me.tableTraspasosAvioCC)
         Me.tableFacturasExternasDET = New FacturasExternasDETDataTable()
         MyBase.Tables.Add(Me.tableFacturasExternasDET)
+        Me.tableRecibosDePago = New RecibosDePagoDataTable()
+        MyBase.Tables.Add(Me.tableRecibosDePago)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -723,6 +749,12 @@ Partial Public Class ProduccionDS
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Function ShouldSerializeFacturasExternasDET() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializeRecibosDePago() As Boolean
         Return false
     End Function
     
@@ -834,6 +866,9 @@ Partial Public Class ProduccionDS
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub FacturasExternasDETRowChangeEventHandler(ByVal sender As Object, ByVal e As FacturasExternasDETRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub RecibosDePagoRowChangeEventHandler(ByVal sender As Object, ByVal e As RecibosDePagoRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -13062,6 +13097,3583 @@ Partial Public Class ProduccionDS
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "FacturasExternasDETDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class RecibosDePagoDataTable
+        Inherits Global.System.Data.TypedTableBase(Of RecibosDePagoRow)
+        
+        Private column1_Folio As Global.System.Data.DataColumn
+        
+        Private column2_Nombre_Emisor As Global.System.Data.DataColumn
+        
+        Private column3_RFC_Emisor As Global.System.Data.DataColumn
+        
+        Private column4_Dom_Emisor_calle As Global.System.Data.DataColumn
+        
+        Private column5_Dom_Emisor_noExterior As Global.System.Data.DataColumn
+        
+        Private column6_Dom_Emisor_noInterior As Global.System.Data.DataColumn
+        
+        Private column7_Dom_Emisor_colonia As Global.System.Data.DataColumn
+        
+        Private column8_Dom_Emisor_localidad As Global.System.Data.DataColumn
+        
+        Private column9_Dom_Emisor_referencia As Global.System.Data.DataColumn
+        
+        Private column10_Dom_Emisor_municipio As Global.System.Data.DataColumn
+        
+        Private column11_Dom_Emisor_estado As Global.System.Data.DataColumn
+        
+        Private column12_Dom_Emisor_pais As Global.System.Data.DataColumn
+        
+        Private column13_Dom_Emisor_codigoPostal As Global.System.Data.DataColumn
+        
+        Private column14_Tel_Emisor As Global.System.Data.DataColumn
+        
+        Private column15_Dom_Sucursal_calle As Global.System.Data.DataColumn
+        
+        Private column16_Dom_Sucursal_noExterior As Global.System.Data.DataColumn
+        
+        Private column17_Dom_Sucursal_noInterior As Global.System.Data.DataColumn
+        
+        Private column18_Dom_Sucursal_colonia As Global.System.Data.DataColumn
+        
+        Private column19_Dom_Sucursal_localidad As Global.System.Data.DataColumn
+        
+        Private column20_Dom_Sucursal_referencia As Global.System.Data.DataColumn
+        
+        Private column21_Dom_Sucursal_municipio As Global.System.Data.DataColumn
+        
+        Private column22_Dom_Sucursal_estado As Global.System.Data.DataColumn
+        
+        Private column23_Dom_Sucursal_pais As Global.System.Data.DataColumn
+        
+        Private column24_Dom_Sucursal_codigoPostal As Global.System.Data.DataColumn
+        
+        Private column25_Tel_sucursal As Global.System.Data.DataColumn
+        
+        Private column26_Version As Global.System.Data.DataColumn
+        
+        Private column27_Serie_Comprobante As Global.System.Data.DataColumn
+        
+        Private column28_Numero_Aprobacion As Global.System.Data.DataColumn
+        
+        Private column29_FormaPago As Global.System.Data.DataColumn
+        
+        Private column30_Fecha As Global.System.Data.DataColumn
+        
+        Private column31_Hora As Global.System.Data.DataColumn
+        
+        Private column32_Dom_LugarExpide_calle As Global.System.Data.DataColumn
+        
+        Private column33_Dom_LugarExpide_noExterior As Global.System.Data.DataColumn
+        
+        Private column34_Dom_LugarExpide_noInterior As Global.System.Data.DataColumn
+        
+        Private column35_Dom_LugarExpide_colonia As Global.System.Data.DataColumn
+        
+        Private column36_Dom_LugarExpide_localidad As Global.System.Data.DataColumn
+        
+        Private column37_Dom_LugarExpide_referencia As Global.System.Data.DataColumn
+        
+        Private column38_Dom_LugarExpide_municipio As Global.System.Data.DataColumn
+        
+        Private column39_Dom_LugarExpide_estado As Global.System.Data.DataColumn
+        
+        Private column40_Dom_LugarExpide_pais As Global.System.Data.DataColumn
+        
+        Private column41_Dom_LugarExpide_codigoPostal As Global.System.Data.DataColumn
+        
+        Private column42_Nombre_Receptor As Global.System.Data.DataColumn
+        
+        Private column43_RFC_Receptor As Global.System.Data.DataColumn
+        
+        Private column44_Dom_Receptor_calle As Global.System.Data.DataColumn
+        
+        Private column45_Dom_Receptor_noExterior As Global.System.Data.DataColumn
+        
+        Private column46_Dom_Receptor_noInterior As Global.System.Data.DataColumn
+        
+        Private column47_Dom_Receptor_colonia As Global.System.Data.DataColumn
+        
+        Private column48_Dom_Receptor_localidad As Global.System.Data.DataColumn
+        
+        Private column49_Dom_Receptor_referencia As Global.System.Data.DataColumn
+        
+        Private column50_Dom_Receptor_municipio As Global.System.Data.DataColumn
+        
+        Private column51_Dom_Receptor_estado As Global.System.Data.DataColumn
+        
+        Private column52_Dom_Receptor_pais As Global.System.Data.DataColumn
+        
+        Private column53_Dom_Receptor_codigoPostal As Global.System.Data.DataColumn
+        
+        Private column54_Monto_SubTotal As Global.System.Data.DataColumn
+        
+        Private column55_Monto_IVA As Global.System.Data.DataColumn
+        
+        Private column56_Monto_Total As Global.System.Data.DataColumn
+        
+        Private column57_Estado As Global.System.Data.DataColumn
+        
+        Private column58_TipoCFD As Global.System.Data.DataColumn
+        
+        Private column59_Notas As Global.System.Data.DataColumn
+        
+        Private column60_Notas02 As Global.System.Data.DataColumn
+        
+        Private column61_Notas03 As Global.System.Data.DataColumn
+        
+        Private column62_TradingPartner_Prov As Global.System.Data.DataColumn
+        
+        Private column63_Calif_TradingPartner_Prov As Global.System.Data.DataColumn
+        
+        Private column64_EAN_Proveedor As Global.System.Data.DataColumn
+        
+        Private column65_Numero_Factura As Global.System.Data.DataColumn
+        
+        Private column66_Numero_OrdenCompra As Global.System.Data.DataColumn
+        
+        Private column67_Fecha_OrdenCompra As Global.System.Data.DataColumn
+        
+        Private column68_Numero_Proveedor As Global.System.Data.DataColumn
+        
+        Private column69_EAN_Tienda As Global.System.Data.DataColumn
+        
+        Private column70_Numero_Tienda As Global.System.Data.DataColumn
+        
+        Private column71_Nombre_Tienda As Global.System.Data.DataColumn
+        
+        Private column72_Dom_Tienda_calle As Global.System.Data.DataColumn
+        
+        Private column73_Dom_Tienda_noExterior As Global.System.Data.DataColumn
+        
+        Private column74_Dom_Tienda_noInterior As Global.System.Data.DataColumn
+        
+        Private column75_Dom_Tienda_colonia As Global.System.Data.DataColumn
+        
+        Private column76_Dom_Tienda_localidad As Global.System.Data.DataColumn
+        
+        Private column77_Dom_Tienda_referencia As Global.System.Data.DataColumn
+        
+        Private column78_Dom_Tienda_municipio As Global.System.Data.DataColumn
+        
+        Private column79_Dom_Tienda_estado As Global.System.Data.DataColumn
+        
+        Private column80_Dom_Tienda_pais As Global.System.Data.DataColumn
+        
+        Private column81_Dom_Tienda_codigoPostal As Global.System.Data.DataColumn
+        
+        Private column82_RFC_Tienda As Global.System.Data.DataColumn
+        
+        Private column83_Cod_Moneda As Global.System.Data.DataColumn
+        
+        Private column84_Dias_Pago As Global.System.Data.DataColumn
+        
+        Private column85_Porc_Desc_ProntoPago As Global.System.Data.DataColumn
+        
+        Private column86_Monto_Desc_ProntoPago As Global.System.Data.DataColumn
+        
+        Private column87_Cod_Descuento As Global.System.Data.DataColumn
+        
+        Private column88_Porc_Descuento As Global.System.Data.DataColumn
+        
+        Private column89_Monto_Descuento As Global.System.Data.DataColumn
+        
+        Private column90_Cantidad_LineasFactura As Global.System.Data.DataColumn
+        
+        Private column91_Fecha_Vencimiento As Global.System.Data.DataColumn
+        
+        Private column92_Cod_Zona As Global.System.Data.DataColumn
+        
+        Private column93_Numero_Receptor As Global.System.Data.DataColumn
+        
+        Private column94_Cod_Vendedor As Global.System.Data.DataColumn
+        
+        Private column95_Nombre_Vendedor As Global.System.Data.DataColumn
+        
+        Private column96_Via_Embarque As Global.System.Data.DataColumn
+        
+        Private column97_Condiciones_Pago As Global.System.Data.DataColumn
+        
+        Private column98_Numero_Pedido As Global.System.Data.DataColumn
+        
+        Private column99_Fecha_Pedido As Global.System.Data.DataColumn
+        
+        Private column100_Letras_Monto_Total As Global.System.Data.DataColumn
+        
+        Private column101_Cantidad_Unidades As Global.System.Data.DataColumn
+        
+        Private column102_Cantidad_empaques As Global.System.Data.DataColumn
+        
+        Private column103_EAN_Receptor As Global.System.Data.DataColumn
+        
+        Private column104_EAN_LugarExpide As Global.System.Data.DataColumn
+        
+        Private column105_IEPS_Id As Global.System.Data.DataColumn
+        
+        Private column106_Estatus As Global.System.Data.DataColumn
+        
+        Private column107_Numero_Emisor As Global.System.Data.DataColumn
+        
+        Private column108_Monto_Merma As Global.System.Data.DataColumn
+        
+        Private column109_Monto_SubTotal_ApIVA As Global.System.Data.DataColumn
+        
+        Private column110_Transportista As Global.System.Data.DataColumn
+        
+        Private column111_Numero_Solicitud As Global.System.Data.DataColumn
+        
+        Private column112_Desc_Moneda As Global.System.Data.DataColumn
+        
+        Private column113_Misc01 As Global.System.Data.DataColumn
+        
+        Private column114_Misc02 As Global.System.Data.DataColumn
+        
+        Private column115_Misc03 As Global.System.Data.DataColumn
+        
+        Private column116_Misc04 As Global.System.Data.DataColumn
+        
+        Private column117_Misc05 As Global.System.Data.DataColumn
+        
+        Private column118_Misc06 As Global.System.Data.DataColumn
+        
+        Private column119_Misc07 As Global.System.Data.DataColumn
+        
+        Private column120_Misc08 As Global.System.Data.DataColumn
+        
+        Private column121_Misc09 As Global.System.Data.DataColumn
+        
+        Private column122_Misc10 As Global.System.Data.DataColumn
+        
+        Private column123_Misc11 As Global.System.Data.DataColumn
+        
+        Private column124_Misc12 As Global.System.Data.DataColumn
+        
+        Private column125_Misc13 As Global.System.Data.DataColumn
+        
+        Private column126_Misc14 As Global.System.Data.DataColumn
+        
+        Private column127_Misc15 As Global.System.Data.DataColumn
+        
+        Private column128_Misc16 As Global.System.Data.DataColumn
+        
+        Private column129_Misc17 As Global.System.Data.DataColumn
+        
+        Private column130_Misc18 As Global.System.Data.DataColumn
+        
+        Private column131_Misc19 As Global.System.Data.DataColumn
+        
+        Private column132_Misc20 As Global.System.Data.DataColumn
+        
+        Private column133_Misc21 As Global.System.Data.DataColumn
+        
+        Private column134_Misc22 As Global.System.Data.DataColumn
+        
+        Private column135_Misc23 As Global.System.Data.DataColumn
+        
+        Private column136_Misc24 As Global.System.Data.DataColumn
+        
+        Private column137_Misc25 As Global.System.Data.DataColumn
+        
+        Private column138_Misc26 As Global.System.Data.DataColumn
+        
+        Private column139_Misc27 As Global.System.Data.DataColumn
+        
+        Private column140_Misc28 As Global.System.Data.DataColumn
+        
+        Private column141_Misc29 As Global.System.Data.DataColumn
+        
+        Private column142_Misc30 As Global.System.Data.DataColumn
+        
+        Private column143_Misc31 As Global.System.Data.DataColumn
+        
+        Private column144_Misc32 As Global.System.Data.DataColumn
+        
+        Private column145_Misc33 As Global.System.Data.DataColumn
+        
+        Private column146_Misc34 As Global.System.Data.DataColumn
+        
+        Private column147_Misc35 As Global.System.Data.DataColumn
+        
+        Private column148_Misc36 As Global.System.Data.DataColumn
+        
+        Private column149_Misc37 As Global.System.Data.DataColumn
+        
+        Private column150_Misc38 As Global.System.Data.DataColumn
+        
+        Private column151_Misc39 As Global.System.Data.DataColumn
+        
+        Private column152_Misc40 As Global.System.Data.DataColumn
+        
+        Private column153_Misc41 As Global.System.Data.DataColumn
+        
+        Private column154_Misc42 As Global.System.Data.DataColumn
+        
+        Private column155_Misc43 As Global.System.Data.DataColumn
+        
+        Private column156_Misc44 As Global.System.Data.DataColumn
+        
+        Private column157_Misc45 As Global.System.Data.DataColumn
+        
+        Private column158_Misc46 As Global.System.Data.DataColumn
+        
+        Private column159_Misc47 As Global.System.Data.DataColumn
+        
+        Private column160_Misc48 As Global.System.Data.DataColumn
+        
+        Private column161_Misc49 As Global.System.Data.DataColumn
+        
+        Private column162_Misc50 As Global.System.Data.DataColumn
+        
+        Private column163_Porc_IVA As Global.System.Data.DataColumn
+        
+        Private column164_Monto_IEPS As Global.System.Data.DataColumn
+        
+        Private column165_Document_Status As Global.System.Data.DataColumn
+        
+        Private column166_Delivery_Date As Global.System.Data.DataColumn
+        
+        Private column167_RegimentFiscal As Global.System.Data.DataColumn
+        
+        Private column168_Num_CtaPago As Global.System.Data.DataColumn
+        
+        Private column169_Num_contrarecibo As Global.System.Data.DataColumn
+        
+        Private column170_Fecha_Num_contrarecibo As Global.System.Data.DataColumn
+        
+        Private column171_Contacto_Comprar As Global.System.Data.DataColumn
+        
+        Private column172_Customs_gln As Global.System.Data.DataColumn
+        
+        Private column173_Alternante_identificacion_gln As Global.System.Data.DataColumn
+        
+        Private column174_Nombre_Aduana As Global.System.Data.DataColumn
+        
+        Private column175_Nombre_Aduana_Ciudad As Global.System.Data.DataColumn
+        
+        Private column176_Func_Divisa As Global.System.Data.DataColumn
+        
+        Private column177_Tasa_Divisa As Global.System.Data.DataColumn
+        
+        Private column178_Ref_Tiempo_Pago As Global.System.Data.DataColumn
+        
+        Private column179_Ref_Termino_Tiempo_Pago As Global.System.Data.DataColumn
+        
+        Private column180_LugarExpedicion As Global.System.Data.DataColumn
+        
+        Private column181_SerieFolioFiscalOrig As Global.System.Data.DataColumn
+        
+        Private column182_Tipo_Especial_de_Servicio As Global.System.Data.DataColumn
+        
+        Private column183_FechaFolioFiscalOrig As Global.System.Data.DataColumn
+        
+        Private column184_Porcentaje_no_aplicado As Global.System.Data.DataColumn
+        
+        Private column185_MontoFolioFiscalOrig As Global.System.Data.DataColumn
+        
+        Private column186_Monto_Total_Descuentos As Global.System.Data.DataColumn
+        
+        Private column187_Monto_Total_Pagar As Global.System.Data.DataColumn
+        
+        Private column188_Ano_Aprobacion As Global.System.Data.DataColumn
+        
+        Private column189_Motivo_Descuento As Global.System.Data.DataColumn
+        
+        Private column190_Metodo_Pago As Global.System.Data.DataColumn
+        
+        Private column191_Efecto_Comprobante As Global.System.Data.DataColumn
+        
+        Private column192_Monto_TotalImp_Retenidos As Global.System.Data.DataColumn
+        
+        Private column193_Monto_TotalImp_Trasladados As Global.System.Data.DataColumn
+        
+        Private columnEncabezado_Procesado As Global.System.Data.DataColumn
+        
+        Private columnGuid As Global.System.Data.DataColumn
+        
+        Private columnFecha As Global.System.Data.DataColumn
+        
+        Private columnEMail1 As Global.System.Data.DataColumn
+        
+        Private columnEMail2 As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "RecibosDePago"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _1_FolioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column1_Folio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _2_Nombre_EmisorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column2_Nombre_Emisor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _3_RFC_EmisorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column3_RFC_Emisor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _4_Dom_Emisor_calleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column4_Dom_Emisor_calle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _5_Dom_Emisor_noExteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column5_Dom_Emisor_noExterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _6_Dom_Emisor_noInteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column6_Dom_Emisor_noInterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _7_Dom_Emisor_coloniaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column7_Dom_Emisor_colonia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _8_Dom_Emisor_localidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column8_Dom_Emisor_localidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _9_Dom_Emisor_referenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column9_Dom_Emisor_referencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _10_Dom_Emisor_municipioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column10_Dom_Emisor_municipio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _11_Dom_Emisor_estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column11_Dom_Emisor_estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _12_Dom_Emisor_paisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column12_Dom_Emisor_pais
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _13_Dom_Emisor_codigoPostalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column13_Dom_Emisor_codigoPostal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _14_Tel_EmisorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column14_Tel_Emisor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _15_Dom_Sucursal_calleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column15_Dom_Sucursal_calle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _16_Dom_Sucursal_noExteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column16_Dom_Sucursal_noExterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _17_Dom_Sucursal_noInteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column17_Dom_Sucursal_noInterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _18_Dom_Sucursal_coloniaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column18_Dom_Sucursal_colonia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _19_Dom_Sucursal_localidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column19_Dom_Sucursal_localidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _20_Dom_Sucursal_referenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column20_Dom_Sucursal_referencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _21_Dom_Sucursal_municipioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column21_Dom_Sucursal_municipio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _22_Dom_Sucursal_estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column22_Dom_Sucursal_estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _23_Dom_Sucursal_paisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column23_Dom_Sucursal_pais
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _24_Dom_Sucursal_codigoPostalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column24_Dom_Sucursal_codigoPostal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _25_Tel_sucursalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column25_Tel_sucursal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _26_VersionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column26_Version
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _27_Serie_ComprobanteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column27_Serie_Comprobante
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _28_Numero_AprobacionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column28_Numero_Aprobacion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _29_FormaPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column29_FormaPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _30_FechaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column30_Fecha
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _31_HoraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column31_Hora
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _32_Dom_LugarExpide_calleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column32_Dom_LugarExpide_calle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _33_Dom_LugarExpide_noExteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column33_Dom_LugarExpide_noExterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _34_Dom_LugarExpide_noInteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column34_Dom_LugarExpide_noInterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _35_Dom_LugarExpide_coloniaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column35_Dom_LugarExpide_colonia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _36_Dom_LugarExpide_localidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column36_Dom_LugarExpide_localidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _37_Dom_LugarExpide_referenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column37_Dom_LugarExpide_referencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _38_Dom_LugarExpide_municipioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column38_Dom_LugarExpide_municipio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _39_Dom_LugarExpide_estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column39_Dom_LugarExpide_estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _40_Dom_LugarExpide_paisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column40_Dom_LugarExpide_pais
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _41_Dom_LugarExpide_codigoPostalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column41_Dom_LugarExpide_codigoPostal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _42_Nombre_ReceptorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column42_Nombre_Receptor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _43_RFC_ReceptorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column43_RFC_Receptor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _44_Dom_Receptor_calleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column44_Dom_Receptor_calle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _45_Dom_Receptor_noExteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column45_Dom_Receptor_noExterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _46_Dom_Receptor_noInteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column46_Dom_Receptor_noInterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _47_Dom_Receptor_coloniaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column47_Dom_Receptor_colonia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _48_Dom_Receptor_localidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column48_Dom_Receptor_localidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _49_Dom_Receptor_referenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column49_Dom_Receptor_referencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _50_Dom_Receptor_municipioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column50_Dom_Receptor_municipio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _51_Dom_Receptor_estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column51_Dom_Receptor_estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _52_Dom_Receptor_paisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column52_Dom_Receptor_pais
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _53_Dom_Receptor_codigoPostalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column53_Dom_Receptor_codigoPostal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _54_Monto_SubTotalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column54_Monto_SubTotal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _55_Monto_IVAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column55_Monto_IVA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _56_Monto_TotalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column56_Monto_Total
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _57_EstadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column57_Estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _58_TipoCFDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column58_TipoCFD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _59_NotasColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column59_Notas
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _60_Notas02Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column60_Notas02
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _61_Notas03Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column61_Notas03
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _62_TradingPartner_ProvColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column62_TradingPartner_Prov
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _63_Calif_TradingPartner_ProvColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column63_Calif_TradingPartner_Prov
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _64_EAN_ProveedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column64_EAN_Proveedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _65_Numero_FacturaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column65_Numero_Factura
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _66_Numero_OrdenCompraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column66_Numero_OrdenCompra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _67_Fecha_OrdenCompraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column67_Fecha_OrdenCompra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _68_Numero_ProveedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column68_Numero_Proveedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _69_EAN_TiendaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column69_EAN_Tienda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _70_Numero_TiendaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column70_Numero_Tienda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _71_Nombre_TiendaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column71_Nombre_Tienda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _72_Dom_Tienda_calleColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column72_Dom_Tienda_calle
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _73_Dom_Tienda_noExteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column73_Dom_Tienda_noExterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _74_Dom_Tienda_noInteriorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column74_Dom_Tienda_noInterior
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _75_Dom_Tienda_coloniaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column75_Dom_Tienda_colonia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _76_Dom_Tienda_localidadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column76_Dom_Tienda_localidad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _77_Dom_Tienda_referenciaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column77_Dom_Tienda_referencia
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _78_Dom_Tienda_municipioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column78_Dom_Tienda_municipio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _79_Dom_Tienda_estadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column79_Dom_Tienda_estado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _80_Dom_Tienda_paisColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column80_Dom_Tienda_pais
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _81_Dom_Tienda_codigoPostalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column81_Dom_Tienda_codigoPostal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _82_RFC_TiendaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column82_RFC_Tienda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _83_Cod_MonedaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column83_Cod_Moneda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _84_Dias_PagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column84_Dias_Pago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _85_Porc_Desc_ProntoPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column85_Porc_Desc_ProntoPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _86_Monto_Desc_ProntoPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column86_Monto_Desc_ProntoPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _87_Cod_DescuentoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column87_Cod_Descuento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _88_Porc_DescuentoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column88_Porc_Descuento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _89_Monto_DescuentoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column89_Monto_Descuento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _90_Cantidad_LineasFacturaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column90_Cantidad_LineasFactura
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _91_Fecha_VencimientoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column91_Fecha_Vencimiento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _92_Cod_ZonaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column92_Cod_Zona
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _93_Numero_ReceptorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column93_Numero_Receptor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _94_Cod_VendedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column94_Cod_Vendedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _95_Nombre_VendedorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column95_Nombre_Vendedor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _96_Via_EmbarqueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column96_Via_Embarque
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _97_Condiciones_PagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column97_Condiciones_Pago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _98_Numero_PedidoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column98_Numero_Pedido
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _99_Fecha_PedidoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column99_Fecha_Pedido
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _100_Letras_Monto_TotalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column100_Letras_Monto_Total
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _101_Cantidad_UnidadesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column101_Cantidad_Unidades
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _102_Cantidad_empaquesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column102_Cantidad_empaques
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _103_EAN_ReceptorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column103_EAN_Receptor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _104_EAN_LugarExpideColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column104_EAN_LugarExpide
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _105_IEPS_IdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column105_IEPS_Id
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _106_EstatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column106_Estatus
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _107_Numero_EmisorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column107_Numero_Emisor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _108_Monto_MermaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column108_Monto_Merma
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _109_Monto_SubTotal_ApIVAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column109_Monto_SubTotal_ApIVA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _110_TransportistaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column110_Transportista
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _111_Numero_SolicitudColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column111_Numero_Solicitud
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _112_Desc_MonedaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column112_Desc_Moneda
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _113_Misc01Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column113_Misc01
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _114_Misc02Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column114_Misc02
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _115_Misc03Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column115_Misc03
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _116_Misc04Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column116_Misc04
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _117_Misc05Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column117_Misc05
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _118_Misc06Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column118_Misc06
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _119_Misc07Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column119_Misc07
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _120_Misc08Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column120_Misc08
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _121_Misc09Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column121_Misc09
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _122_Misc10Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column122_Misc10
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _123_Misc11Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column123_Misc11
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _124_Misc12Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column124_Misc12
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _125_Misc13Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column125_Misc13
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _126_Misc14Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column126_Misc14
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _127_Misc15Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column127_Misc15
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _128_Misc16Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column128_Misc16
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _129_Misc17Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column129_Misc17
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _130_Misc18Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column130_Misc18
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _131_Misc19Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column131_Misc19
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _132_Misc20Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column132_Misc20
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _133_Misc21Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column133_Misc21
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _134_Misc22Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column134_Misc22
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _135_Misc23Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column135_Misc23
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _136_Misc24Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column136_Misc24
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _137_Misc25Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column137_Misc25
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _138_Misc26Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column138_Misc26
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _139_Misc27Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column139_Misc27
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _140_Misc28Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column140_Misc28
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _141_Misc29Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column141_Misc29
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _142_Misc30Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column142_Misc30
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _143_Misc31Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column143_Misc31
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _144_Misc32Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column144_Misc32
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _145_Misc33Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column145_Misc33
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _146_Misc34Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column146_Misc34
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _147_Misc35Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column147_Misc35
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _148_Misc36Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column148_Misc36
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _149_Misc37Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column149_Misc37
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _150_Misc38Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column150_Misc38
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _151_Misc39Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column151_Misc39
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _152_Misc40Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column152_Misc40
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _153_Misc41Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column153_Misc41
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _154_Misc42Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column154_Misc42
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _155_Misc43Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column155_Misc43
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _156_Misc44Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column156_Misc44
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _157_Misc45Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column157_Misc45
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _158_Misc46Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column158_Misc46
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _159_Misc47Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column159_Misc47
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _160_Misc48Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column160_Misc48
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _161_Misc49Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column161_Misc49
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _162_Misc50Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column162_Misc50
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _163_Porc_IVAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column163_Porc_IVA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _164_Monto_IEPSColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column164_Monto_IEPS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _165_Document_StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column165_Document_Status
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _166_Delivery_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column166_Delivery_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _167_RegimentFiscalColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column167_RegimentFiscal
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _168_Num_CtaPagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column168_Num_CtaPago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _169_Num_contrareciboColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column169_Num_contrarecibo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _170_Fecha_Num_contrareciboColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column170_Fecha_Num_contrarecibo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _171_Contacto_ComprarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column171_Contacto_Comprar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _172_Customs_glnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column172_Customs_gln
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _173_Alternante_identificacion_glnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column173_Alternante_identificacion_gln
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _174_Nombre_AduanaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column174_Nombre_Aduana
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _175_Nombre_Aduana_CiudadColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column175_Nombre_Aduana_Ciudad
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _176_Func_DivisaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column176_Func_Divisa
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _177_Tasa_DivisaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column177_Tasa_Divisa
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _178_Ref_Tiempo_PagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column178_Ref_Tiempo_Pago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _179_Ref_Termino_Tiempo_PagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column179_Ref_Termino_Tiempo_Pago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _180_LugarExpedicionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column180_LugarExpedicion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _181_SerieFolioFiscalOrigColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column181_SerieFolioFiscalOrig
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _182_Tipo_Especial_de_ServicioColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column182_Tipo_Especial_de_Servicio
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _183_FechaFolioFiscalOrigColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column183_FechaFolioFiscalOrig
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _184_Porcentaje_no_aplicadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column184_Porcentaje_no_aplicado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _185_MontoFolioFiscalOrigColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column185_MontoFolioFiscalOrig
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _186_Monto_Total_DescuentosColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column186_Monto_Total_Descuentos
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _187_Monto_Total_PagarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column187_Monto_Total_Pagar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _188_Ano_AprobacionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column188_Ano_Aprobacion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _189_Motivo_DescuentoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column189_Motivo_Descuento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _190_Metodo_PagoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column190_Metodo_Pago
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _191_Efecto_ComprobanteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column191_Efecto_Comprobante
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _192_Monto_TotalImp_RetenidosColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column192_Monto_TotalImp_Retenidos
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _193_Monto_TotalImp_TrasladadosColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column193_Monto_TotalImp_Trasladados
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Encabezado_ProcesadoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEncabezado_Procesado
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GuidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGuid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FechaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFecha
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EMail1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEMail1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EMail2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEMail2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As RecibosDePagoRow
+            Get
+                Return CType(Me.Rows(index),RecibosDePagoRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event RecibosDePagoRowChanging As RecibosDePagoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event RecibosDePagoRowChanged As RecibosDePagoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event RecibosDePagoRowDeleting As RecibosDePagoRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event RecibosDePagoRowDeleted As RecibosDePagoRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddRecibosDePagoRow(ByVal row As RecibosDePagoRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddRecibosDePagoRow( _
+                    ByVal _1_Folio As Integer,  _
+                    ByVal _2_Nombre_Emisor As String,  _
+                    ByVal _3_RFC_Emisor As String,  _
+                    ByVal _4_Dom_Emisor_calle As String,  _
+                    ByVal _5_Dom_Emisor_noExterior As String,  _
+                    ByVal _6_Dom_Emisor_noInterior As String,  _
+                    ByVal _7_Dom_Emisor_colonia As String,  _
+                    ByVal _8_Dom_Emisor_localidad As String,  _
+                    ByVal _9_Dom_Emisor_referencia As String,  _
+                    ByVal _10_Dom_Emisor_municipio As String,  _
+                    ByVal _11_Dom_Emisor_estado As String,  _
+                    ByVal _12_Dom_Emisor_pais As String,  _
+                    ByVal _13_Dom_Emisor_codigoPostal As String,  _
+                    ByVal _14_Tel_Emisor As String,  _
+                    ByVal _15_Dom_Sucursal_calle As String,  _
+                    ByVal _16_Dom_Sucursal_noExterior As String,  _
+                    ByVal _17_Dom_Sucursal_noInterior As String,  _
+                    ByVal _18_Dom_Sucursal_colonia As String,  _
+                    ByVal _19_Dom_Sucursal_localidad As String,  _
+                    ByVal _20_Dom_Sucursal_referencia As String,  _
+                    ByVal _21_Dom_Sucursal_municipio As String,  _
+                    ByVal _22_Dom_Sucursal_estado As String,  _
+                    ByVal _23_Dom_Sucursal_pais As String,  _
+                    ByVal _24_Dom_Sucursal_codigoPostal As String,  _
+                    ByVal _25_Tel_sucursal As String,  _
+                    ByVal _26_Version As String,  _
+                    ByVal _27_Serie_Comprobante As String,  _
+                    ByVal _28_Numero_Aprobacion As Integer,  _
+                    ByVal _29_FormaPago As String,  _
+                    ByVal _30_Fecha As String,  _
+                    ByVal _31_Hora As String,  _
+                    ByVal _32_Dom_LugarExpide_calle As String,  _
+                    ByVal _33_Dom_LugarExpide_noExterior As String,  _
+                    ByVal _34_Dom_LugarExpide_noInterior As String,  _
+                    ByVal _35_Dom_LugarExpide_colonia As String,  _
+                    ByVal _36_Dom_LugarExpide_localidad As String,  _
+                    ByVal _37_Dom_LugarExpide_referencia As String,  _
+                    ByVal _38_Dom_LugarExpide_municipio As String,  _
+                    ByVal _39_Dom_LugarExpide_estado As String,  _
+                    ByVal _40_Dom_LugarExpide_pais As String,  _
+                    ByVal _41_Dom_LugarExpide_codigoPostal As String,  _
+                    ByVal _42_Nombre_Receptor As String,  _
+                    ByVal _43_RFC_Receptor As String,  _
+                    ByVal _44_Dom_Receptor_calle As String,  _
+                    ByVal _45_Dom_Receptor_noExterior As String,  _
+                    ByVal _46_Dom_Receptor_noInterior As String,  _
+                    ByVal _47_Dom_Receptor_colonia As String,  _
+                    ByVal _48_Dom_Receptor_localidad As String,  _
+                    ByVal _49_Dom_Receptor_referencia As String,  _
+                    ByVal _50_Dom_Receptor_municipio As String,  _
+                    ByVal _51_Dom_Receptor_estado As String,  _
+                    ByVal _52_Dom_Receptor_pais As String,  _
+                    ByVal _53_Dom_Receptor_codigoPostal As String,  _
+                    ByVal _54_Monto_SubTotal As Decimal,  _
+                    ByVal _55_Monto_IVA As Decimal,  _
+                    ByVal _56_Monto_Total As Decimal,  _
+                    ByVal _57_Estado As Integer,  _
+                    ByVal _58_TipoCFD As String,  _
+                    ByVal _59_Notas As String,  _
+                    ByVal _60_Notas02 As String,  _
+                    ByVal _61_Notas03 As String,  _
+                    ByVal _62_TradingPartner_Prov As String,  _
+                    ByVal _63_Calif_TradingPartner_Prov As String,  _
+                    ByVal _64_EAN_Proveedor As String,  _
+                    ByVal _65_Numero_Factura As String,  _
+                    ByVal _66_Numero_OrdenCompra As String,  _
+                    ByVal _67_Fecha_OrdenCompra As String,  _
+                    ByVal _68_Numero_Proveedor As String,  _
+                    ByVal _69_EAN_Tienda As String,  _
+                    ByVal _70_Numero_Tienda As String,  _
+                    ByVal _71_Nombre_Tienda As String,  _
+                    ByVal _72_Dom_Tienda_calle As String,  _
+                    ByVal _73_Dom_Tienda_noExterior As String,  _
+                    ByVal _74_Dom_Tienda_noInterior As String,  _
+                    ByVal _75_Dom_Tienda_colonia As String,  _
+                    ByVal _76_Dom_Tienda_localidad As String,  _
+                    ByVal _77_Dom_Tienda_referencia As String,  _
+                    ByVal _78_Dom_Tienda_municipio As String,  _
+                    ByVal _79_Dom_Tienda_estado As String,  _
+                    ByVal _80_Dom_Tienda_pais As String,  _
+                    ByVal _81_Dom_Tienda_codigoPostal As String,  _
+                    ByVal _82_RFC_Tienda As String,  _
+                    ByVal _83_Cod_Moneda As String,  _
+                    ByVal _84_Dias_Pago As Integer,  _
+                    ByVal _85_Porc_Desc_ProntoPago As Decimal,  _
+                    ByVal _86_Monto_Desc_ProntoPago As Decimal,  _
+                    ByVal _87_Cod_Descuento As String,  _
+                    ByVal _88_Porc_Descuento As Decimal,  _
+                    ByVal _89_Monto_Descuento As Decimal,  _
+                    ByVal _90_Cantidad_LineasFactura As Decimal,  _
+                    ByVal _91_Fecha_Vencimiento As String,  _
+                    ByVal _92_Cod_Zona As String,  _
+                    ByVal _93_Numero_Receptor As String,  _
+                    ByVal _94_Cod_Vendedor As String,  _
+                    ByVal _95_Nombre_Vendedor As String,  _
+                    ByVal _96_Via_Embarque As String,  _
+                    ByVal _97_Condiciones_Pago As String,  _
+                    ByVal _98_Numero_Pedido As String,  _
+                    ByVal _99_Fecha_Pedido As String,  _
+                    ByVal _100_Letras_Monto_Total As String,  _
+                    ByVal _101_Cantidad_Unidades As Decimal,  _
+                    ByVal _102_Cantidad_empaques As Decimal,  _
+                    ByVal _103_EAN_Receptor As String,  _
+                    ByVal _104_EAN_LugarExpide As String,  _
+                    ByVal _105_IEPS_Id As String,  _
+                    ByVal _106_Estatus As String,  _
+                    ByVal _107_Numero_Emisor As String,  _
+                    ByVal _108_Monto_Merma As Decimal,  _
+                    ByVal _109_Monto_SubTotal_ApIVA As Decimal,  _
+                    ByVal _110_Transportista As String,  _
+                    ByVal _111_Numero_Solicitud As String,  _
+                    ByVal _112_Desc_Moneda As String,  _
+                    ByVal _113_Misc01 As String,  _
+                    ByVal _114_Misc02 As String,  _
+                    ByVal _115_Misc03 As String,  _
+                    ByVal _116_Misc04 As String,  _
+                    ByVal _117_Misc05 As String,  _
+                    ByVal _118_Misc06 As String,  _
+                    ByVal _119_Misc07 As String,  _
+                    ByVal _120_Misc08 As String,  _
+                    ByVal _121_Misc09 As String,  _
+                    ByVal _122_Misc10 As String,  _
+                    ByVal _123_Misc11 As String,  _
+                    ByVal _124_Misc12 As String,  _
+                    ByVal _125_Misc13 As String,  _
+                    ByVal _126_Misc14 As String,  _
+                    ByVal _127_Misc15 As String,  _
+                    ByVal _128_Misc16 As String,  _
+                    ByVal _129_Misc17 As String,  _
+                    ByVal _130_Misc18 As String,  _
+                    ByVal _131_Misc19 As String,  _
+                    ByVal _132_Misc20 As String,  _
+                    ByVal _133_Misc21 As String,  _
+                    ByVal _134_Misc22 As String,  _
+                    ByVal _135_Misc23 As String,  _
+                    ByVal _136_Misc24 As String,  _
+                    ByVal _137_Misc25 As String,  _
+                    ByVal _138_Misc26 As String,  _
+                    ByVal _139_Misc27 As String,  _
+                    ByVal _140_Misc28 As String,  _
+                    ByVal _141_Misc29 As String,  _
+                    ByVal _142_Misc30 As String,  _
+                    ByVal _143_Misc31 As String,  _
+                    ByVal _144_Misc32 As String,  _
+                    ByVal _145_Misc33 As String,  _
+                    ByVal _146_Misc34 As String,  _
+                    ByVal _147_Misc35 As String,  _
+                    ByVal _148_Misc36 As String,  _
+                    ByVal _149_Misc37 As String,  _
+                    ByVal _150_Misc38 As String,  _
+                    ByVal _151_Misc39 As String,  _
+                    ByVal _152_Misc40 As String,  _
+                    ByVal _153_Misc41 As String,  _
+                    ByVal _154_Misc42 As String,  _
+                    ByVal _155_Misc43 As String,  _
+                    ByVal _156_Misc44 As String,  _
+                    ByVal _157_Misc45 As String,  _
+                    ByVal _158_Misc46 As String,  _
+                    ByVal _159_Misc47 As String,  _
+                    ByVal _160_Misc48 As String,  _
+                    ByVal _161_Misc49 As String,  _
+                    ByVal _162_Misc50 As String,  _
+                    ByVal _163_Porc_IVA As Decimal,  _
+                    ByVal _164_Monto_IEPS As Decimal,  _
+                    ByVal _165_Document_Status As String,  _
+                    ByVal _166_Delivery_Date As String,  _
+                    ByVal _167_RegimentFiscal As String,  _
+                    ByVal _168_Num_CtaPago As String,  _
+                    ByVal _169_Num_contrarecibo As String,  _
+                    ByVal _170_Fecha_Num_contrarecibo As String,  _
+                    ByVal _171_Contacto_Comprar As String,  _
+                    ByVal _172_Customs_gln As String,  _
+                    ByVal _173_Alternante_identificacion_gln As String,  _
+                    ByVal _174_Nombre_Aduana As String,  _
+                    ByVal _175_Nombre_Aduana_Ciudad As String,  _
+                    ByVal _176_Func_Divisa As String,  _
+                    ByVal _177_Tasa_Divisa As Decimal,  _
+                    ByVal _178_Ref_Tiempo_Pago As String,  _
+                    ByVal _179_Ref_Termino_Tiempo_Pago As Decimal,  _
+                    ByVal _180_LugarExpedicion As String,  _
+                    ByVal _181_SerieFolioFiscalOrig As String,  _
+                    ByVal _182_Tipo_Especial_de_Servicio As String,  _
+                    ByVal _183_FechaFolioFiscalOrig As String,  _
+                    ByVal _184_Porcentaje_no_aplicado As Decimal,  _
+                    ByVal _185_MontoFolioFiscalOrig As Decimal,  _
+                    ByVal _186_Monto_Total_Descuentos As Decimal,  _
+                    ByVal _187_Monto_Total_Pagar As Decimal,  _
+                    ByVal _188_Ano_Aprobacion As Decimal,  _
+                    ByVal _189_Motivo_Descuento As String,  _
+                    ByVal _190_Metodo_Pago As String,  _
+                    ByVal _191_Efecto_Comprobante As String,  _
+                    ByVal _192_Monto_TotalImp_Retenidos As Decimal,  _
+                    ByVal _193_Monto_TotalImp_Trasladados As Decimal,  _
+                    ByVal Encabezado_Procesado As Boolean,  _
+                    ByVal Guid As String,  _
+                    ByVal Fecha As Date,  _
+                    ByVal EMail1 As String,  _
+                    ByVal EMail2 As String) As RecibosDePagoRow
+            Dim rowRecibosDePagoRow As RecibosDePagoRow = CType(Me.NewRow,RecibosDePagoRow)
+            Dim columnValuesArray() As Object = New Object() {_1_Folio, _2_Nombre_Emisor, _3_RFC_Emisor, _4_Dom_Emisor_calle, _5_Dom_Emisor_noExterior, _6_Dom_Emisor_noInterior, _7_Dom_Emisor_colonia, _8_Dom_Emisor_localidad, _9_Dom_Emisor_referencia, _10_Dom_Emisor_municipio, _11_Dom_Emisor_estado, _12_Dom_Emisor_pais, _13_Dom_Emisor_codigoPostal, _14_Tel_Emisor, _15_Dom_Sucursal_calle, _16_Dom_Sucursal_noExterior, _17_Dom_Sucursal_noInterior, _18_Dom_Sucursal_colonia, _19_Dom_Sucursal_localidad, _20_Dom_Sucursal_referencia, _21_Dom_Sucursal_municipio, _22_Dom_Sucursal_estado, _23_Dom_Sucursal_pais, _24_Dom_Sucursal_codigoPostal, _25_Tel_sucursal, _26_Version, _27_Serie_Comprobante, _28_Numero_Aprobacion, _29_FormaPago, _30_Fecha, _31_Hora, _32_Dom_LugarExpide_calle, _33_Dom_LugarExpide_noExterior, _34_Dom_LugarExpide_noInterior, _35_Dom_LugarExpide_colonia, _36_Dom_LugarExpide_localidad, _37_Dom_LugarExpide_referencia, _38_Dom_LugarExpide_municipio, _39_Dom_LugarExpide_estado, _40_Dom_LugarExpide_pais, _41_Dom_LugarExpide_codigoPostal, _42_Nombre_Receptor, _43_RFC_Receptor, _44_Dom_Receptor_calle, _45_Dom_Receptor_noExterior, _46_Dom_Receptor_noInterior, _47_Dom_Receptor_colonia, _48_Dom_Receptor_localidad, _49_Dom_Receptor_referencia, _50_Dom_Receptor_municipio, _51_Dom_Receptor_estado, _52_Dom_Receptor_pais, _53_Dom_Receptor_codigoPostal, _54_Monto_SubTotal, _55_Monto_IVA, _56_Monto_Total, _57_Estado, _58_TipoCFD, _59_Notas, _60_Notas02, _61_Notas03, _62_TradingPartner_Prov, _63_Calif_TradingPartner_Prov, _64_EAN_Proveedor, _65_Numero_Factura, _66_Numero_OrdenCompra, _67_Fecha_OrdenCompra, _68_Numero_Proveedor, _69_EAN_Tienda, _70_Numero_Tienda, _71_Nombre_Tienda, _72_Dom_Tienda_calle, _73_Dom_Tienda_noExterior, _74_Dom_Tienda_noInterior, _75_Dom_Tienda_colonia, _76_Dom_Tienda_localidad, _77_Dom_Tienda_referencia, _78_Dom_Tienda_municipio, _79_Dom_Tienda_estado, _80_Dom_Tienda_pais, _81_Dom_Tienda_codigoPostal, _82_RFC_Tienda, _83_Cod_Moneda, _84_Dias_Pago, _85_Porc_Desc_ProntoPago, _86_Monto_Desc_ProntoPago, _87_Cod_Descuento, _88_Porc_Descuento, _89_Monto_Descuento, _90_Cantidad_LineasFactura, _91_Fecha_Vencimiento, _92_Cod_Zona, _93_Numero_Receptor, _94_Cod_Vendedor, _95_Nombre_Vendedor, _96_Via_Embarque, _97_Condiciones_Pago, _98_Numero_Pedido, _99_Fecha_Pedido, _100_Letras_Monto_Total, _101_Cantidad_Unidades, _102_Cantidad_empaques, _103_EAN_Receptor, _104_EAN_LugarExpide, _105_IEPS_Id, _106_Estatus, _107_Numero_Emisor, _108_Monto_Merma, _109_Monto_SubTotal_ApIVA, _110_Transportista, _111_Numero_Solicitud, _112_Desc_Moneda, _113_Misc01, _114_Misc02, _115_Misc03, _116_Misc04, _117_Misc05, _118_Misc06, _119_Misc07, _120_Misc08, _121_Misc09, _122_Misc10, _123_Misc11, _124_Misc12, _125_Misc13, _126_Misc14, _127_Misc15, _128_Misc16, _129_Misc17, _130_Misc18, _131_Misc19, _132_Misc20, _133_Misc21, _134_Misc22, _135_Misc23, _136_Misc24, _137_Misc25, _138_Misc26, _139_Misc27, _140_Misc28, _141_Misc29, _142_Misc30, _143_Misc31, _144_Misc32, _145_Misc33, _146_Misc34, _147_Misc35, _148_Misc36, _149_Misc37, _150_Misc38, _151_Misc39, _152_Misc40, _153_Misc41, _154_Misc42, _155_Misc43, _156_Misc44, _157_Misc45, _158_Misc46, _159_Misc47, _160_Misc48, _161_Misc49, _162_Misc50, _163_Porc_IVA, _164_Monto_IEPS, _165_Document_Status, _166_Delivery_Date, _167_RegimentFiscal, _168_Num_CtaPago, _169_Num_contrarecibo, _170_Fecha_Num_contrarecibo, _171_Contacto_Comprar, _172_Customs_gln, _173_Alternante_identificacion_gln, _174_Nombre_Aduana, _175_Nombre_Aduana_Ciudad, _176_Func_Divisa, _177_Tasa_Divisa, _178_Ref_Tiempo_Pago, _179_Ref_Termino_Tiempo_Pago, _180_LugarExpedicion, _181_SerieFolioFiscalOrig, _182_Tipo_Especial_de_Servicio, _183_FechaFolioFiscalOrig, _184_Porcentaje_no_aplicado, _185_MontoFolioFiscalOrig, _186_Monto_Total_Descuentos, _187_Monto_Total_Pagar, _188_Ano_Aprobacion, _189_Motivo_Descuento, _190_Metodo_Pago, _191_Efecto_Comprobante, _192_Monto_TotalImp_Retenidos, _193_Monto_TotalImp_Trasladados, Encabezado_Procesado, Guid, Fecha, EMail1, EMail2}
+            rowRecibosDePagoRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowRecibosDePagoRow)
+            Return rowRecibosDePagoRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindBy_1_Folio_27_Serie_Comprobante(ByVal _1_Folio As Integer, ByVal _27_Serie_Comprobante As String) As RecibosDePagoRow
+            Return CType(Me.Rows.Find(New Object() {_1_Folio, _27_Serie_Comprobante}),RecibosDePagoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As RecibosDePagoDataTable = CType(MyBase.Clone,RecibosDePagoDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New RecibosDePagoDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.column1_Folio = MyBase.Columns("1_Folio")
+            Me.column2_Nombre_Emisor = MyBase.Columns("2_Nombre_Emisor")
+            Me.column3_RFC_Emisor = MyBase.Columns("3_RFC_Emisor")
+            Me.column4_Dom_Emisor_calle = MyBase.Columns("4_Dom_Emisor_calle")
+            Me.column5_Dom_Emisor_noExterior = MyBase.Columns("5_Dom_Emisor_noExterior")
+            Me.column6_Dom_Emisor_noInterior = MyBase.Columns("6_Dom_Emisor_noInterior")
+            Me.column7_Dom_Emisor_colonia = MyBase.Columns("7_Dom_Emisor_colonia")
+            Me.column8_Dom_Emisor_localidad = MyBase.Columns("8_Dom_Emisor_localidad")
+            Me.column9_Dom_Emisor_referencia = MyBase.Columns("9_Dom_Emisor_referencia")
+            Me.column10_Dom_Emisor_municipio = MyBase.Columns("10_Dom_Emisor_municipio")
+            Me.column11_Dom_Emisor_estado = MyBase.Columns("11_Dom_Emisor_estado")
+            Me.column12_Dom_Emisor_pais = MyBase.Columns("12_Dom_Emisor_pais")
+            Me.column13_Dom_Emisor_codigoPostal = MyBase.Columns("13_Dom_Emisor_codigoPostal")
+            Me.column14_Tel_Emisor = MyBase.Columns("14_Tel_Emisor")
+            Me.column15_Dom_Sucursal_calle = MyBase.Columns("15_Dom_Sucursal_calle")
+            Me.column16_Dom_Sucursal_noExterior = MyBase.Columns("16_Dom_Sucursal_noExterior")
+            Me.column17_Dom_Sucursal_noInterior = MyBase.Columns("17_Dom_Sucursal_noInterior")
+            Me.column18_Dom_Sucursal_colonia = MyBase.Columns("18_Dom_Sucursal_colonia")
+            Me.column19_Dom_Sucursal_localidad = MyBase.Columns("19_Dom_Sucursal_localidad")
+            Me.column20_Dom_Sucursal_referencia = MyBase.Columns("20_Dom_Sucursal_referencia")
+            Me.column21_Dom_Sucursal_municipio = MyBase.Columns("21_Dom_Sucursal_municipio")
+            Me.column22_Dom_Sucursal_estado = MyBase.Columns("22_Dom_Sucursal_estado")
+            Me.column23_Dom_Sucursal_pais = MyBase.Columns("23_Dom_Sucursal_pais")
+            Me.column24_Dom_Sucursal_codigoPostal = MyBase.Columns("24_Dom_Sucursal_codigoPostal")
+            Me.column25_Tel_sucursal = MyBase.Columns("25_Tel_sucursal")
+            Me.column26_Version = MyBase.Columns("26_Version")
+            Me.column27_Serie_Comprobante = MyBase.Columns("27_Serie_Comprobante")
+            Me.column28_Numero_Aprobacion = MyBase.Columns("28_Numero_Aprobacion")
+            Me.column29_FormaPago = MyBase.Columns("29_FormaPago")
+            Me.column30_Fecha = MyBase.Columns("30_Fecha")
+            Me.column31_Hora = MyBase.Columns("31_Hora")
+            Me.column32_Dom_LugarExpide_calle = MyBase.Columns("32_Dom_LugarExpide_calle")
+            Me.column33_Dom_LugarExpide_noExterior = MyBase.Columns("33_Dom_LugarExpide_noExterior")
+            Me.column34_Dom_LugarExpide_noInterior = MyBase.Columns("34_Dom_LugarExpide_noInterior")
+            Me.column35_Dom_LugarExpide_colonia = MyBase.Columns("35_Dom_LugarExpide_colonia")
+            Me.column36_Dom_LugarExpide_localidad = MyBase.Columns("36_Dom_LugarExpide_localidad")
+            Me.column37_Dom_LugarExpide_referencia = MyBase.Columns("37_Dom_LugarExpide_referencia")
+            Me.column38_Dom_LugarExpide_municipio = MyBase.Columns("38_Dom_LugarExpide_municipio")
+            Me.column39_Dom_LugarExpide_estado = MyBase.Columns("39_Dom_LugarExpide_estado")
+            Me.column40_Dom_LugarExpide_pais = MyBase.Columns("40_Dom_LugarExpide_pais")
+            Me.column41_Dom_LugarExpide_codigoPostal = MyBase.Columns("41_Dom_LugarExpide_codigoPostal")
+            Me.column42_Nombre_Receptor = MyBase.Columns("42_Nombre_Receptor")
+            Me.column43_RFC_Receptor = MyBase.Columns("43_RFC_Receptor")
+            Me.column44_Dom_Receptor_calle = MyBase.Columns("44_Dom_Receptor_calle")
+            Me.column45_Dom_Receptor_noExterior = MyBase.Columns("45_Dom_Receptor_noExterior")
+            Me.column46_Dom_Receptor_noInterior = MyBase.Columns("46_Dom_Receptor_noInterior")
+            Me.column47_Dom_Receptor_colonia = MyBase.Columns("47_Dom_Receptor_colonia")
+            Me.column48_Dom_Receptor_localidad = MyBase.Columns("48_Dom_Receptor_localidad")
+            Me.column49_Dom_Receptor_referencia = MyBase.Columns("49_Dom_Receptor_referencia")
+            Me.column50_Dom_Receptor_municipio = MyBase.Columns("50_Dom_Receptor_municipio")
+            Me.column51_Dom_Receptor_estado = MyBase.Columns("51_Dom_Receptor_estado")
+            Me.column52_Dom_Receptor_pais = MyBase.Columns("52_Dom_Receptor_pais")
+            Me.column53_Dom_Receptor_codigoPostal = MyBase.Columns("53_Dom_Receptor_codigoPostal")
+            Me.column54_Monto_SubTotal = MyBase.Columns("54_Monto_SubTotal")
+            Me.column55_Monto_IVA = MyBase.Columns("55_Monto_IVA")
+            Me.column56_Monto_Total = MyBase.Columns("56_Monto_Total")
+            Me.column57_Estado = MyBase.Columns("57_Estado")
+            Me.column58_TipoCFD = MyBase.Columns("58_TipoCFD")
+            Me.column59_Notas = MyBase.Columns("59_Notas")
+            Me.column60_Notas02 = MyBase.Columns("60_Notas02")
+            Me.column61_Notas03 = MyBase.Columns("61_Notas03")
+            Me.column62_TradingPartner_Prov = MyBase.Columns("62_TradingPartner_Prov")
+            Me.column63_Calif_TradingPartner_Prov = MyBase.Columns("63_Calif_TradingPartner_Prov")
+            Me.column64_EAN_Proveedor = MyBase.Columns("64_EAN_Proveedor")
+            Me.column65_Numero_Factura = MyBase.Columns("65_Numero_Factura")
+            Me.column66_Numero_OrdenCompra = MyBase.Columns("66_Numero_OrdenCompra")
+            Me.column67_Fecha_OrdenCompra = MyBase.Columns("67_Fecha_OrdenCompra")
+            Me.column68_Numero_Proveedor = MyBase.Columns("68_Numero_Proveedor")
+            Me.column69_EAN_Tienda = MyBase.Columns("69_EAN_Tienda")
+            Me.column70_Numero_Tienda = MyBase.Columns("70_Numero_Tienda")
+            Me.column71_Nombre_Tienda = MyBase.Columns("71_Nombre_Tienda")
+            Me.column72_Dom_Tienda_calle = MyBase.Columns("72_Dom_Tienda_calle")
+            Me.column73_Dom_Tienda_noExterior = MyBase.Columns("73_Dom_Tienda_noExterior")
+            Me.column74_Dom_Tienda_noInterior = MyBase.Columns("74_Dom_Tienda_noInterior")
+            Me.column75_Dom_Tienda_colonia = MyBase.Columns("75_Dom_Tienda_colonia")
+            Me.column76_Dom_Tienda_localidad = MyBase.Columns("76_Dom_Tienda_localidad")
+            Me.column77_Dom_Tienda_referencia = MyBase.Columns("77_Dom_Tienda_referencia")
+            Me.column78_Dom_Tienda_municipio = MyBase.Columns("78_Dom_Tienda_municipio")
+            Me.column79_Dom_Tienda_estado = MyBase.Columns("79_Dom_Tienda_estado")
+            Me.column80_Dom_Tienda_pais = MyBase.Columns("80_Dom_Tienda_pais")
+            Me.column81_Dom_Tienda_codigoPostal = MyBase.Columns("81_Dom_Tienda_codigoPostal")
+            Me.column82_RFC_Tienda = MyBase.Columns("82_RFC_Tienda")
+            Me.column83_Cod_Moneda = MyBase.Columns("83_Cod_Moneda")
+            Me.column84_Dias_Pago = MyBase.Columns("84_Dias_Pago")
+            Me.column85_Porc_Desc_ProntoPago = MyBase.Columns("85_Porc_Desc_ProntoPago")
+            Me.column86_Monto_Desc_ProntoPago = MyBase.Columns("86_Monto_Desc_ProntoPago")
+            Me.column87_Cod_Descuento = MyBase.Columns("87_Cod_Descuento")
+            Me.column88_Porc_Descuento = MyBase.Columns("88_Porc_Descuento")
+            Me.column89_Monto_Descuento = MyBase.Columns("89_Monto_Descuento")
+            Me.column90_Cantidad_LineasFactura = MyBase.Columns("90_Cantidad_LineasFactura")
+            Me.column91_Fecha_Vencimiento = MyBase.Columns("91_Fecha_Vencimiento")
+            Me.column92_Cod_Zona = MyBase.Columns("92_Cod_Zona")
+            Me.column93_Numero_Receptor = MyBase.Columns("93_Numero_Receptor")
+            Me.column94_Cod_Vendedor = MyBase.Columns("94_Cod_Vendedor")
+            Me.column95_Nombre_Vendedor = MyBase.Columns("95_Nombre_Vendedor")
+            Me.column96_Via_Embarque = MyBase.Columns("96_Via_Embarque")
+            Me.column97_Condiciones_Pago = MyBase.Columns("97_Condiciones_Pago")
+            Me.column98_Numero_Pedido = MyBase.Columns("98_Numero_Pedido")
+            Me.column99_Fecha_Pedido = MyBase.Columns("99_Fecha_Pedido")
+            Me.column100_Letras_Monto_Total = MyBase.Columns("100_Letras_Monto_Total")
+            Me.column101_Cantidad_Unidades = MyBase.Columns("101_Cantidad_Unidades")
+            Me.column102_Cantidad_empaques = MyBase.Columns("102_Cantidad_empaques")
+            Me.column103_EAN_Receptor = MyBase.Columns("103_EAN_Receptor")
+            Me.column104_EAN_LugarExpide = MyBase.Columns("104_EAN_LugarExpide")
+            Me.column105_IEPS_Id = MyBase.Columns("105_IEPS_Id")
+            Me.column106_Estatus = MyBase.Columns("106_Estatus")
+            Me.column107_Numero_Emisor = MyBase.Columns("107_Numero_Emisor")
+            Me.column108_Monto_Merma = MyBase.Columns("108_Monto_Merma")
+            Me.column109_Monto_SubTotal_ApIVA = MyBase.Columns("109_Monto_SubTotal_ApIVA")
+            Me.column110_Transportista = MyBase.Columns("110_Transportista")
+            Me.column111_Numero_Solicitud = MyBase.Columns("111_Numero_Solicitud")
+            Me.column112_Desc_Moneda = MyBase.Columns("112_Desc_Moneda")
+            Me.column113_Misc01 = MyBase.Columns("113_Misc01")
+            Me.column114_Misc02 = MyBase.Columns("114_Misc02")
+            Me.column115_Misc03 = MyBase.Columns("115_Misc03")
+            Me.column116_Misc04 = MyBase.Columns("116_Misc04")
+            Me.column117_Misc05 = MyBase.Columns("117_Misc05")
+            Me.column118_Misc06 = MyBase.Columns("118_Misc06")
+            Me.column119_Misc07 = MyBase.Columns("119_Misc07")
+            Me.column120_Misc08 = MyBase.Columns("120_Misc08")
+            Me.column121_Misc09 = MyBase.Columns("121_Misc09")
+            Me.column122_Misc10 = MyBase.Columns("122_Misc10")
+            Me.column123_Misc11 = MyBase.Columns("123_Misc11")
+            Me.column124_Misc12 = MyBase.Columns("124_Misc12")
+            Me.column125_Misc13 = MyBase.Columns("125_Misc13")
+            Me.column126_Misc14 = MyBase.Columns("126_Misc14")
+            Me.column127_Misc15 = MyBase.Columns("127_Misc15")
+            Me.column128_Misc16 = MyBase.Columns("128_Misc16")
+            Me.column129_Misc17 = MyBase.Columns("129_Misc17")
+            Me.column130_Misc18 = MyBase.Columns("130_Misc18")
+            Me.column131_Misc19 = MyBase.Columns("131_Misc19")
+            Me.column132_Misc20 = MyBase.Columns("132_Misc20")
+            Me.column133_Misc21 = MyBase.Columns("133_Misc21")
+            Me.column134_Misc22 = MyBase.Columns("134_Misc22")
+            Me.column135_Misc23 = MyBase.Columns("135_Misc23")
+            Me.column136_Misc24 = MyBase.Columns("136_Misc24")
+            Me.column137_Misc25 = MyBase.Columns("137_Misc25")
+            Me.column138_Misc26 = MyBase.Columns("138_Misc26")
+            Me.column139_Misc27 = MyBase.Columns("139_Misc27")
+            Me.column140_Misc28 = MyBase.Columns("140_Misc28")
+            Me.column141_Misc29 = MyBase.Columns("141_Misc29")
+            Me.column142_Misc30 = MyBase.Columns("142_Misc30")
+            Me.column143_Misc31 = MyBase.Columns("143_Misc31")
+            Me.column144_Misc32 = MyBase.Columns("144_Misc32")
+            Me.column145_Misc33 = MyBase.Columns("145_Misc33")
+            Me.column146_Misc34 = MyBase.Columns("146_Misc34")
+            Me.column147_Misc35 = MyBase.Columns("147_Misc35")
+            Me.column148_Misc36 = MyBase.Columns("148_Misc36")
+            Me.column149_Misc37 = MyBase.Columns("149_Misc37")
+            Me.column150_Misc38 = MyBase.Columns("150_Misc38")
+            Me.column151_Misc39 = MyBase.Columns("151_Misc39")
+            Me.column152_Misc40 = MyBase.Columns("152_Misc40")
+            Me.column153_Misc41 = MyBase.Columns("153_Misc41")
+            Me.column154_Misc42 = MyBase.Columns("154_Misc42")
+            Me.column155_Misc43 = MyBase.Columns("155_Misc43")
+            Me.column156_Misc44 = MyBase.Columns("156_Misc44")
+            Me.column157_Misc45 = MyBase.Columns("157_Misc45")
+            Me.column158_Misc46 = MyBase.Columns("158_Misc46")
+            Me.column159_Misc47 = MyBase.Columns("159_Misc47")
+            Me.column160_Misc48 = MyBase.Columns("160_Misc48")
+            Me.column161_Misc49 = MyBase.Columns("161_Misc49")
+            Me.column162_Misc50 = MyBase.Columns("162_Misc50")
+            Me.column163_Porc_IVA = MyBase.Columns("163_Porc_IVA")
+            Me.column164_Monto_IEPS = MyBase.Columns("164_Monto_IEPS")
+            Me.column165_Document_Status = MyBase.Columns("165_Document_Status")
+            Me.column166_Delivery_Date = MyBase.Columns("166_Delivery_Date")
+            Me.column167_RegimentFiscal = MyBase.Columns("167_RegimentFiscal")
+            Me.column168_Num_CtaPago = MyBase.Columns("168_Num_CtaPago")
+            Me.column169_Num_contrarecibo = MyBase.Columns("169_Num_contrarecibo")
+            Me.column170_Fecha_Num_contrarecibo = MyBase.Columns("170_Fecha_Num_contrarecibo")
+            Me.column171_Contacto_Comprar = MyBase.Columns("171_Contacto_Comprar")
+            Me.column172_Customs_gln = MyBase.Columns("172_Customs_gln")
+            Me.column173_Alternante_identificacion_gln = MyBase.Columns("173_Alternante_identificacion_gln")
+            Me.column174_Nombre_Aduana = MyBase.Columns("174_Nombre_Aduana")
+            Me.column175_Nombre_Aduana_Ciudad = MyBase.Columns("175_Nombre_Aduana_Ciudad")
+            Me.column176_Func_Divisa = MyBase.Columns("176_Func_Divisa")
+            Me.column177_Tasa_Divisa = MyBase.Columns("177_Tasa_Divisa")
+            Me.column178_Ref_Tiempo_Pago = MyBase.Columns("178_Ref_Tiempo_Pago")
+            Me.column179_Ref_Termino_Tiempo_Pago = MyBase.Columns("179_Ref_Termino_Tiempo_Pago")
+            Me.column180_LugarExpedicion = MyBase.Columns("180_LugarExpedicion")
+            Me.column181_SerieFolioFiscalOrig = MyBase.Columns("181_SerieFolioFiscalOrig")
+            Me.column182_Tipo_Especial_de_Servicio = MyBase.Columns("182_Tipo_Especial_de_Servicio")
+            Me.column183_FechaFolioFiscalOrig = MyBase.Columns("183_FechaFolioFiscalOrig")
+            Me.column184_Porcentaje_no_aplicado = MyBase.Columns("184_Porcentaje_no_aplicado")
+            Me.column185_MontoFolioFiscalOrig = MyBase.Columns("185_MontoFolioFiscalOrig")
+            Me.column186_Monto_Total_Descuentos = MyBase.Columns("186_Monto_Total_Descuentos")
+            Me.column187_Monto_Total_Pagar = MyBase.Columns("187_Monto_Total_Pagar")
+            Me.column188_Ano_Aprobacion = MyBase.Columns("188_Ano_Aprobacion")
+            Me.column189_Motivo_Descuento = MyBase.Columns("189_Motivo_Descuento")
+            Me.column190_Metodo_Pago = MyBase.Columns("190_Metodo_Pago")
+            Me.column191_Efecto_Comprobante = MyBase.Columns("191_Efecto_Comprobante")
+            Me.column192_Monto_TotalImp_Retenidos = MyBase.Columns("192_Monto_TotalImp_Retenidos")
+            Me.column193_Monto_TotalImp_Trasladados = MyBase.Columns("193_Monto_TotalImp_Trasladados")
+            Me.columnEncabezado_Procesado = MyBase.Columns("Encabezado_Procesado")
+            Me.columnGuid = MyBase.Columns("Guid")
+            Me.columnFecha = MyBase.Columns("Fecha")
+            Me.columnEMail1 = MyBase.Columns("EMail1")
+            Me.columnEMail2 = MyBase.Columns("EMail2")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.column1_Folio = New Global.System.Data.DataColumn("1_Folio", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.column1_Folio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column1_Folio")
+            Me.column1_Folio.ExtendedProperties.Add("Generator_UserColumnName", "1_Folio")
+            MyBase.Columns.Add(Me.column1_Folio)
+            Me.column2_Nombre_Emisor = New Global.System.Data.DataColumn("2_Nombre_Emisor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column2_Nombre_Emisor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column2_Nombre_Emisor")
+            Me.column2_Nombre_Emisor.ExtendedProperties.Add("Generator_UserColumnName", "2_Nombre_Emisor")
+            MyBase.Columns.Add(Me.column2_Nombre_Emisor)
+            Me.column3_RFC_Emisor = New Global.System.Data.DataColumn("3_RFC_Emisor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column3_RFC_Emisor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column3_RFC_Emisor")
+            Me.column3_RFC_Emisor.ExtendedProperties.Add("Generator_UserColumnName", "3_RFC_Emisor")
+            MyBase.Columns.Add(Me.column3_RFC_Emisor)
+            Me.column4_Dom_Emisor_calle = New Global.System.Data.DataColumn("4_Dom_Emisor_calle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column4_Dom_Emisor_calle.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column4_Dom_Emisor_calle")
+            Me.column4_Dom_Emisor_calle.ExtendedProperties.Add("Generator_UserColumnName", "4_Dom_Emisor_calle")
+            MyBase.Columns.Add(Me.column4_Dom_Emisor_calle)
+            Me.column5_Dom_Emisor_noExterior = New Global.System.Data.DataColumn("5_Dom_Emisor_noExterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column5_Dom_Emisor_noExterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column5_Dom_Emisor_noExterior")
+            Me.column5_Dom_Emisor_noExterior.ExtendedProperties.Add("Generator_UserColumnName", "5_Dom_Emisor_noExterior")
+            MyBase.Columns.Add(Me.column5_Dom_Emisor_noExterior)
+            Me.column6_Dom_Emisor_noInterior = New Global.System.Data.DataColumn("6_Dom_Emisor_noInterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column6_Dom_Emisor_noInterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column6_Dom_Emisor_noInterior")
+            Me.column6_Dom_Emisor_noInterior.ExtendedProperties.Add("Generator_UserColumnName", "6_Dom_Emisor_noInterior")
+            MyBase.Columns.Add(Me.column6_Dom_Emisor_noInterior)
+            Me.column7_Dom_Emisor_colonia = New Global.System.Data.DataColumn("7_Dom_Emisor_colonia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column7_Dom_Emisor_colonia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column7_Dom_Emisor_colonia")
+            Me.column7_Dom_Emisor_colonia.ExtendedProperties.Add("Generator_UserColumnName", "7_Dom_Emisor_colonia")
+            MyBase.Columns.Add(Me.column7_Dom_Emisor_colonia)
+            Me.column8_Dom_Emisor_localidad = New Global.System.Data.DataColumn("8_Dom_Emisor_localidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column8_Dom_Emisor_localidad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column8_Dom_Emisor_localidad")
+            Me.column8_Dom_Emisor_localidad.ExtendedProperties.Add("Generator_UserColumnName", "8_Dom_Emisor_localidad")
+            MyBase.Columns.Add(Me.column8_Dom_Emisor_localidad)
+            Me.column9_Dom_Emisor_referencia = New Global.System.Data.DataColumn("9_Dom_Emisor_referencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column9_Dom_Emisor_referencia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column9_Dom_Emisor_referencia")
+            Me.column9_Dom_Emisor_referencia.ExtendedProperties.Add("Generator_UserColumnName", "9_Dom_Emisor_referencia")
+            MyBase.Columns.Add(Me.column9_Dom_Emisor_referencia)
+            Me.column10_Dom_Emisor_municipio = New Global.System.Data.DataColumn("10_Dom_Emisor_municipio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column10_Dom_Emisor_municipio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column10_Dom_Emisor_municipio")
+            Me.column10_Dom_Emisor_municipio.ExtendedProperties.Add("Generator_UserColumnName", "10_Dom_Emisor_municipio")
+            MyBase.Columns.Add(Me.column10_Dom_Emisor_municipio)
+            Me.column11_Dom_Emisor_estado = New Global.System.Data.DataColumn("11_Dom_Emisor_estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column11_Dom_Emisor_estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column11_Dom_Emisor_estado")
+            Me.column11_Dom_Emisor_estado.ExtendedProperties.Add("Generator_UserColumnName", "11_Dom_Emisor_estado")
+            MyBase.Columns.Add(Me.column11_Dom_Emisor_estado)
+            Me.column12_Dom_Emisor_pais = New Global.System.Data.DataColumn("12_Dom_Emisor_pais", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column12_Dom_Emisor_pais.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column12_Dom_Emisor_pais")
+            Me.column12_Dom_Emisor_pais.ExtendedProperties.Add("Generator_UserColumnName", "12_Dom_Emisor_pais")
+            MyBase.Columns.Add(Me.column12_Dom_Emisor_pais)
+            Me.column13_Dom_Emisor_codigoPostal = New Global.System.Data.DataColumn("13_Dom_Emisor_codigoPostal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column13_Dom_Emisor_codigoPostal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column13_Dom_Emisor_codigoPostal")
+            Me.column13_Dom_Emisor_codigoPostal.ExtendedProperties.Add("Generator_UserColumnName", "13_Dom_Emisor_codigoPostal")
+            MyBase.Columns.Add(Me.column13_Dom_Emisor_codigoPostal)
+            Me.column14_Tel_Emisor = New Global.System.Data.DataColumn("14_Tel_Emisor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column14_Tel_Emisor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column14_Tel_Emisor")
+            Me.column14_Tel_Emisor.ExtendedProperties.Add("Generator_UserColumnName", "14_Tel_Emisor")
+            MyBase.Columns.Add(Me.column14_Tel_Emisor)
+            Me.column15_Dom_Sucursal_calle = New Global.System.Data.DataColumn("15_Dom_Sucursal_calle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column15_Dom_Sucursal_calle.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column15_Dom_Sucursal_calle")
+            Me.column15_Dom_Sucursal_calle.ExtendedProperties.Add("Generator_UserColumnName", "15_Dom_Sucursal_calle")
+            MyBase.Columns.Add(Me.column15_Dom_Sucursal_calle)
+            Me.column16_Dom_Sucursal_noExterior = New Global.System.Data.DataColumn("16_Dom_Sucursal_noExterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column16_Dom_Sucursal_noExterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column16_Dom_Sucursal_noExterior")
+            Me.column16_Dom_Sucursal_noExterior.ExtendedProperties.Add("Generator_UserColumnName", "16_Dom_Sucursal_noExterior")
+            MyBase.Columns.Add(Me.column16_Dom_Sucursal_noExterior)
+            Me.column17_Dom_Sucursal_noInterior = New Global.System.Data.DataColumn("17_Dom_Sucursal_noInterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column17_Dom_Sucursal_noInterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column17_Dom_Sucursal_noInterior")
+            Me.column17_Dom_Sucursal_noInterior.ExtendedProperties.Add("Generator_UserColumnName", "17_Dom_Sucursal_noInterior")
+            MyBase.Columns.Add(Me.column17_Dom_Sucursal_noInterior)
+            Me.column18_Dom_Sucursal_colonia = New Global.System.Data.DataColumn("18_Dom_Sucursal_colonia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column18_Dom_Sucursal_colonia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column18_Dom_Sucursal_colonia")
+            Me.column18_Dom_Sucursal_colonia.ExtendedProperties.Add("Generator_UserColumnName", "18_Dom_Sucursal_colonia")
+            MyBase.Columns.Add(Me.column18_Dom_Sucursal_colonia)
+            Me.column19_Dom_Sucursal_localidad = New Global.System.Data.DataColumn("19_Dom_Sucursal_localidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column19_Dom_Sucursal_localidad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column19_Dom_Sucursal_localidad")
+            Me.column19_Dom_Sucursal_localidad.ExtendedProperties.Add("Generator_UserColumnName", "19_Dom_Sucursal_localidad")
+            MyBase.Columns.Add(Me.column19_Dom_Sucursal_localidad)
+            Me.column20_Dom_Sucursal_referencia = New Global.System.Data.DataColumn("20_Dom_Sucursal_referencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column20_Dom_Sucursal_referencia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column20_Dom_Sucursal_referencia")
+            Me.column20_Dom_Sucursal_referencia.ExtendedProperties.Add("Generator_UserColumnName", "20_Dom_Sucursal_referencia")
+            MyBase.Columns.Add(Me.column20_Dom_Sucursal_referencia)
+            Me.column21_Dom_Sucursal_municipio = New Global.System.Data.DataColumn("21_Dom_Sucursal_municipio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column21_Dom_Sucursal_municipio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column21_Dom_Sucursal_municipio")
+            Me.column21_Dom_Sucursal_municipio.ExtendedProperties.Add("Generator_UserColumnName", "21_Dom_Sucursal_municipio")
+            MyBase.Columns.Add(Me.column21_Dom_Sucursal_municipio)
+            Me.column22_Dom_Sucursal_estado = New Global.System.Data.DataColumn("22_Dom_Sucursal_estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column22_Dom_Sucursal_estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column22_Dom_Sucursal_estado")
+            Me.column22_Dom_Sucursal_estado.ExtendedProperties.Add("Generator_UserColumnName", "22_Dom_Sucursal_estado")
+            MyBase.Columns.Add(Me.column22_Dom_Sucursal_estado)
+            Me.column23_Dom_Sucursal_pais = New Global.System.Data.DataColumn("23_Dom_Sucursal_pais", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column23_Dom_Sucursal_pais.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column23_Dom_Sucursal_pais")
+            Me.column23_Dom_Sucursal_pais.ExtendedProperties.Add("Generator_UserColumnName", "23_Dom_Sucursal_pais")
+            MyBase.Columns.Add(Me.column23_Dom_Sucursal_pais)
+            Me.column24_Dom_Sucursal_codigoPostal = New Global.System.Data.DataColumn("24_Dom_Sucursal_codigoPostal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column24_Dom_Sucursal_codigoPostal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column24_Dom_Sucursal_codigoPostal")
+            Me.column24_Dom_Sucursal_codigoPostal.ExtendedProperties.Add("Generator_UserColumnName", "24_Dom_Sucursal_codigoPostal")
+            MyBase.Columns.Add(Me.column24_Dom_Sucursal_codigoPostal)
+            Me.column25_Tel_sucursal = New Global.System.Data.DataColumn("25_Tel_sucursal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column25_Tel_sucursal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column25_Tel_sucursal")
+            Me.column25_Tel_sucursal.ExtendedProperties.Add("Generator_UserColumnName", "25_Tel_sucursal")
+            MyBase.Columns.Add(Me.column25_Tel_sucursal)
+            Me.column26_Version = New Global.System.Data.DataColumn("26_Version", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column26_Version.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column26_Version")
+            Me.column26_Version.ExtendedProperties.Add("Generator_UserColumnName", "26_Version")
+            MyBase.Columns.Add(Me.column26_Version)
+            Me.column27_Serie_Comprobante = New Global.System.Data.DataColumn("27_Serie_Comprobante", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column27_Serie_Comprobante.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column27_Serie_Comprobante")
+            Me.column27_Serie_Comprobante.ExtendedProperties.Add("Generator_UserColumnName", "27_Serie_Comprobante")
+            MyBase.Columns.Add(Me.column27_Serie_Comprobante)
+            Me.column28_Numero_Aprobacion = New Global.System.Data.DataColumn("28_Numero_Aprobacion", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.column28_Numero_Aprobacion.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column28_Numero_Aprobacion")
+            Me.column28_Numero_Aprobacion.ExtendedProperties.Add("Generator_UserColumnName", "28_Numero_Aprobacion")
+            MyBase.Columns.Add(Me.column28_Numero_Aprobacion)
+            Me.column29_FormaPago = New Global.System.Data.DataColumn("29_FormaPago", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column29_FormaPago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column29_FormaPago")
+            Me.column29_FormaPago.ExtendedProperties.Add("Generator_UserColumnName", "29_FormaPago")
+            MyBase.Columns.Add(Me.column29_FormaPago)
+            Me.column30_Fecha = New Global.System.Data.DataColumn("30_Fecha", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column30_Fecha.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column30_Fecha")
+            Me.column30_Fecha.ExtendedProperties.Add("Generator_UserColumnName", "30_Fecha")
+            MyBase.Columns.Add(Me.column30_Fecha)
+            Me.column31_Hora = New Global.System.Data.DataColumn("31_Hora", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column31_Hora.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column31_Hora")
+            Me.column31_Hora.ExtendedProperties.Add("Generator_UserColumnName", "31_Hora")
+            MyBase.Columns.Add(Me.column31_Hora)
+            Me.column32_Dom_LugarExpide_calle = New Global.System.Data.DataColumn("32_Dom_LugarExpide_calle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column32_Dom_LugarExpide_calle.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column32_Dom_LugarExpide_calle")
+            Me.column32_Dom_LugarExpide_calle.ExtendedProperties.Add("Generator_UserColumnName", "32_Dom_LugarExpide_calle")
+            MyBase.Columns.Add(Me.column32_Dom_LugarExpide_calle)
+            Me.column33_Dom_LugarExpide_noExterior = New Global.System.Data.DataColumn("33_Dom_LugarExpide_noExterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column33_Dom_LugarExpide_noExterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column33_Dom_LugarExpide_noExterior")
+            Me.column33_Dom_LugarExpide_noExterior.ExtendedProperties.Add("Generator_UserColumnName", "33_Dom_LugarExpide_noExterior")
+            MyBase.Columns.Add(Me.column33_Dom_LugarExpide_noExterior)
+            Me.column34_Dom_LugarExpide_noInterior = New Global.System.Data.DataColumn("34_Dom_LugarExpide_noInterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column34_Dom_LugarExpide_noInterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column34_Dom_LugarExpide_noInterior")
+            Me.column34_Dom_LugarExpide_noInterior.ExtendedProperties.Add("Generator_UserColumnName", "34_Dom_LugarExpide_noInterior")
+            MyBase.Columns.Add(Me.column34_Dom_LugarExpide_noInterior)
+            Me.column35_Dom_LugarExpide_colonia = New Global.System.Data.DataColumn("35_Dom_LugarExpide_colonia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column35_Dom_LugarExpide_colonia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column35_Dom_LugarExpide_colonia")
+            Me.column35_Dom_LugarExpide_colonia.ExtendedProperties.Add("Generator_UserColumnName", "35_Dom_LugarExpide_colonia")
+            MyBase.Columns.Add(Me.column35_Dom_LugarExpide_colonia)
+            Me.column36_Dom_LugarExpide_localidad = New Global.System.Data.DataColumn("36_Dom_LugarExpide_localidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column36_Dom_LugarExpide_localidad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column36_Dom_LugarExpide_localidad")
+            Me.column36_Dom_LugarExpide_localidad.ExtendedProperties.Add("Generator_UserColumnName", "36_Dom_LugarExpide_localidad")
+            MyBase.Columns.Add(Me.column36_Dom_LugarExpide_localidad)
+            Me.column37_Dom_LugarExpide_referencia = New Global.System.Data.DataColumn("37_Dom_LugarExpide_referencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column37_Dom_LugarExpide_referencia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column37_Dom_LugarExpide_referencia")
+            Me.column37_Dom_LugarExpide_referencia.ExtendedProperties.Add("Generator_UserColumnName", "37_Dom_LugarExpide_referencia")
+            MyBase.Columns.Add(Me.column37_Dom_LugarExpide_referencia)
+            Me.column38_Dom_LugarExpide_municipio = New Global.System.Data.DataColumn("38_Dom_LugarExpide_municipio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column38_Dom_LugarExpide_municipio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column38_Dom_LugarExpide_municipio")
+            Me.column38_Dom_LugarExpide_municipio.ExtendedProperties.Add("Generator_UserColumnName", "38_Dom_LugarExpide_municipio")
+            MyBase.Columns.Add(Me.column38_Dom_LugarExpide_municipio)
+            Me.column39_Dom_LugarExpide_estado = New Global.System.Data.DataColumn("39_Dom_LugarExpide_estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column39_Dom_LugarExpide_estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column39_Dom_LugarExpide_estado")
+            Me.column39_Dom_LugarExpide_estado.ExtendedProperties.Add("Generator_UserColumnName", "39_Dom_LugarExpide_estado")
+            MyBase.Columns.Add(Me.column39_Dom_LugarExpide_estado)
+            Me.column40_Dom_LugarExpide_pais = New Global.System.Data.DataColumn("40_Dom_LugarExpide_pais", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column40_Dom_LugarExpide_pais.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column40_Dom_LugarExpide_pais")
+            Me.column40_Dom_LugarExpide_pais.ExtendedProperties.Add("Generator_UserColumnName", "40_Dom_LugarExpide_pais")
+            MyBase.Columns.Add(Me.column40_Dom_LugarExpide_pais)
+            Me.column41_Dom_LugarExpide_codigoPostal = New Global.System.Data.DataColumn("41_Dom_LugarExpide_codigoPostal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column41_Dom_LugarExpide_codigoPostal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column41_Dom_LugarExpide_codigoPostal")
+            Me.column41_Dom_LugarExpide_codigoPostal.ExtendedProperties.Add("Generator_UserColumnName", "41_Dom_LugarExpide_codigoPostal")
+            MyBase.Columns.Add(Me.column41_Dom_LugarExpide_codigoPostal)
+            Me.column42_Nombre_Receptor = New Global.System.Data.DataColumn("42_Nombre_Receptor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column42_Nombre_Receptor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column42_Nombre_Receptor")
+            Me.column42_Nombre_Receptor.ExtendedProperties.Add("Generator_UserColumnName", "42_Nombre_Receptor")
+            MyBase.Columns.Add(Me.column42_Nombre_Receptor)
+            Me.column43_RFC_Receptor = New Global.System.Data.DataColumn("43_RFC_Receptor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column43_RFC_Receptor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column43_RFC_Receptor")
+            Me.column43_RFC_Receptor.ExtendedProperties.Add("Generator_UserColumnName", "43_RFC_Receptor")
+            MyBase.Columns.Add(Me.column43_RFC_Receptor)
+            Me.column44_Dom_Receptor_calle = New Global.System.Data.DataColumn("44_Dom_Receptor_calle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column44_Dom_Receptor_calle.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column44_Dom_Receptor_calle")
+            Me.column44_Dom_Receptor_calle.ExtendedProperties.Add("Generator_UserColumnName", "44_Dom_Receptor_calle")
+            MyBase.Columns.Add(Me.column44_Dom_Receptor_calle)
+            Me.column45_Dom_Receptor_noExterior = New Global.System.Data.DataColumn("45_Dom_Receptor_noExterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column45_Dom_Receptor_noExterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column45_Dom_Receptor_noExterior")
+            Me.column45_Dom_Receptor_noExterior.ExtendedProperties.Add("Generator_UserColumnName", "45_Dom_Receptor_noExterior")
+            MyBase.Columns.Add(Me.column45_Dom_Receptor_noExterior)
+            Me.column46_Dom_Receptor_noInterior = New Global.System.Data.DataColumn("46_Dom_Receptor_noInterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column46_Dom_Receptor_noInterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column46_Dom_Receptor_noInterior")
+            Me.column46_Dom_Receptor_noInterior.ExtendedProperties.Add("Generator_UserColumnName", "46_Dom_Receptor_noInterior")
+            MyBase.Columns.Add(Me.column46_Dom_Receptor_noInterior)
+            Me.column47_Dom_Receptor_colonia = New Global.System.Data.DataColumn("47_Dom_Receptor_colonia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column47_Dom_Receptor_colonia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column47_Dom_Receptor_colonia")
+            Me.column47_Dom_Receptor_colonia.ExtendedProperties.Add("Generator_UserColumnName", "47_Dom_Receptor_colonia")
+            MyBase.Columns.Add(Me.column47_Dom_Receptor_colonia)
+            Me.column48_Dom_Receptor_localidad = New Global.System.Data.DataColumn("48_Dom_Receptor_localidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column48_Dom_Receptor_localidad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column48_Dom_Receptor_localidad")
+            Me.column48_Dom_Receptor_localidad.ExtendedProperties.Add("Generator_UserColumnName", "48_Dom_Receptor_localidad")
+            MyBase.Columns.Add(Me.column48_Dom_Receptor_localidad)
+            Me.column49_Dom_Receptor_referencia = New Global.System.Data.DataColumn("49_Dom_Receptor_referencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column49_Dom_Receptor_referencia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column49_Dom_Receptor_referencia")
+            Me.column49_Dom_Receptor_referencia.ExtendedProperties.Add("Generator_UserColumnName", "49_Dom_Receptor_referencia")
+            MyBase.Columns.Add(Me.column49_Dom_Receptor_referencia)
+            Me.column50_Dom_Receptor_municipio = New Global.System.Data.DataColumn("50_Dom_Receptor_municipio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column50_Dom_Receptor_municipio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column50_Dom_Receptor_municipio")
+            Me.column50_Dom_Receptor_municipio.ExtendedProperties.Add("Generator_UserColumnName", "50_Dom_Receptor_municipio")
+            MyBase.Columns.Add(Me.column50_Dom_Receptor_municipio)
+            Me.column51_Dom_Receptor_estado = New Global.System.Data.DataColumn("51_Dom_Receptor_estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column51_Dom_Receptor_estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column51_Dom_Receptor_estado")
+            Me.column51_Dom_Receptor_estado.ExtendedProperties.Add("Generator_UserColumnName", "51_Dom_Receptor_estado")
+            MyBase.Columns.Add(Me.column51_Dom_Receptor_estado)
+            Me.column52_Dom_Receptor_pais = New Global.System.Data.DataColumn("52_Dom_Receptor_pais", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column52_Dom_Receptor_pais.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column52_Dom_Receptor_pais")
+            Me.column52_Dom_Receptor_pais.ExtendedProperties.Add("Generator_UserColumnName", "52_Dom_Receptor_pais")
+            MyBase.Columns.Add(Me.column52_Dom_Receptor_pais)
+            Me.column53_Dom_Receptor_codigoPostal = New Global.System.Data.DataColumn("53_Dom_Receptor_codigoPostal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column53_Dom_Receptor_codigoPostal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column53_Dom_Receptor_codigoPostal")
+            Me.column53_Dom_Receptor_codigoPostal.ExtendedProperties.Add("Generator_UserColumnName", "53_Dom_Receptor_codigoPostal")
+            MyBase.Columns.Add(Me.column53_Dom_Receptor_codigoPostal)
+            Me.column54_Monto_SubTotal = New Global.System.Data.DataColumn("54_Monto_SubTotal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column54_Monto_SubTotal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column54_Monto_SubTotal")
+            Me.column54_Monto_SubTotal.ExtendedProperties.Add("Generator_UserColumnName", "54_Monto_SubTotal")
+            MyBase.Columns.Add(Me.column54_Monto_SubTotal)
+            Me.column55_Monto_IVA = New Global.System.Data.DataColumn("55_Monto_IVA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column55_Monto_IVA.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column55_Monto_IVA")
+            Me.column55_Monto_IVA.ExtendedProperties.Add("Generator_UserColumnName", "55_Monto_IVA")
+            MyBase.Columns.Add(Me.column55_Monto_IVA)
+            Me.column56_Monto_Total = New Global.System.Data.DataColumn("56_Monto_Total", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column56_Monto_Total.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column56_Monto_Total")
+            Me.column56_Monto_Total.ExtendedProperties.Add("Generator_UserColumnName", "56_Monto_Total")
+            MyBase.Columns.Add(Me.column56_Monto_Total)
+            Me.column57_Estado = New Global.System.Data.DataColumn("57_Estado", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.column57_Estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column57_Estado")
+            Me.column57_Estado.ExtendedProperties.Add("Generator_UserColumnName", "57_Estado")
+            MyBase.Columns.Add(Me.column57_Estado)
+            Me.column58_TipoCFD = New Global.System.Data.DataColumn("58_TipoCFD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column58_TipoCFD.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column58_TipoCFD")
+            Me.column58_TipoCFD.ExtendedProperties.Add("Generator_UserColumnName", "58_TipoCFD")
+            MyBase.Columns.Add(Me.column58_TipoCFD)
+            Me.column59_Notas = New Global.System.Data.DataColumn("59_Notas", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column59_Notas.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column59_Notas")
+            Me.column59_Notas.ExtendedProperties.Add("Generator_UserColumnName", "59_Notas")
+            MyBase.Columns.Add(Me.column59_Notas)
+            Me.column60_Notas02 = New Global.System.Data.DataColumn("60_Notas02", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column60_Notas02.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column60_Notas02")
+            Me.column60_Notas02.ExtendedProperties.Add("Generator_UserColumnName", "60_Notas02")
+            MyBase.Columns.Add(Me.column60_Notas02)
+            Me.column61_Notas03 = New Global.System.Data.DataColumn("61_Notas03", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column61_Notas03.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column61_Notas03")
+            Me.column61_Notas03.ExtendedProperties.Add("Generator_UserColumnName", "61_Notas03")
+            MyBase.Columns.Add(Me.column61_Notas03)
+            Me.column62_TradingPartner_Prov = New Global.System.Data.DataColumn("62_TradingPartner_Prov", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column62_TradingPartner_Prov.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column62_TradingPartner_Prov")
+            Me.column62_TradingPartner_Prov.ExtendedProperties.Add("Generator_UserColumnName", "62_TradingPartner_Prov")
+            MyBase.Columns.Add(Me.column62_TradingPartner_Prov)
+            Me.column63_Calif_TradingPartner_Prov = New Global.System.Data.DataColumn("63_Calif_TradingPartner_Prov", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column63_Calif_TradingPartner_Prov.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column63_Calif_TradingPartner_Prov")
+            Me.column63_Calif_TradingPartner_Prov.ExtendedProperties.Add("Generator_UserColumnName", "63_Calif_TradingPartner_Prov")
+            MyBase.Columns.Add(Me.column63_Calif_TradingPartner_Prov)
+            Me.column64_EAN_Proveedor = New Global.System.Data.DataColumn("64_EAN_Proveedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column64_EAN_Proveedor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column64_EAN_Proveedor")
+            Me.column64_EAN_Proveedor.ExtendedProperties.Add("Generator_UserColumnName", "64_EAN_Proveedor")
+            MyBase.Columns.Add(Me.column64_EAN_Proveedor)
+            Me.column65_Numero_Factura = New Global.System.Data.DataColumn("65_Numero_Factura", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column65_Numero_Factura.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column65_Numero_Factura")
+            Me.column65_Numero_Factura.ExtendedProperties.Add("Generator_UserColumnName", "65_Numero_Factura")
+            MyBase.Columns.Add(Me.column65_Numero_Factura)
+            Me.column66_Numero_OrdenCompra = New Global.System.Data.DataColumn("66_Numero_OrdenCompra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column66_Numero_OrdenCompra.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column66_Numero_OrdenCompra")
+            Me.column66_Numero_OrdenCompra.ExtendedProperties.Add("Generator_UserColumnName", "66_Numero_OrdenCompra")
+            MyBase.Columns.Add(Me.column66_Numero_OrdenCompra)
+            Me.column67_Fecha_OrdenCompra = New Global.System.Data.DataColumn("67_Fecha_OrdenCompra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column67_Fecha_OrdenCompra.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column67_Fecha_OrdenCompra")
+            Me.column67_Fecha_OrdenCompra.ExtendedProperties.Add("Generator_UserColumnName", "67_Fecha_OrdenCompra")
+            MyBase.Columns.Add(Me.column67_Fecha_OrdenCompra)
+            Me.column68_Numero_Proveedor = New Global.System.Data.DataColumn("68_Numero_Proveedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column68_Numero_Proveedor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column68_Numero_Proveedor")
+            Me.column68_Numero_Proveedor.ExtendedProperties.Add("Generator_UserColumnName", "68_Numero_Proveedor")
+            MyBase.Columns.Add(Me.column68_Numero_Proveedor)
+            Me.column69_EAN_Tienda = New Global.System.Data.DataColumn("69_EAN_Tienda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column69_EAN_Tienda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column69_EAN_Tienda")
+            Me.column69_EAN_Tienda.ExtendedProperties.Add("Generator_UserColumnName", "69_EAN_Tienda")
+            MyBase.Columns.Add(Me.column69_EAN_Tienda)
+            Me.column70_Numero_Tienda = New Global.System.Data.DataColumn("70_Numero_Tienda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column70_Numero_Tienda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column70_Numero_Tienda")
+            Me.column70_Numero_Tienda.ExtendedProperties.Add("Generator_UserColumnName", "70_Numero_Tienda")
+            MyBase.Columns.Add(Me.column70_Numero_Tienda)
+            Me.column71_Nombre_Tienda = New Global.System.Data.DataColumn("71_Nombre_Tienda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column71_Nombre_Tienda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column71_Nombre_Tienda")
+            Me.column71_Nombre_Tienda.ExtendedProperties.Add("Generator_UserColumnName", "71_Nombre_Tienda")
+            MyBase.Columns.Add(Me.column71_Nombre_Tienda)
+            Me.column72_Dom_Tienda_calle = New Global.System.Data.DataColumn("72_Dom_Tienda_calle", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column72_Dom_Tienda_calle.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column72_Dom_Tienda_calle")
+            Me.column72_Dom_Tienda_calle.ExtendedProperties.Add("Generator_UserColumnName", "72_Dom_Tienda_calle")
+            MyBase.Columns.Add(Me.column72_Dom_Tienda_calle)
+            Me.column73_Dom_Tienda_noExterior = New Global.System.Data.DataColumn("73_Dom_Tienda_noExterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column73_Dom_Tienda_noExterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column73_Dom_Tienda_noExterior")
+            Me.column73_Dom_Tienda_noExterior.ExtendedProperties.Add("Generator_UserColumnName", "73_Dom_Tienda_noExterior")
+            MyBase.Columns.Add(Me.column73_Dom_Tienda_noExterior)
+            Me.column74_Dom_Tienda_noInterior = New Global.System.Data.DataColumn("74_Dom_Tienda_noInterior", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column74_Dom_Tienda_noInterior.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column74_Dom_Tienda_noInterior")
+            Me.column74_Dom_Tienda_noInterior.ExtendedProperties.Add("Generator_UserColumnName", "74_Dom_Tienda_noInterior")
+            MyBase.Columns.Add(Me.column74_Dom_Tienda_noInterior)
+            Me.column75_Dom_Tienda_colonia = New Global.System.Data.DataColumn("75_Dom_Tienda_colonia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column75_Dom_Tienda_colonia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column75_Dom_Tienda_colonia")
+            Me.column75_Dom_Tienda_colonia.ExtendedProperties.Add("Generator_UserColumnName", "75_Dom_Tienda_colonia")
+            MyBase.Columns.Add(Me.column75_Dom_Tienda_colonia)
+            Me.column76_Dom_Tienda_localidad = New Global.System.Data.DataColumn("76_Dom_Tienda_localidad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column76_Dom_Tienda_localidad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column76_Dom_Tienda_localidad")
+            Me.column76_Dom_Tienda_localidad.ExtendedProperties.Add("Generator_UserColumnName", "76_Dom_Tienda_localidad")
+            MyBase.Columns.Add(Me.column76_Dom_Tienda_localidad)
+            Me.column77_Dom_Tienda_referencia = New Global.System.Data.DataColumn("77_Dom_Tienda_referencia", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column77_Dom_Tienda_referencia.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column77_Dom_Tienda_referencia")
+            Me.column77_Dom_Tienda_referencia.ExtendedProperties.Add("Generator_UserColumnName", "77_Dom_Tienda_referencia")
+            MyBase.Columns.Add(Me.column77_Dom_Tienda_referencia)
+            Me.column78_Dom_Tienda_municipio = New Global.System.Data.DataColumn("78_Dom_Tienda_municipio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column78_Dom_Tienda_municipio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column78_Dom_Tienda_municipio")
+            Me.column78_Dom_Tienda_municipio.ExtendedProperties.Add("Generator_UserColumnName", "78_Dom_Tienda_municipio")
+            MyBase.Columns.Add(Me.column78_Dom_Tienda_municipio)
+            Me.column79_Dom_Tienda_estado = New Global.System.Data.DataColumn("79_Dom_Tienda_estado", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column79_Dom_Tienda_estado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column79_Dom_Tienda_estado")
+            Me.column79_Dom_Tienda_estado.ExtendedProperties.Add("Generator_UserColumnName", "79_Dom_Tienda_estado")
+            MyBase.Columns.Add(Me.column79_Dom_Tienda_estado)
+            Me.column80_Dom_Tienda_pais = New Global.System.Data.DataColumn("80_Dom_Tienda_pais", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column80_Dom_Tienda_pais.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column80_Dom_Tienda_pais")
+            Me.column80_Dom_Tienda_pais.ExtendedProperties.Add("Generator_UserColumnName", "80_Dom_Tienda_pais")
+            MyBase.Columns.Add(Me.column80_Dom_Tienda_pais)
+            Me.column81_Dom_Tienda_codigoPostal = New Global.System.Data.DataColumn("81_Dom_Tienda_codigoPostal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column81_Dom_Tienda_codigoPostal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column81_Dom_Tienda_codigoPostal")
+            Me.column81_Dom_Tienda_codigoPostal.ExtendedProperties.Add("Generator_UserColumnName", "81_Dom_Tienda_codigoPostal")
+            MyBase.Columns.Add(Me.column81_Dom_Tienda_codigoPostal)
+            Me.column82_RFC_Tienda = New Global.System.Data.DataColumn("82_RFC_Tienda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column82_RFC_Tienda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column82_RFC_Tienda")
+            Me.column82_RFC_Tienda.ExtendedProperties.Add("Generator_UserColumnName", "82_RFC_Tienda")
+            MyBase.Columns.Add(Me.column82_RFC_Tienda)
+            Me.column83_Cod_Moneda = New Global.System.Data.DataColumn("83_Cod_Moneda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column83_Cod_Moneda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column83_Cod_Moneda")
+            Me.column83_Cod_Moneda.ExtendedProperties.Add("Generator_UserColumnName", "83_Cod_Moneda")
+            MyBase.Columns.Add(Me.column83_Cod_Moneda)
+            Me.column84_Dias_Pago = New Global.System.Data.DataColumn("84_Dias_Pago", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            Me.column84_Dias_Pago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column84_Dias_Pago")
+            Me.column84_Dias_Pago.ExtendedProperties.Add("Generator_UserColumnName", "84_Dias_Pago")
+            MyBase.Columns.Add(Me.column84_Dias_Pago)
+            Me.column85_Porc_Desc_ProntoPago = New Global.System.Data.DataColumn("85_Porc_Desc_ProntoPago", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column85_Porc_Desc_ProntoPago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column85_Porc_Desc_ProntoPago")
+            Me.column85_Porc_Desc_ProntoPago.ExtendedProperties.Add("Generator_UserColumnName", "85_Porc_Desc_ProntoPago")
+            MyBase.Columns.Add(Me.column85_Porc_Desc_ProntoPago)
+            Me.column86_Monto_Desc_ProntoPago = New Global.System.Data.DataColumn("86_Monto_Desc_ProntoPago", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column86_Monto_Desc_ProntoPago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column86_Monto_Desc_ProntoPago")
+            Me.column86_Monto_Desc_ProntoPago.ExtendedProperties.Add("Generator_UserColumnName", "86_Monto_Desc_ProntoPago")
+            MyBase.Columns.Add(Me.column86_Monto_Desc_ProntoPago)
+            Me.column87_Cod_Descuento = New Global.System.Data.DataColumn("87_Cod_Descuento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column87_Cod_Descuento.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column87_Cod_Descuento")
+            Me.column87_Cod_Descuento.ExtendedProperties.Add("Generator_UserColumnName", "87_Cod_Descuento")
+            MyBase.Columns.Add(Me.column87_Cod_Descuento)
+            Me.column88_Porc_Descuento = New Global.System.Data.DataColumn("88_Porc_Descuento", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column88_Porc_Descuento.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column88_Porc_Descuento")
+            Me.column88_Porc_Descuento.ExtendedProperties.Add("Generator_UserColumnName", "88_Porc_Descuento")
+            MyBase.Columns.Add(Me.column88_Porc_Descuento)
+            Me.column89_Monto_Descuento = New Global.System.Data.DataColumn("89_Monto_Descuento", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column89_Monto_Descuento.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column89_Monto_Descuento")
+            Me.column89_Monto_Descuento.ExtendedProperties.Add("Generator_UserColumnName", "89_Monto_Descuento")
+            MyBase.Columns.Add(Me.column89_Monto_Descuento)
+            Me.column90_Cantidad_LineasFactura = New Global.System.Data.DataColumn("90_Cantidad_LineasFactura", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column90_Cantidad_LineasFactura.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column90_Cantidad_LineasFactura")
+            Me.column90_Cantidad_LineasFactura.ExtendedProperties.Add("Generator_UserColumnName", "90_Cantidad_LineasFactura")
+            MyBase.Columns.Add(Me.column90_Cantidad_LineasFactura)
+            Me.column91_Fecha_Vencimiento = New Global.System.Data.DataColumn("91_Fecha_Vencimiento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column91_Fecha_Vencimiento.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column91_Fecha_Vencimiento")
+            Me.column91_Fecha_Vencimiento.ExtendedProperties.Add("Generator_UserColumnName", "91_Fecha_Vencimiento")
+            MyBase.Columns.Add(Me.column91_Fecha_Vencimiento)
+            Me.column92_Cod_Zona = New Global.System.Data.DataColumn("92_Cod_Zona", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column92_Cod_Zona.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column92_Cod_Zona")
+            Me.column92_Cod_Zona.ExtendedProperties.Add("Generator_UserColumnName", "92_Cod_Zona")
+            MyBase.Columns.Add(Me.column92_Cod_Zona)
+            Me.column93_Numero_Receptor = New Global.System.Data.DataColumn("93_Numero_Receptor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column93_Numero_Receptor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column93_Numero_Receptor")
+            Me.column93_Numero_Receptor.ExtendedProperties.Add("Generator_UserColumnName", "93_Numero_Receptor")
+            MyBase.Columns.Add(Me.column93_Numero_Receptor)
+            Me.column94_Cod_Vendedor = New Global.System.Data.DataColumn("94_Cod_Vendedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column94_Cod_Vendedor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column94_Cod_Vendedor")
+            Me.column94_Cod_Vendedor.ExtendedProperties.Add("Generator_UserColumnName", "94_Cod_Vendedor")
+            MyBase.Columns.Add(Me.column94_Cod_Vendedor)
+            Me.column95_Nombre_Vendedor = New Global.System.Data.DataColumn("95_Nombre_Vendedor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column95_Nombre_Vendedor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column95_Nombre_Vendedor")
+            Me.column95_Nombre_Vendedor.ExtendedProperties.Add("Generator_UserColumnName", "95_Nombre_Vendedor")
+            MyBase.Columns.Add(Me.column95_Nombre_Vendedor)
+            Me.column96_Via_Embarque = New Global.System.Data.DataColumn("96_Via_Embarque", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column96_Via_Embarque.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column96_Via_Embarque")
+            Me.column96_Via_Embarque.ExtendedProperties.Add("Generator_UserColumnName", "96_Via_Embarque")
+            MyBase.Columns.Add(Me.column96_Via_Embarque)
+            Me.column97_Condiciones_Pago = New Global.System.Data.DataColumn("97_Condiciones_Pago", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column97_Condiciones_Pago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column97_Condiciones_Pago")
+            Me.column97_Condiciones_Pago.ExtendedProperties.Add("Generator_UserColumnName", "97_Condiciones_Pago")
+            MyBase.Columns.Add(Me.column97_Condiciones_Pago)
+            Me.column98_Numero_Pedido = New Global.System.Data.DataColumn("98_Numero_Pedido", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column98_Numero_Pedido.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column98_Numero_Pedido")
+            Me.column98_Numero_Pedido.ExtendedProperties.Add("Generator_UserColumnName", "98_Numero_Pedido")
+            MyBase.Columns.Add(Me.column98_Numero_Pedido)
+            Me.column99_Fecha_Pedido = New Global.System.Data.DataColumn("99_Fecha_Pedido", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column99_Fecha_Pedido.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column99_Fecha_Pedido")
+            Me.column99_Fecha_Pedido.ExtendedProperties.Add("Generator_UserColumnName", "99_Fecha_Pedido")
+            MyBase.Columns.Add(Me.column99_Fecha_Pedido)
+            Me.column100_Letras_Monto_Total = New Global.System.Data.DataColumn("100_Letras_Monto_Total", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column100_Letras_Monto_Total.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column100_Letras_Monto_Total")
+            Me.column100_Letras_Monto_Total.ExtendedProperties.Add("Generator_UserColumnName", "100_Letras_Monto_Total")
+            MyBase.Columns.Add(Me.column100_Letras_Monto_Total)
+            Me.column101_Cantidad_Unidades = New Global.System.Data.DataColumn("101_Cantidad_Unidades", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column101_Cantidad_Unidades.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column101_Cantidad_Unidades")
+            Me.column101_Cantidad_Unidades.ExtendedProperties.Add("Generator_UserColumnName", "101_Cantidad_Unidades")
+            MyBase.Columns.Add(Me.column101_Cantidad_Unidades)
+            Me.column102_Cantidad_empaques = New Global.System.Data.DataColumn("102_Cantidad_empaques", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column102_Cantidad_empaques.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column102_Cantidad_empaques")
+            Me.column102_Cantidad_empaques.ExtendedProperties.Add("Generator_UserColumnName", "102_Cantidad_empaques")
+            MyBase.Columns.Add(Me.column102_Cantidad_empaques)
+            Me.column103_EAN_Receptor = New Global.System.Data.DataColumn("103_EAN_Receptor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column103_EAN_Receptor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column103_EAN_Receptor")
+            Me.column103_EAN_Receptor.ExtendedProperties.Add("Generator_UserColumnName", "103_EAN_Receptor")
+            MyBase.Columns.Add(Me.column103_EAN_Receptor)
+            Me.column104_EAN_LugarExpide = New Global.System.Data.DataColumn("104_EAN_LugarExpide", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column104_EAN_LugarExpide.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column104_EAN_LugarExpide")
+            Me.column104_EAN_LugarExpide.ExtendedProperties.Add("Generator_UserColumnName", "104_EAN_LugarExpide")
+            MyBase.Columns.Add(Me.column104_EAN_LugarExpide)
+            Me.column105_IEPS_Id = New Global.System.Data.DataColumn("105_IEPS_Id", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column105_IEPS_Id.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column105_IEPS_Id")
+            Me.column105_IEPS_Id.ExtendedProperties.Add("Generator_UserColumnName", "105_IEPS_Id")
+            MyBase.Columns.Add(Me.column105_IEPS_Id)
+            Me.column106_Estatus = New Global.System.Data.DataColumn("106_Estatus", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column106_Estatus.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column106_Estatus")
+            Me.column106_Estatus.ExtendedProperties.Add("Generator_UserColumnName", "106_Estatus")
+            MyBase.Columns.Add(Me.column106_Estatus)
+            Me.column107_Numero_Emisor = New Global.System.Data.DataColumn("107_Numero_Emisor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column107_Numero_Emisor.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column107_Numero_Emisor")
+            Me.column107_Numero_Emisor.ExtendedProperties.Add("Generator_UserColumnName", "107_Numero_Emisor")
+            MyBase.Columns.Add(Me.column107_Numero_Emisor)
+            Me.column108_Monto_Merma = New Global.System.Data.DataColumn("108_Monto_Merma", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column108_Monto_Merma.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column108_Monto_Merma")
+            Me.column108_Monto_Merma.ExtendedProperties.Add("Generator_UserColumnName", "108_Monto_Merma")
+            MyBase.Columns.Add(Me.column108_Monto_Merma)
+            Me.column109_Monto_SubTotal_ApIVA = New Global.System.Data.DataColumn("109_Monto_SubTotal_ApIVA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column109_Monto_SubTotal_ApIVA.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column109_Monto_SubTotal_ApIVA")
+            Me.column109_Monto_SubTotal_ApIVA.ExtendedProperties.Add("Generator_UserColumnName", "109_Monto_SubTotal_ApIVA")
+            MyBase.Columns.Add(Me.column109_Monto_SubTotal_ApIVA)
+            Me.column110_Transportista = New Global.System.Data.DataColumn("110_Transportista", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column110_Transportista.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column110_Transportista")
+            Me.column110_Transportista.ExtendedProperties.Add("Generator_UserColumnName", "110_Transportista")
+            MyBase.Columns.Add(Me.column110_Transportista)
+            Me.column111_Numero_Solicitud = New Global.System.Data.DataColumn("111_Numero_Solicitud", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column111_Numero_Solicitud.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column111_Numero_Solicitud")
+            Me.column111_Numero_Solicitud.ExtendedProperties.Add("Generator_UserColumnName", "111_Numero_Solicitud")
+            MyBase.Columns.Add(Me.column111_Numero_Solicitud)
+            Me.column112_Desc_Moneda = New Global.System.Data.DataColumn("112_Desc_Moneda", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column112_Desc_Moneda.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column112_Desc_Moneda")
+            Me.column112_Desc_Moneda.ExtendedProperties.Add("Generator_UserColumnName", "112_Desc_Moneda")
+            MyBase.Columns.Add(Me.column112_Desc_Moneda)
+            Me.column113_Misc01 = New Global.System.Data.DataColumn("113_Misc01", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column113_Misc01.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column113_Misc01")
+            Me.column113_Misc01.ExtendedProperties.Add("Generator_UserColumnName", "113_Misc01")
+            MyBase.Columns.Add(Me.column113_Misc01)
+            Me.column114_Misc02 = New Global.System.Data.DataColumn("114_Misc02", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column114_Misc02.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column114_Misc02")
+            Me.column114_Misc02.ExtendedProperties.Add("Generator_UserColumnName", "114_Misc02")
+            MyBase.Columns.Add(Me.column114_Misc02)
+            Me.column115_Misc03 = New Global.System.Data.DataColumn("115_Misc03", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column115_Misc03.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column115_Misc03")
+            Me.column115_Misc03.ExtendedProperties.Add("Generator_UserColumnName", "115_Misc03")
+            MyBase.Columns.Add(Me.column115_Misc03)
+            Me.column116_Misc04 = New Global.System.Data.DataColumn("116_Misc04", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column116_Misc04.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column116_Misc04")
+            Me.column116_Misc04.ExtendedProperties.Add("Generator_UserColumnName", "116_Misc04")
+            MyBase.Columns.Add(Me.column116_Misc04)
+            Me.column117_Misc05 = New Global.System.Data.DataColumn("117_Misc05", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column117_Misc05.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column117_Misc05")
+            Me.column117_Misc05.ExtendedProperties.Add("Generator_UserColumnName", "117_Misc05")
+            MyBase.Columns.Add(Me.column117_Misc05)
+            Me.column118_Misc06 = New Global.System.Data.DataColumn("118_Misc06", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column118_Misc06.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column118_Misc06")
+            Me.column118_Misc06.ExtendedProperties.Add("Generator_UserColumnName", "118_Misc06")
+            MyBase.Columns.Add(Me.column118_Misc06)
+            Me.column119_Misc07 = New Global.System.Data.DataColumn("119_Misc07", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column119_Misc07.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column119_Misc07")
+            Me.column119_Misc07.ExtendedProperties.Add("Generator_UserColumnName", "119_Misc07")
+            MyBase.Columns.Add(Me.column119_Misc07)
+            Me.column120_Misc08 = New Global.System.Data.DataColumn("120_Misc08", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column120_Misc08.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column120_Misc08")
+            Me.column120_Misc08.ExtendedProperties.Add("Generator_UserColumnName", "120_Misc08")
+            MyBase.Columns.Add(Me.column120_Misc08)
+            Me.column121_Misc09 = New Global.System.Data.DataColumn("121_Misc09", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column121_Misc09.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column121_Misc09")
+            Me.column121_Misc09.ExtendedProperties.Add("Generator_UserColumnName", "121_Misc09")
+            MyBase.Columns.Add(Me.column121_Misc09)
+            Me.column122_Misc10 = New Global.System.Data.DataColumn("122_Misc10", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column122_Misc10.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column122_Misc10")
+            Me.column122_Misc10.ExtendedProperties.Add("Generator_UserColumnName", "122_Misc10")
+            MyBase.Columns.Add(Me.column122_Misc10)
+            Me.column123_Misc11 = New Global.System.Data.DataColumn("123_Misc11", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column123_Misc11.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column123_Misc11")
+            Me.column123_Misc11.ExtendedProperties.Add("Generator_UserColumnName", "123_Misc11")
+            MyBase.Columns.Add(Me.column123_Misc11)
+            Me.column124_Misc12 = New Global.System.Data.DataColumn("124_Misc12", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column124_Misc12.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column124_Misc12")
+            Me.column124_Misc12.ExtendedProperties.Add("Generator_UserColumnName", "124_Misc12")
+            MyBase.Columns.Add(Me.column124_Misc12)
+            Me.column125_Misc13 = New Global.System.Data.DataColumn("125_Misc13", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column125_Misc13.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column125_Misc13")
+            Me.column125_Misc13.ExtendedProperties.Add("Generator_UserColumnName", "125_Misc13")
+            MyBase.Columns.Add(Me.column125_Misc13)
+            Me.column126_Misc14 = New Global.System.Data.DataColumn("126_Misc14", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column126_Misc14.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column126_Misc14")
+            Me.column126_Misc14.ExtendedProperties.Add("Generator_UserColumnName", "126_Misc14")
+            MyBase.Columns.Add(Me.column126_Misc14)
+            Me.column127_Misc15 = New Global.System.Data.DataColumn("127_Misc15", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column127_Misc15.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column127_Misc15")
+            Me.column127_Misc15.ExtendedProperties.Add("Generator_UserColumnName", "127_Misc15")
+            MyBase.Columns.Add(Me.column127_Misc15)
+            Me.column128_Misc16 = New Global.System.Data.DataColumn("128_Misc16", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column128_Misc16.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column128_Misc16")
+            Me.column128_Misc16.ExtendedProperties.Add("Generator_UserColumnName", "128_Misc16")
+            MyBase.Columns.Add(Me.column128_Misc16)
+            Me.column129_Misc17 = New Global.System.Data.DataColumn("129_Misc17", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column129_Misc17.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column129_Misc17")
+            Me.column129_Misc17.ExtendedProperties.Add("Generator_UserColumnName", "129_Misc17")
+            MyBase.Columns.Add(Me.column129_Misc17)
+            Me.column130_Misc18 = New Global.System.Data.DataColumn("130_Misc18", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column130_Misc18.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column130_Misc18")
+            Me.column130_Misc18.ExtendedProperties.Add("Generator_UserColumnName", "130_Misc18")
+            MyBase.Columns.Add(Me.column130_Misc18)
+            Me.column131_Misc19 = New Global.System.Data.DataColumn("131_Misc19", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column131_Misc19.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column131_Misc19")
+            Me.column131_Misc19.ExtendedProperties.Add("Generator_UserColumnName", "131_Misc19")
+            MyBase.Columns.Add(Me.column131_Misc19)
+            Me.column132_Misc20 = New Global.System.Data.DataColumn("132_Misc20", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column132_Misc20.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column132_Misc20")
+            Me.column132_Misc20.ExtendedProperties.Add("Generator_UserColumnName", "132_Misc20")
+            MyBase.Columns.Add(Me.column132_Misc20)
+            Me.column133_Misc21 = New Global.System.Data.DataColumn("133_Misc21", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column133_Misc21.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column133_Misc21")
+            Me.column133_Misc21.ExtendedProperties.Add("Generator_UserColumnName", "133_Misc21")
+            MyBase.Columns.Add(Me.column133_Misc21)
+            Me.column134_Misc22 = New Global.System.Data.DataColumn("134_Misc22", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column134_Misc22.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column134_Misc22")
+            Me.column134_Misc22.ExtendedProperties.Add("Generator_UserColumnName", "134_Misc22")
+            MyBase.Columns.Add(Me.column134_Misc22)
+            Me.column135_Misc23 = New Global.System.Data.DataColumn("135_Misc23", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column135_Misc23.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column135_Misc23")
+            Me.column135_Misc23.ExtendedProperties.Add("Generator_UserColumnName", "135_Misc23")
+            MyBase.Columns.Add(Me.column135_Misc23)
+            Me.column136_Misc24 = New Global.System.Data.DataColumn("136_Misc24", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column136_Misc24.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column136_Misc24")
+            Me.column136_Misc24.ExtendedProperties.Add("Generator_UserColumnName", "136_Misc24")
+            MyBase.Columns.Add(Me.column136_Misc24)
+            Me.column137_Misc25 = New Global.System.Data.DataColumn("137_Misc25", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column137_Misc25.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column137_Misc25")
+            Me.column137_Misc25.ExtendedProperties.Add("Generator_UserColumnName", "137_Misc25")
+            MyBase.Columns.Add(Me.column137_Misc25)
+            Me.column138_Misc26 = New Global.System.Data.DataColumn("138_Misc26", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column138_Misc26.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column138_Misc26")
+            Me.column138_Misc26.ExtendedProperties.Add("Generator_UserColumnName", "138_Misc26")
+            MyBase.Columns.Add(Me.column138_Misc26)
+            Me.column139_Misc27 = New Global.System.Data.DataColumn("139_Misc27", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column139_Misc27.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column139_Misc27")
+            Me.column139_Misc27.ExtendedProperties.Add("Generator_UserColumnName", "139_Misc27")
+            MyBase.Columns.Add(Me.column139_Misc27)
+            Me.column140_Misc28 = New Global.System.Data.DataColumn("140_Misc28", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column140_Misc28.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column140_Misc28")
+            Me.column140_Misc28.ExtendedProperties.Add("Generator_UserColumnName", "140_Misc28")
+            MyBase.Columns.Add(Me.column140_Misc28)
+            Me.column141_Misc29 = New Global.System.Data.DataColumn("141_Misc29", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column141_Misc29.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column141_Misc29")
+            Me.column141_Misc29.ExtendedProperties.Add("Generator_UserColumnName", "141_Misc29")
+            MyBase.Columns.Add(Me.column141_Misc29)
+            Me.column142_Misc30 = New Global.System.Data.DataColumn("142_Misc30", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column142_Misc30.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column142_Misc30")
+            Me.column142_Misc30.ExtendedProperties.Add("Generator_UserColumnName", "142_Misc30")
+            MyBase.Columns.Add(Me.column142_Misc30)
+            Me.column143_Misc31 = New Global.System.Data.DataColumn("143_Misc31", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column143_Misc31.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column143_Misc31")
+            Me.column143_Misc31.ExtendedProperties.Add("Generator_UserColumnName", "143_Misc31")
+            MyBase.Columns.Add(Me.column143_Misc31)
+            Me.column144_Misc32 = New Global.System.Data.DataColumn("144_Misc32", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column144_Misc32.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column144_Misc32")
+            Me.column144_Misc32.ExtendedProperties.Add("Generator_UserColumnName", "144_Misc32")
+            MyBase.Columns.Add(Me.column144_Misc32)
+            Me.column145_Misc33 = New Global.System.Data.DataColumn("145_Misc33", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column145_Misc33.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column145_Misc33")
+            Me.column145_Misc33.ExtendedProperties.Add("Generator_UserColumnName", "145_Misc33")
+            MyBase.Columns.Add(Me.column145_Misc33)
+            Me.column146_Misc34 = New Global.System.Data.DataColumn("146_Misc34", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column146_Misc34.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column146_Misc34")
+            Me.column146_Misc34.ExtendedProperties.Add("Generator_UserColumnName", "146_Misc34")
+            MyBase.Columns.Add(Me.column146_Misc34)
+            Me.column147_Misc35 = New Global.System.Data.DataColumn("147_Misc35", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column147_Misc35.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column147_Misc35")
+            Me.column147_Misc35.ExtendedProperties.Add("Generator_UserColumnName", "147_Misc35")
+            MyBase.Columns.Add(Me.column147_Misc35)
+            Me.column148_Misc36 = New Global.System.Data.DataColumn("148_Misc36", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column148_Misc36.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column148_Misc36")
+            Me.column148_Misc36.ExtendedProperties.Add("Generator_UserColumnName", "148_Misc36")
+            MyBase.Columns.Add(Me.column148_Misc36)
+            Me.column149_Misc37 = New Global.System.Data.DataColumn("149_Misc37", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column149_Misc37.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column149_Misc37")
+            Me.column149_Misc37.ExtendedProperties.Add("Generator_UserColumnName", "149_Misc37")
+            MyBase.Columns.Add(Me.column149_Misc37)
+            Me.column150_Misc38 = New Global.System.Data.DataColumn("150_Misc38", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column150_Misc38.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column150_Misc38")
+            Me.column150_Misc38.ExtendedProperties.Add("Generator_UserColumnName", "150_Misc38")
+            MyBase.Columns.Add(Me.column150_Misc38)
+            Me.column151_Misc39 = New Global.System.Data.DataColumn("151_Misc39", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column151_Misc39.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column151_Misc39")
+            Me.column151_Misc39.ExtendedProperties.Add("Generator_UserColumnName", "151_Misc39")
+            MyBase.Columns.Add(Me.column151_Misc39)
+            Me.column152_Misc40 = New Global.System.Data.DataColumn("152_Misc40", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column152_Misc40.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column152_Misc40")
+            Me.column152_Misc40.ExtendedProperties.Add("Generator_UserColumnName", "152_Misc40")
+            MyBase.Columns.Add(Me.column152_Misc40)
+            Me.column153_Misc41 = New Global.System.Data.DataColumn("153_Misc41", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column153_Misc41.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column153_Misc41")
+            Me.column153_Misc41.ExtendedProperties.Add("Generator_UserColumnName", "153_Misc41")
+            MyBase.Columns.Add(Me.column153_Misc41)
+            Me.column154_Misc42 = New Global.System.Data.DataColumn("154_Misc42", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column154_Misc42.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column154_Misc42")
+            Me.column154_Misc42.ExtendedProperties.Add("Generator_UserColumnName", "154_Misc42")
+            MyBase.Columns.Add(Me.column154_Misc42)
+            Me.column155_Misc43 = New Global.System.Data.DataColumn("155_Misc43", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column155_Misc43.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column155_Misc43")
+            Me.column155_Misc43.ExtendedProperties.Add("Generator_UserColumnName", "155_Misc43")
+            MyBase.Columns.Add(Me.column155_Misc43)
+            Me.column156_Misc44 = New Global.System.Data.DataColumn("156_Misc44", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column156_Misc44.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column156_Misc44")
+            Me.column156_Misc44.ExtendedProperties.Add("Generator_UserColumnName", "156_Misc44")
+            MyBase.Columns.Add(Me.column156_Misc44)
+            Me.column157_Misc45 = New Global.System.Data.DataColumn("157_Misc45", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column157_Misc45.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column157_Misc45")
+            Me.column157_Misc45.ExtendedProperties.Add("Generator_UserColumnName", "157_Misc45")
+            MyBase.Columns.Add(Me.column157_Misc45)
+            Me.column158_Misc46 = New Global.System.Data.DataColumn("158_Misc46", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column158_Misc46.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column158_Misc46")
+            Me.column158_Misc46.ExtendedProperties.Add("Generator_UserColumnName", "158_Misc46")
+            MyBase.Columns.Add(Me.column158_Misc46)
+            Me.column159_Misc47 = New Global.System.Data.DataColumn("159_Misc47", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column159_Misc47.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column159_Misc47")
+            Me.column159_Misc47.ExtendedProperties.Add("Generator_UserColumnName", "159_Misc47")
+            MyBase.Columns.Add(Me.column159_Misc47)
+            Me.column160_Misc48 = New Global.System.Data.DataColumn("160_Misc48", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column160_Misc48.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column160_Misc48")
+            Me.column160_Misc48.ExtendedProperties.Add("Generator_UserColumnName", "160_Misc48")
+            MyBase.Columns.Add(Me.column160_Misc48)
+            Me.column161_Misc49 = New Global.System.Data.DataColumn("161_Misc49", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column161_Misc49.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column161_Misc49")
+            Me.column161_Misc49.ExtendedProperties.Add("Generator_UserColumnName", "161_Misc49")
+            MyBase.Columns.Add(Me.column161_Misc49)
+            Me.column162_Misc50 = New Global.System.Data.DataColumn("162_Misc50", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column162_Misc50.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column162_Misc50")
+            Me.column162_Misc50.ExtendedProperties.Add("Generator_UserColumnName", "162_Misc50")
+            MyBase.Columns.Add(Me.column162_Misc50)
+            Me.column163_Porc_IVA = New Global.System.Data.DataColumn("163_Porc_IVA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column163_Porc_IVA.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column163_Porc_IVA")
+            Me.column163_Porc_IVA.ExtendedProperties.Add("Generator_UserColumnName", "163_Porc_IVA")
+            MyBase.Columns.Add(Me.column163_Porc_IVA)
+            Me.column164_Monto_IEPS = New Global.System.Data.DataColumn("164_Monto_IEPS", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column164_Monto_IEPS.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column164_Monto_IEPS")
+            Me.column164_Monto_IEPS.ExtendedProperties.Add("Generator_UserColumnName", "164_Monto_IEPS")
+            MyBase.Columns.Add(Me.column164_Monto_IEPS)
+            Me.column165_Document_Status = New Global.System.Data.DataColumn("165_Document_Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column165_Document_Status.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column165_Document_Status")
+            Me.column165_Document_Status.ExtendedProperties.Add("Generator_UserColumnName", "165_Document_Status")
+            MyBase.Columns.Add(Me.column165_Document_Status)
+            Me.column166_Delivery_Date = New Global.System.Data.DataColumn("166_Delivery_Date", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column166_Delivery_Date.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column166_Delivery_Date")
+            Me.column166_Delivery_Date.ExtendedProperties.Add("Generator_UserColumnName", "166_Delivery_Date")
+            MyBase.Columns.Add(Me.column166_Delivery_Date)
+            Me.column167_RegimentFiscal = New Global.System.Data.DataColumn("167_RegimentFiscal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column167_RegimentFiscal.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column167_RegimentFiscal")
+            Me.column167_RegimentFiscal.ExtendedProperties.Add("Generator_UserColumnName", "167_RegimentFiscal")
+            MyBase.Columns.Add(Me.column167_RegimentFiscal)
+            Me.column168_Num_CtaPago = New Global.System.Data.DataColumn("168_Num_CtaPago", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column168_Num_CtaPago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column168_Num_CtaPago")
+            Me.column168_Num_CtaPago.ExtendedProperties.Add("Generator_UserColumnName", "168_Num_CtaPago")
+            MyBase.Columns.Add(Me.column168_Num_CtaPago)
+            Me.column169_Num_contrarecibo = New Global.System.Data.DataColumn("169_Num_contrarecibo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column169_Num_contrarecibo.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column169_Num_contrarecibo")
+            Me.column169_Num_contrarecibo.ExtendedProperties.Add("Generator_UserColumnName", "169_Num_contrarecibo")
+            MyBase.Columns.Add(Me.column169_Num_contrarecibo)
+            Me.column170_Fecha_Num_contrarecibo = New Global.System.Data.DataColumn("170_Fecha_Num_contrarecibo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column170_Fecha_Num_contrarecibo.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column170_Fecha_Num_contrarecibo")
+            Me.column170_Fecha_Num_contrarecibo.ExtendedProperties.Add("Generator_UserColumnName", "170_Fecha_Num_contrarecibo")
+            MyBase.Columns.Add(Me.column170_Fecha_Num_contrarecibo)
+            Me.column171_Contacto_Comprar = New Global.System.Data.DataColumn("171_Contacto_Comprar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column171_Contacto_Comprar.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column171_Contacto_Comprar")
+            Me.column171_Contacto_Comprar.ExtendedProperties.Add("Generator_UserColumnName", "171_Contacto_Comprar")
+            MyBase.Columns.Add(Me.column171_Contacto_Comprar)
+            Me.column172_Customs_gln = New Global.System.Data.DataColumn("172_Customs_gln", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column172_Customs_gln.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column172_Customs_gln")
+            Me.column172_Customs_gln.ExtendedProperties.Add("Generator_UserColumnName", "172_Customs_gln")
+            MyBase.Columns.Add(Me.column172_Customs_gln)
+            Me.column173_Alternante_identificacion_gln = New Global.System.Data.DataColumn("173_Alternante_identificacion_gln", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column173_Alternante_identificacion_gln.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column173_Alternante_identificacion_gln")
+            Me.column173_Alternante_identificacion_gln.ExtendedProperties.Add("Generator_UserColumnName", "173_Alternante_identificacion_gln")
+            MyBase.Columns.Add(Me.column173_Alternante_identificacion_gln)
+            Me.column174_Nombre_Aduana = New Global.System.Data.DataColumn("174_Nombre_Aduana", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column174_Nombre_Aduana.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column174_Nombre_Aduana")
+            Me.column174_Nombre_Aduana.ExtendedProperties.Add("Generator_UserColumnName", "174_Nombre_Aduana")
+            MyBase.Columns.Add(Me.column174_Nombre_Aduana)
+            Me.column175_Nombre_Aduana_Ciudad = New Global.System.Data.DataColumn("175_Nombre_Aduana_Ciudad", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column175_Nombre_Aduana_Ciudad.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column175_Nombre_Aduana_Ciudad")
+            Me.column175_Nombre_Aduana_Ciudad.ExtendedProperties.Add("Generator_UserColumnName", "175_Nombre_Aduana_Ciudad")
+            MyBase.Columns.Add(Me.column175_Nombre_Aduana_Ciudad)
+            Me.column176_Func_Divisa = New Global.System.Data.DataColumn("176_Func_Divisa", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column176_Func_Divisa.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column176_Func_Divisa")
+            Me.column176_Func_Divisa.ExtendedProperties.Add("Generator_UserColumnName", "176_Func_Divisa")
+            MyBase.Columns.Add(Me.column176_Func_Divisa)
+            Me.column177_Tasa_Divisa = New Global.System.Data.DataColumn("177_Tasa_Divisa", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column177_Tasa_Divisa.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column177_Tasa_Divisa")
+            Me.column177_Tasa_Divisa.ExtendedProperties.Add("Generator_UserColumnName", "177_Tasa_Divisa")
+            MyBase.Columns.Add(Me.column177_Tasa_Divisa)
+            Me.column178_Ref_Tiempo_Pago = New Global.System.Data.DataColumn("178_Ref_Tiempo_Pago", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column178_Ref_Tiempo_Pago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column178_Ref_Tiempo_Pago")
+            Me.column178_Ref_Tiempo_Pago.ExtendedProperties.Add("Generator_UserColumnName", "178_Ref_Tiempo_Pago")
+            MyBase.Columns.Add(Me.column178_Ref_Tiempo_Pago)
+            Me.column179_Ref_Termino_Tiempo_Pago = New Global.System.Data.DataColumn("179_Ref_Termino_Tiempo_Pago", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column179_Ref_Termino_Tiempo_Pago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column179_Ref_Termino_Tiempo_Pago")
+            Me.column179_Ref_Termino_Tiempo_Pago.ExtendedProperties.Add("Generator_UserColumnName", "179_Ref_Termino_Tiempo_Pago")
+            MyBase.Columns.Add(Me.column179_Ref_Termino_Tiempo_Pago)
+            Me.column180_LugarExpedicion = New Global.System.Data.DataColumn("180_LugarExpedicion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column180_LugarExpedicion.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column180_LugarExpedicion")
+            Me.column180_LugarExpedicion.ExtendedProperties.Add("Generator_UserColumnName", "180_LugarExpedicion")
+            MyBase.Columns.Add(Me.column180_LugarExpedicion)
+            Me.column181_SerieFolioFiscalOrig = New Global.System.Data.DataColumn("181_SerieFolioFiscalOrig", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column181_SerieFolioFiscalOrig.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column181_SerieFolioFiscalOrig")
+            Me.column181_SerieFolioFiscalOrig.ExtendedProperties.Add("Generator_UserColumnName", "181_SerieFolioFiscalOrig")
+            MyBase.Columns.Add(Me.column181_SerieFolioFiscalOrig)
+            Me.column182_Tipo_Especial_de_Servicio = New Global.System.Data.DataColumn("182_Tipo_Especial_de_Servicio", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column182_Tipo_Especial_de_Servicio.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column182_Tipo_Especial_de_Servicio")
+            Me.column182_Tipo_Especial_de_Servicio.ExtendedProperties.Add("Generator_UserColumnName", "182_Tipo_Especial_de_Servicio")
+            MyBase.Columns.Add(Me.column182_Tipo_Especial_de_Servicio)
+            Me.column183_FechaFolioFiscalOrig = New Global.System.Data.DataColumn("183_FechaFolioFiscalOrig", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column183_FechaFolioFiscalOrig.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column183_FechaFolioFiscalOrig")
+            Me.column183_FechaFolioFiscalOrig.ExtendedProperties.Add("Generator_UserColumnName", "183_FechaFolioFiscalOrig")
+            MyBase.Columns.Add(Me.column183_FechaFolioFiscalOrig)
+            Me.column184_Porcentaje_no_aplicado = New Global.System.Data.DataColumn("184_Porcentaje_no_aplicado", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column184_Porcentaje_no_aplicado.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column184_Porcentaje_no_aplicado")
+            Me.column184_Porcentaje_no_aplicado.ExtendedProperties.Add("Generator_UserColumnName", "184_Porcentaje_no_aplicado")
+            MyBase.Columns.Add(Me.column184_Porcentaje_no_aplicado)
+            Me.column185_MontoFolioFiscalOrig = New Global.System.Data.DataColumn("185_MontoFolioFiscalOrig", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column185_MontoFolioFiscalOrig.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column185_MontoFolioFiscalOrig")
+            Me.column185_MontoFolioFiscalOrig.ExtendedProperties.Add("Generator_UserColumnName", "185_MontoFolioFiscalOrig")
+            MyBase.Columns.Add(Me.column185_MontoFolioFiscalOrig)
+            Me.column186_Monto_Total_Descuentos = New Global.System.Data.DataColumn("186_Monto_Total_Descuentos", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column186_Monto_Total_Descuentos.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column186_Monto_Total_Descuentos")
+            Me.column186_Monto_Total_Descuentos.ExtendedProperties.Add("Generator_UserColumnName", "186_Monto_Total_Descuentos")
+            MyBase.Columns.Add(Me.column186_Monto_Total_Descuentos)
+            Me.column187_Monto_Total_Pagar = New Global.System.Data.DataColumn("187_Monto_Total_Pagar", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column187_Monto_Total_Pagar.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column187_Monto_Total_Pagar")
+            Me.column187_Monto_Total_Pagar.ExtendedProperties.Add("Generator_UserColumnName", "187_Monto_Total_Pagar")
+            MyBase.Columns.Add(Me.column187_Monto_Total_Pagar)
+            Me.column188_Ano_Aprobacion = New Global.System.Data.DataColumn("188_Ano_Aprobacion", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column188_Ano_Aprobacion.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column188_Ano_Aprobacion")
+            Me.column188_Ano_Aprobacion.ExtendedProperties.Add("Generator_UserColumnName", "188_Ano_Aprobacion")
+            MyBase.Columns.Add(Me.column188_Ano_Aprobacion)
+            Me.column189_Motivo_Descuento = New Global.System.Data.DataColumn("189_Motivo_Descuento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column189_Motivo_Descuento.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column189_Motivo_Descuento")
+            Me.column189_Motivo_Descuento.ExtendedProperties.Add("Generator_UserColumnName", "189_Motivo_Descuento")
+            MyBase.Columns.Add(Me.column189_Motivo_Descuento)
+            Me.column190_Metodo_Pago = New Global.System.Data.DataColumn("190_Metodo_Pago", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column190_Metodo_Pago.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column190_Metodo_Pago")
+            Me.column190_Metodo_Pago.ExtendedProperties.Add("Generator_UserColumnName", "190_Metodo_Pago")
+            MyBase.Columns.Add(Me.column190_Metodo_Pago)
+            Me.column191_Efecto_Comprobante = New Global.System.Data.DataColumn("191_Efecto_Comprobante", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.column191_Efecto_Comprobante.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column191_Efecto_Comprobante")
+            Me.column191_Efecto_Comprobante.ExtendedProperties.Add("Generator_UserColumnName", "191_Efecto_Comprobante")
+            MyBase.Columns.Add(Me.column191_Efecto_Comprobante)
+            Me.column192_Monto_TotalImp_Retenidos = New Global.System.Data.DataColumn("192_Monto_TotalImp_Retenidos", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column192_Monto_TotalImp_Retenidos.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column192_Monto_TotalImp_Retenidos")
+            Me.column192_Monto_TotalImp_Retenidos.ExtendedProperties.Add("Generator_UserColumnName", "192_Monto_TotalImp_Retenidos")
+            MyBase.Columns.Add(Me.column192_Monto_TotalImp_Retenidos)
+            Me.column193_Monto_TotalImp_Trasladados = New Global.System.Data.DataColumn("193_Monto_TotalImp_Trasladados", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.column193_Monto_TotalImp_Trasladados.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column193_Monto_TotalImp_Trasladados")
+            Me.column193_Monto_TotalImp_Trasladados.ExtendedProperties.Add("Generator_UserColumnName", "193_Monto_TotalImp_Trasladados")
+            MyBase.Columns.Add(Me.column193_Monto_TotalImp_Trasladados)
+            Me.columnEncabezado_Procesado = New Global.System.Data.DataColumn("Encabezado_Procesado", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEncabezado_Procesado)
+            Me.columnGuid = New Global.System.Data.DataColumn("Guid", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGuid)
+            Me.columnFecha = New Global.System.Data.DataColumn("Fecha", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFecha)
+            Me.columnEMail1 = New Global.System.Data.DataColumn("EMail1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEMail1)
+            Me.columnEMail2 = New Global.System.Data.DataColumn("EMail2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEMail2)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.column1_Folio, Me.column27_Serie_Comprobante}, true))
+            Me.column1_Folio.AllowDBNull = false
+            Me.column2_Nombre_Emisor.MaxLength = 99
+            Me.column3_RFC_Emisor.MaxLength = 13
+            Me.column4_Dom_Emisor_calle.MaxLength = 99
+            Me.column5_Dom_Emisor_noExterior.MaxLength = 10
+            Me.column6_Dom_Emisor_noInterior.MaxLength = 10
+            Me.column7_Dom_Emisor_colonia.MaxLength = 55
+            Me.column8_Dom_Emisor_localidad.MaxLength = 55
+            Me.column9_Dom_Emisor_referencia.MaxLength = 55
+            Me.column10_Dom_Emisor_municipio.MaxLength = 55
+            Me.column11_Dom_Emisor_estado.MaxLength = 55
+            Me.column12_Dom_Emisor_pais.MaxLength = 55
+            Me.column13_Dom_Emisor_codigoPostal.MaxLength = 10
+            Me.column14_Tel_Emisor.MaxLength = 55
+            Me.column15_Dom_Sucursal_calle.MaxLength = 55
+            Me.column16_Dom_Sucursal_noExterior.MaxLength = 10
+            Me.column17_Dom_Sucursal_noInterior.MaxLength = 10
+            Me.column18_Dom_Sucursal_colonia.MaxLength = 55
+            Me.column19_Dom_Sucursal_localidad.MaxLength = 55
+            Me.column20_Dom_Sucursal_referencia.MaxLength = 55
+            Me.column21_Dom_Sucursal_municipio.MaxLength = 55
+            Me.column22_Dom_Sucursal_estado.MaxLength = 55
+            Me.column23_Dom_Sucursal_pais.MaxLength = 55
+            Me.column24_Dom_Sucursal_codigoPostal.MaxLength = 10
+            Me.column25_Tel_sucursal.MaxLength = 55
+            Me.column26_Version.MaxLength = 55
+            Me.column27_Serie_Comprobante.AllowDBNull = false
+            Me.column27_Serie_Comprobante.MaxLength = 55
+            Me.column29_FormaPago.MaxLength = 55
+            Me.column30_Fecha.MaxLength = 22
+            Me.column31_Hora.MaxLength = 22
+            Me.column32_Dom_LugarExpide_calle.MaxLength = 55
+            Me.column33_Dom_LugarExpide_noExterior.MaxLength = 10
+            Me.column34_Dom_LugarExpide_noInterior.MaxLength = 10
+            Me.column35_Dom_LugarExpide_colonia.MaxLength = 55
+            Me.column36_Dom_LugarExpide_localidad.MaxLength = 55
+            Me.column37_Dom_LugarExpide_referencia.MaxLength = 55
+            Me.column38_Dom_LugarExpide_municipio.MaxLength = 55
+            Me.column39_Dom_LugarExpide_estado.MaxLength = 55
+            Me.column40_Dom_LugarExpide_pais.MaxLength = 55
+            Me.column41_Dom_LugarExpide_codigoPostal.MaxLength = 10
+            Me.column42_Nombre_Receptor.MaxLength = 99
+            Me.column43_RFC_Receptor.MaxLength = 13
+            Me.column44_Dom_Receptor_calle.MaxLength = 55
+            Me.column45_Dom_Receptor_noExterior.MaxLength = 10
+            Me.column46_Dom_Receptor_noInterior.MaxLength = 10
+            Me.column47_Dom_Receptor_colonia.MaxLength = 55
+            Me.column48_Dom_Receptor_localidad.MaxLength = 55
+            Me.column49_Dom_Receptor_referencia.MaxLength = 55
+            Me.column50_Dom_Receptor_municipio.MaxLength = 55
+            Me.column51_Dom_Receptor_estado.MaxLength = 55
+            Me.column52_Dom_Receptor_pais.MaxLength = 55
+            Me.column53_Dom_Receptor_codigoPostal.MaxLength = 10
+            Me.column58_TipoCFD.MaxLength = 10
+            Me.column59_Notas.MaxLength = 99
+            Me.column60_Notas02.MaxLength = 99
+            Me.column61_Notas03.MaxLength = 99
+            Me.column62_TradingPartner_Prov.MaxLength = 99
+            Me.column63_Calif_TradingPartner_Prov.MaxLength = 99
+            Me.column64_EAN_Proveedor.MaxLength = 99
+            Me.column65_Numero_Factura.MaxLength = 22
+            Me.column66_Numero_OrdenCompra.MaxLength = 22
+            Me.column67_Fecha_OrdenCompra.MaxLength = 22
+            Me.column68_Numero_Proveedor.MaxLength = 22
+            Me.column69_EAN_Tienda.MaxLength = 22
+            Me.column70_Numero_Tienda.MaxLength = 22
+            Me.column71_Nombre_Tienda.MaxLength = 150
+            Me.column72_Dom_Tienda_calle.MaxLength = 55
+            Me.column73_Dom_Tienda_noExterior.MaxLength = 10
+            Me.column74_Dom_Tienda_noInterior.MaxLength = 10
+            Me.column75_Dom_Tienda_colonia.MaxLength = 55
+            Me.column76_Dom_Tienda_localidad.MaxLength = 55
+            Me.column77_Dom_Tienda_referencia.MaxLength = 55
+            Me.column78_Dom_Tienda_municipio.MaxLength = 55
+            Me.column79_Dom_Tienda_estado.MaxLength = 55
+            Me.column80_Dom_Tienda_pais.MaxLength = 55
+            Me.column81_Dom_Tienda_codigoPostal.MaxLength = 10
+            Me.column82_RFC_Tienda.MaxLength = 13
+            Me.column83_Cod_Moneda.MaxLength = 55
+            Me.column87_Cod_Descuento.MaxLength = 22
+            Me.column91_Fecha_Vencimiento.MaxLength = 22
+            Me.column92_Cod_Zona.MaxLength = 22
+            Me.column93_Numero_Receptor.MaxLength = 22
+            Me.column94_Cod_Vendedor.MaxLength = 22
+            Me.column95_Nombre_Vendedor.MaxLength = 22
+            Me.column96_Via_Embarque.MaxLength = 22
+            Me.column97_Condiciones_Pago.MaxLength = 22
+            Me.column98_Numero_Pedido.MaxLength = 22
+            Me.column99_Fecha_Pedido.MaxLength = 22
+            Me.column100_Letras_Monto_Total.MaxLength = 150
+            Me.column103_EAN_Receptor.MaxLength = 55
+            Me.column104_EAN_LugarExpide.MaxLength = 55
+            Me.column105_IEPS_Id.MaxLength = 55
+            Me.column106_Estatus.MaxLength = 55
+            Me.column107_Numero_Emisor.MaxLength = 55
+            Me.column110_Transportista.MaxLength = 99
+            Me.column111_Numero_Solicitud.MaxLength = 22
+            Me.column112_Desc_Moneda.MaxLength = 55
+            Me.column113_Misc01.MaxLength = 150
+            Me.column114_Misc02.MaxLength = 150
+            Me.column115_Misc03.MaxLength = 150
+            Me.column116_Misc04.MaxLength = 150
+            Me.column117_Misc05.MaxLength = 150
+            Me.column118_Misc06.MaxLength = 150
+            Me.column119_Misc07.MaxLength = 150
+            Me.column120_Misc08.MaxLength = 150
+            Me.column121_Misc09.MaxLength = 150
+            Me.column122_Misc10.MaxLength = 150
+            Me.column123_Misc11.MaxLength = 150
+            Me.column124_Misc12.MaxLength = 150
+            Me.column125_Misc13.MaxLength = 150
+            Me.column126_Misc14.MaxLength = 150
+            Me.column127_Misc15.MaxLength = 150
+            Me.column128_Misc16.MaxLength = 150
+            Me.column129_Misc17.MaxLength = 150
+            Me.column130_Misc18.MaxLength = 150
+            Me.column131_Misc19.MaxLength = 150
+            Me.column132_Misc20.MaxLength = 150
+            Me.column133_Misc21.MaxLength = 150
+            Me.column134_Misc22.MaxLength = 150
+            Me.column135_Misc23.MaxLength = 150
+            Me.column136_Misc24.MaxLength = 150
+            Me.column137_Misc25.MaxLength = 150
+            Me.column138_Misc26.MaxLength = 150
+            Me.column139_Misc27.MaxLength = 150
+            Me.column140_Misc28.MaxLength = 150
+            Me.column141_Misc29.MaxLength = 150
+            Me.column142_Misc30.MaxLength = 150
+            Me.column143_Misc31.MaxLength = 150
+            Me.column144_Misc32.MaxLength = 150
+            Me.column145_Misc33.MaxLength = 150
+            Me.column146_Misc34.MaxLength = 150
+            Me.column147_Misc35.MaxLength = 150
+            Me.column148_Misc36.MaxLength = 150
+            Me.column149_Misc37.MaxLength = 150
+            Me.column150_Misc38.MaxLength = 150
+            Me.column151_Misc39.MaxLength = 150
+            Me.column152_Misc40.MaxLength = 150
+            Me.column153_Misc41.MaxLength = 150
+            Me.column154_Misc42.MaxLength = 150
+            Me.column155_Misc43.MaxLength = 150
+            Me.column156_Misc44.MaxLength = 150
+            Me.column157_Misc45.MaxLength = 150
+            Me.column158_Misc46.MaxLength = 150
+            Me.column159_Misc47.MaxLength = 150
+            Me.column160_Misc48.MaxLength = 150
+            Me.column161_Misc49.MaxLength = 150
+            Me.column162_Misc50.MaxLength = 250
+            Me.column165_Document_Status.MaxLength = 55
+            Me.column166_Delivery_Date.MaxLength = 22
+            Me.column167_RegimentFiscal.MaxLength = 22
+            Me.column168_Num_CtaPago.MaxLength = 22
+            Me.column169_Num_contrarecibo.MaxLength = 22
+            Me.column170_Fecha_Num_contrarecibo.MaxLength = 22
+            Me.column171_Contacto_Comprar.MaxLength = 22
+            Me.column172_Customs_gln.MaxLength = 22
+            Me.column173_Alternante_identificacion_gln.MaxLength = 22
+            Me.column174_Nombre_Aduana.MaxLength = 22
+            Me.column175_Nombre_Aduana_Ciudad.MaxLength = 22
+            Me.column176_Func_Divisa.MaxLength = 55
+            Me.column178_Ref_Tiempo_Pago.MaxLength = 55
+            Me.column180_LugarExpedicion.MaxLength = 55
+            Me.column181_SerieFolioFiscalOrig.MaxLength = 55
+            Me.column182_Tipo_Especial_de_Servicio.MaxLength = 55
+            Me.column183_FechaFolioFiscalOrig.MaxLength = 22
+            Me.column189_Motivo_Descuento.MaxLength = 99
+            Me.column190_Metodo_Pago.MaxLength = 55
+            Me.column191_Efecto_Comprobante.MaxLength = 55
+            Me.columnGuid.MaxLength = 36
+            Me.columnEMail1.AllowDBNull = false
+            Me.columnEMail1.MaxLength = 50
+            Me.columnEMail2.AllowDBNull = false
+            Me.columnEMail2.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewRecibosDePagoRow() As RecibosDePagoRow
+            Return CType(Me.NewRow,RecibosDePagoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New RecibosDePagoRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(RecibosDePagoRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.RecibosDePagoRowChangedEvent) Is Nothing) Then
+                RaiseEvent RecibosDePagoRowChanged(Me, New RecibosDePagoRowChangeEvent(CType(e.Row,RecibosDePagoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.RecibosDePagoRowChangingEvent) Is Nothing) Then
+                RaiseEvent RecibosDePagoRowChanging(Me, New RecibosDePagoRowChangeEvent(CType(e.Row,RecibosDePagoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.RecibosDePagoRowDeletedEvent) Is Nothing) Then
+                RaiseEvent RecibosDePagoRowDeleted(Me, New RecibosDePagoRowChangeEvent(CType(e.Row,RecibosDePagoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.RecibosDePagoRowDeletingEvent) Is Nothing) Then
+                RaiseEvent RecibosDePagoRowDeleting(Me, New RecibosDePagoRowChangeEvent(CType(e.Row,RecibosDePagoRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveRecibosDePagoRow(ByVal row As RecibosDePagoRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As ProduccionDS = New ProduccionDS()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "RecibosDePagoDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -25594,6 +29206,5405 @@ Partial Public Class ProduccionDS
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class RecibosDePagoRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableRecibosDePago As RecibosDePagoDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableRecibosDePago = CType(Me.Table,RecibosDePagoDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _1_Folio() As Integer
+            Get
+                Return CType(Me(Me.tableRecibosDePago._1_FolioColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._1_FolioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _2_Nombre_Emisor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._2_Nombre_EmisorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '2_Nombre_Emisor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._2_Nombre_EmisorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _3_RFC_Emisor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._3_RFC_EmisorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '3_RFC_Emisor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._3_RFC_EmisorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _4_Dom_Emisor_calle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._4_Dom_Emisor_calleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '4_Dom_Emisor_calle' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._4_Dom_Emisor_calleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _5_Dom_Emisor_noExterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._5_Dom_Emisor_noExteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '5_Dom_Emisor_noExterior' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._5_Dom_Emisor_noExteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _6_Dom_Emisor_noInterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._6_Dom_Emisor_noInteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '6_Dom_Emisor_noInterior' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._6_Dom_Emisor_noInteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _7_Dom_Emisor_colonia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._7_Dom_Emisor_coloniaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '7_Dom_Emisor_colonia' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._7_Dom_Emisor_coloniaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _8_Dom_Emisor_localidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._8_Dom_Emisor_localidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '8_Dom_Emisor_localidad' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._8_Dom_Emisor_localidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _9_Dom_Emisor_referencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._9_Dom_Emisor_referenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '9_Dom_Emisor_referencia' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._9_Dom_Emisor_referenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _10_Dom_Emisor_municipio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._10_Dom_Emisor_municipioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '10_Dom_Emisor_municipio' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._10_Dom_Emisor_municipioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _11_Dom_Emisor_estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._11_Dom_Emisor_estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '11_Dom_Emisor_estado' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._11_Dom_Emisor_estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _12_Dom_Emisor_pais() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._12_Dom_Emisor_paisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '12_Dom_Emisor_pais' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._12_Dom_Emisor_paisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _13_Dom_Emisor_codigoPostal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._13_Dom_Emisor_codigoPostalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '13_Dom_Emisor_codigoPostal' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._13_Dom_Emisor_codigoPostalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _14_Tel_Emisor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._14_Tel_EmisorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '14_Tel_Emisor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._14_Tel_EmisorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _15_Dom_Sucursal_calle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._15_Dom_Sucursal_calleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '15_Dom_Sucursal_calle' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._15_Dom_Sucursal_calleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _16_Dom_Sucursal_noExterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._16_Dom_Sucursal_noExteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '16_Dom_Sucursal_noExterior' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._16_Dom_Sucursal_noExteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _17_Dom_Sucursal_noInterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._17_Dom_Sucursal_noInteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '17_Dom_Sucursal_noInterior' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._17_Dom_Sucursal_noInteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _18_Dom_Sucursal_colonia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._18_Dom_Sucursal_coloniaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '18_Dom_Sucursal_colonia' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._18_Dom_Sucursal_coloniaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _19_Dom_Sucursal_localidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._19_Dom_Sucursal_localidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '19_Dom_Sucursal_localidad' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._19_Dom_Sucursal_localidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _20_Dom_Sucursal_referencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._20_Dom_Sucursal_referenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '20_Dom_Sucursal_referencia' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._20_Dom_Sucursal_referenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _21_Dom_Sucursal_municipio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._21_Dom_Sucursal_municipioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '21_Dom_Sucursal_municipio' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._21_Dom_Sucursal_municipioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _22_Dom_Sucursal_estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._22_Dom_Sucursal_estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '22_Dom_Sucursal_estado' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._22_Dom_Sucursal_estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _23_Dom_Sucursal_pais() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._23_Dom_Sucursal_paisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '23_Dom_Sucursal_pais' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._23_Dom_Sucursal_paisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _24_Dom_Sucursal_codigoPostal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._24_Dom_Sucursal_codigoPostalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '24_Dom_Sucursal_codigoPostal' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._24_Dom_Sucursal_codigoPostalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _25_Tel_sucursal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._25_Tel_sucursalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '25_Tel_sucursal' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._25_Tel_sucursalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _26_Version() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._26_VersionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '26_Version' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._26_VersionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _27_Serie_Comprobante() As String
+            Get
+                Return CType(Me(Me.tableRecibosDePago._27_Serie_ComprobanteColumn),String)
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._27_Serie_ComprobanteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _28_Numero_Aprobacion() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._28_Numero_AprobacionColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '28_Numero_Aprobacion' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._28_Numero_AprobacionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _29_FormaPago() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._29_FormaPagoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '29_FormaPago' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._29_FormaPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _30_Fecha() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._30_FechaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '30_Fecha' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._30_FechaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _31_Hora() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._31_HoraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '31_Hora' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._31_HoraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _32_Dom_LugarExpide_calle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._32_Dom_LugarExpide_calleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '32_Dom_LugarExpide_calle' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._32_Dom_LugarExpide_calleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _33_Dom_LugarExpide_noExterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._33_Dom_LugarExpide_noExteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '33_Dom_LugarExpide_noExterior' de la tabla 'RecibosDePago"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._33_Dom_LugarExpide_noExteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _34_Dom_LugarExpide_noInterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._34_Dom_LugarExpide_noInteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '34_Dom_LugarExpide_noInterior' de la tabla 'RecibosDePago"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._34_Dom_LugarExpide_noInteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _35_Dom_LugarExpide_colonia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._35_Dom_LugarExpide_coloniaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '35_Dom_LugarExpide_colonia' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._35_Dom_LugarExpide_coloniaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _36_Dom_LugarExpide_localidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._36_Dom_LugarExpide_localidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '36_Dom_LugarExpide_localidad' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._36_Dom_LugarExpide_localidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _37_Dom_LugarExpide_referencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._37_Dom_LugarExpide_referenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '37_Dom_LugarExpide_referencia' de la tabla 'RecibosDePago"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._37_Dom_LugarExpide_referenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _38_Dom_LugarExpide_municipio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._38_Dom_LugarExpide_municipioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '38_Dom_LugarExpide_municipio' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._38_Dom_LugarExpide_municipioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _39_Dom_LugarExpide_estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._39_Dom_LugarExpide_estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '39_Dom_LugarExpide_estado' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._39_Dom_LugarExpide_estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _40_Dom_LugarExpide_pais() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._40_Dom_LugarExpide_paisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '40_Dom_LugarExpide_pais' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._40_Dom_LugarExpide_paisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _41_Dom_LugarExpide_codigoPostal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._41_Dom_LugarExpide_codigoPostalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '41_Dom_LugarExpide_codigoPostal' de la tabla 'RecibosDePa"& _ 
+                            "go' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._41_Dom_LugarExpide_codigoPostalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _42_Nombre_Receptor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._42_Nombre_ReceptorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '42_Nombre_Receptor' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._42_Nombre_ReceptorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _43_RFC_Receptor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._43_RFC_ReceptorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '43_RFC_Receptor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._43_RFC_ReceptorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _44_Dom_Receptor_calle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._44_Dom_Receptor_calleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '44_Dom_Receptor_calle' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._44_Dom_Receptor_calleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _45_Dom_Receptor_noExterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._45_Dom_Receptor_noExteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '45_Dom_Receptor_noExterior' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._45_Dom_Receptor_noExteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _46_Dom_Receptor_noInterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._46_Dom_Receptor_noInteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '46_Dom_Receptor_noInterior' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._46_Dom_Receptor_noInteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _47_Dom_Receptor_colonia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._47_Dom_Receptor_coloniaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '47_Dom_Receptor_colonia' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._47_Dom_Receptor_coloniaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _48_Dom_Receptor_localidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._48_Dom_Receptor_localidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '48_Dom_Receptor_localidad' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._48_Dom_Receptor_localidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _49_Dom_Receptor_referencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._49_Dom_Receptor_referenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '49_Dom_Receptor_referencia' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._49_Dom_Receptor_referenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _50_Dom_Receptor_municipio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._50_Dom_Receptor_municipioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '50_Dom_Receptor_municipio' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._50_Dom_Receptor_municipioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _51_Dom_Receptor_estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._51_Dom_Receptor_estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '51_Dom_Receptor_estado' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._51_Dom_Receptor_estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _52_Dom_Receptor_pais() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._52_Dom_Receptor_paisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '52_Dom_Receptor_pais' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._52_Dom_Receptor_paisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _53_Dom_Receptor_codigoPostal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._53_Dom_Receptor_codigoPostalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '53_Dom_Receptor_codigoPostal' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._53_Dom_Receptor_codigoPostalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _54_Monto_SubTotal() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._54_Monto_SubTotalColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '54_Monto_SubTotal' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._54_Monto_SubTotalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _55_Monto_IVA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._55_Monto_IVAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '55_Monto_IVA' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._55_Monto_IVAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _56_Monto_Total() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._56_Monto_TotalColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '56_Monto_Total' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._56_Monto_TotalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _57_Estado() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._57_EstadoColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '57_Estado' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._57_EstadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _58_TipoCFD() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._58_TipoCFDColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '58_TipoCFD' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._58_TipoCFDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _59_Notas() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._59_NotasColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '59_Notas' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._59_NotasColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _60_Notas02() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._60_Notas02Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '60_Notas02' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._60_Notas02Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _61_Notas03() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._61_Notas03Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '61_Notas03' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._61_Notas03Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _62_TradingPartner_Prov() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._62_TradingPartner_ProvColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '62_TradingPartner_Prov' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._62_TradingPartner_ProvColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _63_Calif_TradingPartner_Prov() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._63_Calif_TradingPartner_ProvColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '63_Calif_TradingPartner_Prov' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._63_Calif_TradingPartner_ProvColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _64_EAN_Proveedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._64_EAN_ProveedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '64_EAN_Proveedor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._64_EAN_ProveedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _65_Numero_Factura() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._65_Numero_FacturaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '65_Numero_Factura' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._65_Numero_FacturaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _66_Numero_OrdenCompra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._66_Numero_OrdenCompraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '66_Numero_OrdenCompra' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._66_Numero_OrdenCompraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _67_Fecha_OrdenCompra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._67_Fecha_OrdenCompraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '67_Fecha_OrdenCompra' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._67_Fecha_OrdenCompraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _68_Numero_Proveedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._68_Numero_ProveedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '68_Numero_Proveedor' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._68_Numero_ProveedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _69_EAN_Tienda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._69_EAN_TiendaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '69_EAN_Tienda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._69_EAN_TiendaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _70_Numero_Tienda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._70_Numero_TiendaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '70_Numero_Tienda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._70_Numero_TiendaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _71_Nombre_Tienda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._71_Nombre_TiendaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '71_Nombre_Tienda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._71_Nombre_TiendaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _72_Dom_Tienda_calle() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._72_Dom_Tienda_calleColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '72_Dom_Tienda_calle' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._72_Dom_Tienda_calleColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _73_Dom_Tienda_noExterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._73_Dom_Tienda_noExteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '73_Dom_Tienda_noExterior' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._73_Dom_Tienda_noExteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _74_Dom_Tienda_noInterior() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._74_Dom_Tienda_noInteriorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '74_Dom_Tienda_noInterior' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._74_Dom_Tienda_noInteriorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _75_Dom_Tienda_colonia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._75_Dom_Tienda_coloniaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '75_Dom_Tienda_colonia' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._75_Dom_Tienda_coloniaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _76_Dom_Tienda_localidad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._76_Dom_Tienda_localidadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '76_Dom_Tienda_localidad' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._76_Dom_Tienda_localidadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _77_Dom_Tienda_referencia() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._77_Dom_Tienda_referenciaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '77_Dom_Tienda_referencia' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._77_Dom_Tienda_referenciaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _78_Dom_Tienda_municipio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._78_Dom_Tienda_municipioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '78_Dom_Tienda_municipio' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._78_Dom_Tienda_municipioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _79_Dom_Tienda_estado() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._79_Dom_Tienda_estadoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '79_Dom_Tienda_estado' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._79_Dom_Tienda_estadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _80_Dom_Tienda_pais() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._80_Dom_Tienda_paisColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '80_Dom_Tienda_pais' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._80_Dom_Tienda_paisColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _81_Dom_Tienda_codigoPostal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._81_Dom_Tienda_codigoPostalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '81_Dom_Tienda_codigoPostal' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._81_Dom_Tienda_codigoPostalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _82_RFC_Tienda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._82_RFC_TiendaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '82_RFC_Tienda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._82_RFC_TiendaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _83_Cod_Moneda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._83_Cod_MonedaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '83_Cod_Moneda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._83_Cod_MonedaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _84_Dias_Pago() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._84_Dias_PagoColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '84_Dias_Pago' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._84_Dias_PagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _85_Porc_Desc_ProntoPago() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._85_Porc_Desc_ProntoPagoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '85_Porc_Desc_ProntoPago' de la tabla 'RecibosDePago' es D"& _ 
+                            "BNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._85_Porc_Desc_ProntoPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _86_Monto_Desc_ProntoPago() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._86_Monto_Desc_ProntoPagoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '86_Monto_Desc_ProntoPago' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._86_Monto_Desc_ProntoPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _87_Cod_Descuento() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._87_Cod_DescuentoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '87_Cod_Descuento' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._87_Cod_DescuentoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _88_Porc_Descuento() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._88_Porc_DescuentoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '88_Porc_Descuento' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._88_Porc_DescuentoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _89_Monto_Descuento() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._89_Monto_DescuentoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '89_Monto_Descuento' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._89_Monto_DescuentoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _90_Cantidad_LineasFactura() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._90_Cantidad_LineasFacturaColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '90_Cantidad_LineasFactura' de la tabla 'RecibosDePago' es"& _ 
+                            " DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._90_Cantidad_LineasFacturaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _91_Fecha_Vencimiento() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._91_Fecha_VencimientoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '91_Fecha_Vencimiento' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._91_Fecha_VencimientoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _92_Cod_Zona() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._92_Cod_ZonaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '92_Cod_Zona' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._92_Cod_ZonaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _93_Numero_Receptor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._93_Numero_ReceptorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '93_Numero_Receptor' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._93_Numero_ReceptorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _94_Cod_Vendedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._94_Cod_VendedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '94_Cod_Vendedor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._94_Cod_VendedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _95_Nombre_Vendedor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._95_Nombre_VendedorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '95_Nombre_Vendedor' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._95_Nombre_VendedorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _96_Via_Embarque() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._96_Via_EmbarqueColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '96_Via_Embarque' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._96_Via_EmbarqueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _97_Condiciones_Pago() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._97_Condiciones_PagoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '97_Condiciones_Pago' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._97_Condiciones_PagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _98_Numero_Pedido() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._98_Numero_PedidoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '98_Numero_Pedido' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._98_Numero_PedidoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _99_Fecha_Pedido() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._99_Fecha_PedidoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '99_Fecha_Pedido' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._99_Fecha_PedidoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _100_Letras_Monto_Total() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._100_Letras_Monto_TotalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '100_Letras_Monto_Total' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._100_Letras_Monto_TotalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _101_Cantidad_Unidades() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._101_Cantidad_UnidadesColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '101_Cantidad_Unidades' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._101_Cantidad_UnidadesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _102_Cantidad_empaques() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._102_Cantidad_empaquesColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '102_Cantidad_empaques' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._102_Cantidad_empaquesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _103_EAN_Receptor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._103_EAN_ReceptorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '103_EAN_Receptor' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._103_EAN_ReceptorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _104_EAN_LugarExpide() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._104_EAN_LugarExpideColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '104_EAN_LugarExpide' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._104_EAN_LugarExpideColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _105_IEPS_Id() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._105_IEPS_IdColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '105_IEPS_Id' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._105_IEPS_IdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _106_Estatus() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._106_EstatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '106_Estatus' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._106_EstatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _107_Numero_Emisor() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._107_Numero_EmisorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '107_Numero_Emisor' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._107_Numero_EmisorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _108_Monto_Merma() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._108_Monto_MermaColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '108_Monto_Merma' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._108_Monto_MermaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _109_Monto_SubTotal_ApIVA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._109_Monto_SubTotal_ApIVAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '109_Monto_SubTotal_ApIVA' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._109_Monto_SubTotal_ApIVAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _110_Transportista() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._110_TransportistaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '110_Transportista' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._110_TransportistaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _111_Numero_Solicitud() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._111_Numero_SolicitudColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '111_Numero_Solicitud' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._111_Numero_SolicitudColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _112_Desc_Moneda() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._112_Desc_MonedaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '112_Desc_Moneda' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._112_Desc_MonedaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _113_Misc01() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._113_Misc01Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '113_Misc01' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._113_Misc01Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _114_Misc02() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._114_Misc02Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '114_Misc02' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._114_Misc02Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _115_Misc03() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._115_Misc03Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '115_Misc03' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._115_Misc03Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _116_Misc04() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._116_Misc04Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '116_Misc04' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._116_Misc04Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _117_Misc05() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._117_Misc05Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '117_Misc05' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._117_Misc05Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _118_Misc06() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._118_Misc06Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '118_Misc06' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._118_Misc06Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _119_Misc07() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._119_Misc07Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '119_Misc07' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._119_Misc07Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _120_Misc08() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._120_Misc08Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '120_Misc08' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._120_Misc08Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _121_Misc09() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._121_Misc09Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '121_Misc09' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._121_Misc09Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _122_Misc10() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._122_Misc10Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '122_Misc10' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._122_Misc10Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _123_Misc11() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._123_Misc11Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '123_Misc11' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._123_Misc11Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _124_Misc12() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._124_Misc12Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '124_Misc12' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._124_Misc12Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _125_Misc13() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._125_Misc13Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '125_Misc13' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._125_Misc13Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _126_Misc14() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._126_Misc14Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '126_Misc14' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._126_Misc14Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _127_Misc15() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._127_Misc15Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '127_Misc15' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._127_Misc15Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _128_Misc16() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._128_Misc16Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '128_Misc16' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._128_Misc16Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _129_Misc17() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._129_Misc17Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '129_Misc17' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._129_Misc17Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _130_Misc18() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._130_Misc18Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '130_Misc18' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._130_Misc18Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _131_Misc19() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._131_Misc19Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '131_Misc19' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._131_Misc19Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _132_Misc20() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._132_Misc20Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '132_Misc20' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._132_Misc20Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _133_Misc21() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._133_Misc21Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '133_Misc21' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._133_Misc21Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _134_Misc22() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._134_Misc22Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '134_Misc22' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._134_Misc22Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _135_Misc23() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._135_Misc23Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '135_Misc23' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._135_Misc23Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _136_Misc24() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._136_Misc24Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '136_Misc24' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._136_Misc24Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _137_Misc25() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._137_Misc25Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '137_Misc25' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._137_Misc25Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _138_Misc26() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._138_Misc26Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '138_Misc26' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._138_Misc26Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _139_Misc27() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._139_Misc27Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '139_Misc27' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._139_Misc27Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _140_Misc28() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._140_Misc28Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '140_Misc28' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._140_Misc28Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _141_Misc29() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._141_Misc29Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '141_Misc29' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._141_Misc29Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _142_Misc30() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._142_Misc30Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '142_Misc30' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._142_Misc30Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _143_Misc31() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._143_Misc31Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '143_Misc31' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._143_Misc31Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _144_Misc32() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._144_Misc32Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '144_Misc32' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._144_Misc32Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _145_Misc33() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._145_Misc33Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '145_Misc33' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._145_Misc33Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _146_Misc34() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._146_Misc34Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '146_Misc34' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._146_Misc34Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _147_Misc35() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._147_Misc35Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '147_Misc35' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._147_Misc35Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _148_Misc36() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._148_Misc36Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '148_Misc36' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._148_Misc36Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _149_Misc37() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._149_Misc37Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '149_Misc37' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._149_Misc37Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _150_Misc38() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._150_Misc38Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '150_Misc38' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._150_Misc38Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _151_Misc39() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._151_Misc39Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '151_Misc39' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._151_Misc39Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _152_Misc40() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._152_Misc40Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '152_Misc40' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._152_Misc40Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _153_Misc41() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._153_Misc41Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '153_Misc41' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._153_Misc41Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _154_Misc42() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._154_Misc42Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '154_Misc42' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._154_Misc42Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _155_Misc43() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._155_Misc43Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '155_Misc43' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._155_Misc43Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _156_Misc44() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._156_Misc44Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '156_Misc44' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._156_Misc44Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _157_Misc45() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._157_Misc45Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '157_Misc45' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._157_Misc45Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _158_Misc46() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._158_Misc46Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '158_Misc46' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._158_Misc46Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _159_Misc47() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._159_Misc47Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '159_Misc47' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._159_Misc47Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _160_Misc48() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._160_Misc48Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '160_Misc48' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._160_Misc48Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _161_Misc49() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._161_Misc49Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '161_Misc49' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._161_Misc49Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _162_Misc50() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._162_Misc50Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '162_Misc50' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._162_Misc50Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _163_Porc_IVA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._163_Porc_IVAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '163_Porc_IVA' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._163_Porc_IVAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _164_Monto_IEPS() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._164_Monto_IEPSColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '164_Monto_IEPS' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._164_Monto_IEPSColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _165_Document_Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._165_Document_StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '165_Document_Status' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._165_Document_StatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _166_Delivery_Date() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._166_Delivery_DateColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '166_Delivery_Date' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._166_Delivery_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _167_RegimentFiscal() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._167_RegimentFiscalColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '167_RegimentFiscal' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._167_RegimentFiscalColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _168_Num_CtaPago() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._168_Num_CtaPagoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '168_Num_CtaPago' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._168_Num_CtaPagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _169_Num_contrarecibo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._169_Num_contrareciboColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '169_Num_contrarecibo' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._169_Num_contrareciboColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _170_Fecha_Num_contrarecibo() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._170_Fecha_Num_contrareciboColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '170_Fecha_Num_contrarecibo' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._170_Fecha_Num_contrareciboColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _171_Contacto_Comprar() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._171_Contacto_ComprarColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '171_Contacto_Comprar' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._171_Contacto_ComprarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _172_Customs_gln() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._172_Customs_glnColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '172_Customs_gln' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._172_Customs_glnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _173_Alternante_identificacion_gln() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._173_Alternante_identificacion_glnColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '173_Alternante_identificacion_gln' de la tabla 'RecibosDe"& _ 
+                            "Pago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._173_Alternante_identificacion_glnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _174_Nombre_Aduana() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._174_Nombre_AduanaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '174_Nombre_Aduana' de la tabla 'RecibosDePago' es DBNull."& _ 
+                            "", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._174_Nombre_AduanaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _175_Nombre_Aduana_Ciudad() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._175_Nombre_Aduana_CiudadColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '175_Nombre_Aduana_Ciudad' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._175_Nombre_Aduana_CiudadColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _176_Func_Divisa() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._176_Func_DivisaColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '176_Func_Divisa' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._176_Func_DivisaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _177_Tasa_Divisa() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._177_Tasa_DivisaColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '177_Tasa_Divisa' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._177_Tasa_DivisaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _178_Ref_Tiempo_Pago() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._178_Ref_Tiempo_PagoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '178_Ref_Tiempo_Pago' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._178_Ref_Tiempo_PagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _179_Ref_Termino_Tiempo_Pago() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._179_Ref_Termino_Tiempo_PagoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '179_Ref_Termino_Tiempo_Pago' de la tabla 'RecibosDePago' "& _ 
+                            "es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._179_Ref_Termino_Tiempo_PagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _180_LugarExpedicion() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._180_LugarExpedicionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '180_LugarExpedicion' de la tabla 'RecibosDePago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._180_LugarExpedicionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _181_SerieFolioFiscalOrig() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._181_SerieFolioFiscalOrigColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '181_SerieFolioFiscalOrig' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._181_SerieFolioFiscalOrigColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _182_Tipo_Especial_de_Servicio() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._182_Tipo_Especial_de_ServicioColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '182_Tipo_Especial_de_Servicio' de la tabla 'RecibosDePago"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._182_Tipo_Especial_de_ServicioColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _183_FechaFolioFiscalOrig() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._183_FechaFolioFiscalOrigColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '183_FechaFolioFiscalOrig' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._183_FechaFolioFiscalOrigColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _184_Porcentaje_no_aplicado() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._184_Porcentaje_no_aplicadoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '184_Porcentaje_no_aplicado' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._184_Porcentaje_no_aplicadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _185_MontoFolioFiscalOrig() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._185_MontoFolioFiscalOrigColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '185_MontoFolioFiscalOrig' de la tabla 'RecibosDePago' es "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._185_MontoFolioFiscalOrigColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _186_Monto_Total_Descuentos() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._186_Monto_Total_DescuentosColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '186_Monto_Total_Descuentos' de la tabla 'RecibosDePago' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._186_Monto_Total_DescuentosColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _187_Monto_Total_Pagar() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._187_Monto_Total_PagarColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '187_Monto_Total_Pagar' de la tabla 'RecibosDePago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._187_Monto_Total_PagarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _188_Ano_Aprobacion() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._188_Ano_AprobacionColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '188_Ano_Aprobacion' de la tabla 'RecibosDePago' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._188_Ano_AprobacionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _189_Motivo_Descuento() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._189_Motivo_DescuentoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '189_Motivo_Descuento' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._189_Motivo_DescuentoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _190_Metodo_Pago() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._190_Metodo_PagoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '190_Metodo_Pago' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._190_Metodo_PagoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _191_Efecto_Comprobante() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._191_Efecto_ComprobanteColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '191_Efecto_Comprobante' de la tabla 'RecibosDePago' es DB"& _ 
+                            "Null.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._191_Efecto_ComprobanteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _192_Monto_TotalImp_Retenidos() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._192_Monto_TotalImp_RetenidosColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '192_Monto_TotalImp_Retenidos' de la tabla 'RecibosDePago'"& _ 
+                            " es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._192_Monto_TotalImp_RetenidosColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _193_Monto_TotalImp_Trasladados() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago._193_Monto_TotalImp_TrasladadosColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '193_Monto_TotalImp_Trasladados' de la tabla 'RecibosDePag"& _ 
+                            "o' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago._193_Monto_TotalImp_TrasladadosColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Encabezado_Procesado() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago.Encabezado_ProcesadoColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Encabezado_Procesado' de la tabla 'RecibosDePago' es DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago.Encabezado_ProcesadoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Guid() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago.GuidColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Guid' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago.GuidColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Fecha() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableRecibosDePago.FechaColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Fecha' de la tabla 'RecibosDePago' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableRecibosDePago.FechaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property EMail1() As String
+            Get
+                Return CType(Me(Me.tableRecibosDePago.EMail1Column),String)
+            End Get
+            Set
+                Me(Me.tableRecibosDePago.EMail1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property EMail2() As String
+            Get
+                Return CType(Me(Me.tableRecibosDePago.EMail2Column),String)
+            End Get
+            Set
+                Me(Me.tableRecibosDePago.EMail2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_2_Nombre_EmisorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._2_Nombre_EmisorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_2_Nombre_EmisorNull()
+            Me(Me.tableRecibosDePago._2_Nombre_EmisorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_3_RFC_EmisorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._3_RFC_EmisorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_3_RFC_EmisorNull()
+            Me(Me.tableRecibosDePago._3_RFC_EmisorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_4_Dom_Emisor_calleNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._4_Dom_Emisor_calleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_4_Dom_Emisor_calleNull()
+            Me(Me.tableRecibosDePago._4_Dom_Emisor_calleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_5_Dom_Emisor_noExteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._5_Dom_Emisor_noExteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_5_Dom_Emisor_noExteriorNull()
+            Me(Me.tableRecibosDePago._5_Dom_Emisor_noExteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_6_Dom_Emisor_noInteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._6_Dom_Emisor_noInteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_6_Dom_Emisor_noInteriorNull()
+            Me(Me.tableRecibosDePago._6_Dom_Emisor_noInteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_7_Dom_Emisor_coloniaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._7_Dom_Emisor_coloniaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_7_Dom_Emisor_coloniaNull()
+            Me(Me.tableRecibosDePago._7_Dom_Emisor_coloniaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_8_Dom_Emisor_localidadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._8_Dom_Emisor_localidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_8_Dom_Emisor_localidadNull()
+            Me(Me.tableRecibosDePago._8_Dom_Emisor_localidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_9_Dom_Emisor_referenciaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._9_Dom_Emisor_referenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_9_Dom_Emisor_referenciaNull()
+            Me(Me.tableRecibosDePago._9_Dom_Emisor_referenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_10_Dom_Emisor_municipioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._10_Dom_Emisor_municipioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_10_Dom_Emisor_municipioNull()
+            Me(Me.tableRecibosDePago._10_Dom_Emisor_municipioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_11_Dom_Emisor_estadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._11_Dom_Emisor_estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_11_Dom_Emisor_estadoNull()
+            Me(Me.tableRecibosDePago._11_Dom_Emisor_estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_12_Dom_Emisor_paisNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._12_Dom_Emisor_paisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_12_Dom_Emisor_paisNull()
+            Me(Me.tableRecibosDePago._12_Dom_Emisor_paisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_13_Dom_Emisor_codigoPostalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._13_Dom_Emisor_codigoPostalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_13_Dom_Emisor_codigoPostalNull()
+            Me(Me.tableRecibosDePago._13_Dom_Emisor_codigoPostalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_14_Tel_EmisorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._14_Tel_EmisorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_14_Tel_EmisorNull()
+            Me(Me.tableRecibosDePago._14_Tel_EmisorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_15_Dom_Sucursal_calleNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._15_Dom_Sucursal_calleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_15_Dom_Sucursal_calleNull()
+            Me(Me.tableRecibosDePago._15_Dom_Sucursal_calleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_16_Dom_Sucursal_noExteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._16_Dom_Sucursal_noExteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_16_Dom_Sucursal_noExteriorNull()
+            Me(Me.tableRecibosDePago._16_Dom_Sucursal_noExteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_17_Dom_Sucursal_noInteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._17_Dom_Sucursal_noInteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_17_Dom_Sucursal_noInteriorNull()
+            Me(Me.tableRecibosDePago._17_Dom_Sucursal_noInteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_18_Dom_Sucursal_coloniaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._18_Dom_Sucursal_coloniaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_18_Dom_Sucursal_coloniaNull()
+            Me(Me.tableRecibosDePago._18_Dom_Sucursal_coloniaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_19_Dom_Sucursal_localidadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._19_Dom_Sucursal_localidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_19_Dom_Sucursal_localidadNull()
+            Me(Me.tableRecibosDePago._19_Dom_Sucursal_localidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_20_Dom_Sucursal_referenciaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._20_Dom_Sucursal_referenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_20_Dom_Sucursal_referenciaNull()
+            Me(Me.tableRecibosDePago._20_Dom_Sucursal_referenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_21_Dom_Sucursal_municipioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._21_Dom_Sucursal_municipioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_21_Dom_Sucursal_municipioNull()
+            Me(Me.tableRecibosDePago._21_Dom_Sucursal_municipioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_22_Dom_Sucursal_estadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._22_Dom_Sucursal_estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_22_Dom_Sucursal_estadoNull()
+            Me(Me.tableRecibosDePago._22_Dom_Sucursal_estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_23_Dom_Sucursal_paisNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._23_Dom_Sucursal_paisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_23_Dom_Sucursal_paisNull()
+            Me(Me.tableRecibosDePago._23_Dom_Sucursal_paisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_24_Dom_Sucursal_codigoPostalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._24_Dom_Sucursal_codigoPostalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_24_Dom_Sucursal_codigoPostalNull()
+            Me(Me.tableRecibosDePago._24_Dom_Sucursal_codigoPostalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_25_Tel_sucursalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._25_Tel_sucursalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_25_Tel_sucursalNull()
+            Me(Me.tableRecibosDePago._25_Tel_sucursalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_26_VersionNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._26_VersionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_26_VersionNull()
+            Me(Me.tableRecibosDePago._26_VersionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_28_Numero_AprobacionNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._28_Numero_AprobacionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_28_Numero_AprobacionNull()
+            Me(Me.tableRecibosDePago._28_Numero_AprobacionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_29_FormaPagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._29_FormaPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_29_FormaPagoNull()
+            Me(Me.tableRecibosDePago._29_FormaPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_30_FechaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._30_FechaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_30_FechaNull()
+            Me(Me.tableRecibosDePago._30_FechaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_31_HoraNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._31_HoraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_31_HoraNull()
+            Me(Me.tableRecibosDePago._31_HoraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_32_Dom_LugarExpide_calleNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._32_Dom_LugarExpide_calleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_32_Dom_LugarExpide_calleNull()
+            Me(Me.tableRecibosDePago._32_Dom_LugarExpide_calleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_33_Dom_LugarExpide_noExteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._33_Dom_LugarExpide_noExteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_33_Dom_LugarExpide_noExteriorNull()
+            Me(Me.tableRecibosDePago._33_Dom_LugarExpide_noExteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_34_Dom_LugarExpide_noInteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._34_Dom_LugarExpide_noInteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_34_Dom_LugarExpide_noInteriorNull()
+            Me(Me.tableRecibosDePago._34_Dom_LugarExpide_noInteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_35_Dom_LugarExpide_coloniaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._35_Dom_LugarExpide_coloniaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_35_Dom_LugarExpide_coloniaNull()
+            Me(Me.tableRecibosDePago._35_Dom_LugarExpide_coloniaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_36_Dom_LugarExpide_localidadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._36_Dom_LugarExpide_localidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_36_Dom_LugarExpide_localidadNull()
+            Me(Me.tableRecibosDePago._36_Dom_LugarExpide_localidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_37_Dom_LugarExpide_referenciaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._37_Dom_LugarExpide_referenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_37_Dom_LugarExpide_referenciaNull()
+            Me(Me.tableRecibosDePago._37_Dom_LugarExpide_referenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_38_Dom_LugarExpide_municipioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._38_Dom_LugarExpide_municipioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_38_Dom_LugarExpide_municipioNull()
+            Me(Me.tableRecibosDePago._38_Dom_LugarExpide_municipioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_39_Dom_LugarExpide_estadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._39_Dom_LugarExpide_estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_39_Dom_LugarExpide_estadoNull()
+            Me(Me.tableRecibosDePago._39_Dom_LugarExpide_estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_40_Dom_LugarExpide_paisNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._40_Dom_LugarExpide_paisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_40_Dom_LugarExpide_paisNull()
+            Me(Me.tableRecibosDePago._40_Dom_LugarExpide_paisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_41_Dom_LugarExpide_codigoPostalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._41_Dom_LugarExpide_codigoPostalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_41_Dom_LugarExpide_codigoPostalNull()
+            Me(Me.tableRecibosDePago._41_Dom_LugarExpide_codigoPostalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_42_Nombre_ReceptorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._42_Nombre_ReceptorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_42_Nombre_ReceptorNull()
+            Me(Me.tableRecibosDePago._42_Nombre_ReceptorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_43_RFC_ReceptorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._43_RFC_ReceptorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_43_RFC_ReceptorNull()
+            Me(Me.tableRecibosDePago._43_RFC_ReceptorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_44_Dom_Receptor_calleNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._44_Dom_Receptor_calleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_44_Dom_Receptor_calleNull()
+            Me(Me.tableRecibosDePago._44_Dom_Receptor_calleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_45_Dom_Receptor_noExteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._45_Dom_Receptor_noExteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_45_Dom_Receptor_noExteriorNull()
+            Me(Me.tableRecibosDePago._45_Dom_Receptor_noExteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_46_Dom_Receptor_noInteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._46_Dom_Receptor_noInteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_46_Dom_Receptor_noInteriorNull()
+            Me(Me.tableRecibosDePago._46_Dom_Receptor_noInteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_47_Dom_Receptor_coloniaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._47_Dom_Receptor_coloniaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_47_Dom_Receptor_coloniaNull()
+            Me(Me.tableRecibosDePago._47_Dom_Receptor_coloniaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_48_Dom_Receptor_localidadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._48_Dom_Receptor_localidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_48_Dom_Receptor_localidadNull()
+            Me(Me.tableRecibosDePago._48_Dom_Receptor_localidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_49_Dom_Receptor_referenciaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._49_Dom_Receptor_referenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_49_Dom_Receptor_referenciaNull()
+            Me(Me.tableRecibosDePago._49_Dom_Receptor_referenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_50_Dom_Receptor_municipioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._50_Dom_Receptor_municipioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_50_Dom_Receptor_municipioNull()
+            Me(Me.tableRecibosDePago._50_Dom_Receptor_municipioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_51_Dom_Receptor_estadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._51_Dom_Receptor_estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_51_Dom_Receptor_estadoNull()
+            Me(Me.tableRecibosDePago._51_Dom_Receptor_estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_52_Dom_Receptor_paisNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._52_Dom_Receptor_paisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_52_Dom_Receptor_paisNull()
+            Me(Me.tableRecibosDePago._52_Dom_Receptor_paisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_53_Dom_Receptor_codigoPostalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._53_Dom_Receptor_codigoPostalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_53_Dom_Receptor_codigoPostalNull()
+            Me(Me.tableRecibosDePago._53_Dom_Receptor_codigoPostalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_54_Monto_SubTotalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._54_Monto_SubTotalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_54_Monto_SubTotalNull()
+            Me(Me.tableRecibosDePago._54_Monto_SubTotalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_55_Monto_IVANull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._55_Monto_IVAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_55_Monto_IVANull()
+            Me(Me.tableRecibosDePago._55_Monto_IVAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_56_Monto_TotalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._56_Monto_TotalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_56_Monto_TotalNull()
+            Me(Me.tableRecibosDePago._56_Monto_TotalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_57_EstadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._57_EstadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_57_EstadoNull()
+            Me(Me.tableRecibosDePago._57_EstadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_58_TipoCFDNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._58_TipoCFDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_58_TipoCFDNull()
+            Me(Me.tableRecibosDePago._58_TipoCFDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_59_NotasNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._59_NotasColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_59_NotasNull()
+            Me(Me.tableRecibosDePago._59_NotasColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_60_Notas02Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._60_Notas02Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_60_Notas02Null()
+            Me(Me.tableRecibosDePago._60_Notas02Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_61_Notas03Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._61_Notas03Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_61_Notas03Null()
+            Me(Me.tableRecibosDePago._61_Notas03Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_62_TradingPartner_ProvNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._62_TradingPartner_ProvColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_62_TradingPartner_ProvNull()
+            Me(Me.tableRecibosDePago._62_TradingPartner_ProvColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_63_Calif_TradingPartner_ProvNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._63_Calif_TradingPartner_ProvColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_63_Calif_TradingPartner_ProvNull()
+            Me(Me.tableRecibosDePago._63_Calif_TradingPartner_ProvColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_64_EAN_ProveedorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._64_EAN_ProveedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_64_EAN_ProveedorNull()
+            Me(Me.tableRecibosDePago._64_EAN_ProveedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_65_Numero_FacturaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._65_Numero_FacturaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_65_Numero_FacturaNull()
+            Me(Me.tableRecibosDePago._65_Numero_FacturaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_66_Numero_OrdenCompraNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._66_Numero_OrdenCompraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_66_Numero_OrdenCompraNull()
+            Me(Me.tableRecibosDePago._66_Numero_OrdenCompraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_67_Fecha_OrdenCompraNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._67_Fecha_OrdenCompraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_67_Fecha_OrdenCompraNull()
+            Me(Me.tableRecibosDePago._67_Fecha_OrdenCompraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_68_Numero_ProveedorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._68_Numero_ProveedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_68_Numero_ProveedorNull()
+            Me(Me.tableRecibosDePago._68_Numero_ProveedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_69_EAN_TiendaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._69_EAN_TiendaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_69_EAN_TiendaNull()
+            Me(Me.tableRecibosDePago._69_EAN_TiendaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_70_Numero_TiendaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._70_Numero_TiendaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_70_Numero_TiendaNull()
+            Me(Me.tableRecibosDePago._70_Numero_TiendaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_71_Nombre_TiendaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._71_Nombre_TiendaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_71_Nombre_TiendaNull()
+            Me(Me.tableRecibosDePago._71_Nombre_TiendaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_72_Dom_Tienda_calleNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._72_Dom_Tienda_calleColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_72_Dom_Tienda_calleNull()
+            Me(Me.tableRecibosDePago._72_Dom_Tienda_calleColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_73_Dom_Tienda_noExteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._73_Dom_Tienda_noExteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_73_Dom_Tienda_noExteriorNull()
+            Me(Me.tableRecibosDePago._73_Dom_Tienda_noExteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_74_Dom_Tienda_noInteriorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._74_Dom_Tienda_noInteriorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_74_Dom_Tienda_noInteriorNull()
+            Me(Me.tableRecibosDePago._74_Dom_Tienda_noInteriorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_75_Dom_Tienda_coloniaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._75_Dom_Tienda_coloniaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_75_Dom_Tienda_coloniaNull()
+            Me(Me.tableRecibosDePago._75_Dom_Tienda_coloniaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_76_Dom_Tienda_localidadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._76_Dom_Tienda_localidadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_76_Dom_Tienda_localidadNull()
+            Me(Me.tableRecibosDePago._76_Dom_Tienda_localidadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_77_Dom_Tienda_referenciaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._77_Dom_Tienda_referenciaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_77_Dom_Tienda_referenciaNull()
+            Me(Me.tableRecibosDePago._77_Dom_Tienda_referenciaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_78_Dom_Tienda_municipioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._78_Dom_Tienda_municipioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_78_Dom_Tienda_municipioNull()
+            Me(Me.tableRecibosDePago._78_Dom_Tienda_municipioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_79_Dom_Tienda_estadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._79_Dom_Tienda_estadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_79_Dom_Tienda_estadoNull()
+            Me(Me.tableRecibosDePago._79_Dom_Tienda_estadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_80_Dom_Tienda_paisNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._80_Dom_Tienda_paisColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_80_Dom_Tienda_paisNull()
+            Me(Me.tableRecibosDePago._80_Dom_Tienda_paisColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_81_Dom_Tienda_codigoPostalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._81_Dom_Tienda_codigoPostalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_81_Dom_Tienda_codigoPostalNull()
+            Me(Me.tableRecibosDePago._81_Dom_Tienda_codigoPostalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_82_RFC_TiendaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._82_RFC_TiendaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_82_RFC_TiendaNull()
+            Me(Me.tableRecibosDePago._82_RFC_TiendaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_83_Cod_MonedaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._83_Cod_MonedaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_83_Cod_MonedaNull()
+            Me(Me.tableRecibosDePago._83_Cod_MonedaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_84_Dias_PagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._84_Dias_PagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_84_Dias_PagoNull()
+            Me(Me.tableRecibosDePago._84_Dias_PagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_85_Porc_Desc_ProntoPagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._85_Porc_Desc_ProntoPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_85_Porc_Desc_ProntoPagoNull()
+            Me(Me.tableRecibosDePago._85_Porc_Desc_ProntoPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_86_Monto_Desc_ProntoPagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._86_Monto_Desc_ProntoPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_86_Monto_Desc_ProntoPagoNull()
+            Me(Me.tableRecibosDePago._86_Monto_Desc_ProntoPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_87_Cod_DescuentoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._87_Cod_DescuentoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_87_Cod_DescuentoNull()
+            Me(Me.tableRecibosDePago._87_Cod_DescuentoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_88_Porc_DescuentoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._88_Porc_DescuentoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_88_Porc_DescuentoNull()
+            Me(Me.tableRecibosDePago._88_Porc_DescuentoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_89_Monto_DescuentoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._89_Monto_DescuentoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_89_Monto_DescuentoNull()
+            Me(Me.tableRecibosDePago._89_Monto_DescuentoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_90_Cantidad_LineasFacturaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._90_Cantidad_LineasFacturaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_90_Cantidad_LineasFacturaNull()
+            Me(Me.tableRecibosDePago._90_Cantidad_LineasFacturaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_91_Fecha_VencimientoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._91_Fecha_VencimientoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_91_Fecha_VencimientoNull()
+            Me(Me.tableRecibosDePago._91_Fecha_VencimientoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_92_Cod_ZonaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._92_Cod_ZonaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_92_Cod_ZonaNull()
+            Me(Me.tableRecibosDePago._92_Cod_ZonaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_93_Numero_ReceptorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._93_Numero_ReceptorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_93_Numero_ReceptorNull()
+            Me(Me.tableRecibosDePago._93_Numero_ReceptorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_94_Cod_VendedorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._94_Cod_VendedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_94_Cod_VendedorNull()
+            Me(Me.tableRecibosDePago._94_Cod_VendedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_95_Nombre_VendedorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._95_Nombre_VendedorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_95_Nombre_VendedorNull()
+            Me(Me.tableRecibosDePago._95_Nombre_VendedorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_96_Via_EmbarqueNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._96_Via_EmbarqueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_96_Via_EmbarqueNull()
+            Me(Me.tableRecibosDePago._96_Via_EmbarqueColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_97_Condiciones_PagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._97_Condiciones_PagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_97_Condiciones_PagoNull()
+            Me(Me.tableRecibosDePago._97_Condiciones_PagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_98_Numero_PedidoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._98_Numero_PedidoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_98_Numero_PedidoNull()
+            Me(Me.tableRecibosDePago._98_Numero_PedidoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_99_Fecha_PedidoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._99_Fecha_PedidoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_99_Fecha_PedidoNull()
+            Me(Me.tableRecibosDePago._99_Fecha_PedidoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_100_Letras_Monto_TotalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._100_Letras_Monto_TotalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_100_Letras_Monto_TotalNull()
+            Me(Me.tableRecibosDePago._100_Letras_Monto_TotalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_101_Cantidad_UnidadesNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._101_Cantidad_UnidadesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_101_Cantidad_UnidadesNull()
+            Me(Me.tableRecibosDePago._101_Cantidad_UnidadesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_102_Cantidad_empaquesNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._102_Cantidad_empaquesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_102_Cantidad_empaquesNull()
+            Me(Me.tableRecibosDePago._102_Cantidad_empaquesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_103_EAN_ReceptorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._103_EAN_ReceptorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_103_EAN_ReceptorNull()
+            Me(Me.tableRecibosDePago._103_EAN_ReceptorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_104_EAN_LugarExpideNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._104_EAN_LugarExpideColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_104_EAN_LugarExpideNull()
+            Me(Me.tableRecibosDePago._104_EAN_LugarExpideColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_105_IEPS_IdNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._105_IEPS_IdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_105_IEPS_IdNull()
+            Me(Me.tableRecibosDePago._105_IEPS_IdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_106_EstatusNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._106_EstatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_106_EstatusNull()
+            Me(Me.tableRecibosDePago._106_EstatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_107_Numero_EmisorNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._107_Numero_EmisorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_107_Numero_EmisorNull()
+            Me(Me.tableRecibosDePago._107_Numero_EmisorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_108_Monto_MermaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._108_Monto_MermaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_108_Monto_MermaNull()
+            Me(Me.tableRecibosDePago._108_Monto_MermaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_109_Monto_SubTotal_ApIVANull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._109_Monto_SubTotal_ApIVAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_109_Monto_SubTotal_ApIVANull()
+            Me(Me.tableRecibosDePago._109_Monto_SubTotal_ApIVAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_110_TransportistaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._110_TransportistaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_110_TransportistaNull()
+            Me(Me.tableRecibosDePago._110_TransportistaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_111_Numero_SolicitudNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._111_Numero_SolicitudColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_111_Numero_SolicitudNull()
+            Me(Me.tableRecibosDePago._111_Numero_SolicitudColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_112_Desc_MonedaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._112_Desc_MonedaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_112_Desc_MonedaNull()
+            Me(Me.tableRecibosDePago._112_Desc_MonedaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_113_Misc01Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._113_Misc01Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_113_Misc01Null()
+            Me(Me.tableRecibosDePago._113_Misc01Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_114_Misc02Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._114_Misc02Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_114_Misc02Null()
+            Me(Me.tableRecibosDePago._114_Misc02Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_115_Misc03Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._115_Misc03Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_115_Misc03Null()
+            Me(Me.tableRecibosDePago._115_Misc03Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_116_Misc04Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._116_Misc04Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_116_Misc04Null()
+            Me(Me.tableRecibosDePago._116_Misc04Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_117_Misc05Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._117_Misc05Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_117_Misc05Null()
+            Me(Me.tableRecibosDePago._117_Misc05Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_118_Misc06Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._118_Misc06Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_118_Misc06Null()
+            Me(Me.tableRecibosDePago._118_Misc06Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_119_Misc07Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._119_Misc07Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_119_Misc07Null()
+            Me(Me.tableRecibosDePago._119_Misc07Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_120_Misc08Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._120_Misc08Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_120_Misc08Null()
+            Me(Me.tableRecibosDePago._120_Misc08Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_121_Misc09Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._121_Misc09Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_121_Misc09Null()
+            Me(Me.tableRecibosDePago._121_Misc09Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_122_Misc10Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._122_Misc10Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_122_Misc10Null()
+            Me(Me.tableRecibosDePago._122_Misc10Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_123_Misc11Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._123_Misc11Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_123_Misc11Null()
+            Me(Me.tableRecibosDePago._123_Misc11Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_124_Misc12Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._124_Misc12Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_124_Misc12Null()
+            Me(Me.tableRecibosDePago._124_Misc12Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_125_Misc13Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._125_Misc13Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_125_Misc13Null()
+            Me(Me.tableRecibosDePago._125_Misc13Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_126_Misc14Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._126_Misc14Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_126_Misc14Null()
+            Me(Me.tableRecibosDePago._126_Misc14Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_127_Misc15Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._127_Misc15Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_127_Misc15Null()
+            Me(Me.tableRecibosDePago._127_Misc15Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_128_Misc16Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._128_Misc16Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_128_Misc16Null()
+            Me(Me.tableRecibosDePago._128_Misc16Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_129_Misc17Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._129_Misc17Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_129_Misc17Null()
+            Me(Me.tableRecibosDePago._129_Misc17Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_130_Misc18Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._130_Misc18Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_130_Misc18Null()
+            Me(Me.tableRecibosDePago._130_Misc18Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_131_Misc19Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._131_Misc19Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_131_Misc19Null()
+            Me(Me.tableRecibosDePago._131_Misc19Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_132_Misc20Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._132_Misc20Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_132_Misc20Null()
+            Me(Me.tableRecibosDePago._132_Misc20Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_133_Misc21Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._133_Misc21Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_133_Misc21Null()
+            Me(Me.tableRecibosDePago._133_Misc21Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_134_Misc22Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._134_Misc22Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_134_Misc22Null()
+            Me(Me.tableRecibosDePago._134_Misc22Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_135_Misc23Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._135_Misc23Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_135_Misc23Null()
+            Me(Me.tableRecibosDePago._135_Misc23Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_136_Misc24Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._136_Misc24Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_136_Misc24Null()
+            Me(Me.tableRecibosDePago._136_Misc24Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_137_Misc25Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._137_Misc25Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_137_Misc25Null()
+            Me(Me.tableRecibosDePago._137_Misc25Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_138_Misc26Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._138_Misc26Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_138_Misc26Null()
+            Me(Me.tableRecibosDePago._138_Misc26Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_139_Misc27Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._139_Misc27Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_139_Misc27Null()
+            Me(Me.tableRecibosDePago._139_Misc27Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_140_Misc28Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._140_Misc28Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_140_Misc28Null()
+            Me(Me.tableRecibosDePago._140_Misc28Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_141_Misc29Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._141_Misc29Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_141_Misc29Null()
+            Me(Me.tableRecibosDePago._141_Misc29Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_142_Misc30Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._142_Misc30Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_142_Misc30Null()
+            Me(Me.tableRecibosDePago._142_Misc30Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_143_Misc31Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._143_Misc31Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_143_Misc31Null()
+            Me(Me.tableRecibosDePago._143_Misc31Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_144_Misc32Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._144_Misc32Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_144_Misc32Null()
+            Me(Me.tableRecibosDePago._144_Misc32Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_145_Misc33Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._145_Misc33Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_145_Misc33Null()
+            Me(Me.tableRecibosDePago._145_Misc33Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_146_Misc34Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._146_Misc34Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_146_Misc34Null()
+            Me(Me.tableRecibosDePago._146_Misc34Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_147_Misc35Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._147_Misc35Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_147_Misc35Null()
+            Me(Me.tableRecibosDePago._147_Misc35Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_148_Misc36Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._148_Misc36Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_148_Misc36Null()
+            Me(Me.tableRecibosDePago._148_Misc36Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_149_Misc37Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._149_Misc37Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_149_Misc37Null()
+            Me(Me.tableRecibosDePago._149_Misc37Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_150_Misc38Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._150_Misc38Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_150_Misc38Null()
+            Me(Me.tableRecibosDePago._150_Misc38Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_151_Misc39Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._151_Misc39Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_151_Misc39Null()
+            Me(Me.tableRecibosDePago._151_Misc39Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_152_Misc40Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._152_Misc40Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_152_Misc40Null()
+            Me(Me.tableRecibosDePago._152_Misc40Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_153_Misc41Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._153_Misc41Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_153_Misc41Null()
+            Me(Me.tableRecibosDePago._153_Misc41Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_154_Misc42Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._154_Misc42Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_154_Misc42Null()
+            Me(Me.tableRecibosDePago._154_Misc42Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_155_Misc43Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._155_Misc43Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_155_Misc43Null()
+            Me(Me.tableRecibosDePago._155_Misc43Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_156_Misc44Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._156_Misc44Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_156_Misc44Null()
+            Me(Me.tableRecibosDePago._156_Misc44Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_157_Misc45Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._157_Misc45Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_157_Misc45Null()
+            Me(Me.tableRecibosDePago._157_Misc45Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_158_Misc46Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._158_Misc46Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_158_Misc46Null()
+            Me(Me.tableRecibosDePago._158_Misc46Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_159_Misc47Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._159_Misc47Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_159_Misc47Null()
+            Me(Me.tableRecibosDePago._159_Misc47Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_160_Misc48Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._160_Misc48Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_160_Misc48Null()
+            Me(Me.tableRecibosDePago._160_Misc48Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_161_Misc49Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._161_Misc49Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_161_Misc49Null()
+            Me(Me.tableRecibosDePago._161_Misc49Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_162_Misc50Null() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._162_Misc50Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_162_Misc50Null()
+            Me(Me.tableRecibosDePago._162_Misc50Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_163_Porc_IVANull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._163_Porc_IVAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_163_Porc_IVANull()
+            Me(Me.tableRecibosDePago._163_Porc_IVAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_164_Monto_IEPSNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._164_Monto_IEPSColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_164_Monto_IEPSNull()
+            Me(Me.tableRecibosDePago._164_Monto_IEPSColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_165_Document_StatusNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._165_Document_StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_165_Document_StatusNull()
+            Me(Me.tableRecibosDePago._165_Document_StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_166_Delivery_DateNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._166_Delivery_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_166_Delivery_DateNull()
+            Me(Me.tableRecibosDePago._166_Delivery_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_167_RegimentFiscalNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._167_RegimentFiscalColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_167_RegimentFiscalNull()
+            Me(Me.tableRecibosDePago._167_RegimentFiscalColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_168_Num_CtaPagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._168_Num_CtaPagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_168_Num_CtaPagoNull()
+            Me(Me.tableRecibosDePago._168_Num_CtaPagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_169_Num_contrareciboNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._169_Num_contrareciboColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_169_Num_contrareciboNull()
+            Me(Me.tableRecibosDePago._169_Num_contrareciboColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_170_Fecha_Num_contrareciboNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._170_Fecha_Num_contrareciboColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_170_Fecha_Num_contrareciboNull()
+            Me(Me.tableRecibosDePago._170_Fecha_Num_contrareciboColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_171_Contacto_ComprarNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._171_Contacto_ComprarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_171_Contacto_ComprarNull()
+            Me(Me.tableRecibosDePago._171_Contacto_ComprarColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_172_Customs_glnNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._172_Customs_glnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_172_Customs_glnNull()
+            Me(Me.tableRecibosDePago._172_Customs_glnColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_173_Alternante_identificacion_glnNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._173_Alternante_identificacion_glnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_173_Alternante_identificacion_glnNull()
+            Me(Me.tableRecibosDePago._173_Alternante_identificacion_glnColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_174_Nombre_AduanaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._174_Nombre_AduanaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_174_Nombre_AduanaNull()
+            Me(Me.tableRecibosDePago._174_Nombre_AduanaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_175_Nombre_Aduana_CiudadNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._175_Nombre_Aduana_CiudadColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_175_Nombre_Aduana_CiudadNull()
+            Me(Me.tableRecibosDePago._175_Nombre_Aduana_CiudadColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_176_Func_DivisaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._176_Func_DivisaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_176_Func_DivisaNull()
+            Me(Me.tableRecibosDePago._176_Func_DivisaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_177_Tasa_DivisaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._177_Tasa_DivisaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_177_Tasa_DivisaNull()
+            Me(Me.tableRecibosDePago._177_Tasa_DivisaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_178_Ref_Tiempo_PagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._178_Ref_Tiempo_PagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_178_Ref_Tiempo_PagoNull()
+            Me(Me.tableRecibosDePago._178_Ref_Tiempo_PagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_179_Ref_Termino_Tiempo_PagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._179_Ref_Termino_Tiempo_PagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_179_Ref_Termino_Tiempo_PagoNull()
+            Me(Me.tableRecibosDePago._179_Ref_Termino_Tiempo_PagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_180_LugarExpedicionNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._180_LugarExpedicionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_180_LugarExpedicionNull()
+            Me(Me.tableRecibosDePago._180_LugarExpedicionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_181_SerieFolioFiscalOrigNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._181_SerieFolioFiscalOrigColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_181_SerieFolioFiscalOrigNull()
+            Me(Me.tableRecibosDePago._181_SerieFolioFiscalOrigColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_182_Tipo_Especial_de_ServicioNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._182_Tipo_Especial_de_ServicioColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_182_Tipo_Especial_de_ServicioNull()
+            Me(Me.tableRecibosDePago._182_Tipo_Especial_de_ServicioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_183_FechaFolioFiscalOrigNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._183_FechaFolioFiscalOrigColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_183_FechaFolioFiscalOrigNull()
+            Me(Me.tableRecibosDePago._183_FechaFolioFiscalOrigColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_184_Porcentaje_no_aplicadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._184_Porcentaje_no_aplicadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_184_Porcentaje_no_aplicadoNull()
+            Me(Me.tableRecibosDePago._184_Porcentaje_no_aplicadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_185_MontoFolioFiscalOrigNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._185_MontoFolioFiscalOrigColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_185_MontoFolioFiscalOrigNull()
+            Me(Me.tableRecibosDePago._185_MontoFolioFiscalOrigColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_186_Monto_Total_DescuentosNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._186_Monto_Total_DescuentosColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_186_Monto_Total_DescuentosNull()
+            Me(Me.tableRecibosDePago._186_Monto_Total_DescuentosColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_187_Monto_Total_PagarNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._187_Monto_Total_PagarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_187_Monto_Total_PagarNull()
+            Me(Me.tableRecibosDePago._187_Monto_Total_PagarColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_188_Ano_AprobacionNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._188_Ano_AprobacionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_188_Ano_AprobacionNull()
+            Me(Me.tableRecibosDePago._188_Ano_AprobacionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_189_Motivo_DescuentoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._189_Motivo_DescuentoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_189_Motivo_DescuentoNull()
+            Me(Me.tableRecibosDePago._189_Motivo_DescuentoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_190_Metodo_PagoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._190_Metodo_PagoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_190_Metodo_PagoNull()
+            Me(Me.tableRecibosDePago._190_Metodo_PagoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_191_Efecto_ComprobanteNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._191_Efecto_ComprobanteColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_191_Efecto_ComprobanteNull()
+            Me(Me.tableRecibosDePago._191_Efecto_ComprobanteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_192_Monto_TotalImp_RetenidosNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._192_Monto_TotalImp_RetenidosColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_192_Monto_TotalImp_RetenidosNull()
+            Me(Me.tableRecibosDePago._192_Monto_TotalImp_RetenidosColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_193_Monto_TotalImp_TrasladadosNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago._193_Monto_TotalImp_TrasladadosColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_193_Monto_TotalImp_TrasladadosNull()
+            Me(Me.tableRecibosDePago._193_Monto_TotalImp_TrasladadosColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEncabezado_ProcesadoNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago.Encabezado_ProcesadoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEncabezado_ProcesadoNull()
+            Me(Me.tableRecibosDePago.Encabezado_ProcesadoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGuidNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago.GuidColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGuidNull()
+            Me(Me.tableRecibosDePago.GuidColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFechaNull() As Boolean
+            Return Me.IsNull(Me.tableRecibosDePago.FechaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFechaNull()
+            Me(Me.tableRecibosDePago.FechaColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -26191,6 +35202,42 @@ Partial Public Class ProduccionDS
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As FacturasExternasDETRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class RecibosDePagoRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As RecibosDePagoRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As RecibosDePagoRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As RecibosDePagoRow
             Get
                 Return Me.eventRow
             End Get
@@ -46699,6 +55746,702 @@ Namespace ProduccionDSTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class RecibosDePagoTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "RecibosDePago"
+            tableMapping.ColumnMappings.Add("1_Folio", "1_Folio")
+            tableMapping.ColumnMappings.Add("2_Nombre_Emisor", "2_Nombre_Emisor")
+            tableMapping.ColumnMappings.Add("3_RFC_Emisor", "3_RFC_Emisor")
+            tableMapping.ColumnMappings.Add("4_Dom_Emisor_calle", "4_Dom_Emisor_calle")
+            tableMapping.ColumnMappings.Add("5_Dom_Emisor_noExterior", "5_Dom_Emisor_noExterior")
+            tableMapping.ColumnMappings.Add("6_Dom_Emisor_noInterior", "6_Dom_Emisor_noInterior")
+            tableMapping.ColumnMappings.Add("7_Dom_Emisor_colonia", "7_Dom_Emisor_colonia")
+            tableMapping.ColumnMappings.Add("8_Dom_Emisor_localidad", "8_Dom_Emisor_localidad")
+            tableMapping.ColumnMappings.Add("9_Dom_Emisor_referencia", "9_Dom_Emisor_referencia")
+            tableMapping.ColumnMappings.Add("10_Dom_Emisor_municipio", "10_Dom_Emisor_municipio")
+            tableMapping.ColumnMappings.Add("11_Dom_Emisor_estado", "11_Dom_Emisor_estado")
+            tableMapping.ColumnMappings.Add("12_Dom_Emisor_pais", "12_Dom_Emisor_pais")
+            tableMapping.ColumnMappings.Add("13_Dom_Emisor_codigoPostal", "13_Dom_Emisor_codigoPostal")
+            tableMapping.ColumnMappings.Add("14_Tel_Emisor", "14_Tel_Emisor")
+            tableMapping.ColumnMappings.Add("15_Dom_Sucursal_calle", "15_Dom_Sucursal_calle")
+            tableMapping.ColumnMappings.Add("16_Dom_Sucursal_noExterior", "16_Dom_Sucursal_noExterior")
+            tableMapping.ColumnMappings.Add("17_Dom_Sucursal_noInterior", "17_Dom_Sucursal_noInterior")
+            tableMapping.ColumnMappings.Add("18_Dom_Sucursal_colonia", "18_Dom_Sucursal_colonia")
+            tableMapping.ColumnMappings.Add("19_Dom_Sucursal_localidad", "19_Dom_Sucursal_localidad")
+            tableMapping.ColumnMappings.Add("20_Dom_Sucursal_referencia", "20_Dom_Sucursal_referencia")
+            tableMapping.ColumnMappings.Add("21_Dom_Sucursal_municipio", "21_Dom_Sucursal_municipio")
+            tableMapping.ColumnMappings.Add("22_Dom_Sucursal_estado", "22_Dom_Sucursal_estado")
+            tableMapping.ColumnMappings.Add("23_Dom_Sucursal_pais", "23_Dom_Sucursal_pais")
+            tableMapping.ColumnMappings.Add("24_Dom_Sucursal_codigoPostal", "24_Dom_Sucursal_codigoPostal")
+            tableMapping.ColumnMappings.Add("25_Tel_sucursal", "25_Tel_sucursal")
+            tableMapping.ColumnMappings.Add("26_Version", "26_Version")
+            tableMapping.ColumnMappings.Add("27_Serie_Comprobante", "27_Serie_Comprobante")
+            tableMapping.ColumnMappings.Add("28_Numero_Aprobacion", "28_Numero_Aprobacion")
+            tableMapping.ColumnMappings.Add("29_FormaPago", "29_FormaPago")
+            tableMapping.ColumnMappings.Add("30_Fecha", "30_Fecha")
+            tableMapping.ColumnMappings.Add("31_Hora", "31_Hora")
+            tableMapping.ColumnMappings.Add("32_Dom_LugarExpide_calle", "32_Dom_LugarExpide_calle")
+            tableMapping.ColumnMappings.Add("33_Dom_LugarExpide_noExterior", "33_Dom_LugarExpide_noExterior")
+            tableMapping.ColumnMappings.Add("34_Dom_LugarExpide_noInterior", "34_Dom_LugarExpide_noInterior")
+            tableMapping.ColumnMappings.Add("35_Dom_LugarExpide_colonia", "35_Dom_LugarExpide_colonia")
+            tableMapping.ColumnMappings.Add("36_Dom_LugarExpide_localidad", "36_Dom_LugarExpide_localidad")
+            tableMapping.ColumnMappings.Add("37_Dom_LugarExpide_referencia", "37_Dom_LugarExpide_referencia")
+            tableMapping.ColumnMappings.Add("38_Dom_LugarExpide_municipio", "38_Dom_LugarExpide_municipio")
+            tableMapping.ColumnMappings.Add("39_Dom_LugarExpide_estado", "39_Dom_LugarExpide_estado")
+            tableMapping.ColumnMappings.Add("40_Dom_LugarExpide_pais", "40_Dom_LugarExpide_pais")
+            tableMapping.ColumnMappings.Add("41_Dom_LugarExpide_codigoPostal", "41_Dom_LugarExpide_codigoPostal")
+            tableMapping.ColumnMappings.Add("42_Nombre_Receptor", "42_Nombre_Receptor")
+            tableMapping.ColumnMappings.Add("43_RFC_Receptor", "43_RFC_Receptor")
+            tableMapping.ColumnMappings.Add("44_Dom_Receptor_calle", "44_Dom_Receptor_calle")
+            tableMapping.ColumnMappings.Add("45_Dom_Receptor_noExterior", "45_Dom_Receptor_noExterior")
+            tableMapping.ColumnMappings.Add("46_Dom_Receptor_noInterior", "46_Dom_Receptor_noInterior")
+            tableMapping.ColumnMappings.Add("47_Dom_Receptor_colonia", "47_Dom_Receptor_colonia")
+            tableMapping.ColumnMappings.Add("48_Dom_Receptor_localidad", "48_Dom_Receptor_localidad")
+            tableMapping.ColumnMappings.Add("49_Dom_Receptor_referencia", "49_Dom_Receptor_referencia")
+            tableMapping.ColumnMappings.Add("50_Dom_Receptor_municipio", "50_Dom_Receptor_municipio")
+            tableMapping.ColumnMappings.Add("51_Dom_Receptor_estado", "51_Dom_Receptor_estado")
+            tableMapping.ColumnMappings.Add("52_Dom_Receptor_pais", "52_Dom_Receptor_pais")
+            tableMapping.ColumnMappings.Add("53_Dom_Receptor_codigoPostal", "53_Dom_Receptor_codigoPostal")
+            tableMapping.ColumnMappings.Add("54_Monto_SubTotal", "54_Monto_SubTotal")
+            tableMapping.ColumnMappings.Add("55_Monto_IVA", "55_Monto_IVA")
+            tableMapping.ColumnMappings.Add("56_Monto_Total", "56_Monto_Total")
+            tableMapping.ColumnMappings.Add("57_Estado", "57_Estado")
+            tableMapping.ColumnMappings.Add("58_TipoCFD", "58_TipoCFD")
+            tableMapping.ColumnMappings.Add("59_Notas", "59_Notas")
+            tableMapping.ColumnMappings.Add("60_Notas02", "60_Notas02")
+            tableMapping.ColumnMappings.Add("61_Notas03", "61_Notas03")
+            tableMapping.ColumnMappings.Add("62_TradingPartner_Prov", "62_TradingPartner_Prov")
+            tableMapping.ColumnMappings.Add("63_Calif_TradingPartner_Prov", "63_Calif_TradingPartner_Prov")
+            tableMapping.ColumnMappings.Add("64_EAN_Proveedor", "64_EAN_Proveedor")
+            tableMapping.ColumnMappings.Add("65_Numero_Factura", "65_Numero_Factura")
+            tableMapping.ColumnMappings.Add("66_Numero_OrdenCompra", "66_Numero_OrdenCompra")
+            tableMapping.ColumnMappings.Add("67_Fecha_OrdenCompra", "67_Fecha_OrdenCompra")
+            tableMapping.ColumnMappings.Add("68_Numero_Proveedor", "68_Numero_Proveedor")
+            tableMapping.ColumnMappings.Add("69_EAN_Tienda", "69_EAN_Tienda")
+            tableMapping.ColumnMappings.Add("70_Numero_Tienda", "70_Numero_Tienda")
+            tableMapping.ColumnMappings.Add("71_Nombre_Tienda", "71_Nombre_Tienda")
+            tableMapping.ColumnMappings.Add("72_Dom_Tienda_calle", "72_Dom_Tienda_calle")
+            tableMapping.ColumnMappings.Add("73_Dom_Tienda_noExterior", "73_Dom_Tienda_noExterior")
+            tableMapping.ColumnMappings.Add("74_Dom_Tienda_noInterior", "74_Dom_Tienda_noInterior")
+            tableMapping.ColumnMappings.Add("75_Dom_Tienda_colonia", "75_Dom_Tienda_colonia")
+            tableMapping.ColumnMappings.Add("76_Dom_Tienda_localidad", "76_Dom_Tienda_localidad")
+            tableMapping.ColumnMappings.Add("77_Dom_Tienda_referencia", "77_Dom_Tienda_referencia")
+            tableMapping.ColumnMappings.Add("78_Dom_Tienda_municipio", "78_Dom_Tienda_municipio")
+            tableMapping.ColumnMappings.Add("79_Dom_Tienda_estado", "79_Dom_Tienda_estado")
+            tableMapping.ColumnMappings.Add("80_Dom_Tienda_pais", "80_Dom_Tienda_pais")
+            tableMapping.ColumnMappings.Add("81_Dom_Tienda_codigoPostal", "81_Dom_Tienda_codigoPostal")
+            tableMapping.ColumnMappings.Add("82_RFC_Tienda", "82_RFC_Tienda")
+            tableMapping.ColumnMappings.Add("83_Cod_Moneda", "83_Cod_Moneda")
+            tableMapping.ColumnMappings.Add("84_Dias_Pago", "84_Dias_Pago")
+            tableMapping.ColumnMappings.Add("85_Porc_Desc_ProntoPago", "85_Porc_Desc_ProntoPago")
+            tableMapping.ColumnMappings.Add("86_Monto_Desc_ProntoPago", "86_Monto_Desc_ProntoPago")
+            tableMapping.ColumnMappings.Add("87_Cod_Descuento", "87_Cod_Descuento")
+            tableMapping.ColumnMappings.Add("88_Porc_Descuento", "88_Porc_Descuento")
+            tableMapping.ColumnMappings.Add("89_Monto_Descuento", "89_Monto_Descuento")
+            tableMapping.ColumnMappings.Add("90_Cantidad_LineasFactura", "90_Cantidad_LineasFactura")
+            tableMapping.ColumnMappings.Add("91_Fecha_Vencimiento", "91_Fecha_Vencimiento")
+            tableMapping.ColumnMappings.Add("92_Cod_Zona", "92_Cod_Zona")
+            tableMapping.ColumnMappings.Add("93_Numero_Receptor", "93_Numero_Receptor")
+            tableMapping.ColumnMappings.Add("94_Cod_Vendedor", "94_Cod_Vendedor")
+            tableMapping.ColumnMappings.Add("95_Nombre_Vendedor", "95_Nombre_Vendedor")
+            tableMapping.ColumnMappings.Add("96_Via_Embarque", "96_Via_Embarque")
+            tableMapping.ColumnMappings.Add("97_Condiciones_Pago", "97_Condiciones_Pago")
+            tableMapping.ColumnMappings.Add("98_Numero_Pedido", "98_Numero_Pedido")
+            tableMapping.ColumnMappings.Add("99_Fecha_Pedido", "99_Fecha_Pedido")
+            tableMapping.ColumnMappings.Add("100_Letras_Monto_Total", "100_Letras_Monto_Total")
+            tableMapping.ColumnMappings.Add("101_Cantidad_Unidades", "101_Cantidad_Unidades")
+            tableMapping.ColumnMappings.Add("102_Cantidad_empaques", "102_Cantidad_empaques")
+            tableMapping.ColumnMappings.Add("103_EAN_Receptor", "103_EAN_Receptor")
+            tableMapping.ColumnMappings.Add("104_EAN_LugarExpide", "104_EAN_LugarExpide")
+            tableMapping.ColumnMappings.Add("105_IEPS_Id", "105_IEPS_Id")
+            tableMapping.ColumnMappings.Add("106_Estatus", "106_Estatus")
+            tableMapping.ColumnMappings.Add("107_Numero_Emisor", "107_Numero_Emisor")
+            tableMapping.ColumnMappings.Add("108_Monto_Merma", "108_Monto_Merma")
+            tableMapping.ColumnMappings.Add("109_Monto_SubTotal_ApIVA", "109_Monto_SubTotal_ApIVA")
+            tableMapping.ColumnMappings.Add("110_Transportista", "110_Transportista")
+            tableMapping.ColumnMappings.Add("111_Numero_Solicitud", "111_Numero_Solicitud")
+            tableMapping.ColumnMappings.Add("112_Desc_Moneda", "112_Desc_Moneda")
+            tableMapping.ColumnMappings.Add("113_Misc01", "113_Misc01")
+            tableMapping.ColumnMappings.Add("114_Misc02", "114_Misc02")
+            tableMapping.ColumnMappings.Add("115_Misc03", "115_Misc03")
+            tableMapping.ColumnMappings.Add("116_Misc04", "116_Misc04")
+            tableMapping.ColumnMappings.Add("117_Misc05", "117_Misc05")
+            tableMapping.ColumnMappings.Add("118_Misc06", "118_Misc06")
+            tableMapping.ColumnMappings.Add("119_Misc07", "119_Misc07")
+            tableMapping.ColumnMappings.Add("120_Misc08", "120_Misc08")
+            tableMapping.ColumnMappings.Add("121_Misc09", "121_Misc09")
+            tableMapping.ColumnMappings.Add("122_Misc10", "122_Misc10")
+            tableMapping.ColumnMappings.Add("123_Misc11", "123_Misc11")
+            tableMapping.ColumnMappings.Add("124_Misc12", "124_Misc12")
+            tableMapping.ColumnMappings.Add("125_Misc13", "125_Misc13")
+            tableMapping.ColumnMappings.Add("126_Misc14", "126_Misc14")
+            tableMapping.ColumnMappings.Add("127_Misc15", "127_Misc15")
+            tableMapping.ColumnMappings.Add("128_Misc16", "128_Misc16")
+            tableMapping.ColumnMappings.Add("129_Misc17", "129_Misc17")
+            tableMapping.ColumnMappings.Add("130_Misc18", "130_Misc18")
+            tableMapping.ColumnMappings.Add("131_Misc19", "131_Misc19")
+            tableMapping.ColumnMappings.Add("132_Misc20", "132_Misc20")
+            tableMapping.ColumnMappings.Add("133_Misc21", "133_Misc21")
+            tableMapping.ColumnMappings.Add("134_Misc22", "134_Misc22")
+            tableMapping.ColumnMappings.Add("135_Misc23", "135_Misc23")
+            tableMapping.ColumnMappings.Add("136_Misc24", "136_Misc24")
+            tableMapping.ColumnMappings.Add("137_Misc25", "137_Misc25")
+            tableMapping.ColumnMappings.Add("138_Misc26", "138_Misc26")
+            tableMapping.ColumnMappings.Add("139_Misc27", "139_Misc27")
+            tableMapping.ColumnMappings.Add("140_Misc28", "140_Misc28")
+            tableMapping.ColumnMappings.Add("141_Misc29", "141_Misc29")
+            tableMapping.ColumnMappings.Add("142_Misc30", "142_Misc30")
+            tableMapping.ColumnMappings.Add("143_Misc31", "143_Misc31")
+            tableMapping.ColumnMappings.Add("144_Misc32", "144_Misc32")
+            tableMapping.ColumnMappings.Add("145_Misc33", "145_Misc33")
+            tableMapping.ColumnMappings.Add("146_Misc34", "146_Misc34")
+            tableMapping.ColumnMappings.Add("147_Misc35", "147_Misc35")
+            tableMapping.ColumnMappings.Add("148_Misc36", "148_Misc36")
+            tableMapping.ColumnMappings.Add("149_Misc37", "149_Misc37")
+            tableMapping.ColumnMappings.Add("150_Misc38", "150_Misc38")
+            tableMapping.ColumnMappings.Add("151_Misc39", "151_Misc39")
+            tableMapping.ColumnMappings.Add("152_Misc40", "152_Misc40")
+            tableMapping.ColumnMappings.Add("153_Misc41", "153_Misc41")
+            tableMapping.ColumnMappings.Add("154_Misc42", "154_Misc42")
+            tableMapping.ColumnMappings.Add("155_Misc43", "155_Misc43")
+            tableMapping.ColumnMappings.Add("156_Misc44", "156_Misc44")
+            tableMapping.ColumnMappings.Add("157_Misc45", "157_Misc45")
+            tableMapping.ColumnMappings.Add("158_Misc46", "158_Misc46")
+            tableMapping.ColumnMappings.Add("159_Misc47", "159_Misc47")
+            tableMapping.ColumnMappings.Add("160_Misc48", "160_Misc48")
+            tableMapping.ColumnMappings.Add("161_Misc49", "161_Misc49")
+            tableMapping.ColumnMappings.Add("162_Misc50", "162_Misc50")
+            tableMapping.ColumnMappings.Add("163_Porc_IVA", "163_Porc_IVA")
+            tableMapping.ColumnMappings.Add("164_Monto_IEPS", "164_Monto_IEPS")
+            tableMapping.ColumnMappings.Add("165_Document_Status", "165_Document_Status")
+            tableMapping.ColumnMappings.Add("166_Delivery_Date", "166_Delivery_Date")
+            tableMapping.ColumnMappings.Add("167_RegimentFiscal", "167_RegimentFiscal")
+            tableMapping.ColumnMappings.Add("168_Num_CtaPago", "168_Num_CtaPago")
+            tableMapping.ColumnMappings.Add("169_Num_contrarecibo", "169_Num_contrarecibo")
+            tableMapping.ColumnMappings.Add("170_Fecha_Num_contrarecibo", "170_Fecha_Num_contrarecibo")
+            tableMapping.ColumnMappings.Add("171_Contacto_Comprar", "171_Contacto_Comprar")
+            tableMapping.ColumnMappings.Add("172_Customs_gln", "172_Customs_gln")
+            tableMapping.ColumnMappings.Add("173_Alternante_identificacion_gln", "173_Alternante_identificacion_gln")
+            tableMapping.ColumnMappings.Add("174_Nombre_Aduana", "174_Nombre_Aduana")
+            tableMapping.ColumnMappings.Add("175_Nombre_Aduana_Ciudad", "175_Nombre_Aduana_Ciudad")
+            tableMapping.ColumnMappings.Add("176_Func_Divisa", "176_Func_Divisa")
+            tableMapping.ColumnMappings.Add("177_Tasa_Divisa", "177_Tasa_Divisa")
+            tableMapping.ColumnMappings.Add("178_Ref_Tiempo_Pago", "178_Ref_Tiempo_Pago")
+            tableMapping.ColumnMappings.Add("179_Ref_Termino_Tiempo_Pago", "179_Ref_Termino_Tiempo_Pago")
+            tableMapping.ColumnMappings.Add("180_LugarExpedicion", "180_LugarExpedicion")
+            tableMapping.ColumnMappings.Add("181_SerieFolioFiscalOrig", "181_SerieFolioFiscalOrig")
+            tableMapping.ColumnMappings.Add("182_Tipo_Especial_de_Servicio", "182_Tipo_Especial_de_Servicio")
+            tableMapping.ColumnMappings.Add("183_FechaFolioFiscalOrig", "183_FechaFolioFiscalOrig")
+            tableMapping.ColumnMappings.Add("184_Porcentaje_no_aplicado", "184_Porcentaje_no_aplicado")
+            tableMapping.ColumnMappings.Add("185_MontoFolioFiscalOrig", "185_MontoFolioFiscalOrig")
+            tableMapping.ColumnMappings.Add("186_Monto_Total_Descuentos", "186_Monto_Total_Descuentos")
+            tableMapping.ColumnMappings.Add("187_Monto_Total_Pagar", "187_Monto_Total_Pagar")
+            tableMapping.ColumnMappings.Add("188_Ano_Aprobacion", "188_Ano_Aprobacion")
+            tableMapping.ColumnMappings.Add("189_Motivo_Descuento", "189_Motivo_Descuento")
+            tableMapping.ColumnMappings.Add("190_Metodo_Pago", "190_Metodo_Pago")
+            tableMapping.ColumnMappings.Add("191_Efecto_Comprobante", "191_Efecto_Comprobante")
+            tableMapping.ColumnMappings.Add("192_Monto_TotalImp_Retenidos", "192_Monto_TotalImp_Retenidos")
+            tableMapping.ColumnMappings.Add("193_Monto_TotalImp_Trasladados", "193_Monto_TotalImp_Trasladados")
+            tableMapping.ColumnMappings.Add("Encabezado_Procesado", "Encabezado_Procesado")
+            tableMapping.ColumnMappings.Add("Guid", "Guid")
+            tableMapping.ColumnMappings.Add("Fecha", "Fecha")
+            tableMapping.ColumnMappings.Add("EMail1", "EMail1")
+            tableMapping.ColumnMappings.Add("EMail2", "EMail2")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.GeneraFactura.My.MySettings.Default.ConnectionStringFACTURA
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[2_Nombre_Emisor], CFDI_"& _ 
+                "Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado"& _ 
+                ".[5_Dom_Emisor_noExterior], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[6_Dom_Em"& _ 
+                "isor_noInterior], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.[8_Dom"& _ 
+                "_Emisor_localidad], CFDI_Encabezado.[9_Dom_Emisor_referencia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          CFDI_Encabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[11_Dom_Emi"& _ 
+                "sor_estado], CFDI_Encabezado.[12_Dom_Emisor_pais], CFDI_Encabezado.[13_Dom_Emiso"& _ 
+                "r_codigoPostal], CFDI_Encabezado.[14_Tel_Emisor],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          CFD"& _ 
+                "I_Encabezado.[15_Dom_Sucursal_calle], CFDI_Encabezado.[16_Dom_Sucursal_noExterio"& _ 
+                "r], CFDI_Encabezado.[17_Dom_Sucursal_noInterior], CFDI_Encabezado.[18_Dom_Sucurs"& _ 
+                "al_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[19_Dom_Sucursal_localid"& _ 
+                "ad], CFDI_Encabezado.[20_Dom_Sucursal_referencia], CFDI_Encabezado.[21_Dom_Sucur"& _ 
+                "sal_municipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     CFDI_Encabezado.[23_Dom_Sucursal_pais], CFDI_Encabezado.[24_Dom_Sucursal_co"& _ 
+                "digoPostal], CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CF"& _ 
+                "DI_Encabezado.[27_Serie_Comprobante], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado"& _ 
+                ".[28_Numero_Aprobacion], CFDI_Encabezado.[29_FormaPago], CFDI_Encabezado.[30_Fec"& _ 
+                "ha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_Dom_LugarExpide_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], CFDI_Enc"& _ 
+                "abezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabezado.[35_Dom_LugarExpide_col"& _ 
+                "onia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  CFDI_Encabezado.[37_Dom_LugarExpide_referencia], CFDI_Encabezado.[38_Dom_Lugar"& _ 
+                "Expide_municipio], CFDI_Encabezado.[39_Dom_LugarExpide_estado], CFDI_Encabezado."& _ 
+                "[40_Dom_LugarExpide_pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[41_Dom_Lu"& _ 
+                "garExpide_codigoPostal], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.["& _ 
+                "43_RFC_Receptor], CFDI_Encabezado.[44_Dom_Receptor_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "      CFDI_Encabezado.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Rece"& _ 
+                "ptor_noInterior], CFDI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48"& _ 
+                "_Dom_Receptor_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[49_Dom_Rec"& _ 
+                "eptor_referencia], CFDI_Encabezado.[50_Dom_Receptor_municipio], CFDI_Encabezado."& _ 
+                "[51_Dom_Receptor_estado], CFDI_Encabezado.[52_Dom_Receptor_pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "             CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], CFDI_Encabezado.[54"& _ 
+                "_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabezado.[56_Monto_Tota"& _ 
+                "l], CFDI_Encabezado.[57_Estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[58_"& _ 
+                "TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[60_Notas02], CFDI_Encabez"& _ 
+                "ado.[61_Notas03], CFDI_Encabezado.[62_TradingPartner_Prov], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       CFDI_Encabezado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_P"& _ 
+                "roveedor], CFDI_Encabezado.[65_Numero_Factura], CFDI_Encabezado.[66_Numero_Orden"& _ 
+                "Compra], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI"& _ 
+                "_Encabezado.[68_Numero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabez"& _ 
+                "ado.[70_Numero_Tienda], CFDI_Encabezado.[71_Nombre_Tienda], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encabezado.[73_Dom_Tienda_noE"& _ 
+                "xterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], CFDI_Encabezado.[75_Dom_Ti"& _ 
+                "enda_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[76_Dom_Tienda_localid"& _ 
+                "ad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_Encabezado.[78_Dom_Tienda_"& _ 
+                "municipio], CFDI_Encabezado.[79_Dom_Tienda_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         C"& _ 
+                "FDI_Encabezado.[80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal"& _ 
+                "], CFDI_Encabezado.[82_RFC_Tienda], CFDI_Encabezado.[83_Cod_Moneda], CFDI_Encabe"& _ 
+                "zado.[84_Dias_Pago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[85_Porc_Desc_Pr"& _ 
+                "ontoPago], CFDI_Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_D"& _ 
+                "escuento], CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_Monto_Descue"& _ 
+                "nto], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[90_Cantidad_LineasFactura], CF"& _ 
+                "DI_Encabezado.[91_Fecha_Vencimiento], CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabe"& _ 
+                "zado.[93_Numero_Receptor], CFDI_Encabezado.[94_Cod_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_Encabezado.[96_Via_Embarque]"& _ 
+                ", CFDI_Encabezado.[97_Condiciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFD"& _ 
+                "I_Encabezado.[99_Fecha_Pedido], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[100_"& _ 
+                "Letras_Monto_Total], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[1"& _ 
+                "02_Cantidad_empaques], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_"& _ 
+                "EAN_LugarExpide], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[105_IEPS_Id], CFDI"& _ 
+                "_Encabezado.[106_Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado."& _ 
+                "[108_Monto_Merma], CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          CFDI_Encabezado.[110_Transportista], CFDI_Encabezado.[111_Numero_Solic"& _ 
+                "itud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabezado.[113_Misc01], CFDI_Enc"& _ 
+                "abezado.[114_Misc02], CFDI_Encabezado.[115_Misc03], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         C"& _ 
+                "FDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc05], CFDI_Encabezado.[118_"& _ 
+                "Misc06], CFDI_Encabezado.[119_Misc07], CFDI_Encabezado.[120_Misc08], CFDI_Encabe"& _ 
+                "zado.[121_Misc09], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[122_Misc10], CFDI"& _ 
+                "_Encabezado.[123_Misc11], CFDI_Encabezado.[124_Misc12], CFDI_Encabezado.[125_Mis"& _ 
+                "c13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "             CFDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_En"& _ 
+                "cabezado.[130_Misc18], CFDI_Encabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20"& _ 
+                "], CFDI_Encabezado.[133_Misc21], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[134"& _ 
+                "_Misc22], CFDI_Encabezado.[135_Misc23], CFDI_Encabezado.[136_Misc24], CFDI_Encab"& _ 
+                "ezado.[137_Misc25], CFDI_Encabezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[140_Misc28], CFDI_Encabezado.[141_Mi"& _ 
+                "sc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc31], CFDI_Encabeza"& _ 
+                "do.[144_Misc32], CFDI_Encabezado.[145_Misc33], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_E"& _ 
+                "ncabezado.[146_Misc34], CFDI_Encabezado.[147_Misc35], CFDI_Encabezado.[148_Misc3"& _ 
+                "6], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado."& _ 
+                "[151_Misc39], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[152_Misc40], CFDI_Enca"& _ 
+                "bezado.[153_Misc41], CFDI_Encabezado.[154_Misc42], CFDI_Encabezado.[155_Misc43],"& _ 
+                " CFDI_Encabezado.[156_Misc44], CFDI_Encabezado.[157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        CFDI_Encabezado.[158_Misc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabez"& _ 
+                "ado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_Misc50], CF"& _ 
+                "DI_Encabezado.[163_Porc_IVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[164_Mo"& _ 
+                "nto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[166_Delivery_"& _ 
+                "Date], CFDI_Encabezado.[167_RegimentFiscal], CFDI_Encabezado.[168_Num_CtaPago], "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[169_Num_contrarecibo], CFDI_Encabeza"& _ 
+                "do.[170_Fecha_Num_contrarecibo], CFDI_Encabezado.[171_Contacto_Comprar], CFDI_En"& _ 
+                "cabezado.[172_Customs_gln], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[173_Alte"& _ 
+                "rnante_identificacion_gln], CFDI_Encabezado.[174_Nombre_Aduana], CFDI_Encabezado"& _ 
+                ".[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabezado."& _ 
+                "[177_Tasa_Divisa], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[178_Ref_Tiempo_Pa"& _ 
+                "go], CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[180_LugarEx"& _ 
+                "pedicion], CFDI_Encabezado.[181_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  CFDI_Encabezado.[182_Tipo_Especial_de_Servicio], CFDI_Encabezado.[183_FechaFol"& _ 
+                "ioFiscalOrig], CFDI_Encabezado.[184_Porcentaje_no_aplicado], CFDI_Encabezado.[18"& _ 
+                "5_MontoFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[186_Monto_T"& _ 
+                "otal_Descuentos], CFDI_Encabezado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_"& _ 
+                "Ano_Aprobacion], CFDI_Encabezado.[189_Motivo_Descuento], CFDI_Encabezado.[190_Me"& _ 
+                "todo_Pago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[191_Efecto_Comprobante],"& _ 
+                " CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], CFDI_Encabezado.[193_Monto_Tota"& _ 
+                "lImp_Trasladados], CFDI_Encabezado.Encabezado_Procesado, CFDI_Encabezado.Guid, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.Fecha, Clientes.EMail1, Clientes.EMail"& _ 
+                "2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes"& _ 
+                " ON CFDI_Encabezado.[43_RFC_Receptor] = Clientes.RFC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CFDI_Encabez"& _ 
+                "ado.Guid = 'Recibo de Pago')"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[2_Nombre_Emisor], CFDI_"& _ 
+                "Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado"& _ 
+                ".[5_Dom_Emisor_noExterior], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[6_Dom_Em"& _ 
+                "isor_noInterior], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.[8_Dom"& _ 
+                "_Emisor_localidad], CFDI_Encabezado.[9_Dom_Emisor_referencia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          CFDI_Encabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[11_Dom_Emi"& _ 
+                "sor_estado], CFDI_Encabezado.[12_Dom_Emisor_pais], CFDI_Encabezado.[13_Dom_Emiso"& _ 
+                "r_codigoPostal], CFDI_Encabezado.[14_Tel_Emisor],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          CFD"& _ 
+                "I_Encabezado.[15_Dom_Sucursal_calle], CFDI_Encabezado.[16_Dom_Sucursal_noExterio"& _ 
+                "r], CFDI_Encabezado.[17_Dom_Sucursal_noInterior], CFDI_Encabezado.[18_Dom_Sucurs"& _ 
+                "al_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[19_Dom_Sucursal_localid"& _ 
+                "ad], CFDI_Encabezado.[20_Dom_Sucursal_referencia], CFDI_Encabezado.[21_Dom_Sucur"& _ 
+                "sal_municipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
+                "     CFDI_Encabezado.[23_Dom_Sucursal_pais], CFDI_Encabezado.[24_Dom_Sucursal_co"& _ 
+                "digoPostal], CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CF"& _ 
+                "DI_Encabezado.[27_Serie_Comprobante], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado"& _ 
+                ".[28_Numero_Aprobacion], CFDI_Encabezado.[29_FormaPago], CFDI_Encabezado.[30_Fec"& _ 
+                "ha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_Dom_LugarExpide_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], CFDI_Enc"& _ 
+                "abezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabezado.[35_Dom_LugarExpide_col"& _ 
+                "onia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  CFDI_Encabezado.[37_Dom_LugarExpide_referencia], CFDI_Encabezado.[38_Dom_Lugar"& _ 
+                "Expide_municipio], CFDI_Encabezado.[39_Dom_LugarExpide_estado], CFDI_Encabezado."& _ 
+                "[40_Dom_LugarExpide_pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[41_Dom_Lu"& _ 
+                "garExpide_codigoPostal], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.["& _ 
+                "43_RFC_Receptor], CFDI_Encabezado.[44_Dom_Receptor_calle], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "      CFDI_Encabezado.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Rece"& _ 
+                "ptor_noInterior], CFDI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48"& _ 
+                "_Dom_Receptor_localidad], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[49_Dom_Rec"& _ 
+                "eptor_referencia], CFDI_Encabezado.[50_Dom_Receptor_municipio], CFDI_Encabezado."& _ 
+                "[51_Dom_Receptor_estado], CFDI_Encabezado.[52_Dom_Receptor_pais], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "             CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], CFDI_Encabezado.[54"& _ 
+                "_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabezado.[56_Monto_Tota"& _ 
+                "l], CFDI_Encabezado.[57_Estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[58_"& _ 
+                "TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[60_Notas02], CFDI_Encabez"& _ 
+                "ado.[61_Notas03], CFDI_Encabezado.[62_TradingPartner_Prov], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       CFDI_Encabezado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_P"& _ 
+                "roveedor], CFDI_Encabezado.[65_Numero_Factura], CFDI_Encabezado.[66_Numero_Orden"& _ 
+                "Compra], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI"& _ 
+                "_Encabezado.[68_Numero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabez"& _ 
+                "ado.[70_Numero_Tienda], CFDI_Encabezado.[71_Nombre_Tienda], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encabezado.[73_Dom_Tienda_noE"& _ 
+                "xterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], CFDI_Encabezado.[75_Dom_Ti"& _ 
+                "enda_colonia], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[76_Dom_Tienda_localid"& _ 
+                "ad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_Encabezado.[78_Dom_Tienda_"& _ 
+                "municipio], CFDI_Encabezado.[79_Dom_Tienda_estado], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         C"& _ 
+                "FDI_Encabezado.[80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal"& _ 
+                "], CFDI_Encabezado.[82_RFC_Tienda], CFDI_Encabezado.[83_Cod_Moneda], CFDI_Encabe"& _ 
+                "zado.[84_Dias_Pago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[85_Porc_Desc_Pr"& _ 
+                "ontoPago], CFDI_Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_D"& _ 
+                "escuento], CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_Monto_Descue"& _ 
+                "nto], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[90_Cantidad_LineasFactura], CF"& _ 
+                "DI_Encabezado.[91_Fecha_Vencimiento], CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabe"& _ 
+                "zado.[93_Numero_Receptor], CFDI_Encabezado.[94_Cod_Vendedor], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "         CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_Encabezado.[96_Via_Embarque]"& _ 
+                ", CFDI_Encabezado.[97_Condiciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFD"& _ 
+                "I_Encabezado.[99_Fecha_Pedido], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[100_"& _ 
+                "Letras_Monto_Total], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[1"& _ 
+                "02_Cantidad_empaques], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_"& _ 
+                "EAN_LugarExpide], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[105_IEPS_Id], CFDI"& _ 
+                "_Encabezado.[106_Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado."& _ 
+                "[108_Monto_Merma], CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "          CFDI_Encabezado.[110_Transportista], CFDI_Encabezado.[111_Numero_Solic"& _ 
+                "itud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabezado.[113_Misc01], CFDI_Enc"& _ 
+                "abezado.[114_Misc02], CFDI_Encabezado.[115_Misc03], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         C"& _ 
+                "FDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc05], CFDI_Encabezado.[118_"& _ 
+                "Misc06], CFDI_Encabezado.[119_Misc07], CFDI_Encabezado.[120_Misc08], CFDI_Encabe"& _ 
+                "zado.[121_Misc09], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[122_Misc10], CFDI"& _ 
+                "_Encabezado.[123_Misc11], CFDI_Encabezado.[124_Misc12], CFDI_Encabezado.[125_Mis"& _ 
+                "c13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "             CFDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_En"& _ 
+                "cabezado.[130_Misc18], CFDI_Encabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20"& _ 
+                "], CFDI_Encabezado.[133_Misc21], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[134"& _ 
+                "_Misc22], CFDI_Encabezado.[135_Misc23], CFDI_Encabezado.[136_Misc24], CFDI_Encab"& _ 
+                "ezado.[137_Misc25], CFDI_Encabezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[140_Misc28], CFDI_Encabezado.[141_Mi"& _ 
+                "sc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc31], CFDI_Encabeza"& _ 
+                "do.[144_Misc32], CFDI_Encabezado.[145_Misc33], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_E"& _ 
+                "ncabezado.[146_Misc34], CFDI_Encabezado.[147_Misc35], CFDI_Encabezado.[148_Misc3"& _ 
+                "6], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado."& _ 
+                "[151_Misc39], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[152_Misc40], CFDI_Enca"& _ 
+                "bezado.[153_Misc41], CFDI_Encabezado.[154_Misc42], CFDI_Encabezado.[155_Misc43],"& _ 
+                " CFDI_Encabezado.[156_Misc44], CFDI_Encabezado.[157_Misc45], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        CFDI_Encabezado.[158_Misc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabez"& _ 
+                "ado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_Misc50], CF"& _ 
+                "DI_Encabezado.[163_Porc_IVA], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[164_Mo"& _ 
+                "nto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[166_Delivery_"& _ 
+                "Date], CFDI_Encabezado.[167_RegimentFiscal], CFDI_Encabezado.[168_Num_CtaPago], "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[169_Num_contrarecibo], CFDI_Encabeza"& _ 
+                "do.[170_Fecha_Num_contrarecibo], CFDI_Encabezado.[171_Contacto_Comprar], CFDI_En"& _ 
+                "cabezado.[172_Customs_gln], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[173_Alte"& _ 
+                "rnante_identificacion_gln], CFDI_Encabezado.[174_Nombre_Aduana], CFDI_Encabezado"& _ 
+                ".[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabezado."& _ 
+                "[177_Tasa_Divisa], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[178_Ref_Tiempo_Pa"& _ 
+                "go], CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[180_LugarEx"& _ 
+                "pedicion], CFDI_Encabezado.[181_SerieFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  CFDI_Encabezado.[182_Tipo_Especial_de_Servicio], CFDI_Encabezado.[183_FechaFol"& _ 
+                "ioFiscalOrig], CFDI_Encabezado.[184_Porcentaje_no_aplicado], CFDI_Encabezado.[18"& _ 
+                "5_MontoFolioFiscalOrig], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[186_Monto_T"& _ 
+                "otal_Descuentos], CFDI_Encabezado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_"& _ 
+                "Ano_Aprobacion], CFDI_Encabezado.[189_Motivo_Descuento], CFDI_Encabezado.[190_Me"& _ 
+                "todo_Pago], "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[191_Efecto_Comprobante],"& _ 
+                " CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], CFDI_Encabezado.[193_Monto_Tota"& _ 
+                "lImp_Trasladados], CFDI_Encabezado.Encabezado_Procesado, CFDI_Encabezado.Guid, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.Fecha, Clientes.EMail1, Clientes.EMail"& _ 
+                "2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes"& _ 
+                " ON CFDI_Encabezado.[43_RFC_Receptor] = Clientes.RFC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CFDI_Encabez"& _ 
+                "ado.Guid = @GUID)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GUID", Global.System.Data.SqlDbType.VarChar, 36, Global.System.Data.ParameterDirection.Input, 0, 0, "Guid", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Guid = @GUID, [189_Motivo_Descue"& _ 
+                "nto] = @Leyenda"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] ="& _ 
+                " @Serie)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GUID", Global.System.Data.SqlDbType.VarChar, 36, Global.System.Data.ParameterDirection.Input, 0, 0, "Guid", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Leyenda", Global.System.Data.SqlDbType.VarChar, 99, Global.System.Data.ParameterDirection.Input, 0, 0, "189_Motivo_Descuento", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Folio", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "1_Folio", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Serie", Global.System.Data.SqlDbType.VarChar, 55, Global.System.Data.ParameterDirection.Input, 0, 0, "27_Serie_Comprobante", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "UPDATE       CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                Encabezado_Procesado = 1, Guid ="& _ 
+                " 'Recibo de Pago'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill_Recibos(ByVal dataTable As ProduccionDS.RecibosDePagoDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As ProduccionDS.RecibosDePagoDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As ProduccionDS.RecibosDePagoDataTable = New ProduccionDS.RecibosDePagoDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByGUID(ByVal dataTable As ProduccionDS.RecibosDePagoDataTable, ByVal GUID As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (GUID Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(GUID,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy2(ByVal GUID As String) As ProduccionDS.RecibosDePagoDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (GUID Is Nothing) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(GUID,String)
+            End If
+            Dim dataTable As ProduccionDS.RecibosDePagoDataTable = New ProduccionDS.RecibosDePagoDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function ReciboEnviado(ByVal GUID As String, ByVal Leyenda As String, ByVal Folio As Integer, ByVal Serie As String) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(2)
+            If (GUID Is Nothing) Then
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(0).Value = CType(GUID,String)
+            End If
+            If (Leyenda Is Nothing) Then
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(1).Value = CType(Leyenda,String)
+            End If
+            command.Parameters(2).Value = CType(Folio,Integer)
+            If (Serie Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Serie")
+            Else
+                command.Parameters(3).Value = CType(Serie,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function RecibosProcesados() As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -47003,6 +56746,15 @@ Namespace ProduccionDSTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             If (Not (Me._codigosSATTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.CodigosSAT.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -47036,15 +56788,6 @@ Namespace ProduccionDSTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._llavesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -47091,6 +56834,14 @@ Namespace ProduccionDSTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             If (Not (Me._codigosSATTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.CodigosSAT.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -47123,14 +56874,6 @@ Namespace ProduccionDSTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._facturasExternasDETTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.FacturasExternasDET.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -47154,14 +56897,6 @@ Namespace ProduccionDSTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._facturasExternasDETTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -47194,6 +56929,14 @@ Namespace ProduccionDSTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._codigosSATTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._cFDI_CodigosSAT_ConceptoTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.CFDI_CodigosSAT_Concepto.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._cFDI_CodigosSAT_ConceptoTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If

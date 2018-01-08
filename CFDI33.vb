@@ -1,4 +1,6 @@
-﻿Imports System.Data.SqlClient
+﻿Imports CrystalDecisions.CrystalReports.Engine
+Imports CrystalDecisions.Shared
+Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Net
 Imports System.Math
@@ -617,6 +619,66 @@ Module CFDI33
         Next
         Console.WriteLine("Proceso Terminado, se Generaron: " + contador.ToString + " Complementos de Pago, CFDI txt ")
 
+    End Sub
+
+    Sub Envia_RecibosPAGO()
+        Dim NewRPT As New GeneraFactura.CR_Recibo
+        Dim Guid As Guid
+        Dim Servidor As New Mail.SmtpClient
+        Dim Mensaje As Mail.MailMessage
+        Dim Adjunto As Mail.Attachment
+        Dim CadenaGUID, Archivo As String
+        Dim TaRec As New ProduccionDSTableAdapters.RecibosDePagoTableAdapter
+        Dim ds As New ProduccionDS
+        Dim t As New ProduccionDS.RecibosDePagoDataTable
+        Dim crDiskFileDestinationOptions As New DiskFileDestinationOptions()
+
+        Servidor.Host = "smtp01.cmoderna.com"
+        Servidor.Port = "26"
+        TaRec.RecibosProcesados()
+        TaRec.Fill_Recibos(t)
+
+
+        For Each r As ProduccionDS.RecibosDePagoRow In t.Rows
+            Try
+                CadenaGUID = Guid.NewGuid.ToString.ToUpper
+                Mensaje = New Mail.MailMessage
+                Mensaje.IsBodyHtml = True
+                Mensaje.From = New Mail.MailAddress("CFDI@Finagil.com.mx", "FINAGIL envíos automáticos")
+                Mensaje.ReplyTo = New Mail.MailAddress("maria.vidal@finagil.com.mx", "Maria Vidal    (Finagil)")
+
+                Mensaje.To.Add("ecacerest@finagil.com.mx")
+                If r.EMail1.Length > 3 Then
+                    'Mensaje.To.Add(r.EMail1)
+                End If
+                If r.EMail2.Length > 3 Then
+                    'Mensaje.To.Add(r.EMail2)
+                End If
+
+                Mensaje.Subject = "Recibo de Pago Finagil -" & r._27_Serie_Comprobante.Trim & r._1_Folio & "(Sin valor Fiscal)"
+                Mensaje.Body = "Estimado Cliente: " & r._42_Nombre_Receptor & "<br>" &
+                        "Por este medio le hacemos el envio de su recibo de pago sin valor fiscal del contrato " & r._114_Misc02.Trim &
+                        " por concepto de " & r._157_Misc45.Trim & "<br><br>Sin más por el momento agradecemos su atención y nos ponemos a su disposición en el teléfono 01 722 214 5533 ext. 1010 o al 01 800 727 7100, en caso de cualquier duda o comentario al respecto."
+                TaRec.ReciboEnviado(CadenaGUID, "Recibo de PAgo", r._1_Folio, r._27_Serie_Comprobante)
+
+                TaRec.FillByGUID(ds.RecibosDePago, CadenaGUID)
+                NewRPT.SetDataSource(ds)
+                NewRPT.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
+                NewRPT.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat
+                Archivo = "C:\FILES\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
+                crDiskFileDestinationOptions.DiskFileName = Archivo
+                NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
+                NewRPT.Export()
+                NewRPT.Dispose()
+
+                Adjunto = New Mail.Attachment(Archivo, "PDF/pdf")
+                Mensaje.Attachments.Add(Adjunto)
+                Servidor.Send(Mensaje)
+                Console.WriteLine("Envio Exsitoso :" & Archivo)
+            Catch ex As Exception
+                Console.WriteLine("error:" & ex.Message)
+            End Try
+        Next
     End Sub
 
 End Module

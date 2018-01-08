@@ -3890,6 +3890,341 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RecibosDePagoTableAdapter" GeneratorDataComponentClassName="RecibosDePagoTableAdapter" Name="RecibosDePago" UserDataComponentName="RecibosDePagoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill_Recibos" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill_Recibos" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill_Recibos">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[2_Nombre_Emisor], CFDI_Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado.[5_Dom_Emisor_noExterior], 
+                         CFDI_Encabezado.[6_Dom_Emisor_noInterior], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.[8_Dom_Emisor_localidad], CFDI_Encabezado.[9_Dom_Emisor_referencia], 
+                         CFDI_Encabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[11_Dom_Emisor_estado], CFDI_Encabezado.[12_Dom_Emisor_pais], CFDI_Encabezado.[13_Dom_Emisor_codigoPostal], CFDI_Encabezado.[14_Tel_Emisor],
+                          CFDI_Encabezado.[15_Dom_Sucursal_calle], CFDI_Encabezado.[16_Dom_Sucursal_noExterior], CFDI_Encabezado.[17_Dom_Sucursal_noInterior], CFDI_Encabezado.[18_Dom_Sucursal_colonia], 
+                         CFDI_Encabezado.[19_Dom_Sucursal_localidad], CFDI_Encabezado.[20_Dom_Sucursal_referencia], CFDI_Encabezado.[21_Dom_Sucursal_municipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], 
+                         CFDI_Encabezado.[23_Dom_Sucursal_pais], CFDI_Encabezado.[24_Dom_Sucursal_codigoPostal], CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CFDI_Encabezado.[27_Serie_Comprobante], 
+                         CFDI_Encabezado.[28_Numero_Aprobacion], CFDI_Encabezado.[29_FormaPago], CFDI_Encabezado.[30_Fecha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_Dom_LugarExpide_calle], 
+                         CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], CFDI_Encabezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabezado.[35_Dom_LugarExpide_colonia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad], 
+                         CFDI_Encabezado.[37_Dom_LugarExpide_referencia], CFDI_Encabezado.[38_Dom_LugarExpide_municipio], CFDI_Encabezado.[39_Dom_LugarExpide_estado], CFDI_Encabezado.[40_Dom_LugarExpide_pais], 
+                         CFDI_Encabezado.[41_Dom_LugarExpide_codigoPostal], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.[43_RFC_Receptor], CFDI_Encabezado.[44_Dom_Receptor_calle], 
+                         CFDI_Encabezado.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Receptor_noInterior], CFDI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48_Dom_Receptor_localidad], 
+                         CFDI_Encabezado.[49_Dom_Receptor_referencia], CFDI_Encabezado.[50_Dom_Receptor_municipio], CFDI_Encabezado.[51_Dom_Receptor_estado], CFDI_Encabezado.[52_Dom_Receptor_pais], 
+                         CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], CFDI_Encabezado.[54_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabezado.[56_Monto_Total], CFDI_Encabezado.[57_Estado], 
+                         CFDI_Encabezado.[58_TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[60_Notas02], CFDI_Encabezado.[61_Notas03], CFDI_Encabezado.[62_TradingPartner_Prov], 
+                         CFDI_Encabezado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_Proveedor], CFDI_Encabezado.[65_Numero_Factura], CFDI_Encabezado.[66_Numero_OrdenCompra], 
+                         CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI_Encabezado.[68_Numero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabezado.[70_Numero_Tienda], CFDI_Encabezado.[71_Nombre_Tienda], 
+                         CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encabezado.[73_Dom_Tienda_noExterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], CFDI_Encabezado.[75_Dom_Tienda_colonia], 
+                         CFDI_Encabezado.[76_Dom_Tienda_localidad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_Encabezado.[78_Dom_Tienda_municipio], CFDI_Encabezado.[79_Dom_Tienda_estado], 
+                         CFDI_Encabezado.[80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal], CFDI_Encabezado.[82_RFC_Tienda], CFDI_Encabezado.[83_Cod_Moneda], CFDI_Encabezado.[84_Dias_Pago], 
+                         CFDI_Encabezado.[85_Porc_Desc_ProntoPago], CFDI_Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_Descuento], CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_Monto_Descuento], 
+                         CFDI_Encabezado.[90_Cantidad_LineasFactura], CFDI_Encabezado.[91_Fecha_Vencimiento], CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabezado.[93_Numero_Receptor], CFDI_Encabezado.[94_Cod_Vendedor], 
+                         CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_Encabezado.[96_Via_Embarque], CFDI_Encabezado.[97_Condiciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFDI_Encabezado.[99_Fecha_Pedido], 
+                         CFDI_Encabezado.[100_Letras_Monto_Total], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[102_Cantidad_empaques], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_EAN_LugarExpide], 
+                         CFDI_Encabezado.[105_IEPS_Id], CFDI_Encabezado.[106_Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado.[108_Monto_Merma], CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], 
+                         CFDI_Encabezado.[110_Transportista], CFDI_Encabezado.[111_Numero_Solicitud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabezado.[113_Misc01], CFDI_Encabezado.[114_Misc02], CFDI_Encabezado.[115_Misc03], 
+                         CFDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc05], CFDI_Encabezado.[118_Misc06], CFDI_Encabezado.[119_Misc07], CFDI_Encabezado.[120_Misc08], CFDI_Encabezado.[121_Misc09], 
+                         CFDI_Encabezado.[122_Misc10], CFDI_Encabezado.[123_Misc11], CFDI_Encabezado.[124_Misc12], CFDI_Encabezado.[125_Misc13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], 
+                         CFDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_Encabezado.[130_Misc18], CFDI_Encabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20], CFDI_Encabezado.[133_Misc21], 
+                         CFDI_Encabezado.[134_Misc22], CFDI_Encabezado.[135_Misc23], CFDI_Encabezado.[136_Misc24], CFDI_Encabezado.[137_Misc25], CFDI_Encabezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], 
+                         CFDI_Encabezado.[140_Misc28], CFDI_Encabezado.[141_Misc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc31], CFDI_Encabezado.[144_Misc32], CFDI_Encabezado.[145_Misc33], 
+                         CFDI_Encabezado.[146_Misc34], CFDI_Encabezado.[147_Misc35], CFDI_Encabezado.[148_Misc36], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado.[151_Misc39], 
+                         CFDI_Encabezado.[152_Misc40], CFDI_Encabezado.[153_Misc41], CFDI_Encabezado.[154_Misc42], CFDI_Encabezado.[155_Misc43], CFDI_Encabezado.[156_Misc44], CFDI_Encabezado.[157_Misc45], 
+                         CFDI_Encabezado.[158_Misc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabezado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_Misc50], CFDI_Encabezado.[163_Porc_IVA], 
+                         CFDI_Encabezado.[164_Monto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[166_Delivery_Date], CFDI_Encabezado.[167_RegimentFiscal], CFDI_Encabezado.[168_Num_CtaPago], 
+                         CFDI_Encabezado.[169_Num_contrarecibo], CFDI_Encabezado.[170_Fecha_Num_contrarecibo], CFDI_Encabezado.[171_Contacto_Comprar], CFDI_Encabezado.[172_Customs_gln], 
+                         CFDI_Encabezado.[173_Alternante_identificacion_gln], CFDI_Encabezado.[174_Nombre_Aduana], CFDI_Encabezado.[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabezado.[177_Tasa_Divisa], 
+                         CFDI_Encabezado.[178_Ref_Tiempo_Pago], CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[180_LugarExpedicion], CFDI_Encabezado.[181_SerieFolioFiscalOrig], 
+                         CFDI_Encabezado.[182_Tipo_Especial_de_Servicio], CFDI_Encabezado.[183_FechaFolioFiscalOrig], CFDI_Encabezado.[184_Porcentaje_no_aplicado], CFDI_Encabezado.[185_MontoFolioFiscalOrig], 
+                         CFDI_Encabezado.[186_Monto_Total_Descuentos], CFDI_Encabezado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_Ano_Aprobacion], CFDI_Encabezado.[189_Motivo_Descuento], CFDI_Encabezado.[190_Metodo_Pago], 
+                         CFDI_Encabezado.[191_Efecto_Comprobante], CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], CFDI_Encabezado.[193_Monto_TotalImp_Trasladados], CFDI_Encabezado.Encabezado_Procesado, CFDI_Encabezado.Guid, 
+                         CFDI_Encabezado.Fecha, Clientes.EMail1, Clientes.EMail2
+FROM            CFDI_Encabezado INNER JOIN
+                         Clientes ON CFDI_Encabezado.[43_RFC_Receptor] = Clientes.RFC
+WHERE        (CFDI_Encabezado.Guid = 'Recibo de Pago')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="1_Folio" DataSetColumn="1_Folio" />
+              <Mapping SourceColumn="2_Nombre_Emisor" DataSetColumn="2_Nombre_Emisor" />
+              <Mapping SourceColumn="3_RFC_Emisor" DataSetColumn="3_RFC_Emisor" />
+              <Mapping SourceColumn="4_Dom_Emisor_calle" DataSetColumn="4_Dom_Emisor_calle" />
+              <Mapping SourceColumn="5_Dom_Emisor_noExterior" DataSetColumn="5_Dom_Emisor_noExterior" />
+              <Mapping SourceColumn="6_Dom_Emisor_noInterior" DataSetColumn="6_Dom_Emisor_noInterior" />
+              <Mapping SourceColumn="7_Dom_Emisor_colonia" DataSetColumn="7_Dom_Emisor_colonia" />
+              <Mapping SourceColumn="8_Dom_Emisor_localidad" DataSetColumn="8_Dom_Emisor_localidad" />
+              <Mapping SourceColumn="9_Dom_Emisor_referencia" DataSetColumn="9_Dom_Emisor_referencia" />
+              <Mapping SourceColumn="10_Dom_Emisor_municipio" DataSetColumn="10_Dom_Emisor_municipio" />
+              <Mapping SourceColumn="11_Dom_Emisor_estado" DataSetColumn="11_Dom_Emisor_estado" />
+              <Mapping SourceColumn="12_Dom_Emisor_pais" DataSetColumn="12_Dom_Emisor_pais" />
+              <Mapping SourceColumn="13_Dom_Emisor_codigoPostal" DataSetColumn="13_Dom_Emisor_codigoPostal" />
+              <Mapping SourceColumn="14_Tel_Emisor" DataSetColumn="14_Tel_Emisor" />
+              <Mapping SourceColumn="15_Dom_Sucursal_calle" DataSetColumn="15_Dom_Sucursal_calle" />
+              <Mapping SourceColumn="16_Dom_Sucursal_noExterior" DataSetColumn="16_Dom_Sucursal_noExterior" />
+              <Mapping SourceColumn="17_Dom_Sucursal_noInterior" DataSetColumn="17_Dom_Sucursal_noInterior" />
+              <Mapping SourceColumn="18_Dom_Sucursal_colonia" DataSetColumn="18_Dom_Sucursal_colonia" />
+              <Mapping SourceColumn="19_Dom_Sucursal_localidad" DataSetColumn="19_Dom_Sucursal_localidad" />
+              <Mapping SourceColumn="20_Dom_Sucursal_referencia" DataSetColumn="20_Dom_Sucursal_referencia" />
+              <Mapping SourceColumn="21_Dom_Sucursal_municipio" DataSetColumn="21_Dom_Sucursal_municipio" />
+              <Mapping SourceColumn="22_Dom_Sucursal_estado" DataSetColumn="22_Dom_Sucursal_estado" />
+              <Mapping SourceColumn="23_Dom_Sucursal_pais" DataSetColumn="23_Dom_Sucursal_pais" />
+              <Mapping SourceColumn="24_Dom_Sucursal_codigoPostal" DataSetColumn="24_Dom_Sucursal_codigoPostal" />
+              <Mapping SourceColumn="25_Tel_sucursal" DataSetColumn="25_Tel_sucursal" />
+              <Mapping SourceColumn="26_Version" DataSetColumn="26_Version" />
+              <Mapping SourceColumn="27_Serie_Comprobante" DataSetColumn="27_Serie_Comprobante" />
+              <Mapping SourceColumn="28_Numero_Aprobacion" DataSetColumn="28_Numero_Aprobacion" />
+              <Mapping SourceColumn="29_FormaPago" DataSetColumn="29_FormaPago" />
+              <Mapping SourceColumn="30_Fecha" DataSetColumn="30_Fecha" />
+              <Mapping SourceColumn="31_Hora" DataSetColumn="31_Hora" />
+              <Mapping SourceColumn="32_Dom_LugarExpide_calle" DataSetColumn="32_Dom_LugarExpide_calle" />
+              <Mapping SourceColumn="33_Dom_LugarExpide_noExterior" DataSetColumn="33_Dom_LugarExpide_noExterior" />
+              <Mapping SourceColumn="34_Dom_LugarExpide_noInterior" DataSetColumn="34_Dom_LugarExpide_noInterior" />
+              <Mapping SourceColumn="35_Dom_LugarExpide_colonia" DataSetColumn="35_Dom_LugarExpide_colonia" />
+              <Mapping SourceColumn="36_Dom_LugarExpide_localidad" DataSetColumn="36_Dom_LugarExpide_localidad" />
+              <Mapping SourceColumn="37_Dom_LugarExpide_referencia" DataSetColumn="37_Dom_LugarExpide_referencia" />
+              <Mapping SourceColumn="38_Dom_LugarExpide_municipio" DataSetColumn="38_Dom_LugarExpide_municipio" />
+              <Mapping SourceColumn="39_Dom_LugarExpide_estado" DataSetColumn="39_Dom_LugarExpide_estado" />
+              <Mapping SourceColumn="40_Dom_LugarExpide_pais" DataSetColumn="40_Dom_LugarExpide_pais" />
+              <Mapping SourceColumn="41_Dom_LugarExpide_codigoPostal" DataSetColumn="41_Dom_LugarExpide_codigoPostal" />
+              <Mapping SourceColumn="42_Nombre_Receptor" DataSetColumn="42_Nombre_Receptor" />
+              <Mapping SourceColumn="43_RFC_Receptor" DataSetColumn="43_RFC_Receptor" />
+              <Mapping SourceColumn="44_Dom_Receptor_calle" DataSetColumn="44_Dom_Receptor_calle" />
+              <Mapping SourceColumn="45_Dom_Receptor_noExterior" DataSetColumn="45_Dom_Receptor_noExterior" />
+              <Mapping SourceColumn="46_Dom_Receptor_noInterior" DataSetColumn="46_Dom_Receptor_noInterior" />
+              <Mapping SourceColumn="47_Dom_Receptor_colonia" DataSetColumn="47_Dom_Receptor_colonia" />
+              <Mapping SourceColumn="48_Dom_Receptor_localidad" DataSetColumn="48_Dom_Receptor_localidad" />
+              <Mapping SourceColumn="49_Dom_Receptor_referencia" DataSetColumn="49_Dom_Receptor_referencia" />
+              <Mapping SourceColumn="50_Dom_Receptor_municipio" DataSetColumn="50_Dom_Receptor_municipio" />
+              <Mapping SourceColumn="51_Dom_Receptor_estado" DataSetColumn="51_Dom_Receptor_estado" />
+              <Mapping SourceColumn="52_Dom_Receptor_pais" DataSetColumn="52_Dom_Receptor_pais" />
+              <Mapping SourceColumn="53_Dom_Receptor_codigoPostal" DataSetColumn="53_Dom_Receptor_codigoPostal" />
+              <Mapping SourceColumn="54_Monto_SubTotal" DataSetColumn="54_Monto_SubTotal" />
+              <Mapping SourceColumn="55_Monto_IVA" DataSetColumn="55_Monto_IVA" />
+              <Mapping SourceColumn="56_Monto_Total" DataSetColumn="56_Monto_Total" />
+              <Mapping SourceColumn="57_Estado" DataSetColumn="57_Estado" />
+              <Mapping SourceColumn="58_TipoCFD" DataSetColumn="58_TipoCFD" />
+              <Mapping SourceColumn="59_Notas" DataSetColumn="59_Notas" />
+              <Mapping SourceColumn="60_Notas02" DataSetColumn="60_Notas02" />
+              <Mapping SourceColumn="61_Notas03" DataSetColumn="61_Notas03" />
+              <Mapping SourceColumn="62_TradingPartner_Prov" DataSetColumn="62_TradingPartner_Prov" />
+              <Mapping SourceColumn="63_Calif_TradingPartner_Prov" DataSetColumn="63_Calif_TradingPartner_Prov" />
+              <Mapping SourceColumn="64_EAN_Proveedor" DataSetColumn="64_EAN_Proveedor" />
+              <Mapping SourceColumn="65_Numero_Factura" DataSetColumn="65_Numero_Factura" />
+              <Mapping SourceColumn="66_Numero_OrdenCompra" DataSetColumn="66_Numero_OrdenCompra" />
+              <Mapping SourceColumn="67_Fecha_OrdenCompra" DataSetColumn="67_Fecha_OrdenCompra" />
+              <Mapping SourceColumn="68_Numero_Proveedor" DataSetColumn="68_Numero_Proveedor" />
+              <Mapping SourceColumn="69_EAN_Tienda" DataSetColumn="69_EAN_Tienda" />
+              <Mapping SourceColumn="70_Numero_Tienda" DataSetColumn="70_Numero_Tienda" />
+              <Mapping SourceColumn="71_Nombre_Tienda" DataSetColumn="71_Nombre_Tienda" />
+              <Mapping SourceColumn="72_Dom_Tienda_calle" DataSetColumn="72_Dom_Tienda_calle" />
+              <Mapping SourceColumn="73_Dom_Tienda_noExterior" DataSetColumn="73_Dom_Tienda_noExterior" />
+              <Mapping SourceColumn="74_Dom_Tienda_noInterior" DataSetColumn="74_Dom_Tienda_noInterior" />
+              <Mapping SourceColumn="75_Dom_Tienda_colonia" DataSetColumn="75_Dom_Tienda_colonia" />
+              <Mapping SourceColumn="76_Dom_Tienda_localidad" DataSetColumn="76_Dom_Tienda_localidad" />
+              <Mapping SourceColumn="77_Dom_Tienda_referencia" DataSetColumn="77_Dom_Tienda_referencia" />
+              <Mapping SourceColumn="78_Dom_Tienda_municipio" DataSetColumn="78_Dom_Tienda_municipio" />
+              <Mapping SourceColumn="79_Dom_Tienda_estado" DataSetColumn="79_Dom_Tienda_estado" />
+              <Mapping SourceColumn="80_Dom_Tienda_pais" DataSetColumn="80_Dom_Tienda_pais" />
+              <Mapping SourceColumn="81_Dom_Tienda_codigoPostal" DataSetColumn="81_Dom_Tienda_codigoPostal" />
+              <Mapping SourceColumn="82_RFC_Tienda" DataSetColumn="82_RFC_Tienda" />
+              <Mapping SourceColumn="83_Cod_Moneda" DataSetColumn="83_Cod_Moneda" />
+              <Mapping SourceColumn="84_Dias_Pago" DataSetColumn="84_Dias_Pago" />
+              <Mapping SourceColumn="85_Porc_Desc_ProntoPago" DataSetColumn="85_Porc_Desc_ProntoPago" />
+              <Mapping SourceColumn="86_Monto_Desc_ProntoPago" DataSetColumn="86_Monto_Desc_ProntoPago" />
+              <Mapping SourceColumn="87_Cod_Descuento" DataSetColumn="87_Cod_Descuento" />
+              <Mapping SourceColumn="88_Porc_Descuento" DataSetColumn="88_Porc_Descuento" />
+              <Mapping SourceColumn="89_Monto_Descuento" DataSetColumn="89_Monto_Descuento" />
+              <Mapping SourceColumn="90_Cantidad_LineasFactura" DataSetColumn="90_Cantidad_LineasFactura" />
+              <Mapping SourceColumn="91_Fecha_Vencimiento" DataSetColumn="91_Fecha_Vencimiento" />
+              <Mapping SourceColumn="92_Cod_Zona" DataSetColumn="92_Cod_Zona" />
+              <Mapping SourceColumn="93_Numero_Receptor" DataSetColumn="93_Numero_Receptor" />
+              <Mapping SourceColumn="94_Cod_Vendedor" DataSetColumn="94_Cod_Vendedor" />
+              <Mapping SourceColumn="95_Nombre_Vendedor" DataSetColumn="95_Nombre_Vendedor" />
+              <Mapping SourceColumn="96_Via_Embarque" DataSetColumn="96_Via_Embarque" />
+              <Mapping SourceColumn="97_Condiciones_Pago" DataSetColumn="97_Condiciones_Pago" />
+              <Mapping SourceColumn="98_Numero_Pedido" DataSetColumn="98_Numero_Pedido" />
+              <Mapping SourceColumn="99_Fecha_Pedido" DataSetColumn="99_Fecha_Pedido" />
+              <Mapping SourceColumn="100_Letras_Monto_Total" DataSetColumn="100_Letras_Monto_Total" />
+              <Mapping SourceColumn="101_Cantidad_Unidades" DataSetColumn="101_Cantidad_Unidades" />
+              <Mapping SourceColumn="102_Cantidad_empaques" DataSetColumn="102_Cantidad_empaques" />
+              <Mapping SourceColumn="103_EAN_Receptor" DataSetColumn="103_EAN_Receptor" />
+              <Mapping SourceColumn="104_EAN_LugarExpide" DataSetColumn="104_EAN_LugarExpide" />
+              <Mapping SourceColumn="105_IEPS_Id" DataSetColumn="105_IEPS_Id" />
+              <Mapping SourceColumn="106_Estatus" DataSetColumn="106_Estatus" />
+              <Mapping SourceColumn="107_Numero_Emisor" DataSetColumn="107_Numero_Emisor" />
+              <Mapping SourceColumn="108_Monto_Merma" DataSetColumn="108_Monto_Merma" />
+              <Mapping SourceColumn="109_Monto_SubTotal_ApIVA" DataSetColumn="109_Monto_SubTotal_ApIVA" />
+              <Mapping SourceColumn="110_Transportista" DataSetColumn="110_Transportista" />
+              <Mapping SourceColumn="111_Numero_Solicitud" DataSetColumn="111_Numero_Solicitud" />
+              <Mapping SourceColumn="112_Desc_Moneda" DataSetColumn="112_Desc_Moneda" />
+              <Mapping SourceColumn="113_Misc01" DataSetColumn="113_Misc01" />
+              <Mapping SourceColumn="114_Misc02" DataSetColumn="114_Misc02" />
+              <Mapping SourceColumn="115_Misc03" DataSetColumn="115_Misc03" />
+              <Mapping SourceColumn="116_Misc04" DataSetColumn="116_Misc04" />
+              <Mapping SourceColumn="117_Misc05" DataSetColumn="117_Misc05" />
+              <Mapping SourceColumn="118_Misc06" DataSetColumn="118_Misc06" />
+              <Mapping SourceColumn="119_Misc07" DataSetColumn="119_Misc07" />
+              <Mapping SourceColumn="120_Misc08" DataSetColumn="120_Misc08" />
+              <Mapping SourceColumn="121_Misc09" DataSetColumn="121_Misc09" />
+              <Mapping SourceColumn="122_Misc10" DataSetColumn="122_Misc10" />
+              <Mapping SourceColumn="123_Misc11" DataSetColumn="123_Misc11" />
+              <Mapping SourceColumn="124_Misc12" DataSetColumn="124_Misc12" />
+              <Mapping SourceColumn="125_Misc13" DataSetColumn="125_Misc13" />
+              <Mapping SourceColumn="126_Misc14" DataSetColumn="126_Misc14" />
+              <Mapping SourceColumn="127_Misc15" DataSetColumn="127_Misc15" />
+              <Mapping SourceColumn="128_Misc16" DataSetColumn="128_Misc16" />
+              <Mapping SourceColumn="129_Misc17" DataSetColumn="129_Misc17" />
+              <Mapping SourceColumn="130_Misc18" DataSetColumn="130_Misc18" />
+              <Mapping SourceColumn="131_Misc19" DataSetColumn="131_Misc19" />
+              <Mapping SourceColumn="132_Misc20" DataSetColumn="132_Misc20" />
+              <Mapping SourceColumn="133_Misc21" DataSetColumn="133_Misc21" />
+              <Mapping SourceColumn="134_Misc22" DataSetColumn="134_Misc22" />
+              <Mapping SourceColumn="135_Misc23" DataSetColumn="135_Misc23" />
+              <Mapping SourceColumn="136_Misc24" DataSetColumn="136_Misc24" />
+              <Mapping SourceColumn="137_Misc25" DataSetColumn="137_Misc25" />
+              <Mapping SourceColumn="138_Misc26" DataSetColumn="138_Misc26" />
+              <Mapping SourceColumn="139_Misc27" DataSetColumn="139_Misc27" />
+              <Mapping SourceColumn="140_Misc28" DataSetColumn="140_Misc28" />
+              <Mapping SourceColumn="141_Misc29" DataSetColumn="141_Misc29" />
+              <Mapping SourceColumn="142_Misc30" DataSetColumn="142_Misc30" />
+              <Mapping SourceColumn="143_Misc31" DataSetColumn="143_Misc31" />
+              <Mapping SourceColumn="144_Misc32" DataSetColumn="144_Misc32" />
+              <Mapping SourceColumn="145_Misc33" DataSetColumn="145_Misc33" />
+              <Mapping SourceColumn="146_Misc34" DataSetColumn="146_Misc34" />
+              <Mapping SourceColumn="147_Misc35" DataSetColumn="147_Misc35" />
+              <Mapping SourceColumn="148_Misc36" DataSetColumn="148_Misc36" />
+              <Mapping SourceColumn="149_Misc37" DataSetColumn="149_Misc37" />
+              <Mapping SourceColumn="150_Misc38" DataSetColumn="150_Misc38" />
+              <Mapping SourceColumn="151_Misc39" DataSetColumn="151_Misc39" />
+              <Mapping SourceColumn="152_Misc40" DataSetColumn="152_Misc40" />
+              <Mapping SourceColumn="153_Misc41" DataSetColumn="153_Misc41" />
+              <Mapping SourceColumn="154_Misc42" DataSetColumn="154_Misc42" />
+              <Mapping SourceColumn="155_Misc43" DataSetColumn="155_Misc43" />
+              <Mapping SourceColumn="156_Misc44" DataSetColumn="156_Misc44" />
+              <Mapping SourceColumn="157_Misc45" DataSetColumn="157_Misc45" />
+              <Mapping SourceColumn="158_Misc46" DataSetColumn="158_Misc46" />
+              <Mapping SourceColumn="159_Misc47" DataSetColumn="159_Misc47" />
+              <Mapping SourceColumn="160_Misc48" DataSetColumn="160_Misc48" />
+              <Mapping SourceColumn="161_Misc49" DataSetColumn="161_Misc49" />
+              <Mapping SourceColumn="162_Misc50" DataSetColumn="162_Misc50" />
+              <Mapping SourceColumn="163_Porc_IVA" DataSetColumn="163_Porc_IVA" />
+              <Mapping SourceColumn="164_Monto_IEPS" DataSetColumn="164_Monto_IEPS" />
+              <Mapping SourceColumn="165_Document_Status" DataSetColumn="165_Document_Status" />
+              <Mapping SourceColumn="166_Delivery_Date" DataSetColumn="166_Delivery_Date" />
+              <Mapping SourceColumn="167_RegimentFiscal" DataSetColumn="167_RegimentFiscal" />
+              <Mapping SourceColumn="168_Num_CtaPago" DataSetColumn="168_Num_CtaPago" />
+              <Mapping SourceColumn="169_Num_contrarecibo" DataSetColumn="169_Num_contrarecibo" />
+              <Mapping SourceColumn="170_Fecha_Num_contrarecibo" DataSetColumn="170_Fecha_Num_contrarecibo" />
+              <Mapping SourceColumn="171_Contacto_Comprar" DataSetColumn="171_Contacto_Comprar" />
+              <Mapping SourceColumn="172_Customs_gln" DataSetColumn="172_Customs_gln" />
+              <Mapping SourceColumn="173_Alternante_identificacion_gln" DataSetColumn="173_Alternante_identificacion_gln" />
+              <Mapping SourceColumn="174_Nombre_Aduana" DataSetColumn="174_Nombre_Aduana" />
+              <Mapping SourceColumn="175_Nombre_Aduana_Ciudad" DataSetColumn="175_Nombre_Aduana_Ciudad" />
+              <Mapping SourceColumn="176_Func_Divisa" DataSetColumn="176_Func_Divisa" />
+              <Mapping SourceColumn="177_Tasa_Divisa" DataSetColumn="177_Tasa_Divisa" />
+              <Mapping SourceColumn="178_Ref_Tiempo_Pago" DataSetColumn="178_Ref_Tiempo_Pago" />
+              <Mapping SourceColumn="179_Ref_Termino_Tiempo_Pago" DataSetColumn="179_Ref_Termino_Tiempo_Pago" />
+              <Mapping SourceColumn="180_LugarExpedicion" DataSetColumn="180_LugarExpedicion" />
+              <Mapping SourceColumn="181_SerieFolioFiscalOrig" DataSetColumn="181_SerieFolioFiscalOrig" />
+              <Mapping SourceColumn="182_Tipo_Especial_de_Servicio" DataSetColumn="182_Tipo_Especial_de_Servicio" />
+              <Mapping SourceColumn="183_FechaFolioFiscalOrig" DataSetColumn="183_FechaFolioFiscalOrig" />
+              <Mapping SourceColumn="184_Porcentaje_no_aplicado" DataSetColumn="184_Porcentaje_no_aplicado" />
+              <Mapping SourceColumn="185_MontoFolioFiscalOrig" DataSetColumn="185_MontoFolioFiscalOrig" />
+              <Mapping SourceColumn="186_Monto_Total_Descuentos" DataSetColumn="186_Monto_Total_Descuentos" />
+              <Mapping SourceColumn="187_Monto_Total_Pagar" DataSetColumn="187_Monto_Total_Pagar" />
+              <Mapping SourceColumn="188_Ano_Aprobacion" DataSetColumn="188_Ano_Aprobacion" />
+              <Mapping SourceColumn="189_Motivo_Descuento" DataSetColumn="189_Motivo_Descuento" />
+              <Mapping SourceColumn="190_Metodo_Pago" DataSetColumn="190_Metodo_Pago" />
+              <Mapping SourceColumn="191_Efecto_Comprobante" DataSetColumn="191_Efecto_Comprobante" />
+              <Mapping SourceColumn="192_Monto_TotalImp_Retenidos" DataSetColumn="192_Monto_TotalImp_Retenidos" />
+              <Mapping SourceColumn="193_Monto_TotalImp_Trasladados" DataSetColumn="193_Monto_TotalImp_Trasladados" />
+              <Mapping SourceColumn="Encabezado_Procesado" DataSetColumn="Encabezado_Procesado" />
+              <Mapping SourceColumn="Guid" DataSetColumn="Guid" />
+              <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
+              <Mapping SourceColumn="EMail1" DataSetColumn="EMail1" />
+              <Mapping SourceColumn="EMail2" DataSetColumn="EMail2" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByGUID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy2" GeneratorSourceName="FillByGUID" GetMethodModifier="Public" GetMethodName="GetDataBy2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillByGUID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[2_Nombre_Emisor], CFDI_Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado.[5_Dom_Emisor_noExterior], 
+                         CFDI_Encabezado.[6_Dom_Emisor_noInterior], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.[8_Dom_Emisor_localidad], CFDI_Encabezado.[9_Dom_Emisor_referencia], 
+                         CFDI_Encabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[11_Dom_Emisor_estado], CFDI_Encabezado.[12_Dom_Emisor_pais], CFDI_Encabezado.[13_Dom_Emisor_codigoPostal], CFDI_Encabezado.[14_Tel_Emisor],
+                          CFDI_Encabezado.[15_Dom_Sucursal_calle], CFDI_Encabezado.[16_Dom_Sucursal_noExterior], CFDI_Encabezado.[17_Dom_Sucursal_noInterior], CFDI_Encabezado.[18_Dom_Sucursal_colonia], 
+                         CFDI_Encabezado.[19_Dom_Sucursal_localidad], CFDI_Encabezado.[20_Dom_Sucursal_referencia], CFDI_Encabezado.[21_Dom_Sucursal_municipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], 
+                         CFDI_Encabezado.[23_Dom_Sucursal_pais], CFDI_Encabezado.[24_Dom_Sucursal_codigoPostal], CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CFDI_Encabezado.[27_Serie_Comprobante], 
+                         CFDI_Encabezado.[28_Numero_Aprobacion], CFDI_Encabezado.[29_FormaPago], CFDI_Encabezado.[30_Fecha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_Dom_LugarExpide_calle], 
+                         CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], CFDI_Encabezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabezado.[35_Dom_LugarExpide_colonia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad], 
+                         CFDI_Encabezado.[37_Dom_LugarExpide_referencia], CFDI_Encabezado.[38_Dom_LugarExpide_municipio], CFDI_Encabezado.[39_Dom_LugarExpide_estado], CFDI_Encabezado.[40_Dom_LugarExpide_pais], 
+                         CFDI_Encabezado.[41_Dom_LugarExpide_codigoPostal], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.[43_RFC_Receptor], CFDI_Encabezado.[44_Dom_Receptor_calle], 
+                         CFDI_Encabezado.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Receptor_noInterior], CFDI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48_Dom_Receptor_localidad], 
+                         CFDI_Encabezado.[49_Dom_Receptor_referencia], CFDI_Encabezado.[50_Dom_Receptor_municipio], CFDI_Encabezado.[51_Dom_Receptor_estado], CFDI_Encabezado.[52_Dom_Receptor_pais], 
+                         CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], CFDI_Encabezado.[54_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabezado.[56_Monto_Total], CFDI_Encabezado.[57_Estado], 
+                         CFDI_Encabezado.[58_TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[60_Notas02], CFDI_Encabezado.[61_Notas03], CFDI_Encabezado.[62_TradingPartner_Prov], 
+                         CFDI_Encabezado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_Proveedor], CFDI_Encabezado.[65_Numero_Factura], CFDI_Encabezado.[66_Numero_OrdenCompra], 
+                         CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI_Encabezado.[68_Numero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabezado.[70_Numero_Tienda], CFDI_Encabezado.[71_Nombre_Tienda], 
+                         CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encabezado.[73_Dom_Tienda_noExterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], CFDI_Encabezado.[75_Dom_Tienda_colonia], 
+                         CFDI_Encabezado.[76_Dom_Tienda_localidad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_Encabezado.[78_Dom_Tienda_municipio], CFDI_Encabezado.[79_Dom_Tienda_estado], 
+                         CFDI_Encabezado.[80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal], CFDI_Encabezado.[82_RFC_Tienda], CFDI_Encabezado.[83_Cod_Moneda], CFDI_Encabezado.[84_Dias_Pago], 
+                         CFDI_Encabezado.[85_Porc_Desc_ProntoPago], CFDI_Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_Descuento], CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_Monto_Descuento], 
+                         CFDI_Encabezado.[90_Cantidad_LineasFactura], CFDI_Encabezado.[91_Fecha_Vencimiento], CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabezado.[93_Numero_Receptor], CFDI_Encabezado.[94_Cod_Vendedor], 
+                         CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_Encabezado.[96_Via_Embarque], CFDI_Encabezado.[97_Condiciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFDI_Encabezado.[99_Fecha_Pedido], 
+                         CFDI_Encabezado.[100_Letras_Monto_Total], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[102_Cantidad_empaques], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_EAN_LugarExpide], 
+                         CFDI_Encabezado.[105_IEPS_Id], CFDI_Encabezado.[106_Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado.[108_Monto_Merma], CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], 
+                         CFDI_Encabezado.[110_Transportista], CFDI_Encabezado.[111_Numero_Solicitud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabezado.[113_Misc01], CFDI_Encabezado.[114_Misc02], CFDI_Encabezado.[115_Misc03], 
+                         CFDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc05], CFDI_Encabezado.[118_Misc06], CFDI_Encabezado.[119_Misc07], CFDI_Encabezado.[120_Misc08], CFDI_Encabezado.[121_Misc09], 
+                         CFDI_Encabezado.[122_Misc10], CFDI_Encabezado.[123_Misc11], CFDI_Encabezado.[124_Misc12], CFDI_Encabezado.[125_Misc13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], 
+                         CFDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_Encabezado.[130_Misc18], CFDI_Encabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20], CFDI_Encabezado.[133_Misc21], 
+                         CFDI_Encabezado.[134_Misc22], CFDI_Encabezado.[135_Misc23], CFDI_Encabezado.[136_Misc24], CFDI_Encabezado.[137_Misc25], CFDI_Encabezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], 
+                         CFDI_Encabezado.[140_Misc28], CFDI_Encabezado.[141_Misc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc31], CFDI_Encabezado.[144_Misc32], CFDI_Encabezado.[145_Misc33], 
+                         CFDI_Encabezado.[146_Misc34], CFDI_Encabezado.[147_Misc35], CFDI_Encabezado.[148_Misc36], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado.[151_Misc39], 
+                         CFDI_Encabezado.[152_Misc40], CFDI_Encabezado.[153_Misc41], CFDI_Encabezado.[154_Misc42], CFDI_Encabezado.[155_Misc43], CFDI_Encabezado.[156_Misc44], CFDI_Encabezado.[157_Misc45], 
+                         CFDI_Encabezado.[158_Misc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabezado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_Misc50], CFDI_Encabezado.[163_Porc_IVA], 
+                         CFDI_Encabezado.[164_Monto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[166_Delivery_Date], CFDI_Encabezado.[167_RegimentFiscal], CFDI_Encabezado.[168_Num_CtaPago], 
+                         CFDI_Encabezado.[169_Num_contrarecibo], CFDI_Encabezado.[170_Fecha_Num_contrarecibo], CFDI_Encabezado.[171_Contacto_Comprar], CFDI_Encabezado.[172_Customs_gln], 
+                         CFDI_Encabezado.[173_Alternante_identificacion_gln], CFDI_Encabezado.[174_Nombre_Aduana], CFDI_Encabezado.[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabezado.[177_Tasa_Divisa], 
+                         CFDI_Encabezado.[178_Ref_Tiempo_Pago], CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[180_LugarExpedicion], CFDI_Encabezado.[181_SerieFolioFiscalOrig], 
+                         CFDI_Encabezado.[182_Tipo_Especial_de_Servicio], CFDI_Encabezado.[183_FechaFolioFiscalOrig], CFDI_Encabezado.[184_Porcentaje_no_aplicado], CFDI_Encabezado.[185_MontoFolioFiscalOrig], 
+                         CFDI_Encabezado.[186_Monto_Total_Descuentos], CFDI_Encabezado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_Ano_Aprobacion], CFDI_Encabezado.[189_Motivo_Descuento], CFDI_Encabezado.[190_Metodo_Pago], 
+                         CFDI_Encabezado.[191_Efecto_Comprobante], CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], CFDI_Encabezado.[193_Monto_TotalImp_Trasladados], CFDI_Encabezado.Encabezado_Procesado, CFDI_Encabezado.Guid, 
+                         CFDI_Encabezado.Fecha, Clientes.EMail1, Clientes.EMail2
+FROM            CFDI_Encabezado INNER JOIN
+                         Clientes ON CFDI_Encabezado.[43_RFC_Receptor] = Clientes.RFC
+WHERE        (CFDI_Encabezado.Guid = @GUID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="GUID" ColumnName="Guid" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(36)" DbType="AnsiString" Direction="Input" ParameterName="@GUID" Precision="0" ProviderType="VarChar" Scale="0" Size="36" SourceColumn="Guid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ReciboEnviado" Modifier="Public" Name="ReciboEnviado" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="ReciboEnviado">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       CFDI_Encabezado
+SET                Guid = @GUID, [189_Motivo_Descuento] = @Leyenda
+WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="GUID" ColumnName="Guid" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(36)" DbType="AnsiString" Direction="Input" ParameterName="@GUID" Precision="0" ProviderType="VarChar" Scale="0" Size="36" SourceColumn="Guid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Leyenda" ColumnName="189_Motivo_Descuento" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(99)" DbType="AnsiString" Direction="Input" ParameterName="@Leyenda" Precision="0" ProviderType="VarChar" Scale="0" Size="99" SourceColumn="189_Motivo_Descuento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Folio" ColumnName="1_Folio" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Folio" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="1_Folio" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Serie" ColumnName="27_Serie_Comprobante" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(55)" DbType="AnsiString" Direction="Input" ParameterName="@Serie" Precision="0" ProviderType="VarChar" Scale="0" Size="55" SourceColumn="27_Serie_Comprobante" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="RecibosProcesados" Modifier="Public" Name="RecibosProcesados" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="RecibosProcesados">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       CFDI_Encabezado
+SET                Encabezado_Procesado = 1, Guid = 'Recibo de Pago'
+WHERE        (Encabezado_Procesado = 0)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -3898,7 +4233,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
   <xs:element name="ProduccionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProduccionDS" msprop:Generator_UserDSName="ProduccionDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CorreosAnexos" msprop:Generator_TableClassName="CorreosAnexosDataTable" msprop:Generator_TableVarName="tableCorreosAnexos" msprop:Generator_TablePropName="CorreosAnexos" msprop:Generator_RowDeletingName="CorreosAnexosRowDeleting" msprop:Generator_RowChangingName="CorreosAnexosRowChanging" msprop:Generator_RowEvHandlerName="CorreosAnexosRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosAnexosRowDeleted" msprop:Generator_UserTableName="CorreosAnexos" msprop:Generator_RowChangedName="CorreosAnexosRowChanged" msprop:Generator_RowEvArgName="CorreosAnexosRowChangeEvent" msprop:Generator_RowClassName="CorreosAnexosRow">
+        <xs:element name="CorreosAnexos" msprop:Generator_TableClassName="CorreosAnexosDataTable" msprop:Generator_TableVarName="tableCorreosAnexos" msprop:Generator_RowChangedName="CorreosAnexosRowChanged" msprop:Generator_TablePropName="CorreosAnexos" msprop:Generator_RowDeletingName="CorreosAnexosRowDeleting" msprop:Generator_RowChangingName="CorreosAnexosRowChanging" msprop:Generator_RowEvHandlerName="CorreosAnexosRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosAnexosRowDeleted" msprop:Generator_RowClassName="CorreosAnexosRow" msprop:Generator_UserTableName="CorreosAnexos" msprop:Generator_RowEvArgName="CorreosAnexosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -3925,14 +4260,14 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Llaves" msprop:Generator_TableClassName="LlavesDataTable" msprop:Generator_TableVarName="tableLlaves" msprop:Generator_TablePropName="Llaves" msprop:Generator_RowDeletingName="LlavesRowDeleting" msprop:Generator_RowChangingName="LlavesRowChanging" msprop:Generator_RowEvHandlerName="LlavesRowChangeEventHandler" msprop:Generator_RowDeletedName="LlavesRowDeleted" msprop:Generator_UserTableName="Llaves" msprop:Generator_RowChangedName="LlavesRowChanged" msprop:Generator_RowEvArgName="LlavesRowChangeEvent" msprop:Generator_RowClassName="LlavesRow">
+        <xs:element name="Llaves" msprop:Generator_TableClassName="LlavesDataTable" msprop:Generator_TableVarName="tableLlaves" msprop:Generator_RowChangedName="LlavesRowChanged" msprop:Generator_TablePropName="Llaves" msprop:Generator_RowDeletingName="LlavesRowDeleting" msprop:Generator_RowChangingName="LlavesRowChanging" msprop:Generator_RowEvHandlerName="LlavesRowChangeEventHandler" msprop:Generator_RowDeletedName="LlavesRowDeleted" msprop:Generator_RowClassName="LlavesRow" msprop:Generator_UserTableName="Llaves" msprop:Generator_RowEvArgName="LlavesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDSerieGAV" msprop:Generator_ColumnVarNameInTable="columnIDSerieGAV" msprop:Generator_ColumnPropNameInRow="IDSerieGAV" msprop:Generator_ColumnPropNameInTable="IDSerieGAVColumn" msprop:Generator_UserColumnName="IDSerieGAV" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasAvioDetalle" msprop:Generator_TableClassName="FacturasAvioDetalleDataTable" msprop:Generator_TableVarName="tableFacturasAvioDetalle" msprop:Generator_TablePropName="FacturasAvioDetalle" msprop:Generator_RowDeletingName="FacturasAvioDetalleRowDeleting" msprop:Generator_RowChangingName="FacturasAvioDetalleRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioDetalleRowDeleted" msprop:Generator_UserTableName="FacturasAvioDetalle" msprop:Generator_RowChangedName="FacturasAvioDetalleRowChanged" msprop:Generator_RowEvArgName="FacturasAvioDetalleRowChangeEvent" msprop:Generator_RowClassName="FacturasAvioDetalleRow">
+        <xs:element name="FacturasAvioDetalle" msprop:Generator_TableClassName="FacturasAvioDetalleDataTable" msprop:Generator_TableVarName="tableFacturasAvioDetalle" msprop:Generator_RowChangedName="FacturasAvioDetalleRowChanged" msprop:Generator_TablePropName="FacturasAvioDetalle" msprop:Generator_RowDeletingName="FacturasAvioDetalleRowDeleting" msprop:Generator_RowChangingName="FacturasAvioDetalleRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioDetalleRowDeleted" msprop:Generator_RowClassName="FacturasAvioDetalleRow" msprop:Generator_UserTableName="FacturasAvioDetalle" msprop:Generator_RowEvArgName="FacturasAvioDetalleRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -3977,7 +4312,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasExternas" msprop:Generator_TableClassName="FacturasExternasDataTable" msprop:Generator_TableVarName="tableFacturasExternas" msprop:Generator_TablePropName="FacturasExternas" msprop:Generator_RowDeletingName="FacturasExternasRowDeleting" msprop:Generator_RowChangingName="FacturasExternasRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasRowDeleted" msprop:Generator_UserTableName="FacturasExternas" msprop:Generator_RowChangedName="FacturasExternasRowChanged" msprop:Generator_RowEvArgName="FacturasExternasRowChangeEvent" msprop:Generator_RowClassName="FacturasExternasRow">
+        <xs:element name="FacturasExternas" msprop:Generator_TableClassName="FacturasExternasDataTable" msprop:Generator_TableVarName="tableFacturasExternas" msprop:Generator_RowChangedName="FacturasExternasRowChanged" msprop:Generator_TablePropName="FacturasExternas" msprop:Generator_RowDeletingName="FacturasExternasRowDeleting" msprop:Generator_RowChangingName="FacturasExternasRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasRowDeleted" msprop:Generator_RowClassName="FacturasExternasRow" msprop:Generator_UserTableName="FacturasExternas" msprop:Generator_RowEvArgName="FacturasExternasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">
@@ -4091,7 +4426,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Clientes" msprop:Generator_TableClassName="ClientesDataTable" msprop:Generator_TableVarName="tableClientes" msprop:Generator_TablePropName="Clientes" msprop:Generator_RowDeletingName="ClientesRowDeleting" msprop:Generator_RowChangingName="ClientesRowChanging" msprop:Generator_RowEvHandlerName="ClientesRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientesRowDeleted" msprop:Generator_UserTableName="Clientes" msprop:Generator_RowChangedName="ClientesRowChanged" msprop:Generator_RowEvArgName="ClientesRowChangeEvent" msprop:Generator_RowClassName="ClientesRow">
+        <xs:element name="Clientes" msprop:Generator_TableClassName="ClientesDataTable" msprop:Generator_TableVarName="tableClientes" msprop:Generator_RowChangedName="ClientesRowChanged" msprop:Generator_TablePropName="Clientes" msprop:Generator_RowDeletingName="ClientesRowDeleting" msprop:Generator_RowChangingName="ClientesRowChanging" msprop:Generator_RowEvHandlerName="ClientesRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientesRowDeleted" msprop:Generator_RowClassName="ClientesRow" msprop:Generator_UserTableName="Clientes" msprop:Generator_RowEvArgName="ClientesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente">
@@ -4125,7 +4460,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Encabezado" msprop:Generator_TableClassName="CFDI_EncabezadoDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado" msprop:Generator_TablePropName="CFDI_Encabezado" msprop:Generator_RowDeletingName="CFDI_EncabezadoRowDeleting" msprop:Generator_RowChangingName="CFDI_EncabezadoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_EncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_EncabezadoRowDeleted" msprop:Generator_UserTableName="CFDI_Encabezado" msprop:Generator_RowChangedName="CFDI_EncabezadoRowChanged" msprop:Generator_RowEvArgName="CFDI_EncabezadoRowChangeEvent" msprop:Generator_RowClassName="CFDI_EncabezadoRow">
+        <xs:element name="CFDI_Encabezado" msprop:Generator_TableClassName="CFDI_EncabezadoDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado" msprop:Generator_RowChangedName="CFDI_EncabezadoRowChanged" msprop:Generator_TablePropName="CFDI_Encabezado" msprop:Generator_RowDeletingName="CFDI_EncabezadoRowDeleting" msprop:Generator_RowChangingName="CFDI_EncabezadoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_EncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_EncabezadoRowDeleted" msprop:Generator_RowClassName="CFDI_EncabezadoRow" msprop:Generator_UserTableName="CFDI_Encabezado" msprop:Generator_RowEvArgName="CFDI_EncabezadoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
@@ -5329,7 +5664,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CodigosSAT" msprop:Generator_TableClassName="CodigosSATDataTable" msprop:Generator_TableVarName="tableCodigosSAT" msprop:Generator_TablePropName="CodigosSAT" msprop:Generator_RowDeletingName="CodigosSATRowDeleting" msprop:Generator_RowChangingName="CodigosSATRowChanging" msprop:Generator_RowEvHandlerName="CodigosSATRowChangeEventHandler" msprop:Generator_RowDeletedName="CodigosSATRowDeleted" msprop:Generator_UserTableName="CodigosSAT" msprop:Generator_RowChangedName="CodigosSATRowChanged" msprop:Generator_RowEvArgName="CodigosSATRowChangeEvent" msprop:Generator_RowClassName="CodigosSATRow">
+        <xs:element name="CodigosSAT" msprop:Generator_TableClassName="CodigosSATDataTable" msprop:Generator_TableVarName="tableCodigosSAT" msprop:Generator_RowChangedName="CodigosSATRowChanged" msprop:Generator_TablePropName="CodigosSAT" msprop:Generator_RowDeletingName="CodigosSATRowDeleting" msprop:Generator_RowChangingName="CodigosSATRowChanging" msprop:Generator_RowEvHandlerName="CodigosSATRowChangeEventHandler" msprop:Generator_RowDeletedName="CodigosSATRowDeleted" msprop:Generator_RowClassName="CodigosSATRow" msprop:Generator_UserTableName="CodigosSAT" msprop:Generator_RowEvArgName="CodigosSATRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_CodigoSAT" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_CodigoSAT" msprop:Generator_ColumnPropNameInRow="id_CodigoSAT" msprop:Generator_ColumnPropNameInTable="id_CodigoSATColumn" msprop:Generator_UserColumnName="id_CodigoSAT" type="xs:decimal" />
@@ -5365,7 +5700,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_CodigosSAT_Concepto" msprop:Generator_TableClassName="CFDI_CodigosSAT_ConceptoDataTable" msprop:Generator_TableVarName="tableCFDI_CodigosSAT_Concepto" msprop:Generator_TablePropName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowDeletingName="CFDI_CodigosSAT_ConceptoRowDeleting" msprop:Generator_RowChangingName="CFDI_CodigosSAT_ConceptoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_CodigosSAT_ConceptoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_CodigosSAT_ConceptoRowDeleted" msprop:Generator_UserTableName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowChangedName="CFDI_CodigosSAT_ConceptoRowChanged" msprop:Generator_RowEvArgName="CFDI_CodigosSAT_ConceptoRowChangeEvent" msprop:Generator_RowClassName="CFDI_CodigosSAT_ConceptoRow">
+        <xs:element name="CFDI_CodigosSAT_Concepto" msprop:Generator_TableClassName="CFDI_CodigosSAT_ConceptoDataTable" msprop:Generator_TableVarName="tableCFDI_CodigosSAT_Concepto" msprop:Generator_RowChangedName="CFDI_CodigosSAT_ConceptoRowChanged" msprop:Generator_TablePropName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowDeletingName="CFDI_CodigosSAT_ConceptoRowDeleting" msprop:Generator_RowChangingName="CFDI_CodigosSAT_ConceptoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_CodigosSAT_ConceptoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_CodigosSAT_ConceptoRowDeleted" msprop:Generator_RowClassName="CFDI_CodigosSAT_ConceptoRow" msprop:Generator_UserTableName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowEvArgName="CFDI_CodigosSAT_ConceptoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_CodigoSAT" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_CodigoSAT" msprop:Generator_ColumnPropNameInRow="id_CodigoSAT" msprop:Generator_ColumnPropNameInTable="id_CodigoSATColumn" msprop:Generator_UserColumnName="id_CodigoSAT" type="xs:decimal" />
@@ -5401,7 +5736,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_ComplementoPago" msprop:Generator_TableClassName="CFDI_ComplementoPagoDataTable" msprop:Generator_TableVarName="tableCFDI_ComplementoPago" msprop:Generator_TablePropName="CFDI_ComplementoPago" msprop:Generator_RowDeletingName="CFDI_ComplementoPagoRowDeleting" msprop:Generator_RowChangingName="CFDI_ComplementoPagoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ComplementoPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ComplementoPagoRowDeleted" msprop:Generator_UserTableName="CFDI_ComplementoPago" msprop:Generator_RowChangedName="CFDI_ComplementoPagoRowChanged" msprop:Generator_RowEvArgName="CFDI_ComplementoPagoRowChangeEvent" msprop:Generator_RowClassName="CFDI_ComplementoPagoRow">
+        <xs:element name="CFDI_ComplementoPago" msprop:Generator_TableClassName="CFDI_ComplementoPagoDataTable" msprop:Generator_TableVarName="tableCFDI_ComplementoPago" msprop:Generator_RowChangedName="CFDI_ComplementoPagoRowChanged" msprop:Generator_TablePropName="CFDI_ComplementoPago" msprop:Generator_RowDeletingName="CFDI_ComplementoPagoRowDeleting" msprop:Generator_RowChangingName="CFDI_ComplementoPagoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ComplementoPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ComplementoPagoRowDeleted" msprop:Generator_RowClassName="CFDI_ComplementoPagoRow" msprop:Generator_UserTableName="CFDI_ComplementoPago" msprop:Generator_RowEvArgName="CFDI_ComplementoPagoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__DetalleAux_Tipo" msprop:Generator_ColumnVarNameInTable="column1_DetalleAux_Tipo" msprop:Generator_ColumnPropNameInRow="_1_DetalleAux_Tipo" msprop:Generator_ColumnPropNameInTable="_1_DetalleAux_TipoColumn" msprop:Generator_UserColumnName="1_DetalleAux_Tipo" minOccurs="0">
@@ -5542,7 +5877,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Detalle" msprop:Generator_TableClassName="CFDI_DetalleDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle" msprop:Generator_RowChangedName="CFDI_DetalleRowChanged" msprop:Generator_TablePropName="CFDI_Detalle" msprop:Generator_RowDeletingName="CFDI_DetalleRowDeleting" msprop:Generator_RowChangingName="CFDI_DetalleRowChanging" msprop:Generator_RowEvHandlerName="CFDI_DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_DetalleRowDeleted" msprop:Generator_RowClassName="CFDI_DetalleRow" msprop:Generator_UserTableName="CFDI_Detalle" msprop:Generator_RowEvArgName="CFDI_DetalleRowChangeEvent">
+        <xs:element name="CFDI_Detalle" msprop:Generator_TableClassName="CFDI_DetalleDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle" msprop:Generator_TablePropName="CFDI_Detalle" msprop:Generator_RowDeletingName="CFDI_DetalleRowDeleting" msprop:Generator_RowChangingName="CFDI_DetalleRowChanging" msprop:Generator_RowEvHandlerName="CFDI_DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_DetalleRowDeleted" msprop:Generator_UserTableName="CFDI_Detalle" msprop:Generator_RowChangedName="CFDI_DetalleRowChanged" msprop:Generator_RowEvArgName="CFDI_DetalleRowChangeEvent" msprop:Generator_RowClassName="CFDI_DetalleRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Linea_Descripcion" msprop:Generator_ColumnVarNameInTable="column1_Linea_Descripcion" msprop:Generator_ColumnPropNameInRow="_1_Linea_Descripcion" msprop:Generator_ColumnPropNameInTable="_1_Linea_DescripcionColumn" msprop:Generator_UserColumnName="1_Linea_Descripcion" minOccurs="0">
@@ -6191,7 +6526,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DatosCuentas" msprop:Generator_TableClassName="DatosCuentasDataTable" msprop:Generator_TableVarName="tableDatosCuentas" msprop:Generator_RowChangedName="DatosCuentasRowChanged" msprop:Generator_TablePropName="DatosCuentas" msprop:Generator_RowDeletingName="DatosCuentasRowDeleting" msprop:Generator_RowChangingName="DatosCuentasRowChanging" msprop:Generator_RowEvHandlerName="DatosCuentasRowChangeEventHandler" msprop:Generator_RowDeletedName="DatosCuentasRowDeleted" msprop:Generator_RowClassName="DatosCuentasRow" msprop:Generator_UserTableName="DatosCuentas" msprop:Generator_RowEvArgName="DatosCuentasRowChangeEvent">
+        <xs:element name="DatosCuentas" msprop:Generator_TableClassName="DatosCuentasDataTable" msprop:Generator_TableVarName="tableDatosCuentas" msprop:Generator_TablePropName="DatosCuentas" msprop:Generator_RowDeletingName="DatosCuentasRowDeleting" msprop:Generator_RowChangingName="DatosCuentasRowChanging" msprop:Generator_RowEvHandlerName="DatosCuentasRowChangeEventHandler" msprop:Generator_RowDeletedName="DatosCuentasRowDeleted" msprop:Generator_UserTableName="DatosCuentas" msprop:Generator_RowChangedName="DatosCuentasRowChanged" msprop:Generator_RowEvArgName="DatosCuentasRowChangeEvent" msprop:Generator_RowClassName="DatosCuentasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RFC_Cliente" msprop:Generator_ColumnVarNameInTable="columnRFC_Cliente" msprop:Generator_ColumnPropNameInRow="RFC_Cliente" msprop:Generator_ColumnPropNameInTable="RFC_ClienteColumn" msprop:Generator_UserColumnName="RFC_Cliente">
@@ -6225,7 +6560,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasAvio" msprop:Generator_TableClassName="FacturasAvioDataTable" msprop:Generator_TableVarName="tableFacturasAvio" msprop:Generator_TablePropName="FacturasAvio" msprop:Generator_RowDeletingName="FacturasAvioRowDeleting" msprop:Generator_RowChangingName="FacturasAvioRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioRowDeleted" msprop:Generator_UserTableName="FacturasAvio" msprop:Generator_RowChangedName="FacturasAvioRowChanged" msprop:Generator_RowEvArgName="FacturasAvioRowChangeEvent" msprop:Generator_RowClassName="FacturasAvioRow">
+        <xs:element name="FacturasAvio" msprop:Generator_TableClassName="FacturasAvioDataTable" msprop:Generator_TableVarName="tableFacturasAvio" msprop:Generator_RowChangedName="FacturasAvioRowChanged" msprop:Generator_TablePropName="FacturasAvio" msprop:Generator_RowDeletingName="FacturasAvioRowDeleting" msprop:Generator_RowChangingName="FacturasAvioRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioRowDeleted" msprop:Generator_RowClassName="FacturasAvioRow" msprop:Generator_UserTableName="FacturasAvio" msprop:Generator_RowEvArgName="FacturasAvioRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -6371,7 +6706,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_RecibosPAGO" msprop:Generator_TableClassName="CFDI_RecibosPAGODataTable" msprop:Generator_TableVarName="tableCFDI_RecibosPAGO" msprop:Generator_TablePropName="CFDI_RecibosPAGO" msprop:Generator_RowDeletingName="CFDI_RecibosPAGORowDeleting" msprop:Generator_RowChangingName="CFDI_RecibosPAGORowChanging" msprop:Generator_RowEvHandlerName="CFDI_RecibosPAGORowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_RecibosPAGORowDeleted" msprop:Generator_UserTableName="CFDI_RecibosPAGO" msprop:Generator_RowChangedName="CFDI_RecibosPAGORowChanged" msprop:Generator_RowEvArgName="CFDI_RecibosPAGORowChangeEvent" msprop:Generator_RowClassName="CFDI_RecibosPAGORow">
+        <xs:element name="CFDI_RecibosPAGO" msprop:Generator_TableClassName="CFDI_RecibosPAGODataTable" msprop:Generator_TableVarName="tableCFDI_RecibosPAGO" msprop:Generator_RowChangedName="CFDI_RecibosPAGORowChanged" msprop:Generator_TablePropName="CFDI_RecibosPAGO" msprop:Generator_RowDeletingName="CFDI_RecibosPAGORowDeleting" msprop:Generator_RowChangingName="CFDI_RecibosPAGORowChanging" msprop:Generator_RowEvHandlerName="CFDI_RecibosPAGORowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_RecibosPAGORowDeleted" msprop:Generator_RowClassName="CFDI_RecibosPAGORow" msprop:Generator_UserTableName="CFDI_RecibosPAGO" msprop:Generator_RowEvArgName="CFDI_RecibosPAGORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
@@ -6428,7 +6763,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TraeUdis" msprop:Generator_TableClassName="TraeUdisDataTable" msprop:Generator_TableVarName="tableTraeUdis" msprop:Generator_RowChangedName="TraeUdisRowChanged" msprop:Generator_TablePropName="TraeUdis" msprop:Generator_RowDeletingName="TraeUdisRowDeleting" msprop:Generator_RowChangingName="TraeUdisRowChanging" msprop:Generator_RowEvHandlerName="TraeUdisRowChangeEventHandler" msprop:Generator_RowDeletedName="TraeUdisRowDeleted" msprop:Generator_RowClassName="TraeUdisRow" msprop:Generator_UserTableName="TraeUdis" msprop:Generator_RowEvArgName="TraeUdisRowChangeEvent">
+        <xs:element name="TraeUdis" msprop:Generator_TableClassName="TraeUdisDataTable" msprop:Generator_TableVarName="tableTraeUdis" msprop:Generator_TablePropName="TraeUdis" msprop:Generator_RowDeletingName="TraeUdisRowDeleting" msprop:Generator_RowChangingName="TraeUdisRowChanging" msprop:Generator_RowEvHandlerName="TraeUdisRowChangeEventHandler" msprop:Generator_RowDeletedName="TraeUdisRowDeleted" msprop:Generator_UserTableName="TraeUdis" msprop:Generator_RowChangedName="TraeUdisRowChanged" msprop:Generator_RowEvArgName="TraeUdisRowChangeEvent" msprop:Generator_RowClassName="TraeUdisRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Vigencia" msprop:Generator_ColumnVarNameInTable="columnVigencia" msprop:Generator_ColumnPropNameInRow="Vigencia" msprop:Generator_ColumnPropNameInTable="VigenciaColumn" msprop:Generator_UserColumnName="Vigencia">
@@ -6442,7 +6777,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AvisosCFDI" msprop:Generator_TableClassName="AvisosCFDIDataTable" msprop:Generator_TableVarName="tableAvisosCFDI" msprop:Generator_RowChangedName="AvisosCFDIRowChanged" msprop:Generator_TablePropName="AvisosCFDI" msprop:Generator_RowDeletingName="AvisosCFDIRowDeleting" msprop:Generator_RowChangingName="AvisosCFDIRowChanging" msprop:Generator_RowEvHandlerName="AvisosCFDIRowChangeEventHandler" msprop:Generator_RowDeletedName="AvisosCFDIRowDeleted" msprop:Generator_RowClassName="AvisosCFDIRow" msprop:Generator_UserTableName="AvisosCFDI" msprop:Generator_RowEvArgName="AvisosCFDIRowChangeEvent">
+        <xs:element name="AvisosCFDI" msprop:Generator_TableClassName="AvisosCFDIDataTable" msprop:Generator_TableVarName="tableAvisosCFDI" msprop:Generator_TablePropName="AvisosCFDI" msprop:Generator_RowDeletingName="AvisosCFDIRowDeleting" msprop:Generator_RowChangingName="AvisosCFDIRowChanging" msprop:Generator_RowEvHandlerName="AvisosCFDIRowChangeEventHandler" msprop:Generator_RowDeletedName="AvisosCFDIRowDeleted" msprop:Generator_UserTableName="AvisosCFDI" msprop:Generator_RowChangedName="AvisosCFDIRowChanged" msprop:Generator_RowEvArgName="AvisosCFDIRowChangeEvent" msprop:Generator_RowClassName="AvisosCFDIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Factura" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" type="xs:decimal" />
@@ -6581,7 +6916,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TraspasosAvioCC" msprop:Generator_TableClassName="TraspasosAvioCCDataTable" msprop:Generator_TableVarName="tableTraspasosAvioCC" msprop:Generator_RowChangedName="TraspasosAvioCCRowChanged" msprop:Generator_TablePropName="TraspasosAvioCC" msprop:Generator_RowDeletingName="TraspasosAvioCCRowDeleting" msprop:Generator_RowChangingName="TraspasosAvioCCRowChanging" msprop:Generator_RowEvHandlerName="TraspasosAvioCCRowChangeEventHandler" msprop:Generator_RowDeletedName="TraspasosAvioCCRowDeleted" msprop:Generator_RowClassName="TraspasosAvioCCRow" msprop:Generator_UserTableName="TraspasosAvioCC" msprop:Generator_RowEvArgName="TraspasosAvioCCRowChangeEvent">
+        <xs:element name="TraspasosAvioCC" msprop:Generator_TableClassName="TraspasosAvioCCDataTable" msprop:Generator_TableVarName="tableTraspasosAvioCC" msprop:Generator_TablePropName="TraspasosAvioCC" msprop:Generator_RowDeletingName="TraspasosAvioCCRowDeleting" msprop:Generator_RowChangingName="TraspasosAvioCCRowChanging" msprop:Generator_RowEvHandlerName="TraspasosAvioCCRowChangeEventHandler" msprop:Generator_RowDeletedName="TraspasosAvioCCRowDeleted" msprop:Generator_UserTableName="TraspasosAvioCC" msprop:Generator_RowChangedName="TraspasosAvioCCRowChanged" msprop:Generator_RowEvArgName="TraspasosAvioCCRowChangeEvent" msprop:Generator_RowClassName="TraspasosAvioCCRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_Traspaso" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_Traspaso" msprop:Generator_ColumnPropNameInRow="id_Traspaso" msprop:Generator_ColumnPropNameInTable="id_TraspasoColumn" msprop:Generator_UserColumnName="id_Traspaso" type="xs:decimal" />
@@ -6737,7 +7072,7 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasExternasDET" msprop:Generator_TableClassName="FacturasExternasDETDataTable" msprop:Generator_TableVarName="tableFacturasExternasDET" msprop:Generator_RowChangedName="FacturasExternasDETRowChanged" msprop:Generator_TablePropName="FacturasExternasDET" msprop:Generator_RowDeletingName="FacturasExternasDETRowDeleting" msprop:Generator_RowChangingName="FacturasExternasDETRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasDETRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasDETRowDeleted" msprop:Generator_RowClassName="FacturasExternasDETRow" msprop:Generator_UserTableName="FacturasExternasDET" msprop:Generator_RowEvArgName="FacturasExternasDETRowChangeEvent">
+        <xs:element name="FacturasExternasDET" msprop:Generator_TableClassName="FacturasExternasDETDataTable" msprop:Generator_TableVarName="tableFacturasExternasDET" msprop:Generator_TablePropName="FacturasExternasDET" msprop:Generator_RowDeletingName="FacturasExternasDETRowDeleting" msprop:Generator_RowChangingName="FacturasExternasDETRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasDETRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasDETRowDeleted" msprop:Generator_UserTableName="FacturasExternasDET" msprop:Generator_RowChangedName="FacturasExternasDETRowChanged" msprop:Generator_RowEvArgName="FacturasExternasDETRowChangeEvent" msprop:Generator_RowClassName="FacturasExternasDETRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">
@@ -6783,6 +7118,1224 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CodigoART" msprop:Generator_ColumnVarNameInTable="columnCodigoART" msprop:Generator_ColumnPropNameInRow="CodigoART" msprop:Generator_ColumnPropNameInTable="CodigoARTColumn" msprop:Generator_UserColumnName="CodigoART" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RecibosDePago" msprop:Generator_TableClassName="RecibosDePagoDataTable" msprop:Generator_TableVarName="tableRecibosDePago" msprop:Generator_TablePropName="RecibosDePago" msprop:Generator_RowDeletingName="RecibosDePagoRowDeleting" msprop:Generator_RowChangingName="RecibosDePagoRowChanging" msprop:Generator_RowEvHandlerName="RecibosDePagoRowChangeEventHandler" msprop:Generator_RowDeletedName="RecibosDePagoRowDeleted" msprop:Generator_UserTableName="RecibosDePago" msprop:Generator_RowChangedName="RecibosDePagoRowChanged" msprop:Generator_RowEvArgName="RecibosDePagoRowChangeEvent" msprop:Generator_RowClassName="RecibosDePagoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
+              <xs:element name="_x0032__Nombre_Emisor" msprop:Generator_ColumnVarNameInTable="column2_Nombre_Emisor" msprop:Generator_ColumnPropNameInRow="_2_Nombre_Emisor" msprop:Generator_ColumnPropNameInTable="_2_Nombre_EmisorColumn" msprop:Generator_UserColumnName="2_Nombre_Emisor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033__RFC_Emisor" msprop:Generator_ColumnVarNameInTable="column3_RFC_Emisor" msprop:Generator_ColumnPropNameInRow="_3_RFC_Emisor" msprop:Generator_ColumnPropNameInTable="_3_RFC_EmisorColumn" msprop:Generator_UserColumnName="3_RFC_Emisor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034__Dom_Emisor_calle" msprop:Generator_ColumnVarNameInTable="column4_Dom_Emisor_calle" msprop:Generator_ColumnPropNameInRow="_4_Dom_Emisor_calle" msprop:Generator_ColumnPropNameInTable="_4_Dom_Emisor_calleColumn" msprop:Generator_UserColumnName="4_Dom_Emisor_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035__Dom_Emisor_noExterior" msprop:Generator_ColumnVarNameInTable="column5_Dom_Emisor_noExterior" msprop:Generator_ColumnPropNameInRow="_5_Dom_Emisor_noExterior" msprop:Generator_ColumnPropNameInTable="_5_Dom_Emisor_noExteriorColumn" msprop:Generator_UserColumnName="5_Dom_Emisor_noExterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036__Dom_Emisor_noInterior" msprop:Generator_ColumnVarNameInTable="column6_Dom_Emisor_noInterior" msprop:Generator_ColumnPropNameInRow="_6_Dom_Emisor_noInterior" msprop:Generator_ColumnPropNameInTable="_6_Dom_Emisor_noInteriorColumn" msprop:Generator_UserColumnName="6_Dom_Emisor_noInterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037__Dom_Emisor_colonia" msprop:Generator_ColumnVarNameInTable="column7_Dom_Emisor_colonia" msprop:Generator_ColumnPropNameInRow="_7_Dom_Emisor_colonia" msprop:Generator_ColumnPropNameInTable="_7_Dom_Emisor_coloniaColumn" msprop:Generator_UserColumnName="7_Dom_Emisor_colonia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038__Dom_Emisor_localidad" msprop:Generator_ColumnVarNameInTable="column8_Dom_Emisor_localidad" msprop:Generator_ColumnPropNameInRow="_8_Dom_Emisor_localidad" msprop:Generator_ColumnPropNameInTable="_8_Dom_Emisor_localidadColumn" msprop:Generator_UserColumnName="8_Dom_Emisor_localidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039__Dom_Emisor_referencia" msprop:Generator_ColumnVarNameInTable="column9_Dom_Emisor_referencia" msprop:Generator_ColumnPropNameInRow="_9_Dom_Emisor_referencia" msprop:Generator_ColumnPropNameInTable="_9_Dom_Emisor_referenciaColumn" msprop:Generator_UserColumnName="9_Dom_Emisor_referencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_0_Dom_Emisor_municipio" msprop:Generator_ColumnVarNameInTable="column10_Dom_Emisor_municipio" msprop:Generator_ColumnPropNameInRow="_10_Dom_Emisor_municipio" msprop:Generator_ColumnPropNameInTable="_10_Dom_Emisor_municipioColumn" msprop:Generator_UserColumnName="10_Dom_Emisor_municipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_1_Dom_Emisor_estado" msprop:Generator_ColumnVarNameInTable="column11_Dom_Emisor_estado" msprop:Generator_ColumnPropNameInRow="_11_Dom_Emisor_estado" msprop:Generator_ColumnPropNameInTable="_11_Dom_Emisor_estadoColumn" msprop:Generator_UserColumnName="11_Dom_Emisor_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_2_Dom_Emisor_pais" msprop:Generator_ColumnVarNameInTable="column12_Dom_Emisor_pais" msprop:Generator_ColumnPropNameInRow="_12_Dom_Emisor_pais" msprop:Generator_ColumnPropNameInTable="_12_Dom_Emisor_paisColumn" msprop:Generator_UserColumnName="12_Dom_Emisor_pais" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_3_Dom_Emisor_codigoPostal" msprop:Generator_ColumnVarNameInTable="column13_Dom_Emisor_codigoPostal" msprop:Generator_ColumnPropNameInRow="_13_Dom_Emisor_codigoPostal" msprop:Generator_ColumnPropNameInTable="_13_Dom_Emisor_codigoPostalColumn" msprop:Generator_UserColumnName="13_Dom_Emisor_codigoPostal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_4_Tel_Emisor" msprop:Generator_ColumnVarNameInTable="column14_Tel_Emisor" msprop:Generator_ColumnPropNameInRow="_14_Tel_Emisor" msprop:Generator_ColumnPropNameInTable="_14_Tel_EmisorColumn" msprop:Generator_UserColumnName="14_Tel_Emisor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_5_Dom_Sucursal_calle" msprop:Generator_ColumnVarNameInTable="column15_Dom_Sucursal_calle" msprop:Generator_ColumnPropNameInRow="_15_Dom_Sucursal_calle" msprop:Generator_ColumnPropNameInTable="_15_Dom_Sucursal_calleColumn" msprop:Generator_UserColumnName="15_Dom_Sucursal_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_6_Dom_Sucursal_noExterior" msprop:Generator_ColumnVarNameInTable="column16_Dom_Sucursal_noExterior" msprop:Generator_ColumnPropNameInRow="_16_Dom_Sucursal_noExterior" msprop:Generator_ColumnPropNameInTable="_16_Dom_Sucursal_noExteriorColumn" msprop:Generator_UserColumnName="16_Dom_Sucursal_noExterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_7_Dom_Sucursal_noInterior" msprop:Generator_ColumnVarNameInTable="column17_Dom_Sucursal_noInterior" msprop:Generator_ColumnPropNameInRow="_17_Dom_Sucursal_noInterior" msprop:Generator_ColumnPropNameInTable="_17_Dom_Sucursal_noInteriorColumn" msprop:Generator_UserColumnName="17_Dom_Sucursal_noInterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_8_Dom_Sucursal_colonia" msprop:Generator_ColumnVarNameInTable="column18_Dom_Sucursal_colonia" msprop:Generator_ColumnPropNameInRow="_18_Dom_Sucursal_colonia" msprop:Generator_ColumnPropNameInTable="_18_Dom_Sucursal_coloniaColumn" msprop:Generator_UserColumnName="18_Dom_Sucursal_colonia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_9_Dom_Sucursal_localidad" msprop:Generator_ColumnVarNameInTable="column19_Dom_Sucursal_localidad" msprop:Generator_ColumnPropNameInRow="_19_Dom_Sucursal_localidad" msprop:Generator_ColumnPropNameInTable="_19_Dom_Sucursal_localidadColumn" msprop:Generator_UserColumnName="19_Dom_Sucursal_localidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_0_Dom_Sucursal_referencia" msprop:Generator_ColumnVarNameInTable="column20_Dom_Sucursal_referencia" msprop:Generator_ColumnPropNameInRow="_20_Dom_Sucursal_referencia" msprop:Generator_ColumnPropNameInTable="_20_Dom_Sucursal_referenciaColumn" msprop:Generator_UserColumnName="20_Dom_Sucursal_referencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_1_Dom_Sucursal_municipio" msprop:Generator_ColumnVarNameInTable="column21_Dom_Sucursal_municipio" msprop:Generator_ColumnPropNameInRow="_21_Dom_Sucursal_municipio" msprop:Generator_ColumnPropNameInTable="_21_Dom_Sucursal_municipioColumn" msprop:Generator_UserColumnName="21_Dom_Sucursal_municipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_2_Dom_Sucursal_estado" msprop:Generator_ColumnVarNameInTable="column22_Dom_Sucursal_estado" msprop:Generator_ColumnPropNameInRow="_22_Dom_Sucursal_estado" msprop:Generator_ColumnPropNameInTable="_22_Dom_Sucursal_estadoColumn" msprop:Generator_UserColumnName="22_Dom_Sucursal_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_3_Dom_Sucursal_pais" msprop:Generator_ColumnVarNameInTable="column23_Dom_Sucursal_pais" msprop:Generator_ColumnPropNameInRow="_23_Dom_Sucursal_pais" msprop:Generator_ColumnPropNameInTable="_23_Dom_Sucursal_paisColumn" msprop:Generator_UserColumnName="23_Dom_Sucursal_pais" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_4_Dom_Sucursal_codigoPostal" msprop:Generator_ColumnVarNameInTable="column24_Dom_Sucursal_codigoPostal" msprop:Generator_ColumnPropNameInRow="_24_Dom_Sucursal_codigoPostal" msprop:Generator_ColumnPropNameInTable="_24_Dom_Sucursal_codigoPostalColumn" msprop:Generator_UserColumnName="24_Dom_Sucursal_codigoPostal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_5_Tel_sucursal" msprop:Generator_ColumnVarNameInTable="column25_Tel_sucursal" msprop:Generator_ColumnPropNameInRow="_25_Tel_sucursal" msprop:Generator_ColumnPropNameInTable="_25_Tel_sucursalColumn" msprop:Generator_UserColumnName="25_Tel_sucursal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_6_Version" msprop:Generator_ColumnVarNameInTable="column26_Version" msprop:Generator_ColumnPropNameInRow="_26_Version" msprop:Generator_ColumnPropNameInTable="_26_VersionColumn" msprop:Generator_UserColumnName="26_Version" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0032_8_Numero_Aprobacion" msprop:Generator_ColumnVarNameInTable="column28_Numero_Aprobacion" msprop:Generator_ColumnPropNameInRow="_28_Numero_Aprobacion" msprop:Generator_ColumnPropNameInTable="_28_Numero_AprobacionColumn" msprop:Generator_UserColumnName="28_Numero_Aprobacion" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0032_9_FormaPago" msprop:Generator_ColumnVarNameInTable="column29_FormaPago" msprop:Generator_ColumnPropNameInRow="_29_FormaPago" msprop:Generator_ColumnPropNameInTable="_29_FormaPagoColumn" msprop:Generator_UserColumnName="29_FormaPago" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_0_Fecha" msprop:Generator_ColumnVarNameInTable="column30_Fecha" msprop:Generator_ColumnPropNameInRow="_30_Fecha" msprop:Generator_ColumnPropNameInTable="_30_FechaColumn" msprop:Generator_UserColumnName="30_Fecha" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_1_Hora" msprop:Generator_ColumnVarNameInTable="column31_Hora" msprop:Generator_ColumnPropNameInRow="_31_Hora" msprop:Generator_ColumnPropNameInTable="_31_HoraColumn" msprop:Generator_UserColumnName="31_Hora" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_2_Dom_LugarExpide_calle" msprop:Generator_ColumnVarNameInTable="column32_Dom_LugarExpide_calle" msprop:Generator_ColumnPropNameInRow="_32_Dom_LugarExpide_calle" msprop:Generator_ColumnPropNameInTable="_32_Dom_LugarExpide_calleColumn" msprop:Generator_UserColumnName="32_Dom_LugarExpide_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_3_Dom_LugarExpide_noExterior" msprop:Generator_ColumnVarNameInTable="column33_Dom_LugarExpide_noExterior" msprop:Generator_ColumnPropNameInRow="_33_Dom_LugarExpide_noExterior" msprop:Generator_ColumnPropNameInTable="_33_Dom_LugarExpide_noExteriorColumn" msprop:Generator_UserColumnName="33_Dom_LugarExpide_noExterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_4_Dom_LugarExpide_noInterior" msprop:Generator_ColumnVarNameInTable="column34_Dom_LugarExpide_noInterior" msprop:Generator_ColumnPropNameInRow="_34_Dom_LugarExpide_noInterior" msprop:Generator_ColumnPropNameInTable="_34_Dom_LugarExpide_noInteriorColumn" msprop:Generator_UserColumnName="34_Dom_LugarExpide_noInterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_5_Dom_LugarExpide_colonia" msprop:Generator_ColumnVarNameInTable="column35_Dom_LugarExpide_colonia" msprop:Generator_ColumnPropNameInRow="_35_Dom_LugarExpide_colonia" msprop:Generator_ColumnPropNameInTable="_35_Dom_LugarExpide_coloniaColumn" msprop:Generator_UserColumnName="35_Dom_LugarExpide_colonia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_6_Dom_LugarExpide_localidad" msprop:Generator_ColumnVarNameInTable="column36_Dom_LugarExpide_localidad" msprop:Generator_ColumnPropNameInRow="_36_Dom_LugarExpide_localidad" msprop:Generator_ColumnPropNameInTable="_36_Dom_LugarExpide_localidadColumn" msprop:Generator_UserColumnName="36_Dom_LugarExpide_localidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_7_Dom_LugarExpide_referencia" msprop:Generator_ColumnVarNameInTable="column37_Dom_LugarExpide_referencia" msprop:Generator_ColumnPropNameInRow="_37_Dom_LugarExpide_referencia" msprop:Generator_ColumnPropNameInTable="_37_Dom_LugarExpide_referenciaColumn" msprop:Generator_UserColumnName="37_Dom_LugarExpide_referencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_8_Dom_LugarExpide_municipio" msprop:Generator_ColumnVarNameInTable="column38_Dom_LugarExpide_municipio" msprop:Generator_ColumnPropNameInRow="_38_Dom_LugarExpide_municipio" msprop:Generator_ColumnPropNameInTable="_38_Dom_LugarExpide_municipioColumn" msprop:Generator_UserColumnName="38_Dom_LugarExpide_municipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0033_9_Dom_LugarExpide_estado" msprop:Generator_ColumnVarNameInTable="column39_Dom_LugarExpide_estado" msprop:Generator_ColumnPropNameInRow="_39_Dom_LugarExpide_estado" msprop:Generator_ColumnPropNameInTable="_39_Dom_LugarExpide_estadoColumn" msprop:Generator_UserColumnName="39_Dom_LugarExpide_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_0_Dom_LugarExpide_pais" msprop:Generator_ColumnVarNameInTable="column40_Dom_LugarExpide_pais" msprop:Generator_ColumnPropNameInRow="_40_Dom_LugarExpide_pais" msprop:Generator_ColumnPropNameInTable="_40_Dom_LugarExpide_paisColumn" msprop:Generator_UserColumnName="40_Dom_LugarExpide_pais" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_1_Dom_LugarExpide_codigoPostal" msprop:Generator_ColumnVarNameInTable="column41_Dom_LugarExpide_codigoPostal" msprop:Generator_ColumnPropNameInRow="_41_Dom_LugarExpide_codigoPostal" msprop:Generator_ColumnPropNameInTable="_41_Dom_LugarExpide_codigoPostalColumn" msprop:Generator_UserColumnName="41_Dom_LugarExpide_codigoPostal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_2_Nombre_Receptor" msprop:Generator_ColumnVarNameInTable="column42_Nombre_Receptor" msprop:Generator_ColumnPropNameInRow="_42_Nombre_Receptor" msprop:Generator_ColumnPropNameInTable="_42_Nombre_ReceptorColumn" msprop:Generator_UserColumnName="42_Nombre_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_3_RFC_Receptor" msprop:Generator_ColumnVarNameInTable="column43_RFC_Receptor" msprop:Generator_ColumnPropNameInRow="_43_RFC_Receptor" msprop:Generator_ColumnPropNameInTable="_43_RFC_ReceptorColumn" msprop:Generator_UserColumnName="43_RFC_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_4_Dom_Receptor_calle" msprop:Generator_ColumnVarNameInTable="column44_Dom_Receptor_calle" msprop:Generator_ColumnPropNameInRow="_44_Dom_Receptor_calle" msprop:Generator_ColumnPropNameInTable="_44_Dom_Receptor_calleColumn" msprop:Generator_UserColumnName="44_Dom_Receptor_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_5_Dom_Receptor_noExterior" msprop:Generator_ColumnVarNameInTable="column45_Dom_Receptor_noExterior" msprop:Generator_ColumnPropNameInRow="_45_Dom_Receptor_noExterior" msprop:Generator_ColumnPropNameInTable="_45_Dom_Receptor_noExteriorColumn" msprop:Generator_UserColumnName="45_Dom_Receptor_noExterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_6_Dom_Receptor_noInterior" msprop:Generator_ColumnVarNameInTable="column46_Dom_Receptor_noInterior" msprop:Generator_ColumnPropNameInRow="_46_Dom_Receptor_noInterior" msprop:Generator_ColumnPropNameInTable="_46_Dom_Receptor_noInteriorColumn" msprop:Generator_UserColumnName="46_Dom_Receptor_noInterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_7_Dom_Receptor_colonia" msprop:Generator_ColumnVarNameInTable="column47_Dom_Receptor_colonia" msprop:Generator_ColumnPropNameInRow="_47_Dom_Receptor_colonia" msprop:Generator_ColumnPropNameInTable="_47_Dom_Receptor_coloniaColumn" msprop:Generator_UserColumnName="47_Dom_Receptor_colonia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_8_Dom_Receptor_localidad" msprop:Generator_ColumnVarNameInTable="column48_Dom_Receptor_localidad" msprop:Generator_ColumnPropNameInRow="_48_Dom_Receptor_localidad" msprop:Generator_ColumnPropNameInTable="_48_Dom_Receptor_localidadColumn" msprop:Generator_UserColumnName="48_Dom_Receptor_localidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0034_9_Dom_Receptor_referencia" msprop:Generator_ColumnVarNameInTable="column49_Dom_Receptor_referencia" msprop:Generator_ColumnPropNameInRow="_49_Dom_Receptor_referencia" msprop:Generator_ColumnPropNameInTable="_49_Dom_Receptor_referenciaColumn" msprop:Generator_UserColumnName="49_Dom_Receptor_referencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_0_Dom_Receptor_municipio" msprop:Generator_ColumnVarNameInTable="column50_Dom_Receptor_municipio" msprop:Generator_ColumnPropNameInRow="_50_Dom_Receptor_municipio" msprop:Generator_ColumnPropNameInTable="_50_Dom_Receptor_municipioColumn" msprop:Generator_UserColumnName="50_Dom_Receptor_municipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_1_Dom_Receptor_estado" msprop:Generator_ColumnVarNameInTable="column51_Dom_Receptor_estado" msprop:Generator_ColumnPropNameInRow="_51_Dom_Receptor_estado" msprop:Generator_ColumnPropNameInTable="_51_Dom_Receptor_estadoColumn" msprop:Generator_UserColumnName="51_Dom_Receptor_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_2_Dom_Receptor_pais" msprop:Generator_ColumnVarNameInTable="column52_Dom_Receptor_pais" msprop:Generator_ColumnPropNameInRow="_52_Dom_Receptor_pais" msprop:Generator_ColumnPropNameInTable="_52_Dom_Receptor_paisColumn" msprop:Generator_UserColumnName="52_Dom_Receptor_pais" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_3_Dom_Receptor_codigoPostal" msprop:Generator_ColumnVarNameInTable="column53_Dom_Receptor_codigoPostal" msprop:Generator_ColumnPropNameInRow="_53_Dom_Receptor_codigoPostal" msprop:Generator_ColumnPropNameInTable="_53_Dom_Receptor_codigoPostalColumn" msprop:Generator_UserColumnName="53_Dom_Receptor_codigoPostal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_4_Monto_SubTotal" msprop:Generator_ColumnVarNameInTable="column54_Monto_SubTotal" msprop:Generator_ColumnPropNameInRow="_54_Monto_SubTotal" msprop:Generator_ColumnPropNameInTable="_54_Monto_SubTotalColumn" msprop:Generator_UserColumnName="54_Monto_SubTotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0035_5_Monto_IVA" msprop:Generator_ColumnVarNameInTable="column55_Monto_IVA" msprop:Generator_ColumnPropNameInRow="_55_Monto_IVA" msprop:Generator_ColumnPropNameInTable="_55_Monto_IVAColumn" msprop:Generator_UserColumnName="55_Monto_IVA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0035_6_Monto_Total" msprop:Generator_ColumnVarNameInTable="column56_Monto_Total" msprop:Generator_ColumnPropNameInRow="_56_Monto_Total" msprop:Generator_ColumnPropNameInTable="_56_Monto_TotalColumn" msprop:Generator_UserColumnName="56_Monto_Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0035_7_Estado" msprop:Generator_ColumnVarNameInTable="column57_Estado" msprop:Generator_ColumnPropNameInRow="_57_Estado" msprop:Generator_ColumnPropNameInTable="_57_EstadoColumn" msprop:Generator_UserColumnName="57_Estado" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0035_8_TipoCFD" msprop:Generator_ColumnVarNameInTable="column58_TipoCFD" msprop:Generator_ColumnPropNameInRow="_58_TipoCFD" msprop:Generator_ColumnPropNameInTable="_58_TipoCFDColumn" msprop:Generator_UserColumnName="58_TipoCFD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_9_Notas" msprop:Generator_ColumnVarNameInTable="column59_Notas" msprop:Generator_ColumnPropNameInRow="_59_Notas" msprop:Generator_ColumnPropNameInTable="_59_NotasColumn" msprop:Generator_UserColumnName="59_Notas" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_0_Notas02" msprop:Generator_ColumnVarNameInTable="column60_Notas02" msprop:Generator_ColumnPropNameInRow="_60_Notas02" msprop:Generator_ColumnPropNameInTable="_60_Notas02Column" msprop:Generator_UserColumnName="60_Notas02" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_1_Notas03" msprop:Generator_ColumnVarNameInTable="column61_Notas03" msprop:Generator_ColumnPropNameInRow="_61_Notas03" msprop:Generator_ColumnPropNameInTable="_61_Notas03Column" msprop:Generator_UserColumnName="61_Notas03" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_2_TradingPartner_Prov" msprop:Generator_ColumnVarNameInTable="column62_TradingPartner_Prov" msprop:Generator_ColumnPropNameInRow="_62_TradingPartner_Prov" msprop:Generator_ColumnPropNameInTable="_62_TradingPartner_ProvColumn" msprop:Generator_UserColumnName="62_TradingPartner_Prov" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_3_Calif_TradingPartner_Prov" msprop:Generator_ColumnVarNameInTable="column63_Calif_TradingPartner_Prov" msprop:Generator_ColumnPropNameInRow="_63_Calif_TradingPartner_Prov" msprop:Generator_ColumnPropNameInTable="_63_Calif_TradingPartner_ProvColumn" msprop:Generator_UserColumnName="63_Calif_TradingPartner_Prov" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_4_EAN_Proveedor" msprop:Generator_ColumnVarNameInTable="column64_EAN_Proveedor" msprop:Generator_ColumnPropNameInRow="_64_EAN_Proveedor" msprop:Generator_ColumnPropNameInTable="_64_EAN_ProveedorColumn" msprop:Generator_UserColumnName="64_EAN_Proveedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_5_Numero_Factura" msprop:Generator_ColumnVarNameInTable="column65_Numero_Factura" msprop:Generator_ColumnPropNameInRow="_65_Numero_Factura" msprop:Generator_ColumnPropNameInTable="_65_Numero_FacturaColumn" msprop:Generator_UserColumnName="65_Numero_Factura" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_6_Numero_OrdenCompra" msprop:Generator_ColumnVarNameInTable="column66_Numero_OrdenCompra" msprop:Generator_ColumnPropNameInRow="_66_Numero_OrdenCompra" msprop:Generator_ColumnPropNameInTable="_66_Numero_OrdenCompraColumn" msprop:Generator_UserColumnName="66_Numero_OrdenCompra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_7_Fecha_OrdenCompra" msprop:Generator_ColumnVarNameInTable="column67_Fecha_OrdenCompra" msprop:Generator_ColumnPropNameInRow="_67_Fecha_OrdenCompra" msprop:Generator_ColumnPropNameInTable="_67_Fecha_OrdenCompraColumn" msprop:Generator_UserColumnName="67_Fecha_OrdenCompra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_8_Numero_Proveedor" msprop:Generator_ColumnVarNameInTable="column68_Numero_Proveedor" msprop:Generator_ColumnPropNameInRow="_68_Numero_Proveedor" msprop:Generator_ColumnPropNameInTable="_68_Numero_ProveedorColumn" msprop:Generator_UserColumnName="68_Numero_Proveedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0036_9_EAN_Tienda" msprop:Generator_ColumnVarNameInTable="column69_EAN_Tienda" msprop:Generator_ColumnPropNameInRow="_69_EAN_Tienda" msprop:Generator_ColumnPropNameInTable="_69_EAN_TiendaColumn" msprop:Generator_UserColumnName="69_EAN_Tienda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_0_Numero_Tienda" msprop:Generator_ColumnVarNameInTable="column70_Numero_Tienda" msprop:Generator_ColumnPropNameInRow="_70_Numero_Tienda" msprop:Generator_ColumnPropNameInTable="_70_Numero_TiendaColumn" msprop:Generator_UserColumnName="70_Numero_Tienda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_1_Nombre_Tienda" msprop:Generator_ColumnVarNameInTable="column71_Nombre_Tienda" msprop:Generator_ColumnPropNameInRow="_71_Nombre_Tienda" msprop:Generator_ColumnPropNameInTable="_71_Nombre_TiendaColumn" msprop:Generator_UserColumnName="71_Nombre_Tienda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_2_Dom_Tienda_calle" msprop:Generator_ColumnVarNameInTable="column72_Dom_Tienda_calle" msprop:Generator_ColumnPropNameInRow="_72_Dom_Tienda_calle" msprop:Generator_ColumnPropNameInTable="_72_Dom_Tienda_calleColumn" msprop:Generator_UserColumnName="72_Dom_Tienda_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_3_Dom_Tienda_noExterior" msprop:Generator_ColumnVarNameInTable="column73_Dom_Tienda_noExterior" msprop:Generator_ColumnPropNameInRow="_73_Dom_Tienda_noExterior" msprop:Generator_ColumnPropNameInTable="_73_Dom_Tienda_noExteriorColumn" msprop:Generator_UserColumnName="73_Dom_Tienda_noExterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_4_Dom_Tienda_noInterior" msprop:Generator_ColumnVarNameInTable="column74_Dom_Tienda_noInterior" msprop:Generator_ColumnPropNameInRow="_74_Dom_Tienda_noInterior" msprop:Generator_ColumnPropNameInTable="_74_Dom_Tienda_noInteriorColumn" msprop:Generator_UserColumnName="74_Dom_Tienda_noInterior" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_5_Dom_Tienda_colonia" msprop:Generator_ColumnVarNameInTable="column75_Dom_Tienda_colonia" msprop:Generator_ColumnPropNameInRow="_75_Dom_Tienda_colonia" msprop:Generator_ColumnPropNameInTable="_75_Dom_Tienda_coloniaColumn" msprop:Generator_UserColumnName="75_Dom_Tienda_colonia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_6_Dom_Tienda_localidad" msprop:Generator_ColumnVarNameInTable="column76_Dom_Tienda_localidad" msprop:Generator_ColumnPropNameInRow="_76_Dom_Tienda_localidad" msprop:Generator_ColumnPropNameInTable="_76_Dom_Tienda_localidadColumn" msprop:Generator_UserColumnName="76_Dom_Tienda_localidad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_7_Dom_Tienda_referencia" msprop:Generator_ColumnVarNameInTable="column77_Dom_Tienda_referencia" msprop:Generator_ColumnPropNameInRow="_77_Dom_Tienda_referencia" msprop:Generator_ColumnPropNameInTable="_77_Dom_Tienda_referenciaColumn" msprop:Generator_UserColumnName="77_Dom_Tienda_referencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_8_Dom_Tienda_municipio" msprop:Generator_ColumnVarNameInTable="column78_Dom_Tienda_municipio" msprop:Generator_ColumnPropNameInRow="_78_Dom_Tienda_municipio" msprop:Generator_ColumnPropNameInTable="_78_Dom_Tienda_municipioColumn" msprop:Generator_UserColumnName="78_Dom_Tienda_municipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0037_9_Dom_Tienda_estado" msprop:Generator_ColumnVarNameInTable="column79_Dom_Tienda_estado" msprop:Generator_ColumnPropNameInRow="_79_Dom_Tienda_estado" msprop:Generator_ColumnPropNameInTable="_79_Dom_Tienda_estadoColumn" msprop:Generator_UserColumnName="79_Dom_Tienda_estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_0_Dom_Tienda_pais" msprop:Generator_ColumnVarNameInTable="column80_Dom_Tienda_pais" msprop:Generator_ColumnPropNameInRow="_80_Dom_Tienda_pais" msprop:Generator_ColumnPropNameInTable="_80_Dom_Tienda_paisColumn" msprop:Generator_UserColumnName="80_Dom_Tienda_pais" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_1_Dom_Tienda_codigoPostal" msprop:Generator_ColumnVarNameInTable="column81_Dom_Tienda_codigoPostal" msprop:Generator_ColumnPropNameInRow="_81_Dom_Tienda_codigoPostal" msprop:Generator_ColumnPropNameInTable="_81_Dom_Tienda_codigoPostalColumn" msprop:Generator_UserColumnName="81_Dom_Tienda_codigoPostal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_2_RFC_Tienda" msprop:Generator_ColumnVarNameInTable="column82_RFC_Tienda" msprop:Generator_ColumnPropNameInRow="_82_RFC_Tienda" msprop:Generator_ColumnPropNameInTable="_82_RFC_TiendaColumn" msprop:Generator_UserColumnName="82_RFC_Tienda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_3_Cod_Moneda" msprop:Generator_ColumnVarNameInTable="column83_Cod_Moneda" msprop:Generator_ColumnPropNameInRow="_83_Cod_Moneda" msprop:Generator_ColumnPropNameInTable="_83_Cod_MonedaColumn" msprop:Generator_UserColumnName="83_Cod_Moneda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_4_Dias_Pago" msprop:Generator_ColumnVarNameInTable="column84_Dias_Pago" msprop:Generator_ColumnPropNameInRow="_84_Dias_Pago" msprop:Generator_ColumnPropNameInTable="_84_Dias_PagoColumn" msprop:Generator_UserColumnName="84_Dias_Pago" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0038_5_Porc_Desc_ProntoPago" msprop:Generator_ColumnVarNameInTable="column85_Porc_Desc_ProntoPago" msprop:Generator_ColumnPropNameInRow="_85_Porc_Desc_ProntoPago" msprop:Generator_ColumnPropNameInTable="_85_Porc_Desc_ProntoPagoColumn" msprop:Generator_UserColumnName="85_Porc_Desc_ProntoPago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0038_6_Monto_Desc_ProntoPago" msprop:Generator_ColumnVarNameInTable="column86_Monto_Desc_ProntoPago" msprop:Generator_ColumnPropNameInRow="_86_Monto_Desc_ProntoPago" msprop:Generator_ColumnPropNameInTable="_86_Monto_Desc_ProntoPagoColumn" msprop:Generator_UserColumnName="86_Monto_Desc_ProntoPago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0038_7_Cod_Descuento" msprop:Generator_ColumnVarNameInTable="column87_Cod_Descuento" msprop:Generator_ColumnPropNameInRow="_87_Cod_Descuento" msprop:Generator_ColumnPropNameInTable="_87_Cod_DescuentoColumn" msprop:Generator_UserColumnName="87_Cod_Descuento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_8_Porc_Descuento" msprop:Generator_ColumnVarNameInTable="column88_Porc_Descuento" msprop:Generator_ColumnPropNameInRow="_88_Porc_Descuento" msprop:Generator_ColumnPropNameInTable="_88_Porc_DescuentoColumn" msprop:Generator_UserColumnName="88_Porc_Descuento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0038_9_Monto_Descuento" msprop:Generator_ColumnVarNameInTable="column89_Monto_Descuento" msprop:Generator_ColumnPropNameInRow="_89_Monto_Descuento" msprop:Generator_ColumnPropNameInTable="_89_Monto_DescuentoColumn" msprop:Generator_UserColumnName="89_Monto_Descuento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0039_0_Cantidad_LineasFactura" msprop:Generator_ColumnVarNameInTable="column90_Cantidad_LineasFactura" msprop:Generator_ColumnPropNameInRow="_90_Cantidad_LineasFactura" msprop:Generator_ColumnPropNameInTable="_90_Cantidad_LineasFacturaColumn" msprop:Generator_UserColumnName="90_Cantidad_LineasFactura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0039_1_Fecha_Vencimiento" msprop:Generator_ColumnVarNameInTable="column91_Fecha_Vencimiento" msprop:Generator_ColumnPropNameInRow="_91_Fecha_Vencimiento" msprop:Generator_ColumnPropNameInTable="_91_Fecha_VencimientoColumn" msprop:Generator_UserColumnName="91_Fecha_Vencimiento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_2_Cod_Zona" msprop:Generator_ColumnVarNameInTable="column92_Cod_Zona" msprop:Generator_ColumnPropNameInRow="_92_Cod_Zona" msprop:Generator_ColumnPropNameInTable="_92_Cod_ZonaColumn" msprop:Generator_UserColumnName="92_Cod_Zona" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_3_Numero_Receptor" msprop:Generator_ColumnVarNameInTable="column93_Numero_Receptor" msprop:Generator_ColumnPropNameInRow="_93_Numero_Receptor" msprop:Generator_ColumnPropNameInTable="_93_Numero_ReceptorColumn" msprop:Generator_UserColumnName="93_Numero_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_4_Cod_Vendedor" msprop:Generator_ColumnVarNameInTable="column94_Cod_Vendedor" msprop:Generator_ColumnPropNameInRow="_94_Cod_Vendedor" msprop:Generator_ColumnPropNameInTable="_94_Cod_VendedorColumn" msprop:Generator_UserColumnName="94_Cod_Vendedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_5_Nombre_Vendedor" msprop:Generator_ColumnVarNameInTable="column95_Nombre_Vendedor" msprop:Generator_ColumnPropNameInRow="_95_Nombre_Vendedor" msprop:Generator_ColumnPropNameInTable="_95_Nombre_VendedorColumn" msprop:Generator_UserColumnName="95_Nombre_Vendedor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_6_Via_Embarque" msprop:Generator_ColumnVarNameInTable="column96_Via_Embarque" msprop:Generator_ColumnPropNameInRow="_96_Via_Embarque" msprop:Generator_ColumnPropNameInTable="_96_Via_EmbarqueColumn" msprop:Generator_UserColumnName="96_Via_Embarque" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_7_Condiciones_Pago" msprop:Generator_ColumnVarNameInTable="column97_Condiciones_Pago" msprop:Generator_ColumnPropNameInRow="_97_Condiciones_Pago" msprop:Generator_ColumnPropNameInTable="_97_Condiciones_PagoColumn" msprop:Generator_UserColumnName="97_Condiciones_Pago" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_8_Numero_Pedido" msprop:Generator_ColumnVarNameInTable="column98_Numero_Pedido" msprop:Generator_ColumnPropNameInRow="_98_Numero_Pedido" msprop:Generator_ColumnPropNameInTable="_98_Numero_PedidoColumn" msprop:Generator_UserColumnName="98_Numero_Pedido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0039_9_Fecha_Pedido" msprop:Generator_ColumnVarNameInTable="column99_Fecha_Pedido" msprop:Generator_ColumnPropNameInRow="_99_Fecha_Pedido" msprop:Generator_ColumnPropNameInTable="_99_Fecha_PedidoColumn" msprop:Generator_UserColumnName="99_Fecha_Pedido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_00_Letras_Monto_Total" msprop:Generator_ColumnVarNameInTable="column100_Letras_Monto_Total" msprop:Generator_ColumnPropNameInRow="_100_Letras_Monto_Total" msprop:Generator_ColumnPropNameInTable="_100_Letras_Monto_TotalColumn" msprop:Generator_UserColumnName="100_Letras_Monto_Total" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_01_Cantidad_Unidades" msprop:Generator_ColumnVarNameInTable="column101_Cantidad_Unidades" msprop:Generator_ColumnPropNameInRow="_101_Cantidad_Unidades" msprop:Generator_ColumnPropNameInTable="_101_Cantidad_UnidadesColumn" msprop:Generator_UserColumnName="101_Cantidad_Unidades" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_02_Cantidad_empaques" msprop:Generator_ColumnVarNameInTable="column102_Cantidad_empaques" msprop:Generator_ColumnPropNameInRow="_102_Cantidad_empaques" msprop:Generator_ColumnPropNameInTable="_102_Cantidad_empaquesColumn" msprop:Generator_UserColumnName="102_Cantidad_empaques" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_03_EAN_Receptor" msprop:Generator_ColumnVarNameInTable="column103_EAN_Receptor" msprop:Generator_ColumnPropNameInRow="_103_EAN_Receptor" msprop:Generator_ColumnPropNameInTable="_103_EAN_ReceptorColumn" msprop:Generator_UserColumnName="103_EAN_Receptor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_04_EAN_LugarExpide" msprop:Generator_ColumnVarNameInTable="column104_EAN_LugarExpide" msprop:Generator_ColumnPropNameInRow="_104_EAN_LugarExpide" msprop:Generator_ColumnPropNameInTable="_104_EAN_LugarExpideColumn" msprop:Generator_UserColumnName="104_EAN_LugarExpide" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_05_IEPS_Id" msprop:Generator_ColumnVarNameInTable="column105_IEPS_Id" msprop:Generator_ColumnPropNameInRow="_105_IEPS_Id" msprop:Generator_ColumnPropNameInTable="_105_IEPS_IdColumn" msprop:Generator_UserColumnName="105_IEPS_Id" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_06_Estatus" msprop:Generator_ColumnVarNameInTable="column106_Estatus" msprop:Generator_ColumnPropNameInRow="_106_Estatus" msprop:Generator_ColumnPropNameInTable="_106_EstatusColumn" msprop:Generator_UserColumnName="106_Estatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_07_Numero_Emisor" msprop:Generator_ColumnVarNameInTable="column107_Numero_Emisor" msprop:Generator_ColumnPropNameInRow="_107_Numero_Emisor" msprop:Generator_ColumnPropNameInTable="_107_Numero_EmisorColumn" msprop:Generator_UserColumnName="107_Numero_Emisor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_08_Monto_Merma" msprop:Generator_ColumnVarNameInTable="column108_Monto_Merma" msprop:Generator_ColumnPropNameInRow="_108_Monto_Merma" msprop:Generator_ColumnPropNameInTable="_108_Monto_MermaColumn" msprop:Generator_UserColumnName="108_Monto_Merma" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_09_Monto_SubTotal_ApIVA" msprop:Generator_ColumnVarNameInTable="column109_Monto_SubTotal_ApIVA" msprop:Generator_ColumnPropNameInRow="_109_Monto_SubTotal_ApIVA" msprop:Generator_ColumnPropNameInTable="_109_Monto_SubTotal_ApIVAColumn" msprop:Generator_UserColumnName="109_Monto_SubTotal_ApIVA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_10_Transportista" msprop:Generator_ColumnVarNameInTable="column110_Transportista" msprop:Generator_ColumnPropNameInRow="_110_Transportista" msprop:Generator_ColumnPropNameInTable="_110_TransportistaColumn" msprop:Generator_UserColumnName="110_Transportista" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_11_Numero_Solicitud" msprop:Generator_ColumnVarNameInTable="column111_Numero_Solicitud" msprop:Generator_ColumnPropNameInRow="_111_Numero_Solicitud" msprop:Generator_ColumnPropNameInTable="_111_Numero_SolicitudColumn" msprop:Generator_UserColumnName="111_Numero_Solicitud" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_12_Desc_Moneda" msprop:Generator_ColumnVarNameInTable="column112_Desc_Moneda" msprop:Generator_ColumnPropNameInRow="_112_Desc_Moneda" msprop:Generator_ColumnPropNameInTable="_112_Desc_MonedaColumn" msprop:Generator_UserColumnName="112_Desc_Moneda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_13_Misc01" msprop:Generator_ColumnVarNameInTable="column113_Misc01" msprop:Generator_ColumnPropNameInRow="_113_Misc01" msprop:Generator_ColumnPropNameInTable="_113_Misc01Column" msprop:Generator_UserColumnName="113_Misc01" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_14_Misc02" msprop:Generator_ColumnVarNameInTable="column114_Misc02" msprop:Generator_ColumnPropNameInRow="_114_Misc02" msprop:Generator_ColumnPropNameInTable="_114_Misc02Column" msprop:Generator_UserColumnName="114_Misc02" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_15_Misc03" msprop:Generator_ColumnVarNameInTable="column115_Misc03" msprop:Generator_ColumnPropNameInRow="_115_Misc03" msprop:Generator_ColumnPropNameInTable="_115_Misc03Column" msprop:Generator_UserColumnName="115_Misc03" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_16_Misc04" msprop:Generator_ColumnVarNameInTable="column116_Misc04" msprop:Generator_ColumnPropNameInRow="_116_Misc04" msprop:Generator_ColumnPropNameInTable="_116_Misc04Column" msprop:Generator_UserColumnName="116_Misc04" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_17_Misc05" msprop:Generator_ColumnVarNameInTable="column117_Misc05" msprop:Generator_ColumnPropNameInRow="_117_Misc05" msprop:Generator_ColumnPropNameInTable="_117_Misc05Column" msprop:Generator_UserColumnName="117_Misc05" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_18_Misc06" msprop:Generator_ColumnVarNameInTable="column118_Misc06" msprop:Generator_ColumnPropNameInRow="_118_Misc06" msprop:Generator_ColumnPropNameInTable="_118_Misc06Column" msprop:Generator_UserColumnName="118_Misc06" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_19_Misc07" msprop:Generator_ColumnVarNameInTable="column119_Misc07" msprop:Generator_ColumnPropNameInRow="_119_Misc07" msprop:Generator_ColumnPropNameInTable="_119_Misc07Column" msprop:Generator_UserColumnName="119_Misc07" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_20_Misc08" msprop:Generator_ColumnVarNameInTable="column120_Misc08" msprop:Generator_ColumnPropNameInRow="_120_Misc08" msprop:Generator_ColumnPropNameInTable="_120_Misc08Column" msprop:Generator_UserColumnName="120_Misc08" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_21_Misc09" msprop:Generator_ColumnVarNameInTable="column121_Misc09" msprop:Generator_ColumnPropNameInRow="_121_Misc09" msprop:Generator_ColumnPropNameInTable="_121_Misc09Column" msprop:Generator_UserColumnName="121_Misc09" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_22_Misc10" msprop:Generator_ColumnVarNameInTable="column122_Misc10" msprop:Generator_ColumnPropNameInRow="_122_Misc10" msprop:Generator_ColumnPropNameInTable="_122_Misc10Column" msprop:Generator_UserColumnName="122_Misc10" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_23_Misc11" msprop:Generator_ColumnVarNameInTable="column123_Misc11" msprop:Generator_ColumnPropNameInRow="_123_Misc11" msprop:Generator_ColumnPropNameInTable="_123_Misc11Column" msprop:Generator_UserColumnName="123_Misc11" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_24_Misc12" msprop:Generator_ColumnVarNameInTable="column124_Misc12" msprop:Generator_ColumnPropNameInRow="_124_Misc12" msprop:Generator_ColumnPropNameInTable="_124_Misc12Column" msprop:Generator_UserColumnName="124_Misc12" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_25_Misc13" msprop:Generator_ColumnVarNameInTable="column125_Misc13" msprop:Generator_ColumnPropNameInRow="_125_Misc13" msprop:Generator_ColumnPropNameInTable="_125_Misc13Column" msprop:Generator_UserColumnName="125_Misc13" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_26_Misc14" msprop:Generator_ColumnVarNameInTable="column126_Misc14" msprop:Generator_ColumnPropNameInRow="_126_Misc14" msprop:Generator_ColumnPropNameInTable="_126_Misc14Column" msprop:Generator_UserColumnName="126_Misc14" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_27_Misc15" msprop:Generator_ColumnVarNameInTable="column127_Misc15" msprop:Generator_ColumnPropNameInRow="_127_Misc15" msprop:Generator_ColumnPropNameInTable="_127_Misc15Column" msprop:Generator_UserColumnName="127_Misc15" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_28_Misc16" msprop:Generator_ColumnVarNameInTable="column128_Misc16" msprop:Generator_ColumnPropNameInRow="_128_Misc16" msprop:Generator_ColumnPropNameInTable="_128_Misc16Column" msprop:Generator_UserColumnName="128_Misc16" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_29_Misc17" msprop:Generator_ColumnVarNameInTable="column129_Misc17" msprop:Generator_ColumnPropNameInRow="_129_Misc17" msprop:Generator_ColumnPropNameInTable="_129_Misc17Column" msprop:Generator_UserColumnName="129_Misc17" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_30_Misc18" msprop:Generator_ColumnVarNameInTable="column130_Misc18" msprop:Generator_ColumnPropNameInRow="_130_Misc18" msprop:Generator_ColumnPropNameInTable="_130_Misc18Column" msprop:Generator_UserColumnName="130_Misc18" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_31_Misc19" msprop:Generator_ColumnVarNameInTable="column131_Misc19" msprop:Generator_ColumnPropNameInRow="_131_Misc19" msprop:Generator_ColumnPropNameInTable="_131_Misc19Column" msprop:Generator_UserColumnName="131_Misc19" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_32_Misc20" msprop:Generator_ColumnVarNameInTable="column132_Misc20" msprop:Generator_ColumnPropNameInRow="_132_Misc20" msprop:Generator_ColumnPropNameInTable="_132_Misc20Column" msprop:Generator_UserColumnName="132_Misc20" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_33_Misc21" msprop:Generator_ColumnVarNameInTable="column133_Misc21" msprop:Generator_ColumnPropNameInRow="_133_Misc21" msprop:Generator_ColumnPropNameInTable="_133_Misc21Column" msprop:Generator_UserColumnName="133_Misc21" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_34_Misc22" msprop:Generator_ColumnVarNameInTable="column134_Misc22" msprop:Generator_ColumnPropNameInRow="_134_Misc22" msprop:Generator_ColumnPropNameInTable="_134_Misc22Column" msprop:Generator_UserColumnName="134_Misc22" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_35_Misc23" msprop:Generator_ColumnVarNameInTable="column135_Misc23" msprop:Generator_ColumnPropNameInRow="_135_Misc23" msprop:Generator_ColumnPropNameInTable="_135_Misc23Column" msprop:Generator_UserColumnName="135_Misc23" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_36_Misc24" msprop:Generator_ColumnVarNameInTable="column136_Misc24" msprop:Generator_ColumnPropNameInRow="_136_Misc24" msprop:Generator_ColumnPropNameInTable="_136_Misc24Column" msprop:Generator_UserColumnName="136_Misc24" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_37_Misc25" msprop:Generator_ColumnVarNameInTable="column137_Misc25" msprop:Generator_ColumnPropNameInRow="_137_Misc25" msprop:Generator_ColumnPropNameInTable="_137_Misc25Column" msprop:Generator_UserColumnName="137_Misc25" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_38_Misc26" msprop:Generator_ColumnVarNameInTable="column138_Misc26" msprop:Generator_ColumnPropNameInRow="_138_Misc26" msprop:Generator_ColumnPropNameInTable="_138_Misc26Column" msprop:Generator_UserColumnName="138_Misc26" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_39_Misc27" msprop:Generator_ColumnVarNameInTable="column139_Misc27" msprop:Generator_ColumnPropNameInRow="_139_Misc27" msprop:Generator_ColumnPropNameInTable="_139_Misc27Column" msprop:Generator_UserColumnName="139_Misc27" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_40_Misc28" msprop:Generator_ColumnVarNameInTable="column140_Misc28" msprop:Generator_ColumnPropNameInRow="_140_Misc28" msprop:Generator_ColumnPropNameInTable="_140_Misc28Column" msprop:Generator_UserColumnName="140_Misc28" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_41_Misc29" msprop:Generator_ColumnVarNameInTable="column141_Misc29" msprop:Generator_ColumnPropNameInRow="_141_Misc29" msprop:Generator_ColumnPropNameInTable="_141_Misc29Column" msprop:Generator_UserColumnName="141_Misc29" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_42_Misc30" msprop:Generator_ColumnVarNameInTable="column142_Misc30" msprop:Generator_ColumnPropNameInRow="_142_Misc30" msprop:Generator_ColumnPropNameInTable="_142_Misc30Column" msprop:Generator_UserColumnName="142_Misc30" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_43_Misc31" msprop:Generator_ColumnVarNameInTable="column143_Misc31" msprop:Generator_ColumnPropNameInRow="_143_Misc31" msprop:Generator_ColumnPropNameInTable="_143_Misc31Column" msprop:Generator_UserColumnName="143_Misc31" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_44_Misc32" msprop:Generator_ColumnVarNameInTable="column144_Misc32" msprop:Generator_ColumnPropNameInRow="_144_Misc32" msprop:Generator_ColumnPropNameInTable="_144_Misc32Column" msprop:Generator_UserColumnName="144_Misc32" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_45_Misc33" msprop:Generator_ColumnVarNameInTable="column145_Misc33" msprop:Generator_ColumnPropNameInRow="_145_Misc33" msprop:Generator_ColumnPropNameInTable="_145_Misc33Column" msprop:Generator_UserColumnName="145_Misc33" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_46_Misc34" msprop:Generator_ColumnVarNameInTable="column146_Misc34" msprop:Generator_ColumnPropNameInRow="_146_Misc34" msprop:Generator_ColumnPropNameInTable="_146_Misc34Column" msprop:Generator_UserColumnName="146_Misc34" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_47_Misc35" msprop:Generator_ColumnVarNameInTable="column147_Misc35" msprop:Generator_ColumnPropNameInRow="_147_Misc35" msprop:Generator_ColumnPropNameInTable="_147_Misc35Column" msprop:Generator_UserColumnName="147_Misc35" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_48_Misc36" msprop:Generator_ColumnVarNameInTable="column148_Misc36" msprop:Generator_ColumnPropNameInRow="_148_Misc36" msprop:Generator_ColumnPropNameInTable="_148_Misc36Column" msprop:Generator_UserColumnName="148_Misc36" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_49_Misc37" msprop:Generator_ColumnVarNameInTable="column149_Misc37" msprop:Generator_ColumnPropNameInRow="_149_Misc37" msprop:Generator_ColumnPropNameInTable="_149_Misc37Column" msprop:Generator_UserColumnName="149_Misc37" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_50_Misc38" msprop:Generator_ColumnVarNameInTable="column150_Misc38" msprop:Generator_ColumnPropNameInRow="_150_Misc38" msprop:Generator_ColumnPropNameInTable="_150_Misc38Column" msprop:Generator_UserColumnName="150_Misc38" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_51_Misc39" msprop:Generator_ColumnVarNameInTable="column151_Misc39" msprop:Generator_ColumnPropNameInRow="_151_Misc39" msprop:Generator_ColumnPropNameInTable="_151_Misc39Column" msprop:Generator_UserColumnName="151_Misc39" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_52_Misc40" msprop:Generator_ColumnVarNameInTable="column152_Misc40" msprop:Generator_ColumnPropNameInRow="_152_Misc40" msprop:Generator_ColumnPropNameInTable="_152_Misc40Column" msprop:Generator_UserColumnName="152_Misc40" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_53_Misc41" msprop:Generator_ColumnVarNameInTable="column153_Misc41" msprop:Generator_ColumnPropNameInRow="_153_Misc41" msprop:Generator_ColumnPropNameInTable="_153_Misc41Column" msprop:Generator_UserColumnName="153_Misc41" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_54_Misc42" msprop:Generator_ColumnVarNameInTable="column154_Misc42" msprop:Generator_ColumnPropNameInRow="_154_Misc42" msprop:Generator_ColumnPropNameInTable="_154_Misc42Column" msprop:Generator_UserColumnName="154_Misc42" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_55_Misc43" msprop:Generator_ColumnVarNameInTable="column155_Misc43" msprop:Generator_ColumnPropNameInRow="_155_Misc43" msprop:Generator_ColumnPropNameInTable="_155_Misc43Column" msprop:Generator_UserColumnName="155_Misc43" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_56_Misc44" msprop:Generator_ColumnVarNameInTable="column156_Misc44" msprop:Generator_ColumnPropNameInRow="_156_Misc44" msprop:Generator_ColumnPropNameInTable="_156_Misc44Column" msprop:Generator_UserColumnName="156_Misc44" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_57_Misc45" msprop:Generator_ColumnVarNameInTable="column157_Misc45" msprop:Generator_ColumnPropNameInRow="_157_Misc45" msprop:Generator_ColumnPropNameInTable="_157_Misc45Column" msprop:Generator_UserColumnName="157_Misc45" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_58_Misc46" msprop:Generator_ColumnVarNameInTable="column158_Misc46" msprop:Generator_ColumnPropNameInRow="_158_Misc46" msprop:Generator_ColumnPropNameInTable="_158_Misc46Column" msprop:Generator_UserColumnName="158_Misc46" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_59_Misc47" msprop:Generator_ColumnVarNameInTable="column159_Misc47" msprop:Generator_ColumnPropNameInRow="_159_Misc47" msprop:Generator_ColumnPropNameInTable="_159_Misc47Column" msprop:Generator_UserColumnName="159_Misc47" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_60_Misc48" msprop:Generator_ColumnVarNameInTable="column160_Misc48" msprop:Generator_ColumnPropNameInRow="_160_Misc48" msprop:Generator_ColumnPropNameInTable="_160_Misc48Column" msprop:Generator_UserColumnName="160_Misc48" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_61_Misc49" msprop:Generator_ColumnVarNameInTable="column161_Misc49" msprop:Generator_ColumnPropNameInRow="_161_Misc49" msprop:Generator_ColumnPropNameInTable="_161_Misc49Column" msprop:Generator_UserColumnName="161_Misc49" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_62_Misc50" msprop:Generator_ColumnVarNameInTable="column162_Misc50" msprop:Generator_ColumnPropNameInRow="_162_Misc50" msprop:Generator_ColumnPropNameInTable="_162_Misc50Column" msprop:Generator_UserColumnName="162_Misc50" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_63_Porc_IVA" msprop:Generator_ColumnVarNameInTable="column163_Porc_IVA" msprop:Generator_ColumnPropNameInRow="_163_Porc_IVA" msprop:Generator_ColumnPropNameInTable="_163_Porc_IVAColumn" msprop:Generator_UserColumnName="163_Porc_IVA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_64_Monto_IEPS" msprop:Generator_ColumnVarNameInTable="column164_Monto_IEPS" msprop:Generator_ColumnPropNameInRow="_164_Monto_IEPS" msprop:Generator_ColumnPropNameInTable="_164_Monto_IEPSColumn" msprop:Generator_UserColumnName="164_Monto_IEPS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_65_Document_Status" msprop:Generator_ColumnVarNameInTable="column165_Document_Status" msprop:Generator_ColumnPropNameInRow="_165_Document_Status" msprop:Generator_ColumnPropNameInTable="_165_Document_StatusColumn" msprop:Generator_UserColumnName="165_Document_Status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_66_Delivery_Date" msprop:Generator_ColumnVarNameInTable="column166_Delivery_Date" msprop:Generator_ColumnPropNameInRow="_166_Delivery_Date" msprop:Generator_ColumnPropNameInTable="_166_Delivery_DateColumn" msprop:Generator_UserColumnName="166_Delivery_Date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_67_RegimentFiscal" msprop:Generator_ColumnVarNameInTable="column167_RegimentFiscal" msprop:Generator_ColumnPropNameInRow="_167_RegimentFiscal" msprop:Generator_ColumnPropNameInTable="_167_RegimentFiscalColumn" msprop:Generator_UserColumnName="167_RegimentFiscal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_68_Num_CtaPago" msprop:Generator_ColumnVarNameInTable="column168_Num_CtaPago" msprop:Generator_ColumnPropNameInRow="_168_Num_CtaPago" msprop:Generator_ColumnPropNameInTable="_168_Num_CtaPagoColumn" msprop:Generator_UserColumnName="168_Num_CtaPago" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_69_Num_contrarecibo" msprop:Generator_ColumnVarNameInTable="column169_Num_contrarecibo" msprop:Generator_ColumnPropNameInRow="_169_Num_contrarecibo" msprop:Generator_ColumnPropNameInTable="_169_Num_contrareciboColumn" msprop:Generator_UserColumnName="169_Num_contrarecibo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_70_Fecha_Num_contrarecibo" msprop:Generator_ColumnVarNameInTable="column170_Fecha_Num_contrarecibo" msprop:Generator_ColumnPropNameInRow="_170_Fecha_Num_contrarecibo" msprop:Generator_ColumnPropNameInTable="_170_Fecha_Num_contrareciboColumn" msprop:Generator_UserColumnName="170_Fecha_Num_contrarecibo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_71_Contacto_Comprar" msprop:Generator_ColumnVarNameInTable="column171_Contacto_Comprar" msprop:Generator_ColumnPropNameInRow="_171_Contacto_Comprar" msprop:Generator_ColumnPropNameInTable="_171_Contacto_ComprarColumn" msprop:Generator_UserColumnName="171_Contacto_Comprar" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_72_Customs_gln" msprop:Generator_ColumnVarNameInTable="column172_Customs_gln" msprop:Generator_ColumnPropNameInRow="_172_Customs_gln" msprop:Generator_ColumnPropNameInTable="_172_Customs_glnColumn" msprop:Generator_UserColumnName="172_Customs_gln" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_73_Alternante_identificacion_gln" msprop:Generator_ColumnVarNameInTable="column173_Alternante_identificacion_gln" msprop:Generator_ColumnPropNameInRow="_173_Alternante_identificacion_gln" msprop:Generator_ColumnPropNameInTable="_173_Alternante_identificacion_glnColumn" msprop:Generator_UserColumnName="173_Alternante_identificacion_gln" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_74_Nombre_Aduana" msprop:Generator_ColumnVarNameInTable="column174_Nombre_Aduana" msprop:Generator_ColumnPropNameInRow="_174_Nombre_Aduana" msprop:Generator_ColumnPropNameInTable="_174_Nombre_AduanaColumn" msprop:Generator_UserColumnName="174_Nombre_Aduana" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_75_Nombre_Aduana_Ciudad" msprop:Generator_ColumnVarNameInTable="column175_Nombre_Aduana_Ciudad" msprop:Generator_ColumnPropNameInRow="_175_Nombre_Aduana_Ciudad" msprop:Generator_ColumnPropNameInTable="_175_Nombre_Aduana_CiudadColumn" msprop:Generator_UserColumnName="175_Nombre_Aduana_Ciudad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_76_Func_Divisa" msprop:Generator_ColumnVarNameInTable="column176_Func_Divisa" msprop:Generator_ColumnPropNameInRow="_176_Func_Divisa" msprop:Generator_ColumnPropNameInTable="_176_Func_DivisaColumn" msprop:Generator_UserColumnName="176_Func_Divisa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_77_Tasa_Divisa" msprop:Generator_ColumnVarNameInTable="column177_Tasa_Divisa" msprop:Generator_ColumnPropNameInRow="_177_Tasa_Divisa" msprop:Generator_ColumnPropNameInTable="_177_Tasa_DivisaColumn" msprop:Generator_UserColumnName="177_Tasa_Divisa" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_78_Ref_Tiempo_Pago" msprop:Generator_ColumnVarNameInTable="column178_Ref_Tiempo_Pago" msprop:Generator_ColumnPropNameInRow="_178_Ref_Tiempo_Pago" msprop:Generator_ColumnPropNameInTable="_178_Ref_Tiempo_PagoColumn" msprop:Generator_UserColumnName="178_Ref_Tiempo_Pago" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_79_Ref_Termino_Tiempo_Pago" msprop:Generator_ColumnVarNameInTable="column179_Ref_Termino_Tiempo_Pago" msprop:Generator_ColumnPropNameInRow="_179_Ref_Termino_Tiempo_Pago" msprop:Generator_ColumnPropNameInTable="_179_Ref_Termino_Tiempo_PagoColumn" msprop:Generator_UserColumnName="179_Ref_Termino_Tiempo_Pago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_80_LugarExpedicion" msprop:Generator_ColumnVarNameInTable="column180_LugarExpedicion" msprop:Generator_ColumnPropNameInRow="_180_LugarExpedicion" msprop:Generator_ColumnPropNameInTable="_180_LugarExpedicionColumn" msprop:Generator_UserColumnName="180_LugarExpedicion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_81_SerieFolioFiscalOrig" msprop:Generator_ColumnVarNameInTable="column181_SerieFolioFiscalOrig" msprop:Generator_ColumnPropNameInRow="_181_SerieFolioFiscalOrig" msprop:Generator_ColumnPropNameInTable="_181_SerieFolioFiscalOrigColumn" msprop:Generator_UserColumnName="181_SerieFolioFiscalOrig" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_82_Tipo_Especial_de_Servicio" msprop:Generator_ColumnVarNameInTable="column182_Tipo_Especial_de_Servicio" msprop:Generator_ColumnPropNameInRow="_182_Tipo_Especial_de_Servicio" msprop:Generator_ColumnPropNameInTable="_182_Tipo_Especial_de_ServicioColumn" msprop:Generator_UserColumnName="182_Tipo_Especial_de_Servicio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_83_FechaFolioFiscalOrig" msprop:Generator_ColumnVarNameInTable="column183_FechaFolioFiscalOrig" msprop:Generator_ColumnPropNameInRow="_183_FechaFolioFiscalOrig" msprop:Generator_ColumnPropNameInTable="_183_FechaFolioFiscalOrigColumn" msprop:Generator_UserColumnName="183_FechaFolioFiscalOrig" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_84_Porcentaje_no_aplicado" msprop:Generator_ColumnVarNameInTable="column184_Porcentaje_no_aplicado" msprop:Generator_ColumnPropNameInRow="_184_Porcentaje_no_aplicado" msprop:Generator_ColumnPropNameInTable="_184_Porcentaje_no_aplicadoColumn" msprop:Generator_UserColumnName="184_Porcentaje_no_aplicado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_85_MontoFolioFiscalOrig" msprop:Generator_ColumnVarNameInTable="column185_MontoFolioFiscalOrig" msprop:Generator_ColumnPropNameInRow="_185_MontoFolioFiscalOrig" msprop:Generator_ColumnPropNameInTable="_185_MontoFolioFiscalOrigColumn" msprop:Generator_UserColumnName="185_MontoFolioFiscalOrig" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_86_Monto_Total_Descuentos" msprop:Generator_ColumnVarNameInTable="column186_Monto_Total_Descuentos" msprop:Generator_ColumnPropNameInRow="_186_Monto_Total_Descuentos" msprop:Generator_ColumnPropNameInTable="_186_Monto_Total_DescuentosColumn" msprop:Generator_UserColumnName="186_Monto_Total_Descuentos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_87_Monto_Total_Pagar" msprop:Generator_ColumnVarNameInTable="column187_Monto_Total_Pagar" msprop:Generator_ColumnPropNameInRow="_187_Monto_Total_Pagar" msprop:Generator_ColumnPropNameInTable="_187_Monto_Total_PagarColumn" msprop:Generator_UserColumnName="187_Monto_Total_Pagar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_88_Ano_Aprobacion" msprop:Generator_ColumnVarNameInTable="column188_Ano_Aprobacion" msprop:Generator_ColumnPropNameInRow="_188_Ano_Aprobacion" msprop:Generator_ColumnPropNameInTable="_188_Ano_AprobacionColumn" msprop:Generator_UserColumnName="188_Ano_Aprobacion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_89_Motivo_Descuento" msprop:Generator_ColumnVarNameInTable="column189_Motivo_Descuento" msprop:Generator_ColumnPropNameInRow="_189_Motivo_Descuento" msprop:Generator_ColumnPropNameInTable="_189_Motivo_DescuentoColumn" msprop:Generator_UserColumnName="189_Motivo_Descuento" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="99" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_90_Metodo_Pago" msprop:Generator_ColumnVarNameInTable="column190_Metodo_Pago" msprop:Generator_ColumnPropNameInRow="_190_Metodo_Pago" msprop:Generator_ColumnPropNameInTable="_190_Metodo_PagoColumn" msprop:Generator_UserColumnName="190_Metodo_Pago" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_91_Efecto_Comprobante" msprop:Generator_ColumnVarNameInTable="column191_Efecto_Comprobante" msprop:Generator_ColumnPropNameInRow="_191_Efecto_Comprobante" msprop:Generator_ColumnPropNameInTable="_191_Efecto_ComprobanteColumn" msprop:Generator_UserColumnName="191_Efecto_Comprobante" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_92_Monto_TotalImp_Retenidos" msprop:Generator_ColumnVarNameInTable="column192_Monto_TotalImp_Retenidos" msprop:Generator_ColumnPropNameInRow="_192_Monto_TotalImp_Retenidos" msprop:Generator_ColumnPropNameInTable="_192_Monto_TotalImp_RetenidosColumn" msprop:Generator_UserColumnName="192_Monto_TotalImp_Retenidos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="_x0031_93_Monto_TotalImp_Trasladados" msprop:Generator_ColumnVarNameInTable="column193_Monto_TotalImp_Trasladados" msprop:Generator_ColumnPropNameInRow="_193_Monto_TotalImp_Trasladados" msprop:Generator_ColumnPropNameInTable="_193_Monto_TotalImp_TrasladadosColumn" msprop:Generator_UserColumnName="193_Monto_TotalImp_Trasladados" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Encabezado_Procesado" msprop:Generator_ColumnVarNameInTable="columnEncabezado_Procesado" msprop:Generator_ColumnPropNameInRow="Encabezado_Procesado" msprop:Generator_ColumnPropNameInTable="Encabezado_ProcesadoColumn" msprop:Generator_UserColumnName="Encabezado_Procesado" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Guid" msprop:Generator_ColumnVarNameInTable="columnGuid" msprop:Generator_ColumnPropNameInRow="Guid" msprop:Generator_ColumnPropNameInTable="GuidColumn" msprop:Generator_UserColumnName="Guid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="36" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMail1" msprop:Generator_ColumnVarNameInTable="columnEMail1" msprop:Generator_ColumnPropNameInRow="EMail1" msprop:Generator_ColumnPropNameInTable="EMail1Column" msprop:Generator_UserColumnName="EMail1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMail2" msprop:Generator_ColumnVarNameInTable="columnEMail2" msprop:Generator_ColumnPropNameInRow="EMail2" msprop:Generator_ColumnPropNameInTable="EMail2Column" msprop:Generator_UserColumnName="EMail2">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -6869,6 +8422,11 @@ SELECT Serie, Factura, Consec, Detalle, Cantidad, Unitario, Iva, Importe, fecha,
       <xs:field xpath="mstns:Serie" />
       <xs:field xpath="mstns:Factura" />
       <xs:field xpath="mstns:Consec" />
+    </xs:unique>
+    <xs:unique name="RecibosDePago_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RecibosDePago" />
+      <xs:field xpath="mstns:_x0031__Folio" />
+      <xs:field xpath="mstns:_x0032_7_Serie_Comprobante" />
     </xs:unique>
   </xs:element>
 </xs:schema>
