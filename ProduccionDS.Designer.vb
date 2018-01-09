@@ -39769,8 +39769,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(11).Connection = Me.Connection
             Me._commandCollection(11).CommandText = "SELECT        ISNULL(MAX([1_Folio]), 0) AS Folio"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabezado"& _ 
                 ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_S"& _ 
-                "erie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP') AND ([27_Serie_"& _ 
-                "Comprobante] <> 'M')"
+                "erie_Comprobante] <> 'REP') AND ([27_Serie_Comprobante] <> 'REPP') AND ([27_Seri"& _ 
+                "e_Comprobante] <> 'M') AND ([190_Metodo_Pago] = 'PPD')"
             Me._commandCollection(11).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(11).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -39782,7 +39782,8 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(13).Connection = Me.Connection
             Me._commandCollection(13).CommandText = "SELECT        ISNULL(MAX(Guid), 'SIN FOLIO FISCAL') AS Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI"& _ 
                 "_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)"& _ 
-                " AND ([27_Serie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP')"
+                " AND ([27_Serie_Comprobante] <> 'REP') AND ([27_Serie_Comprobante] <> 'REPP') AN"& _ 
+                "D ([190_Metodo_Pago] = 'PPD')"
             Me._commandCollection(13).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(13).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(13).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -39791,7 +39792,7 @@ Namespace ProduccionDSTableAdapters
             Me._commandCollection(14).CommandText = "SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM           "& _ 
                 " CFDI_Encabezado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @Anex"& _ 
                 "oCon) AND ([27_Serie_Comprobante] <> 'REP' AND [27_Serie_Comprobante] <> 'REPP')"& _ 
-                " AND ([27_Serie_Comprobante] <> 'M')"
+                " AND ([27_Serie_Comprobante] <> 'M') AND ([190_Metodo_Pago] = 'PPD')"
             Me._commandCollection(14).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Aviso", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "159_Misc47", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AnexoCon", Global.System.Data.SqlDbType.VarChar, 150, Global.System.Data.ParameterDirection.Input, 0, 0, "114_Misc02", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
