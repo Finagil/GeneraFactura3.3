@@ -463,7 +463,7 @@ Module CFDI33
                 End If
 
                 If cexento > 0 Then
-                    f.WriteLine("¬TR|002|0.0000|0.000000|Exento")
+                    'f.WriteLine("¬TR|002|0.0000|0.000000|Exento")
                 End If
 
                 CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
