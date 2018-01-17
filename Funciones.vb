@@ -322,4 +322,22 @@ Module Funciones
         f.Close()
     End Sub
 
+    Sub EnviaCorreoFASE(Fase As String, Asunto As String, Mensaje As String)
+        Dim TaCorreos As New ProduccionDSTableAdapters.CorreosFasesTableAdapter
+        TaCorreos.Fill(ProductDS.CorreosFases, Fase)
+        Dim Correos(3) As String
+        Dim CAD As String = ""
+        For Each r1 As ProduccionDS.CorreosFasesRow In ProductDS.CorreosFases.Rows
+            CAD = r1.Correo
+            Correos = CAD.Split("<")
+            If InStr(Correos(1), ">") > 0 Then
+                Correos(1) = Correos(1).Substring(0, Correos(1).Length - 1)
+            End If
+            If InStr(Correos(1), "@") > 0 Then
+                EnviacORREO(Correos(1), Mensaje, Asunto, "CFDI33@finagil.com.mx")
+            End If
+
+        Next
+    End Sub
+
 End Module
