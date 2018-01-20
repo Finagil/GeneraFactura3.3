@@ -504,7 +504,7 @@ Module GneraFactura
                             Else
                                 'pone la hora a la fecha del archivo
                                 fecha = fecha.Date
-                                fecha = fecha.AddHours(Date.Now.Hour)
+                                fecha = fecha.AddHours(Date.Now.Hour + 1)
                                 fecha = fecha.AddMinutes(Date.Now.Minute)
                                 fecha = fecha.AddSeconds(Date.Now.Second)
                             End If

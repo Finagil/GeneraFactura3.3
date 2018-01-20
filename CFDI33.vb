@@ -122,7 +122,12 @@ Module CFDI33
             End If
 
             cAnexo = r.Anexo
-            cFechaPago = cFechaAplicacion
+            If r.Fepag.Trim.Length > 0 Then
+                cFechaPago = r.Fepag
+            Else
+                cFechaPago = cFechaAplicacion
+            End If
+
             cBanco = ""
             cReferencia = ""
             nImporte = r.SaldoFac
