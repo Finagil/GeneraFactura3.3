@@ -125,7 +125,7 @@ Module CFDI33
             If r.Fepag.Trim.Length > 0 Then
                 cFechaPago = r.Fepag
             Else
-                cFechaPago = cFechaAplicacion
+                cFechaPago = r.Feven
             End If
 
             cBanco = ""
