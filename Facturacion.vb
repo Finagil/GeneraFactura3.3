@@ -1564,6 +1564,7 @@ Module GneraFactura
                 ROWdetail._3_Impuesto_Monto_base = Math.Round(rr.Importe, 4)
                 ROWdetail._5_Impuesto_Clave = "002"
                 ROWdetail._6_Impuesto_Tasa = "Tasa"
+                ROWdetail._53_Linea_Misc22 = rr.UnidadInterna
 
                 If rr.TasaIva = "Exento" Then
                     ROWdetail._7_Impuesto_Porcentaje = ""
