@@ -16,11 +16,10 @@ Module CFDI33
     Dim CFDI_DetalleTableAdapter As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
     Dim CFDI_ComplementoPagoTableAdapter As New ProduccionDSTableAdapters.CFDI_ComplementoPagoTableAdapter
 
-    Sub FacturarCFDI(FechaProc As Date, Tipo As String)
+    Sub FacturarCFDI(Tipo As String)
         Dim TaAvisos As New ProduccionDSTableAdapters.AvisosCFDITableAdapter
         Dim TaUdis As New ProduccionDSTableAdapters.TraeUdisTableAdapter
         Dim ProdDS As New ProduccionDS
-
         Dim cnAgil As New SqlConnection(My.Settings.ConnectionStringFACTURA)
         Dim cm1 As New SqlCommand()
         Dim cm2 As New SqlCommand()
@@ -56,13 +55,10 @@ Module CFDI33
         Dim cFeven As String = ""
         Dim cFepag As String = ""
         Dim cFechaPago As String = ""
-        Dim cFechaAplicacion As String = ""
         Dim i As Integer = 0
         Dim nRecibo As Decimal = 0
+        Dim FechaProc As Date = TaAvisos.ScalarFechaAplicacion
 
-
-        cFechaAplicacion = FechaProc.ToString("yyyyMMdd")
-        cFechaPago = cFechaAplicacion
         ' Primero creo la tabla Movimientos que contendrá los registros contables de la cobranza
 
         dtMovimientos.Columns.Add("Anexo", Type.GetType("System.String"))
@@ -101,10 +97,17 @@ Module CFDI33
         ' Solo necesito saber el número de elementos que tiene el DataGridView1
         Select Case Tipo.ToUpper
             Case "PREPAGO" ' prepagos antes de su fecha de vencimiento
+                cFechaPago = FechaProc.ToString("yyyyMMdd")
                 TaAvisos.FillByPrepagos(ProdDS.AvisosCFDI, cFechaPago, "20171201")'Fecha de Salida a Producion
             Case "DIA" 'avisos de vencimiento del dia
-                TaAvisos.FillporDia(ProdDS.AvisosCFDI, cFechaPago)
+                If Date.Now.Hour >= 21 Then 'se factura todo lo que resta y no se aplico nada
+                    cFechaPago = FechaProc.ToString("yyyyMMdd")
+                Else
+                    cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd")
+                End If
+                TaAvisos.FillporDIA(ProdDS.AvisosCFDI, cFechaPago)
             Case "ANTERIORES" ' avisos generados despues de su vencimiento
+                cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd")
                 TaAvisos.FillByAnteriores(ProdDS.AvisosCFDI, cFechaPago)
                 'Case "PENDIENTES"
                 'TaAvisos.FillHastaFecha(ProdDS.AvisosCFDI, cFechaPago)
@@ -122,7 +125,7 @@ Module CFDI33
             End If
 
             cAnexo = r.Anexo
-            If r.Fepag.Trim.Length > 0 Then
+            If r.Fepag.Trim.Length > 0 And r.Fepag < r.Feven Then
                 cFechaPago = r.Fepag
             Else
                 cFechaPago = r.Feven
@@ -168,7 +171,7 @@ Module CFDI33
                 End If
                 MetodoPago = "PPD"
                 cLetra = r.Letra
-                Acepagov(cAnexo, cLetra, nMontoPago, nMoratorios, nIvaMoratorios, cBanco, cCheque, dtMovimientos, cFechaAplicacion, cFechaPago, cSerie, nRecibo, InstrumentoMonetario, FechaProc, MetodoPago)
+                Acepagov(cAnexo, cLetra, nMontoPago, nMoratorios, nIvaMoratorios, cBanco, cCheque, dtMovimientos, cFechaPago, cFechaPago, cSerie, nRecibo, InstrumentoMonetario, FechaProc, MetodoPago)
 
                 If cSerie = "A" And nRecibo <> 0 Then
                     strUpdate = "UPDATE Llaves SET IDSerieA = " & nRecibo
