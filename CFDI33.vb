@@ -584,7 +584,9 @@ Module CFDI33
                     For Each Complemento In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
                         j = j + 1
                         'MsgBox("Entra a Complemento")
-
+                        If Complemento._1_DetalleAux_Tipo = "DR" Then
+                            Cad = "¬*" ' PREPARO PARA DETALLES
+                        End If
                         Cad += Complemento._1_DetalleAux_Tipo
                         Cad += StrDup(1, "|")
                         Cad += Complemento._2_DetalleAux_DescTipo
