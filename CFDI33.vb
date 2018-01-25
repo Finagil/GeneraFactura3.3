@@ -107,10 +107,12 @@ Module CFDI33
                 End If
                 TaAvisos.FillporDIA(ProdDS.AvisosCFDI, cFechaPago)
             Case "ANTERIORES" ' avisos generados despues de su vencimiento
-                cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd")
+                If Date.Now.Hour >= 21 Then 'se factura todo lo que resta y no se aplico nada
+                    cFechaPago = Date.Now.AddHours(-72).ToString("yyyyMMdd")
+                Else
+                    cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd")
+                End If
                 TaAvisos.FillByAnteriores(ProdDS.AvisosCFDI, cFechaPago)
-                'Case "PENDIENTES"
-                'TaAvisos.FillHastaFecha(ProdDS.AvisosCFDI, cFechaPago)
         End Select
 
         'TaAvisos.FillHastaFecha(ProdDS.AvisosCFDI, cFechaPago)

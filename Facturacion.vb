@@ -36,6 +36,7 @@ Module GneraFactura
                 Case "AVISOS"
                     Console.WriteLine("Generando Avisos CFDI ...")
                     CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                    CFDI33.FacturarCFDI("PORVENCER")
                     CFDI33.FacturarCFDI("ANTERIORES")
                     CFDI33.FacturarCFDI("PREPAGO")
                     CFDI33.FacturarCFDI("DIA")
@@ -64,6 +65,7 @@ Module GneraFactura
 
                     Console.WriteLine("Generando Avisos CFDI ...")
                     CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                    CFDI33.FacturarCFDI("PORVENCER")
                     CFDI33.FacturarCFDI("ANTERIORES")
                     CFDI33.FacturarCFDI("PREPAGO")
                     CFDI33.FacturarCFDI("DIA")
