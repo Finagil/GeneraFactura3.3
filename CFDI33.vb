@@ -125,6 +125,11 @@ Module CFDI33
                 TaAvisos.FacturarAviso(True, "", 0, r.Factura, r.Anexo)
                 Continue For
             End If
+            If r.SaldoFac = 0 Then ' con esto no generamos facturas pagadas en una sola exhibicion
+                If TaAvisos.NumeroDePagos(r.Anexo, r.Letra) = 1 Then
+                    Continue For
+                End If
+            End If
 
             cAnexo = r.Anexo
             If r.Fepag.Trim.Length > 0 And r.Fepag < r.Feven Then
