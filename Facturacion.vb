@@ -569,9 +569,11 @@ Module GneraFactura
 
                             If FormaPago = "03" Then ' tranferencias
                                 RFC_BancoFinagil = CUENTAS.DatosBancoFinagil(Datos(3), Datos(4))
-                                DatosFinagil = RFC_BancoFinagil.Split("|")
-                                RFC_BancoFinagil = DatosFinagil(0)
-                                CuentaFinagil = DatosFinagil(1)
+                                If Not IsNothing(RFC_BancoFinagil) Then
+                                    DatosFinagil = RFC_BancoFinagil.Split("|")
+                                    RFC_BancoFinagil = DatosFinagil(0)
+                                    CuentaFinagil = DatosFinagil(1)
+                                End If
 
                                 CUENTAS.FillporCliente(ProductDS.DatosCuentas, Datos(16).ToUpper)
                                 If ProductDS.DatosCuentas.Rows.Count > 0 Then
