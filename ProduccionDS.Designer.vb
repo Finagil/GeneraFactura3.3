@@ -55074,7 +55074,10 @@ Namespace ProduccionDSTableAdapters
                 "ras.Anexo = Anexos.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Factur"& _ 
                 "as.Cliente = Clientes.Cliente"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Facturas.FacturaCFDI = 0) AND (Fact"& _ 
                 "uras.Feven > @Fecha) AND (Facturas.Fepag > N'') AND (Facturas.Fepag >= @FechaArr"& _ 
-                "anque)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Facturas.Feven"
+                "anque) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Facturas.FacturaCFDI = 0) AND (Facturas.Fev"& _ 
+                "en < @Fecha) AND (Facturas.Fepag > N'') AND (Facturas.Fepag >= @FechaArranque) A"& _ 
+                "ND (Facturas.ImporteFac > Facturas.SaldoFac AND Facturas.SaldoFac > 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
+                " Facturas.Feven"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha", Global.System.Data.SqlDbType.NChar, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Feven", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FechaArranque", Global.System.Data.SqlDbType.NChar, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Fepag", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
