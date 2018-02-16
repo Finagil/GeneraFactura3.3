@@ -55532,9 +55532,9 @@ Namespace ProduccionDSTableAdapters
                 "vios.tipar = 'C' THEN 'Pagare ' + avios.ciclo ELSE descCiclo END AS CicloPagare"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CONT_TraspasosAvioCC INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Avios"& _ 
                 " ON CONT_TraspasosAvioCC.Ciclo = Avios.Ciclo AND CONT_TraspasosAvioCC.Anexo = Av"& _ 
                 "ios.Anexo INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Clientes ON Avios.Cliente = Clien"& _ 
-                "tes.Cliente INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Ciclos ON CONT_TraspasosAvioCC."& _ 
-                "Ciclo = Ciclos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_TraspasosAvioCC.FacturaCFDI = 0) AND (C"& _ 
-                "ONT_TraspasosAvioCC.Fecha = @Fecha)"
+                "tes.Cliente LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Ciclos ON CONT_TraspasosAv"& _ 
+                "ioCC.Ciclo = Ciclos.Ciclo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CONT_TraspasosAvioCC.FacturaCFDI = 0) A"& _ 
+                "ND (CONT_TraspasosAvioCC.Fecha = @Fecha)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Fecha", Global.System.Data.SqlDbType.NChar, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Fecha", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
