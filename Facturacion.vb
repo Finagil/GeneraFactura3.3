@@ -1179,10 +1179,13 @@ Module GneraFactura
                                             Case "AMORTIZACION INICIAL"
                                                 Datos(8) = "RENTA INICIAL"
                                         End Select
-                                        If CDec(Datos(11)) = 0 Then
-                                            TipoImpuesto = "Exento"
-                                        End If
+                                    If CDec(Datos(11)) = 0 Then
+                                        TipoImpuesto = "Exento"
                                     End If
+                                    If Concepto = "PAGO DE RENTA VENCIMIENTO" Then
+                                        Datos(8) = Mid(Datos(8), 9, Datos(8).Length)
+                                    End If
+                                End If
 
                                     If Tipar = "B" Then
                                         Select Case Mid(Datos(8), 1, 11)
