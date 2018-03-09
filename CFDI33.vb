@@ -4,6 +4,8 @@ Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Net
 Imports System.Math
+Imports System.WeakReference
+Imports System.Xml
 Module CFDI33
     Dim drUdis As DataRowCollection
     Dim nIDSerieA As Decimal = 0
@@ -321,12 +323,14 @@ Module CFDI33
 
     End Sub
 
-    Sub SubeFTP()
+
+    Sub SubeWS()
+        Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
+        Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim dsMail As New ProduccionDS
+
         Dim D As System.IO.DirectoryInfo
         Dim F As System.IO.FileInfo()
-        Dim wrUpload As FtpWebRequest
-        Dim btfile() As Byte
-        Dim strFile As Stream
         Dim contador As Integer
 
         If Directory.Exists(My.Settings.RutaFTP) = False Then
@@ -338,19 +342,109 @@ Module CFDI33
         For i As Integer = 0 To F.Length - 1
 
             Console.WriteLine("Subiendo " & F(i).Name)
-            wrUpload = DirectCast(WebRequest.Create("ftp://ftplamoderna.ekomercio.com/TXT_Entrada/" & F(i).Name), FtpWebRequest)
-            wrUpload.Credentials = New NetworkCredential("lmoderna", "Ekomercio.1")
-            wrUpload.Method = WebRequestMethods.Ftp.UploadFile
-            btfile = File.ReadAllBytes(My.Settings.RutaFTP & F(i).Name)
-            strFile = wrUpload.GetRequestStream()
-            strFile.Write(btfile, 0, btfile.Length)
-            strFile.Close()
+            Dim cadena As StreamReader
+            cadena = New StreamReader(My.Settings.RutaFTP & F(i).Name)
+            Dim cadena2 As String = ""
+            cadena2 = cadena.ReadToEnd
+            Dim serv As WebReference_Ek.WSCFDBuilderPlus
+            serv = New WebReference_Ek.WSCFDBuilderPlus
+            Dim resultado As String = ""
+            Dim nombre_a() As String = F(i).Name.ToString.Split("_")
+            cadena.Close()
+
+            Try
+                resultado = serv.procesarTextoPlano("ekomercio", "aserri", nombre_a(1), cadena2)
+                taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
+            Catch ex As Exception
+                Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                rowMail.De = "CFDI@Finagil.com.mx"
+                rowMail.Para = "viapolo@finagil.com.mx"
+                rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
+                rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 950)
+                rowMail.Enviado = False
+                rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail.Attach = ""
+
+
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+            End Try
             File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
             File.Delete(F(i).FullName)
             contador += 1
         Next
         Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
     End Sub
+
+    Public Function leeXML(docXML As String, nodo As String)
+        Dim doc As XmlDataDocument
+        doc = New XmlDataDocument
+        doc.LoadXml(docXML)
+        Dim CFDI As XmlNode
+        Dim retorno As String = ""
+
+        CFDI = doc.DocumentElement
+
+        If nodo = "Err" Then
+            For Each Err As XmlNode In CFDI.ChildNodes
+                If Err.Name = "ErrorMessage" And nodo = "Err" Then
+                    retorno = Err.InnerText
+                    Return retorno
+                    Exit Function
+                End If
+            Next
+        End If
+
+        If nodo = "UUID" Then
+            For Each Comprobante As XmlNode In CFDI.ChildNodes
+                If Comprobante.Name = "cfdi:Complemento" And nodo = "UUID" Then
+                    For Each Complemento As XmlNode In Comprobante.ChildNodes
+                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                If TimbreFiscalDigital.Name = "UUID" Then
+                                    retorno = TimbreFiscalDigital.Value.ToString
+                                    Return retorno
+                                    Exit Function
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            Next
+        End If
+
+        For Each Comprobante As XmlNode In CFDI.Attributes
+            If Comprobante.Name = "Moneda" And nodo = "Moneda" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf Comprobante.Name = "TipoCambio" And nodo = "TipoCambio" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Total" Or Comprobante.Name = "total") And nodo = "Total" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "MetodoPago" Or Comprobante.Name = "metodoDePago") And nodo = "MetodoPago" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Serie" Or Comprobante.Name = "serie") And nodo = "Serie" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Folio" Or Comprobante.Name = "folio") And nodo = "Folio" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            End If
+        Next
+    End Function
 
     Sub GeneraFacturaEkomercio()
         Dim Cad As String = "~"
@@ -380,7 +474,7 @@ Module CFDI33
             CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
 
             If Production_AUXDataSet.CFDI_Detalle.Rows.Count > 0 Then
-                f = New StreamWriter(My.Settings.RutaFTP & "eKomercio_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
+                f = New StreamWriter(My.Settings.RutaFTP & "eKomercio_" & Encabezado._3_RFC_Emisor & "_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
                 If CDate(Encabezado._30_Fecha) < Date.Now.Date Then
                     Encabezado._31_Hora = Date.Now.AddHours(2).ToString("HH:mm:ss")
                 End If

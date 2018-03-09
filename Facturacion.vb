@@ -56,9 +56,9 @@ Module GneraFactura
                 Case "PAGOS_EKO"
                     Console.WriteLine("Generando CFDI Pagos EKomercio...")
                     CFDI33.GeneraComplementoEkomercio()
-                Case "FTP"
+                Case "WSK"
                     Console.WriteLine("Subiendo Archivos EKomercio...")
-                    CFDI33.SubeFTP()
+                    CFDI33.SubeWS()
                 Case "TODO"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
@@ -89,7 +89,7 @@ Module GneraFactura
                     CFDI33.GeneraComplementoEkomercio()
 
                     Console.WriteLine("Subiendo Archivos EKomercio...")
-                    CFDI33.SubeFTP()
+                    CFDI33.SubeWS()
             End Select
         End If
         Console.WriteLine("Terminado...")
