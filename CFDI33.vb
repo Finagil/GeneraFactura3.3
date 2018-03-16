@@ -323,6 +323,83 @@ Module CFDI33
 
     End Sub
 
+    Sub NotificaCANA()
+        Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
+        Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim dsMail As New ProduccionDS
+
+        Dim D As System.IO.DirectoryInfo
+        Dim F As System.IO.FileInfo()
+
+        D = New System.IO.DirectoryInfo(My.Settings.RutaFolios & "\Cancelados\SAR951230N5A\")
+        F = D.GetFiles("*.xml")
+        For i As Integer = 0 To F.Length - 1
+            Dim retorno(5) As String
+            Dim cadena As StreamReader
+            cadena = New StreamReader(My.Settings.RutaFolios & "\Cancelados\SAR951230N5A\" & F(i).Name)
+            retorno = Lee_XML_Cancelacion(cadena.ReadToEnd)
+            Dim mails() As String = taFact.Obtiene_Mail(retorno(2)).ToString.Split(";")
+            cadena.Close()
+
+            Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+            rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+
+            For m As Integer = 1 To mails.Length - 1
+                rowMail.De = "CFDI@Finagil.com.mx"
+                rowMail.Para = mails(m)
+                rowMail.Asunto = "Acuse de cancelación SAT CFDI " & retorno(0) & " - " & taFact.Obtiene_Serie(retorno(2)) & "-" & taFact.Obtiene_Folio(retorno(2)) & " UUID " & retorno(2).ToString
+                rowMail.Mensaje = Crea_Mensaje(retorno(0), taFact.Obtiene_Serie(retorno(2)), taFact.Obtiene_Folio(retorno(2)), retorno(2), taFact.Obtiene_RFC_Rec(retorno(2)), taFact.Obtiene_RS_Rec(retorno(2)), taFact.Obtiene_FechaEmi(retorno(2)), retorno(1), retorno(3), retorno(5), retorno(4))
+                rowMail.Enviado = False
+                rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail.Attach = ""
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+            Next
+
+            File.Copy(F(i).FullName, My.Settings.RutaFolios & "Cancelados\Backup\" & F(i).Name, True)
+            File.Delete(F(i).FullName)
+        Next
+    End Sub
+
+    Sub NotificaCANF()
+        Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
+        Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim dsMail As New ProduccionDS
+
+        Dim D As System.IO.DirectoryInfo
+        Dim F As System.IO.FileInfo()
+
+        D = New System.IO.DirectoryInfo(My.Settings.RutaFolios & "\Cancelados\FIN940905AX7\")
+        F = D.GetFiles("*.xml")
+        For i As Integer = 0 To F.Length - 1
+            Dim retorno(5) As String
+            Dim cadena As StreamReader
+            cadena = New StreamReader(My.Settings.RutaFolios & "\Cancelados\FIN940905AX7\" & F(i).Name)
+            retorno = Lee_XML_Cancelacion(cadena.ReadToEnd)
+            Dim mails() As String = taFact.Obtiene_Mail(retorno(2)).ToString.Split(";")
+            cadena.Close()
+
+            For m As Integer = 1 To mails.Length - 1
+                Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+                rowMail.De = "CFDI@Finagil.com.mx"
+                rowMail.Para = mails(m)
+                rowMail.Asunto = "Acuse de cancelación SAT CFDI " & retorno(0) & " - " & taFact.Obtiene_Serie(retorno(2)) & "-" & taFact.Obtiene_Folio(retorno(2)) & " UUID " & retorno(2).ToString
+                rowMail.Mensaje = Crea_Mensaje(retorno(0), taFact.Obtiene_Serie(retorno(2)), taFact.Obtiene_Folio(retorno(2)), retorno(2), taFact.Obtiene_RFC_Rec(retorno(2)), taFact.Obtiene_RS_Rec(retorno(2)), taFact.Obtiene_FechaEmi(retorno(2)), retorno(1), retorno(3), retorno(5), retorno(4))
+                rowMail.Enviado = False
+                rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail.Attach = ""
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+            Next
+
+            File.Copy(F(i).FullName, My.Settings.RutaFolios & "Cancelados\Backup\" & F(i).Name, True)
+            File.Delete(F(i).FullName)
+        Next
+    End Sub
 
     Sub SubeWS()
         Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
@@ -367,8 +444,6 @@ Module CFDI33
                 rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
                 rowMail.Attach = ""
 
-
-
                 dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
                 taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
 
@@ -379,6 +454,119 @@ Module CFDI33
         Next
         Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
     End Sub
+
+    Function Crea_Mensaje(RFC_Emisor As String, serie As String, folio As String, UUIDG As String, Receptor As String, RSocial As String, FechaEmision As String, FechaCancelacion As String, Estatus_UUID As String, DigestValue As String, SignatureValue As String)
+        Dim retorno_mensaje As String = ""
+        Try
+            retorno_mensaje = "<font size=5 face=" + Chr(34) + "Arial" + Chr(34) + ">Acuse de cancelaci&oacute;n SAT... " + vbNewLine + "RFC Emisor: " + RFC_Emisor +
+                                    "<br><br/>" +
+                                    "<table  align=" + Chr(34) + "center" + Chr(34) + " border=1 cellspacing=0 cellpadding=2>" +
+                                        "<tr>" +
+                                            "<th scope=" + Chr(34) + "col" + Chr(34) + "> - </th>" +
+                                            "<th scope=" + Chr(34) + "col" + Chr(34) + ">Descripci&oacute;n</th>" +
+                                        "<tr>" +
+                                            "<td>Serie: </td>" +
+                                            "<td>" + serie + "</td>" +
+                                        "<tr>" +
+                                            "<td>Folio: </td>" +
+                                            "<td>" + folio + "</td>" +
+                                        "<tr>" +
+                                            "<td>Folio Fiscal: </td>" +
+                                            "<td>" + UUIDG + "</td>" +
+                                        "<tr>" +
+                                            "<td>RFC Receptor: </td>" +
+                                            "<td>" + Receptor + "</td>" +
+                                        "<tr>" +
+                                            "<td>Razón Social: </td>" +
+                                            "<td>" + RSocial + "</td>" +
+                                        "<tr>" +
+                                            "<td>Fecha de Emisi&oacute;n: </td>" +
+                                            "<td>" + FechaEmision + "</td>" +
+                                        "<tr>" +
+                                            "<td>Fecha de Cancelaci&oacute;n: </td>" +
+                                            "<td>" + FechaCancelacion + "</td>" +
+                                        "<tr>" +
+                                            "<td>Estatus de Cancelaci&oacute;n: </td>" +
+                                            "<td>" + Estatus_UUID + "</td>" +
+                                        "<tr>" +
+                                            "<td>Digest Value: </td>" +
+                                            "<td>" + DigestValue + "</td>" +
+                                        "<tr>" +
+                                            "<td>SignatureValue: </td>" +
+                                            "<td>" + SignatureValue + "</td>" +
+                                        "<tr>" +
+                                    "</table>" +
+                                    "</font>"
+        Catch
+        End Try
+        Return retorno_mensaje
+    End Function
+
+    Function Lee_XML_Cancelacion(ByVal docXmlCAN As String)
+        Dim m_xmld As XmlDocument
+        Dim m_nodelist As XmlNodeList
+        Dim m_node As XmlNode
+        Dim m_attn_d As XmlAttribute
+        Dim m_node_b As XmlNode
+        Dim m_node_c As XmlNode
+        Dim m_node_d As XmlNode
+        Dim m_node_e As XmlNode
+        Dim m_node_f As XmlNode
+        Dim retorno(5) As String
+
+
+        m_xmld = New XmlDataDocument
+        m_xmld.LoadXml(docXmlCAN)
+
+
+        m_nodelist = m_xmld.SelectNodes("/Acuse")
+        For Each m_node In m_nodelist
+            For Each m_attn_d In m_node.Attributes
+                Select Case m_attn_d.Name
+                    Case "RfcEmisor"
+                        'RFC_Emisor
+                        retorno(0) = m_attn_d.Value
+                    Case "Fecha"
+                        'FechaCancelacion
+                        retorno(1) = m_attn_d.Value
+                End Select
+            Next
+
+            For Each m_node_b In m_node.ChildNodes
+                For Each m_node_c In m_node_b.ChildNodes
+                    Select Case m_node_c.Name
+                        Case "UUID"
+                            'UUID
+                            retorno(2) = m_node_c.InnerText
+                        Case "EstatusUUID"
+                            'Estatus_UUID
+                            retorno(3) = m_node_c.InnerText
+                        Case "SignatureValue"
+                            'SignatureValue
+                            retorno(4) = m_node_c.InnerText
+                    End Select
+                Next
+                If m_node_b.Name = "Signature" Then
+                    For Each m_node_d In m_node_b.ChildNodes
+                        If m_node_d.Name = "SignedInfo" Then
+                            For Each m_node_e In m_node_d.ChildNodes
+                                If m_node_e.Name = "Reference" Then
+                                    For Each m_node_f In m_node_e.ChildNodes
+                                        Select Case m_node_f.Name
+                                            Case "DigestValue"
+                                                'DigestValue
+                                                retorno(5) = m_node_f.InnerText
+                                        End Select
+                                    Next
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            Next
+        Next
+        Return retorno
+    End Function
 
     Public Function leeXML(docXML As String, nodo As String)
         Dim doc As XmlDataDocument

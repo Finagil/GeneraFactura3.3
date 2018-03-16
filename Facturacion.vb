@@ -28,6 +28,9 @@ Module GneraFactura
         Arg = Environment.GetCommandLineArgs()
         If Arg.Length > 1 Then
             Select Case UCase(Arg(1))
+                Case "ACUSES_CAN"
+                    NotificaCANF()
+                    NotificaCANA()
                 Case "ENVIA_RECIBOS"
                     Envia_RecibosPAGO()
                 Case "FOLIOS"
@@ -90,6 +93,10 @@ Module GneraFactura
 
                     Console.WriteLine("Subiendo Archivos EKomercio...")
                     CFDI33.SubeWS()
+
+                    Console.WriteLine("Notificaciones de cancelación...")
+                    CFDI33.NotificaCANF()
+                    CFDI33.NotificaCANA()
             End Select
         End If
         Console.WriteLine("Terminado...")
