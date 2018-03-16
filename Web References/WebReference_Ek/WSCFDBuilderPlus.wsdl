@@ -1,0 +1,1487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://edixcfdisecure.ekomercio.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://edixcfdisecure.ekomercio.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://edixcfdisecure.ekomercio.com/">
+      <s:element name="ValidacionFacturasCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidacionFacturasCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidacionFacturasCFDIResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="about">
+        <s:complexType />
+      </s:element>
+      <s:element name="aboutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aboutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="procesarTextoPlano">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="textoPlano" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="procesarTextoPlanoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="procesarTextoPlanoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_Email">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_EmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCFDI_EmailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCFDIResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_Sign">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_SignResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCFDI_SignResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTimbreCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTimbreCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTimbreCFDIResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelarCFDI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelarCFDIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cancelarCFDIResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelarRetencion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelarRetencionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cancelarRetencionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarListaBlanca">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cNumeroCertificado" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dFechaFAK" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarListaBlancaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarListaBlancaResult" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarCertificadoPropiosMedios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cNumeroCertificado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cCertificadoBase64" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nValidacionCertificado" type="tns:EnValidacionCertificado" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="EnValidacionCertificado">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ok" />
+          <s:enumeration value="NoExiste" />
+          <s:enumeration value="Cancelado" />
+          <s:enumeration value="Revocado" />
+          <s:enumeration value="NoVigente" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SAT_ValidarCertificadoPropiosMediosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarCertificadoPropiosMediosResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="nValidacionCertificado" type="tns:EnValidacionCertificado" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarCertificadoPropiosMediosFechaDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cNumeroCertificado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cCertificadoBase64" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nValidacionCertificado" type="tns:EnValidacionCertificado" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dFechaDocumento" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarCertificadoPropiosMediosFechaDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarCertificadoPropiosMediosFechaDocResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="nValidacionCertificado" type="tns:EnValidacionCertificado" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ConsecutivoDentroRango">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oSerie" />
+            <s:element minOccurs="1" maxOccurs="1" name="nFolio" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="nAnoAprob" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="nNumAprob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ConsecutivoDentroRangoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ConsecutivoDentroRangoResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SATint_AgregarCertificadoParaFIEL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cNumCert" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cFechaIni" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cFechaFin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SATint_AgregarCertificadoParaFIELResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SATint_AgregarCertificadoParaFIELResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anularDocumentoElectronicoXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datosDocumentoXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anularDocumentoElectronicoXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="anularDocumentoElectronicoXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anularDocumentoElectronicoXML_SinNotaDeCredito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datosDocumentoXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anularDocumentoElectronicoXML_SinNotaDeCreditoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="anularDocumentoElectronicoXML_SinNotaDeCreditoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="receiveCFD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlFirmado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="receiveCFDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="receiveCFDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_FromCFD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlCFD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_FromCFDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCFDI_FromCFDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcemisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="generaPDFResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_FromCFDToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlCFD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCFDI_FromCFDTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCFDI_FromCFDTokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarComplementoNomina">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oXMLDocument">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarComplementoNominaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarComplementoNominaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="existeConsecutivoInterno">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cConsecutivoInterno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cErrorMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="existeConsecutivoInternoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="existeConsecutivoInternoResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cErrorMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDF_Recepcion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcReceptor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDF_RecepcionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="generaPDF_RecepcionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDF_Envio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rfcEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="generaPDF_EnvioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="generaPDF_EnvioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarComplementoNotariosPublicos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oXMLDocument">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarComplementoNotariosPublicosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarComplementoNotariosPublicosResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarTimbre">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cCadenaOriginalTimbre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cNumeroCertificadoPAC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cSelloTimbre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ValidarTimbreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ValidarTimbreResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ExisteTimbreSAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cRFCEmisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cRFCReceptor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nMontoTotal" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="cUUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAT_ExisteTimbreSATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAT_ExisteTimbreSATResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="procesarTextoPlanoToXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="textoPlano" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="procesarTextoPlanoToXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="procesarTextoPlanoToXMLResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarFuncionamiento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarFuncionamientoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidarFuncionamientoResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="cMensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidacionFacturasCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:ValidacionFacturasCFDI" />
+  </wsdl:message>
+  <wsdl:message name="ValidacionFacturasCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:ValidacionFacturasCFDIResponse" />
+  </wsdl:message>
+  <wsdl:message name="aboutSoapIn">
+    <wsdl:part name="parameters" element="tns:about" />
+  </wsdl:message>
+  <wsdl:message name="aboutSoapOut">
+    <wsdl:part name="parameters" element="tns:aboutResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="procesarTextoPlanoSoapIn">
+    <wsdl:part name="parameters" element="tns:procesarTextoPlano" />
+  </wsdl:message>
+  <wsdl:message name="procesarTextoPlanoSoapOut">
+    <wsdl:part name="parameters" element="tns:procesarTextoPlanoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_EmailSoapIn">
+    <wsdl:part name="parameters" element="tns:getCFDI_Email" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_EmailSoapOut">
+    <wsdl:part name="parameters" element="tns:getCFDI_EmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:getCFDI" />
+  </wsdl:message>
+  <wsdl:message name="getCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:getCFDIResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_SignSoapIn">
+    <wsdl:part name="parameters" element="tns:getCFDI_Sign" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_SignSoapOut">
+    <wsdl:part name="parameters" element="tns:getCFDI_SignResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTimbreCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:getTimbreCFDI" />
+  </wsdl:message>
+  <wsdl:message name="getTimbreCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:getTimbreCFDIResponse" />
+  </wsdl:message>
+  <wsdl:message name="cancelarCFDISoapIn">
+    <wsdl:part name="parameters" element="tns:cancelarCFDI" />
+  </wsdl:message>
+  <wsdl:message name="cancelarCFDISoapOut">
+    <wsdl:part name="parameters" element="tns:cancelarCFDIResponse" />
+  </wsdl:message>
+  <wsdl:message name="cancelarRetencionSoapIn">
+    <wsdl:part name="parameters" element="tns:cancelarRetencion" />
+  </wsdl:message>
+  <wsdl:message name="cancelarRetencionSoapOut">
+    <wsdl:part name="parameters" element="tns:cancelarRetencionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarListaBlancaSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarListaBlanca" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarListaBlancaSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarListaBlancaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarCertificadoPropiosMediosSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarCertificadoPropiosMedios" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarCertificadoPropiosMediosSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarCertificadoPropiosMediosResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarCertificadoPropiosMediosFechaDocSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarCertificadoPropiosMediosFechaDoc" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarCertificadoPropiosMediosFechaDocSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarCertificadoPropiosMediosFechaDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ConsecutivoDentroRangoSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ConsecutivoDentroRango" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ConsecutivoDentroRangoSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ConsecutivoDentroRangoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SATint_AgregarCertificadoParaFIELSoapIn">
+    <wsdl:part name="parameters" element="tns:SATint_AgregarCertificadoParaFIEL" />
+  </wsdl:message>
+  <wsdl:message name="SATint_AgregarCertificadoParaFIELSoapOut">
+    <wsdl:part name="parameters" element="tns:SATint_AgregarCertificadoParaFIELResponse" />
+  </wsdl:message>
+  <wsdl:message name="anularDocumentoElectronicoXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:anularDocumentoElectronicoXML" />
+  </wsdl:message>
+  <wsdl:message name="anularDocumentoElectronicoXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:anularDocumentoElectronicoXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="anularDocumentoElectronicoXML_SinNotaDeCreditoSoapIn">
+    <wsdl:part name="parameters" element="tns:anularDocumentoElectronicoXML_SinNotaDeCredito" />
+  </wsdl:message>
+  <wsdl:message name="anularDocumentoElectronicoXML_SinNotaDeCreditoSoapOut">
+    <wsdl:part name="parameters" element="tns:anularDocumentoElectronicoXML_SinNotaDeCreditoResponse" />
+  </wsdl:message>
+  <wsdl:message name="receiveCFDSoapIn">
+    <wsdl:part name="parameters" element="tns:receiveCFD" />
+  </wsdl:message>
+  <wsdl:message name="receiveCFDSoapOut">
+    <wsdl:part name="parameters" element="tns:receiveCFDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_FromCFDSoapIn">
+    <wsdl:part name="parameters" element="tns:getCFDI_FromCFD" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_FromCFDSoapOut">
+    <wsdl:part name="parameters" element="tns:getCFDI_FromCFDResponse" />
+  </wsdl:message>
+  <wsdl:message name="generaPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:generaPDF" />
+  </wsdl:message>
+  <wsdl:message name="generaPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:generaPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_FromCFDTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:getCFDI_FromCFDToken" />
+  </wsdl:message>
+  <wsdl:message name="getCFDI_FromCFDTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:getCFDI_FromCFDTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarComplementoNominaSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarComplementoNomina" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarComplementoNominaSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarComplementoNominaResponse" />
+  </wsdl:message>
+  <wsdl:message name="existeConsecutivoInternoSoapIn">
+    <wsdl:part name="parameters" element="tns:existeConsecutivoInterno" />
+  </wsdl:message>
+  <wsdl:message name="existeConsecutivoInternoSoapOut">
+    <wsdl:part name="parameters" element="tns:existeConsecutivoInternoResponse" />
+  </wsdl:message>
+  <wsdl:message name="generaPDF_RecepcionSoapIn">
+    <wsdl:part name="parameters" element="tns:generaPDF_Recepcion" />
+  </wsdl:message>
+  <wsdl:message name="generaPDF_RecepcionSoapOut">
+    <wsdl:part name="parameters" element="tns:generaPDF_RecepcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="generaPDF_EnvioSoapIn">
+    <wsdl:part name="parameters" element="tns:generaPDF_Envio" />
+  </wsdl:message>
+  <wsdl:message name="generaPDF_EnvioSoapOut">
+    <wsdl:part name="parameters" element="tns:generaPDF_EnvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarComplementoNotariosPublicosSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarComplementoNotariosPublicos" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarComplementoNotariosPublicosSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarComplementoNotariosPublicosResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarTimbreSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarTimbre" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ValidarTimbreSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ValidarTimbreResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ExisteTimbreSATSoapIn">
+    <wsdl:part name="parameters" element="tns:SAT_ExisteTimbreSAT" />
+  </wsdl:message>
+  <wsdl:message name="SAT_ExisteTimbreSATSoapOut">
+    <wsdl:part name="parameters" element="tns:SAT_ExisteTimbreSATResponse" />
+  </wsdl:message>
+  <wsdl:message name="procesarTextoPlanoToXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:procesarTextoPlanoToXML" />
+  </wsdl:message>
+  <wsdl:message name="procesarTextoPlanoToXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:procesarTextoPlanoToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidarFuncionamientoSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidarFuncionamiento" />
+  </wsdl:message>
+  <wsdl:message name="ValidarFuncionamientoSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidarFuncionamientoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSCFDBuilderPlusSoap">
+    <wsdl:operation name="ValidacionFacturasCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida y recibe un CFD ó CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve un acuse XML que indica el resultado. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado versión 2.x/3.x según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:ValidacionFacturasCFDISoapIn" />
+      <wsdl:output message="tns:ValidacionFacturasCFDISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="about">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Acerca de...</wsdl:documentation>
+      <wsdl:input message="tns:aboutSoapIn" />
+      <wsdl:output message="tns:aboutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlano">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera una factura electrónica con base en el texto plano contenidoen la variable 'textoPlano'. Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+id: Identificación fiscal de la empresa emisora del documento (RFC en México).
+textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
+      <wsdl:input message="tns:procesarTextoPlanoSoapIn" />
+      <wsdl:output message="tns:procesarTextoPlanoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Email">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Timbra un CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve el XML completo, timbrado. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado, sin timbrar, versión 3.0 según el Anexo 20.
+email: Cuenta(s) de correo al que hace referencia el documento timbrado.</wsdl:documentation>
+      <wsdl:input message="tns:getCFDI_EmailSoapIn" />
+      <wsdl:output message="tns:getCFDI_EmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Timbra un CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve el XML completo, timbrado. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado, sin timbrar, versión 3.0 según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:getCFDISoapIn" />
+      <wsdl:output message="tns:getCFDISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Sign">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Firma y Timbra un CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve el XML completo, timbrado. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado, sin timbrar, versión 3.0 según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:getCFDI_SignSoapIn" />
+      <wsdl:output message="tns:getCFDI_SignSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTimbreCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Timbra un CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve el timbre. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado, sin timbrar, versión 3.0 según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:getTimbreCFDISoapIn" />
+      <wsdl:output message="tns:getTimbreCFDISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cancelarCFDI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancela un UUID utilizando la información registrada por emisor en la base de datos de EdixCFD.
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+rfcEmisor: Identificación fiscal de la empresa emisora del documento.
+</wsdl:documentation>
+      <wsdl:input message="tns:cancelarCFDISoapIn" />
+      <wsdl:output message="tns:cancelarCFDISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cancelarRetencion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancela unq retención utilizando la información registrada por emisor en la base de datos de EdixCFD.
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+rfcEmisor: Identificación fiscal de la empresa emisora del documento.
+</wsdl:documentation>
+      <wsdl:input message="tns:cancelarRetencionSoapIn" />
+      <wsdl:output message="tns:cancelarRetencionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarListaBlanca">
+      <wsdl:input message="tns:SAT_ValidarListaBlancaSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarListaBlancaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMedios">
+      <wsdl:input message="tns:SAT_ValidarCertificadoPropiosMediosSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarCertificadoPropiosMediosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMediosFechaDoc">
+      <wsdl:input message="tns:SAT_ValidarCertificadoPropiosMediosFechaDocSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarCertificadoPropiosMediosFechaDocSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ConsecutivoDentroRango">
+      <wsdl:input message="tns:SAT_ConsecutivoDentroRangoSoapIn" />
+      <wsdl:output message="tns:SAT_ConsecutivoDentroRangoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SATint_AgregarCertificadoParaFIEL">
+      <wsdl:input message="tns:SATint_AgregarCertificadoParaFIELSoapIn" />
+      <wsdl:output message="tns:SATint_AgregarCertificadoParaFIELSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Anula (cancela) una factura electrónica con base en el XML contenido
+en la variable 'datosDocumentoXML'. Una vez anulado, emite la nota de crédito correspondiente. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+id: Identificación fiscal de la empresa emisora del documento (RFC en México).
+datosDocumentoXML: Estructura con los datos del documento que se desea anular.</wsdl:documentation>
+      <wsdl:input message="tns:anularDocumentoElectronicoXMLSoapIn" />
+      <wsdl:output message="tns:anularDocumentoElectronicoXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML_SinNotaDeCredito">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Anula (cancela) una factura electrónica con base en el XML contenido
+en la variable 'datosDocumentoXML'. Devuelve el mismo documento anulado (cancelado). 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+id: Identificación fiscal de la empresa emisora del documento (RFC en México).
+datosDocumentoXML: Estructura con los datos del documento que se desea anular.</wsdl:documentation>
+      <wsdl:input message="tns:anularDocumentoElectronicoXML_SinNotaDeCreditoSoapIn" />
+      <wsdl:output message="tns:anularDocumentoElectronicoXML_SinNotaDeCreditoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="receiveCFD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Valida y recibe un CFD ó CFDI con base en el xml UTF8 en la variable 'xmlFirmado'. Devuelve un acuse XML que indica el resultado. 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFirmado: XML Firmado versión 2.x/3.x según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:receiveCFDSoapIn" />
+      <wsdl:output message="tns:receiveCFDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convierte un archivo xml de propios medios CFD a un CFDI con base en el xml UTF8 en la variable 'xmlCFD'. Devuelve el XML completo 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFile: XML, sin timbrar, versión 2.2 según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:getCFDI_FromCFDSoapIn" />
+      <wsdl:output message="tns:getCFDI_FromCFDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera la representación gráfica PDF de la factura en base a los documentos extraídos de datos de EdixCFD.
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+rfcEmisor: Identificación fiscal de la empresa emisora del documento.
+uuid: Identificador unico del documento fiscal.
+</wsdl:documentation>
+      <wsdl:input message="tns:generaPDFSoapIn" />
+      <wsdl:output message="tns:generaPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFDToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convierte un archivo xml de propios medios CFD a un CFDI con base en el xml UTF8 en la variable 'xmlCFD'. Devuelve el XML completo 
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+xmlFile: XML, sin timbrar, versión 2.2 según el Anexo 20.</wsdl:documentation>
+      <wsdl:input message="tns:getCFDI_FromCFDTokenSoapIn" />
+      <wsdl:output message="tns:getCFDI_FromCFDTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNomina">
+      <wsdl:input message="tns:SAT_ValidarComplementoNominaSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarComplementoNominaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="existeConsecutivoInterno">
+      <wsdl:input message="tns:existeConsecutivoInternoSoapIn" />
+      <wsdl:output message="tns:existeConsecutivoInternoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Recepcion">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera la representación gráfica PDF de los documentos recibidos en EdixCFD.
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+rfcReceptor: Identificación fiscal de la empresa receptora del documento.
+uuid: Identificador unico del documento fiscal.
+</wsdl:documentation>
+      <wsdl:input message="tns:generaPDF_RecepcionSoapIn" />
+      <wsdl:output message="tns:generaPDF_RecepcionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Envio">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera la representación gráfica PDF de los documentos emitidos en EdixCFD.
+Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+rfcEmisor: Identificación fiscal de la empresa emisora del documento.
+uuid: Identificador unico del documento fiscal.
+</wsdl:documentation>
+      <wsdl:input message="tns:generaPDF_EnvioSoapIn" />
+      <wsdl:output message="tns:generaPDF_EnvioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNotariosPublicos">
+      <wsdl:input message="tns:SAT_ValidarComplementoNotariosPublicosSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarComplementoNotariosPublicosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarTimbre">
+      <wsdl:input message="tns:SAT_ValidarTimbreSoapIn" />
+      <wsdl:output message="tns:SAT_ValidarTimbreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ExisteTimbreSAT">
+      <wsdl:input message="tns:SAT_ExisteTimbreSATSoapIn" />
+      <wsdl:output message="tns:SAT_ExisteTimbreSATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlanoToXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera una factura electrónica con base en el texto plano contenidoen la variable 'textoPlano'. Los parámetros son los siguientes: 
+usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
+password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
+id: Identificación fiscal de la empresa emisora del documento (RFC en México).
+textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
+      <wsdl:input message="tns:procesarTextoPlanoToXMLSoapIn" />
+      <wsdl:output message="tns:procesarTextoPlanoToXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarFuncionamiento">
+      <wsdl:input message="tns:ValidarFuncionamientoSoapIn" />
+      <wsdl:output message="tns:ValidarFuncionamientoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSCFDBuilderPlusSoap" type="tns:WSCFDBuilderPlusSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidacionFacturasCFDI">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/ValidacionFacturasCFDI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="about">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/about" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlano">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlano" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Email">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_Email" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Sign">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_Sign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTimbreCFDI">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getTimbreCFDI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarCFDI">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/cancelarCFDI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarRetencion">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/cancelarRetencion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarListaBlanca">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarListaBlanca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMedios">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarCertificadoPropiosMedios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMediosFechaDoc">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarCertificadoPropiosMediosFechaDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ConsecutivoDentroRango">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ConsecutivoDentroRango" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SATint_AgregarCertificadoParaFIEL">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SATint_AgregarCertificadoParaFIEL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/anularDocumentoElectronicoXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML_SinNotaDeCredito">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/anularDocumentoElectronicoXML_SinNotaDeCredito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveCFD">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/receiveCFD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFD">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_FromCFD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFDToken">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_FromCFDToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNomina">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarComplementoNomina" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existeConsecutivoInterno">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/existeConsecutivoInterno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Recepcion">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF_Recepcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Envio">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF_Envio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNotariosPublicos">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarComplementoNotariosPublicos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarTimbre">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarTimbre" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ExisteTimbreSAT">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ExisteTimbreSAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlanoToXML">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlanoToXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarFuncionamiento">
+      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/ValidarFuncionamiento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSCFDBuilderPlusSoap12" type="tns:WSCFDBuilderPlusSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidacionFacturasCFDI">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/ValidacionFacturasCFDI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="about">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/about" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlano">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlano" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Email">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_Email" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_Sign">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_Sign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTimbreCFDI">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getTimbreCFDI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarCFDI">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/cancelarCFDI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelarRetencion">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/cancelarRetencion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarListaBlanca">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarListaBlanca" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMedios">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarCertificadoPropiosMedios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarCertificadoPropiosMediosFechaDoc">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarCertificadoPropiosMediosFechaDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ConsecutivoDentroRango">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ConsecutivoDentroRango" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SATint_AgregarCertificadoParaFIEL">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SATint_AgregarCertificadoParaFIEL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/anularDocumentoElectronicoXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anularDocumentoElectronicoXML_SinNotaDeCredito">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/anularDocumentoElectronicoXML_SinNotaDeCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="receiveCFD">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/receiveCFD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFD">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_FromCFD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCFDI_FromCFDToken">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/getCFDI_FromCFDToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNomina">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarComplementoNomina" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="existeConsecutivoInterno">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/existeConsecutivoInterno" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Recepcion">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF_Recepcion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generaPDF_Envio">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/generaPDF_Envio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarComplementoNotariosPublicos">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarComplementoNotariosPublicos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ValidarTimbre">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ValidarTimbre" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAT_ExisteTimbreSAT">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ExisteTimbreSAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procesarTextoPlanoToXML">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlanoToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarFuncionamiento">
+      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/ValidarFuncionamiento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSCFDBuilderPlus">
+    <wsdl:port name="WSCFDBuilderPlusSoap" binding="tns:WSCFDBuilderPlusSoap">
+      <soap:address location="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSCFDBuilderPlusSoap12" binding="tns:WSCFDBuilderPlusSoap12">
+      <soap12:address location="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
