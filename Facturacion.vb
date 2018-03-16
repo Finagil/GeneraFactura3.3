@@ -567,7 +567,7 @@ Module GneraFactura
                                 ErrorMSG = "!!No se Factura de Grupo empresarian transforma!!"
                             End If
 
-                            If FormaPago = "03" Then ' tranferencias
+                            If FormaPago = "03" Or FormaPago = "02" Then ' tranferencias
                                 RFC_BancoFinagil = CUENTAS.DatosBancoFinagil(Datos(3), Datos(4))
                                 If Not IsNothing(RFC_BancoFinagil) Then
                                     DatosFinagil = RFC_BancoFinagil.Split("|")
@@ -580,6 +580,16 @@ Module GneraFactura
                                     RFC_BancoCliente = ProductDS.DatosCuentas.Rows(0).Item("RFC_Banco")
                                     NombreBancoCliente = ProductDS.DatosCuentas.Rows(0).Item("Nombre")
                                     NoCuentaCliente = ProductDS.DatosCuentas.Rows(0).Item("NoCuenta")
+                                    If FormaPago = "03" And (NoCuentaCliente.Length <> 10 Or NoCuentaCliente.Length <> 18) Then
+                                        NombreBancoCliente = ""
+                                        NoCuentaCliente = ""
+                                        RFC_BancoCliente = ""
+                                    End If
+                                    If FormaPago = "02" And (NoCuentaCliente.Length <> 11 Or NoCuentaCliente.Length <> 18) Then
+                                        NombreBancoCliente = ""
+                                        NoCuentaCliente = ""
+                                        RFC_BancoCliente = ""
+                                    End If
                                 End If
                             End If
 
