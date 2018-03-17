@@ -353,7 +353,7 @@ Module CFDI33
             cadena.Close()
 
             Try
-                resultado = serv.procesarTextoPlano("ekomercio", "aserri", nombre_a(1), cadena2)
+                resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
                 taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
             Catch ex As Exception
                 Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
