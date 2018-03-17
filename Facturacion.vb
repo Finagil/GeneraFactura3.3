@@ -62,7 +62,45 @@ Module GneraFactura
                 Case "WSK"
                     Console.WriteLine("Subiendo Archivos EKomercio...")
                     CFDI33.SubeWS()
-                Case "TODO"
+                Case "FTP"
+                    Console.WriteLine("Subiendo Archivos EKomercio...")
+                    CFDI33.SubeFTP()
+                Case "TODO_FTP"
+                    Console.WriteLine("Leyendo Folios CFDI ...")
+                    CFDI33.LeeFoliosFiscales()
+
+                    Console.WriteLine("Generando Avisos CFDI ...")
+                    CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                    CFDI33.FacturarCFDI("PORVENCER")
+                    CFDI33.FacturarCFDI("ANTERIORES")
+                    CFDI33.FacturarCFDI("PREPAGO")
+                    CFDI33.FacturarCFDI("DIA")
+
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
+
+                    Console.WriteLine("Generando CFDI Externas...")
+                    GeneraArchivosEXternas()
+
+                    Console.WriteLine("Generando CFDI Finagil...")
+                    GeneraArchivos(True)
+
+                    Console.WriteLine("Generando CFDI Pago...")
+                    GeneraArchivos(False) 'COMPLEMENTOS
+
+                    Console.WriteLine("Generando CFDI Facturas EKomercio...")
+                    CFDI33.GeneraFacturaEkomercio()
+
+                    Console.WriteLine("Generando CFDI Pagos EKomercio...")
+                    CFDI33.GeneraComplementoEkomercio()
+
+                    Console.WriteLine("Subiendo Archivos EKomercio...")
+                    CFDI33.SubeFTP()
+
+                    Console.WriteLine("Notificaciones de cancelación...")
+                    CFDI33.NotificaCANF()
+                    CFDI33.NotificaCANA()
+                Case "TODO_WS"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
 

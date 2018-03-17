@@ -401,6 +401,37 @@ Module CFDI33
         Next
     End Sub
 
+    Sub SubeFTP()
+        Dim D As System.IO.DirectoryInfo
+        Dim F As System.IO.FileInfo()
+        Dim wrUpload As FtpWebRequest
+        Dim btfile() As Byte
+        Dim strFile As Stream
+        Dim contador As Integer
+
+        If Directory.Exists(My.Settings.RutaFTP) = False Then
+            Directory.CreateDirectory(My.Settings.RutaFTP)
+        End If
+
+        D = New System.IO.DirectoryInfo(My.Settings.RutaFTP)
+        F = D.GetFiles("*.txt")
+        For i As Integer = 0 To F.Length - 1
+
+            Console.WriteLine("Subiendo " & F(i).Name)
+            wrUpload = DirectCast(WebRequest.Create("ftp://ftplamoderna.ekomercio.com/TXT_Entrada/" & F(i).Name), FtpWebRequest)
+            wrUpload.Credentials = New NetworkCredential("lmoderna", "Ekomercio.1")
+            wrUpload.Method = WebRequestMethods.Ftp.UploadFile
+            btfile = File.ReadAllBytes(My.Settings.RutaFTP & F(i).Name)
+            strFile = wrUpload.GetRequestStream()
+            strFile.Write(btfile, 0, btfile.Length)
+            strFile.Close()
+            File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
+            File.Delete(F(i).FullName)
+            contador += 1
+        Next
+        Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
+    End Sub
+
     Sub SubeWS()
         Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
