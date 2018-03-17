@@ -430,7 +430,7 @@ Module CFDI33
             cadena.Close()
 
             Try
-                resultado = serv.procesarTextoPlano("ekomercio", "aserri", nombre_a(1), cadena2)
+                resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
                 taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
             Catch ex As Exception
                 Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
@@ -439,12 +439,34 @@ Module CFDI33
                 rowMail.De = "CFDI@Finagil.com.mx"
                 rowMail.Para = "viapolo@finagil.com.mx"
                 rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
-                rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 950)
+                If leeXML(resultado, "Err").ToString.Length > 900 Then
+                    rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                Else
+                    rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                End If
                 rowMail.Enviado = False
                 rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
                 rowMail.Attach = ""
 
                 dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                Dim rowMail2 As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                rowMail2 = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                rowMail2.De = "CFDI@Finagil.com.mx"
+                rowMail2.Para = "ecacerest@finagil.com.mx"
+                rowMail2.Asunto = "Error al certificar comprobante" + F(i).Name
+                If leeXML(resultado, "Err").ToString.Length > 900 Then
+                    rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                Else
+                    rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                End If
+                rowMail2.Enviado = False
+                rowMail2.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail2.Attach = ""
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
                 taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
 
             End Try

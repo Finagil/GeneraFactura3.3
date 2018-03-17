@@ -87,8 +87,6 @@ Namespace WebReference_Ek
         
         Private SAT_ExisteTimbreSATOperationCompleted As System.Threading.SendOrPostCallback
         
-        Private procesarTextoPlanoToXMLOperationCompleted As System.Threading.SendOrPostCallback
-        
         Private ValidarFuncionamientoOperationCompleted As System.Threading.SendOrPostCallback
         
         Private useDefaultCredentialsSetExplicitly As Boolean
@@ -212,9 +210,6 @@ Namespace WebReference_Ek
         
         '''<remarks/>
         Public Event SAT_ExisteTimbreSATCompleted As SAT_ExisteTimbreSATCompletedEventHandler
-        
-        '''<remarks/>
-        Public Event procesarTextoPlanoToXMLCompleted As procesarTextoPlanoToXMLCompletedEventHandler
         
         '''<remarks/>
         Public Event ValidarFuncionamientoCompleted As ValidarFuncionamientoCompletedEventHandler
@@ -984,33 +979,6 @@ Namespace WebReference_Ek
             If (Not (Me.SAT_ExisteTimbreSATCompletedEvent) Is Nothing) Then
                 Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
                 RaiseEvent SAT_ExisteTimbreSATCompleted(Me, New SAT_ExisteTimbreSATCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
-            End If
-        End Sub
-        
-        '''<remarks/>
-        <System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://edixcfdisecure.ekomercio.com/procesarTextoPlanoToXML", RequestNamespace:="http://edixcfdisecure.ekomercio.com/", ResponseNamespace:="http://edixcfdisecure.ekomercio.com/", Use:=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle:=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)>  _
-        Public Function procesarTextoPlanoToXML(ByVal usuario As String, ByVal password As String, ByVal id As String, ByVal textoPlano As String) As System.Xml.XmlNode
-            Dim results() As Object = Me.Invoke("procesarTextoPlanoToXML", New Object() {usuario, password, id, textoPlano})
-            Return CType(results(0),System.Xml.XmlNode)
-        End Function
-        
-        '''<remarks/>
-        Public Overloads Sub procesarTextoPlanoToXMLAsync(ByVal usuario As String, ByVal password As String, ByVal id As String, ByVal textoPlano As String)
-            Me.procesarTextoPlanoToXMLAsync(usuario, password, id, textoPlano, Nothing)
-        End Sub
-        
-        '''<remarks/>
-        Public Overloads Sub procesarTextoPlanoToXMLAsync(ByVal usuario As String, ByVal password As String, ByVal id As String, ByVal textoPlano As String, ByVal userState As Object)
-            If (Me.procesarTextoPlanoToXMLOperationCompleted Is Nothing) Then
-                Me.procesarTextoPlanoToXMLOperationCompleted = AddressOf Me.OnprocesarTextoPlanoToXMLOperationCompleted
-            End If
-            Me.InvokeAsync("procesarTextoPlanoToXML", New Object() {usuario, password, id, textoPlano}, Me.procesarTextoPlanoToXMLOperationCompleted, userState)
-        End Sub
-        
-        Private Sub OnprocesarTextoPlanoToXMLOperationCompleted(ByVal arg As Object)
-            If (Not (Me.procesarTextoPlanoToXMLCompletedEvent) Is Nothing) Then
-                Dim invokeArgs As System.Web.Services.Protocols.InvokeCompletedEventArgs = CType(arg,System.Web.Services.Protocols.InvokeCompletedEventArgs)
-                RaiseEvent procesarTextoPlanoToXMLCompleted(Me, New procesarTextoPlanoToXMLCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState))
             End If
         End Sub
         
@@ -1923,33 +1891,6 @@ Namespace WebReference_Ek
             Get
                 Me.RaiseExceptionIfNecessary
                 Return CType(Me.results(1),String)
-            End Get
-        End Property
-    End Class
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")>  _
-    Public Delegate Sub procesarTextoPlanoToXMLCompletedEventHandler(ByVal sender As Object, ByVal e As procesarTextoPlanoToXMLCompletedEventArgs)
-    
-    '''<remarks/>
-    <System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0"),  _
-     System.Diagnostics.DebuggerStepThroughAttribute(),  _
-     System.ComponentModel.DesignerCategoryAttribute("code")>  _
-    Partial Public Class procesarTextoPlanoToXMLCompletedEventArgs
-        Inherits System.ComponentModel.AsyncCompletedEventArgs
-        
-        Private results() As Object
-        
-        Friend Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
-            MyBase.New(exception, cancelled, userState)
-            Me.results = results
-        End Sub
-        
-        '''<remarks/>
-        Public ReadOnly Property Result() As System.Xml.XmlNode
-            Get
-                Me.RaiseExceptionIfNecessary
-                Return CType(Me.results(0),System.Xml.XmlNode)
             End Get
         End Property
     End Class

@@ -41,7 +41,7 @@
       <Value Profile="(Default)">R:\FacturasCFDI\FTPEkomercio\</Value>
     </Setting>
     <Setting Name="GeneraFactura33_WebReference_Ek_WSCFDBuilderPlus" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</Value>
+      <Value Profile="(Default)">http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

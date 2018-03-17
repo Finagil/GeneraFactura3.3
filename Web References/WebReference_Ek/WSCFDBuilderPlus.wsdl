@@ -489,29 +489,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="procesarTextoPlanoToXML">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="textoPlano" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="procesarTextoPlanoToXMLResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="procesarTextoPlanoToXMLResult">
-              <s:complexType mixed="true">
-                <s:sequence>
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="ValidarFuncionamiento">
         <s:complexType>
           <s:sequence>
@@ -696,12 +673,6 @@
   </wsdl:message>
   <wsdl:message name="SAT_ExisteTimbreSATSoapOut">
     <wsdl:part name="parameters" element="tns:SAT_ExisteTimbreSATResponse" />
-  </wsdl:message>
-  <wsdl:message name="procesarTextoPlanoToXMLSoapIn">
-    <wsdl:part name="parameters" element="tns:procesarTextoPlanoToXML" />
-  </wsdl:message>
-  <wsdl:message name="procesarTextoPlanoToXMLSoapOut">
-    <wsdl:part name="parameters" element="tns:procesarTextoPlanoToXMLResponse" />
   </wsdl:message>
   <wsdl:message name="ValidarFuncionamientoSoapIn">
     <wsdl:part name="parameters" element="tns:ValidarFuncionamiento" />
@@ -915,15 +886,6 @@ uuid: Identificador unico del documento fiscal.
     <wsdl:operation name="SAT_ExisteTimbreSAT">
       <wsdl:input message="tns:SAT_ExisteTimbreSATSoapIn" />
       <wsdl:output message="tns:SAT_ExisteTimbreSATSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="procesarTextoPlanoToXML">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Genera una factura electrónica con base en el texto plano contenidoen la variable 'textoPlano'. Los parámetros son los siguientes: 
-usuario: Usuario asignado para ingresar al WebService WSCFDBuilder.
-password: Contraseña asignada para ingresar al WebService WSCFDBuilder.
-id: Identificación fiscal de la empresa emisora del documento (RFC en México).
-textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
-      <wsdl:input message="tns:procesarTextoPlanoToXMLSoapIn" />
-      <wsdl:output message="tns:procesarTextoPlanoToXMLSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ValidarFuncionamiento">
       <wsdl:input message="tns:ValidarFuncionamientoSoapIn" />
@@ -1177,15 +1139,6 @@ textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
     </wsdl:operation>
     <wsdl:operation name="SAT_ExisteTimbreSAT">
       <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/SAT_ExisteTimbreSAT" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="procesarTextoPlanoToXML">
-      <soap:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlanoToXML" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1457,15 +1410,6 @@ textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="procesarTextoPlanoToXML">
-      <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/procesarTextoPlanoToXML" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ValidarFuncionamiento">
       <soap12:operation soapAction="http://edixcfdisecure.ekomercio.com/ValidarFuncionamiento" style="document" />
       <wsdl:input>
@@ -1478,10 +1422,10 @@ textoPlano: Texto plano según layout 3.60 de EdixCFD.</wsdl:documentation>
   </wsdl:binding>
   <wsdl:service name="WSCFDBuilderPlus">
     <wsdl:port name="WSCFDBuilderPlusSoap" binding="tns:WSCFDBuilderPlusSoap">
-      <soap:address location="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
+      <soap:address location="http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
     </wsdl:port>
     <wsdl:port name="WSCFDBuilderPlusSoap12" binding="tns:WSCFDBuilderPlusSoap12">
-      <soap12:address location="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
+      <soap12:address location="http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

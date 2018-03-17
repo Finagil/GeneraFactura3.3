@@ -203,10 +203,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx">
+    <WebReferenceUrl Include="http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WebReference_Ek\</RelPath>
-      <UpdateFromURL>http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</UpdateFromURL>
+      <UpdateFromURL>http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
