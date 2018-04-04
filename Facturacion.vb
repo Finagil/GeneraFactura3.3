@@ -358,6 +358,7 @@ Module GneraFactura
                 ROWdetail._5_Impuesto_Clave = "002" ' Clave IVA
                 ROWdetail._6_Impuesto_Tasa = "Tasa"
                 ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                ROWdetail._11_Linea_Notas = "SER"
                 ROWdetail._53_Linea_Misc22 = "SER"
                 ROWdetail.Detalle_Folio = ROWheader._1_Folio
                 ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
