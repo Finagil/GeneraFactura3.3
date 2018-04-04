@@ -312,7 +312,9 @@ Module CFDI33
                 Lectura.Close()
             End If
         Next
-        Lectura.Dispose()
+        If Not IsNothing(Lectura) Then
+            Lectura.Dispose()
+        End If
 
         Dim tAREC As New ProduccionDSTableAdapters.CFDI_RecibosPAGOTableAdapter
         Dim tREC As New ProduccionDS.CFDI_RecibosPAGODataTable
@@ -332,6 +334,10 @@ Module CFDI33
         Dim F As System.IO.FileInfo()
 
         D = New System.IO.DirectoryInfo(My.Settings.RutaFolios & "\Cancelados\SAR951230N5A\")
+        If Not Directory.Exists(D.Name) Then
+            Exit Sub
+        End If
+
         F = D.GetFiles("*.xml")
         For i As Integer = 0 To F.Length - 1
             Dim retorno(5) As String
@@ -372,6 +378,9 @@ Module CFDI33
         Dim F As System.IO.FileInfo()
 
         D = New System.IO.DirectoryInfo(My.Settings.RutaFolios & "\Cancelados\FIN940905AX7\")
+        If Not Directory.Exists(D.Name) Then
+            Exit Sub
+        End If
         F = D.GetFiles("*.xml")
         For i As Integer = 0 To F.Length - 1
             Dim retorno(5) As String
