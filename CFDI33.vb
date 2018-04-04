@@ -882,7 +882,7 @@ Module CFDI33
 
         ' Recorrido de Renglones de Tabla Encabezado 
         For Each Encabezado In Production_AUXDataSet.CFDI_Encabezado.Rows() 'RECORRO FACTURAS SIN PROCESAR
-            f = New StreamWriter(My.Settings.RutaFTP & "eKomplemento_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
+            f = New StreamWriter(My.Settings.RutaFTP & "eKomplemento_" & Encabezado._3_RFC_Emisor & "_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
             Cad = "~"
             i += 1
 

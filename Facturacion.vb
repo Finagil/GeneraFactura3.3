@@ -326,6 +326,7 @@ Module GneraFactura
                         IVA += CDec(ROWdetail._4_Impuesto_Monto_Impuesto).ToString("n2")
                     End If
 
+                    ROWdetail._11_Linea_Notas = "SER"
                     ROWdetail._53_Linea_Misc22 = "SER"
                     ROWdetail.Detalle_Folio = ROWheader._1_Folio
                     ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
@@ -1334,10 +1335,11 @@ Module GneraFactura
                                     ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
                                     ROWdetail._5_Impuesto_Clave = "002"
                                     ROWdetail._6_Impuesto_Tasa = "Tasa"
-                                    If Datos(6).Trim = "" Or Serie = "F" Then
-                                        Datos(6) = "SER"
-                                    End If
-                                    ROWdetail._53_Linea_Misc22 = Datos(6)
+                                If Datos(6).Trim = "" Or Serie = "F" Then
+                                    Datos(6) = "SER"
+                                End If
+                                ROWdetail._11_Linea_Notas = Datos(6)
+                                ROWdetail._53_Linea_Misc22 = Datos(6)
                                     Try
                                         If TipoImpuesto = "Exento" Then
                                             ROWdetail._7_Impuesto_Porcentaje = ""
@@ -1624,6 +1626,7 @@ Module GneraFactura
                 ROWdetail._3_Impuesto_Monto_base = Math.Round(rr.Importe, 4)
                 ROWdetail._5_Impuesto_Clave = "002"
                 ROWdetail._6_Impuesto_Tasa = "Tasa"
+                ROWdetail._11_Linea_Notas = rr.UnidadInterna
                 ROWdetail._53_Linea_Misc22 = rr.UnidadInterna
 
                 If rr.TasaIva = "Exento" Then
