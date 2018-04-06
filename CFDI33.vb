@@ -748,9 +748,6 @@ Module CFDI33
                                 vLimpia = Encabezado(Col).ToString   ' Para quitar Salto de linea 25Octubre2017
                                 Cad += vLimpia.Replace(vbCrLf, " ") & "|"   ' Para quitar Salto de linea 25Octubre2017
                                 ' Cad += Encabezado(Col) & "|"     '   LINEA ORIGINAL SIN PIMPIAR 
-                                'If Col.ColumnName = "155_Misc43" Then
-
-                                'End If
                             End If
                         Else
                             TotalImpuesto16 = Encabezado(Col)
