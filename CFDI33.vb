@@ -729,11 +729,17 @@ Module CFDI33
                     Encabezado._31_Hora = Date.Now.AddHours(2).ToString("HH:mm:ss")
                 End If
 
+                If Encabezado(156).ToString <> "" And Encabezado(156).ToString IsNot DBNull.Value Then
+                    Encabezado(154) = "[Addenda_Finagil]"
+                End If
+
                 Cad = "~"
                 i += 1
 
                 ' Recorrido de Columnas o Campos de Tabla Encabezado 
                 For Each Col In Production_AUXDataSet.CFDI_Encabezado.Columns ' CONCATENO EL RENGLON DEL ENCABEZADO
+
+
                     If Col.ColumnName <> "Encabezado_Procesado" And Col.ColumnName <> "Fecha" Then
                         If Col.ColumnName <> "193_Monto_TotalImp_Trasladados" Then
                             ' 25 Octubre 2017
@@ -742,6 +748,9 @@ Module CFDI33
                                 vLimpia = Encabezado(Col).ToString   ' Para quitar Salto de linea 25Octubre2017
                                 Cad += vLimpia.Replace(vbCrLf, " ") & "|"   ' Para quitar Salto de linea 25Octubre2017
                                 ' Cad += Encabezado(Col) & "|"     '   LINEA ORIGINAL SIN PIMPIAR 
+                                'If Col.ColumnName = "155_Misc43" Then
+
+                                'End If
                             End If
                         Else
                             TotalImpuesto16 = Encabezado(Col)
