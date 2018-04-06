@@ -729,8 +729,8 @@ Module CFDI33
                     Encabezado._31_Hora = Date.Now.AddHours(2).ToString("HH:mm:ss")
                 End If
 
-                If Encabezado(156).ToString <> "" And Encabezado(156).ToString IsNot DBNull.Value Then
-                    Encabezado(154) = "[Addenda_Finagil]"
+                If Encabezado._157_Misc45.ToString <> "" And Encabezado._157_Misc45.ToString IsNot DBNull.Value Then
+                    Encabezado._155_Misc43 = "[Addenda_Finagil]"
                 End If
 
                 Cad = "~"
