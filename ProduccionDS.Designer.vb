@@ -20742,11 +20742,11 @@ Partial Public Class ProduccionDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property _157_Misc45() As String
             Get
-                Try 
+                If Me.Is_157_Misc45Null Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.tableCFDI_Encabezado._157_Misc45Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna '157_Misc45' de la tabla 'CFDI_Encabezado' es DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableCFDI_Encabezado._157_Misc45Column) = value
