@@ -1017,12 +1017,14 @@ Module CFDI33
         For Each r As ProduccionDS.RecibosDePagoRow In t.Rows
             Try
                 CadenaGUID = Guid.NewGuid.ToString.ToUpper
+                Console.WriteLine("Recibo de pago : " & CadenaGUID)
                 Mensaje = New Mail.MailMessage
                 Mensaje.IsBodyHtml = True
                 Mensaje.From = New Mail.MailAddress("CFDI@Finagil.com.mx", "FINAGIL envíos automáticos")
                 Mensaje.ReplyTo = New Mail.MailAddress("maria.vidal@finagil.com.mx", "Maria Vidal    (Finagil)")
 
                 Mensaje.To.Add("ecacerest@finagil.com.mx")
+                Mensaje.To.Add("maria.vidal@finagil.com.mx")
                 If r.EMail1.Length > 3 Then
                     'Mensaje.To.Add(r.EMail1)
                 End If
