@@ -1596,6 +1596,7 @@ Module GneraFactura
 
             ROWheader._83_Cod_Moneda = r.Moneda
             ROWheader._97_Condiciones_Pago = "Contado"
+            ROWheader._113_Misc01 = r.FormatoImp
             ROWheader._144_Misc32 = r.UsoCFDI '"G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
             ROWheader._167_RegimentFiscal = 601
             If ROWheader._83_Cod_Moneda = "MXN" Then
