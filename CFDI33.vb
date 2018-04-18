@@ -734,7 +734,10 @@ Module CFDI33
                         Encabezado._155_Misc43 = "[Addenda_Finagil]"
                     End If
                 End If
-
+                'Formato para activo fijo
+                If Encabezado._3_RFC_Emisor = "FIN940905AX7" And Encabezado._27_Serie_Comprobante = "B" Then
+                    Encabezado._113_Misc01 = "[AFIN]"
+                End If
 
                 Cad = "~"
                 i += 1
