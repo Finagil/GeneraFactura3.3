@@ -1221,40 +1221,43 @@ Module GneraFactura
 
 
                                 If (Tipar = "A" Or Tipar = "H" Or Tipar = "C") Then
-                                        If Tipar = "C" Then
-                                            Select Case Mid(Datos(8), 1, 12)
-                                                Case "INTERESES AV"
-                                                    Datos(8) = "INTERESES CUENTA CORRIENTE"
-                                                Case "INTERESES MO"
-                                                    Datos(8) = "INTERESES MORATORIO CUENTA CORRIENTE"
-                                                Case "PAGO CREDITO"
-                                                    Datos(8) = "PAGO CREDITO EN CUENTA CORRIENTE"
-                                            End Select
-                                        End If
-
-                                        If TipoPersona <> "F" And Mid(Datos(8), 1, 9) = "INTERESES" Then
-                                            TipoImpuesto = "Exento"
-                                        End If
+                                    If Tipar = "C" Then
+                                        Select Case Mid(Datos(8), 1, 12)
+                                            Case "INTERESES AV"
+                                                Datos(8) = "INTERESES CUENTA CORRIENTE"
+                                            Case "INTERESES MO"
+                                                Datos(8) = "INTERESES MORATORIO CUENTA CORRIENTE"
+                                            Case "PAGO CREDITO"
+                                                Datos(8) = "PAGO CREDITO EN CUENTA CORRIENTE"
+                                        End Select
                                     End If
 
-                                    If InStr(Datos(8), "SEGURO DE VI") > 0 Then
+                                    If TipoPersona <> "F" And Mid(Datos(8), 1, 9) = "INTERESES" Then
                                         TipoImpuesto = "Exento"
                                     End If
+                                End If
 
-                                    If Tipar = "P" Then
-                                        Select Case Datos(8)
-                                            Case "AMORTIZACION INICIAL"
-                                                Datos(8) = "RENTA INICIAL"
-                                        End Select
+                                If InStr(Datos(8), "SEGURO DE VI") > 0 Then
+                                    TipoImpuesto = "Exento"
+                                End If
+
+                                If Tipar = "P" Then
+                                    Select Case Datos(8)
+                                        Case "AMORTIZACION INICIAL"
+                                            Datos(8) = "RENTA INICIAL"
+                                        Case "INTERESES POR PREPAGO"
+                                            Datos(8) = "PAGO DE RENTA VENCIMIENTO"
+                                    End Select
                                     If CDec(Datos(11)) = 0 Then
                                         TipoImpuesto = "Exento"
                                     End If
+
                                     If Concepto = "PAGO DE RENTA VENCIMIENTO" Then
                                         Datos(8) = Mid(Datos(8), 9, Datos(8).Length)
                                     End If
                                 End If
 
-                                    If Tipar = "B" Then
+                                If Tipar = "B" Then
                                         Select Case Mid(Datos(8), 1, 11)
                                             Case "MENSUALIDAD"
                                                 Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
