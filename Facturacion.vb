@@ -1130,6 +1130,11 @@ Module GneraFactura
                                     Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
                                 End If
 
+                                If InStr(Datos(8), "COMISION DE APERTURA") And ROWheader._27_Serie_Comprobante = "F" Then
+                                    ReDim Preserve Datos(11)
+                                    Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
+                                End If
+
                                 If InStr(Datos(8), "GASTOS DE RATIFICACION") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
@@ -1609,7 +1614,11 @@ Module GneraFactura
 
             ROWheader._83_Cod_Moneda = r.Moneda
             ROWheader._97_Condiciones_Pago = "Contado"
-            ROWheader._113_Misc01 = r.FormatoImp
+            If Not IsNothing(r.FormatoImp) Then
+                ROWheader._113_Misc01 = r.FormatoImp
+            Else
+                ROWheader._113_Misc01 = ""
+            End If
             ROWheader._144_Misc32 = r.UsoCFDI '"G03" 'claves del SAT P01=por definir, G03=Gastos generales CATALOGO USO DE COMPROBANTE hoja excel= c_UsoCFDI, a solicitud del cliente
             ROWheader._167_RegimentFiscal = 601
             If ROWheader._83_Cod_Moneda = "MXN" Then
