@@ -1140,7 +1140,22 @@ Module GneraFactura
                                     Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
                                 End If
 
+                                If InStr(Datos(8), "COMISION FEGA") And ROWheader._27_Serie_Comprobante = "F" Then
+                                    ReDim Preserve Datos(11)
+                                    Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
+                                End If
+
+                                If InStr(Datos(8), "GASTOS NOTARIALES") And ROWheader._27_Serie_Comprobante = "F" Then
+                                    ReDim Preserve Datos(11)
+                                    Datos(11) = Math.Round(Math.Round(CDec(Datos(10)), 2) * TasaIVA, 2)
+                                End If
+
                                 If InStr(Datos(8), "Int. Ord.") And ROWheader._27_Serie_Comprobante = "F" Then
+                                    ReDim Preserve Datos(11)
+                                    Datos(11) = 0
+                                    TipoImpuesto = "Exento"
+                                End If
+                                If InStr(Datos(8), "INTERES MENSUAL") And ROWheader._27_Serie_Comprobante = "F" Then
                                     ReDim Preserve Datos(11)
                                     Datos(11) = 0
                                     TipoImpuesto = "Exento"

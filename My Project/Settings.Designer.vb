@@ -105,8 +105,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-minds\test_minds;Initial Catalog=ProductionV;Persist Security "& _ 
-            "Info=True;User ID=finagil;Password=finagil")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER-RAID;Initial Catalog=Production;Persist Security Info=True;Use"& _ 
+            "r ID=finagil;Password=finagil")>  _
         Public ReadOnly Property ConnectionStringFACTURA() As String
             Get
                 Return CType(Me("ConnectionStringFACTURA"),String)
