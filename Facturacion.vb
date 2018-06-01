@@ -435,6 +435,8 @@ Module GneraFactura
         Dim EnviarGisela As Boolean = False
         Dim ta As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
         Dim t As New GeneraFactura.ProduccionDS.ClientesDataTable
+        Dim taEnc As New GeneraFactura.ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
+        Dim tEnc As New GeneraFactura.ProduccionDS.CFDI_EncabezadoDataTable
         Dim taMail As New ProduccionDSTableAdapters.CorreosAnexosTableAdapter
         Dim tMail As New ProduccionDS.CorreosAnexosDataTable
         Dim Rmail As ProduccionDS.CorreosAnexosRow
@@ -662,7 +664,7 @@ Module GneraFactura
                             If ROWheader._83_Cod_Moneda = "MXN" Then
                                 ROWheader._177_Tasa_Divisa = 0
                             Else
-                                ROWheader._177_Tasa_Divisa = "" ' taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
+                                ROWheader._177_Tasa_Divisa = Nothing ' taCli.SacaTipoCambio(fecha.Date, ROWheader._83_Cod_Moneda)
                                 If ROWheader._177_Tasa_Divisa = 1 Then
                                     Errores = True
                                     EnviaCorreoFASE("Contabilidad", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, ErrorMSG & "Tipo de Cambio : 1 Concepto: " & Concepto & vbCrLf & " TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo)
@@ -886,15 +888,16 @@ Module GneraFactura
                         CFDI_D.Update(ProducDS.CFDI_Detalle)
                         CFDI_H.Update(ProducDS.CFDI_Encabezado)
                         NoPago = CFDI_H.NoPago(GUID)
+
                         'CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, "REF_NO OPRACION", "RFC CEUNTA CLIENTE", "banco cliente", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
                         CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        'CFDI_H.ConsumeFolio()
+                            'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            'CFDI_H.ConsumeFolio()
 
-                        ProducDS.CFDI_Encabezado.Clear()
+                            ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                         File.Copy(F(i).FullName, GeneraFactura.My.Settings.RutaBackup & F(i).Name, True)
                         File.Delete(F(i).FullName)
