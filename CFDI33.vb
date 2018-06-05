@@ -479,10 +479,13 @@ Module CFDI33
                 rowMail.De = "CFDI@Finagil.com.mx"
                 rowMail.Para = "viapolo@finagil.com.mx"
                 rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
+                SysLog(ex.ToString)
                 If leeXML(resultado, "Err").ToString.Length > 900 Then
                     rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, 900))
                 Else
                     rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1))
                 End If
                 rowMail.Enviado = False
                 rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
@@ -509,13 +512,22 @@ Module CFDI33
                 dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
                 taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
 
+                File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
             End Try
-            File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
+            File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
             File.Delete(F(i).FullName)
             contador += 1
         Next
         Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
     End Sub
+
+    Private Function SysLog(TextLogP As String)
+        Dim LogFile As String = "\" + DateTime.Now.ToString("dd-MM-yyyy") + "-" + DateTime.Now.ToString("hhmmss") + ".log"
+        Using outputFile As New StreamWriter(My.Settings.NoPasa & "Errores\" & Convert.ToString(LogFile), True)
+            outputFile.WriteLine(DateTime.Now.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("hh:mm:ss") + " - " + TextLogP)
+        End Using
+        Return False
+    End Function
 
     Function Crea_Mensaje(RFC_Emisor As String, serie As String, folio As String, UUIDG As String, Receptor As String, RSocial As String, FechaEmision As String, FechaCancelacion As String, Estatus_UUID As String, DigestValue As String, SignatureValue As String)
         Dim retorno_mensaje As String = ""
