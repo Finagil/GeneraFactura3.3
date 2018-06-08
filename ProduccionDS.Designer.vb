@@ -40790,7 +40790,7 @@ Namespace ProduccionDSTableAdapters
                 "isor_referencia], Encabezado_Procesado, Fecha, Guid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            CFDI_Encabe"& _ 
                 "zado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] <> 'RE"& _ 
                 "P') AND ([27_Serie_Comprobante] <> 'REPP') AND ([27_Serie_Comprobante] <> 'REPA'"& _ 
-                ")"
+                ")  AND ([27_Serie_Comprobante] <> 'REPF')"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
@@ -40904,7 +40904,8 @@ Namespace ProduccionDSTableAdapters
                 "robante]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CFDI_Encabezado.Encabezado_Procesado = 0) AND (CFDI_Enca"& _ 
                 "bezado.[27_Serie_Comprobante] = 'REP' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabeza"& _ 
                 "do.[27_Serie_Comprobante] = 'REPP' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado."& _ 
-                "[27_Serie_Comprobante] = 'REPA')"
+                "[27_Serie_Comprobante] = 'REPA' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CFDI_Encabezado.[27"& _ 
+                "_Serie_Comprobante] = 'REPF')"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
