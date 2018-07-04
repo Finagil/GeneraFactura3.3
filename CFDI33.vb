@@ -444,6 +444,7 @@ Module CFDI33
     Sub SubeWS()
         Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim taCtrlUUID As New ProduccionDSTableAdapters.CFDI_ControlTimbresTableAdapter
         Dim dsMail As New ProduccionDS
 
         Dim D As System.IO.DirectoryInfo
@@ -472,6 +473,8 @@ Module CFDI33
             Try
                 resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
                 taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
+                'taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio"), leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha"), leeXML(resultado, "FechaTimbrado"), leeXML(resultado, "RFCE"), leeXML(resultado, "RFCR"), resultado)
+                taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
             Catch ex As Exception
                 Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
                 rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
@@ -679,6 +682,51 @@ Module CFDI33
             Next
         End If
 
+        If nodo = "RFCE" Or nodo = "RFCR" Then
+            For Each Comprobante As XmlNode In CFDI.ChildNodes
+                If Comprobante.Name = "cfdi:Emisor" And nodo = "RFCE" Then
+                    For Each Emisor As XmlNode In Comprobante.Attributes
+                        'For Each Atributos As XmlNode In Emisor.Attributes
+                        If Emisor.Name = "Rfc" Then
+                            retorno = Emisor.Value.ToString
+                            Return retorno
+                            Exit Function
+                        End If
+                        'Next
+                    Next
+                End If
+                If Comprobante.Name = "cfdi:Receptor" And nodo = "RFCR" Then
+                    For Each Emisor As XmlNode In Comprobante.Attributes
+                        'For Each Atributos As XmlNode In Emisor.Attributes
+                        If Emisor.Name = "Rfc" Then
+                            retorno = Emisor.Value.ToString
+                            Return retorno
+                            Exit Function
+                        End If
+                        'Next
+                    Next
+                End If
+            Next
+        End If
+
+        If nodo = "FechaTimbrado" Then
+            For Each Comprobante As XmlNode In CFDI.ChildNodes
+                If Comprobante.Name = "cfdi:Complemento" And nodo = "FechaTimbrado" Then
+                    For Each Complemento As XmlNode In Comprobante.ChildNodes
+                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                If TimbreFiscalDigital.Name = "FechaTimbrado" Then
+                                    retorno = TimbreFiscalDigital.Value.ToString
+                                    Return retorno
+                                    Exit Function
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            Next
+        End If
+
         For Each Comprobante As XmlNode In CFDI.Attributes
             If Comprobante.Name = "Moneda" And nodo = "Moneda" Then
                 retorno = Comprobante.Value.ToString
@@ -701,6 +749,10 @@ Module CFDI33
                 Return retorno
                 Exit Function
             ElseIf (Comprobante.Name = "Folio" Or Comprobante.Name = "folio") And nodo = "Folio" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf Comprobante.Name = "Fecha" And nodo = "Fecha" Then
                 retorno = Comprobante.Value.ToString
                 Return retorno
                 Exit Function
