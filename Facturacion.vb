@@ -33,9 +33,10 @@ Module GneraFactura
                     NotificaCANA()
                 Case "ENVIA_RECIBOS"
                     Envia_RecibosPAGO()
-                Case "FOLIOS"
-                    Console.WriteLine("Leyendo Folios CFDI ...")
-                    CFDI33.LeeFoliosFiscales()
+                    '////Comentario temporal
+                    'Case "FOLIOS"
+                    'Console.WriteLine("Leyendo Folios CFDI ...")
+                    'CFDI33.LeeFoliosFiscales()
                 Case "AVISOS"
                     Console.WriteLine("Generando Avisos CFDI ...")
                     CFDI33.FacturarCFDI_AV(Date.Now.Date)
@@ -62,9 +63,10 @@ Module GneraFactura
                 Case "WSK"
                     Console.WriteLine("Subiendo Archivos EKomercio...")
                     CFDI33.SubeWS()
-                Case "FTP"
-                    Console.WriteLine("Subiendo Archivos EKomercio...")
-                    CFDI33.SubeFTP()
+                '////Comentario temporal
+                'Case "FTP"
+                'Console.WriteLine("Subiendo Archivos EKomercio...")
+                'CFDI33.SubeFTP()
                 Case "TODO_FTP"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
