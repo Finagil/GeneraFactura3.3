@@ -472,9 +472,48 @@ Module CFDI33
 
             Try
                 resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
-                taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
-                'taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio"), leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha"), leeXML(resultado, "FechaTimbrado"), leeXML(resultado, "RFCE"), leeXML(resultado, "RFCR"), resultado)
-                taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
+                If leeXML(resultado, "Valida").ToString = "SinError" Then
+                    taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
+                    taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
+                ElseIf leeXML(resultado, "Valida").ToString = "Error" Then
+                    Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                    rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                    rowMail.De = "CFDI@Finagil.com.mx"
+                    rowMail.Para = "viapolo@finagil.com.mx"
+                    rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
+                    If leeXML(resultado, "Err").ToString.Length > 900 Then
+                        rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    Else
+                        rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    End If
+                    rowMail.Enviado = False
+                    rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                    rowMail.Attach = ""
+
+                    dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                    taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                    Dim rowMail2 As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                    rowMail2 = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                    rowMail2.De = "CFDI@Finagil.com.mx"
+                    rowMail2.Para = "ecacerest@finagil.com.mx"
+                    rowMail2.Asunto = "Error al certificar comprobante" + F(i).Name
+                    If leeXML(resultado, "Err").ToString.Length > 900 Then
+                        rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    Else
+                        rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    End If
+                    rowMail2.Enviado = False
+                    rowMail2.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                    rowMail2.Attach = ""
+
+                    dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
+                    taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                    File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
+                End If
             Catch ex As Exception
                 Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
                 rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
@@ -482,13 +521,13 @@ Module CFDI33
                 rowMail.De = "CFDI@Finagil.com.mx"
                 rowMail.Para = "viapolo@finagil.com.mx"
                 rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
-                SysLog(ex.ToString)
+                SysLog(ex.ToString, (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
                 If leeXML(resultado, "Err").ToString.Length > 900 Then
                     rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
-                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, 900))
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, 900), (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
                 Else
                     rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
-                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1))
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1), (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
                 End If
                 rowMail.Enviado = False
                 rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
@@ -515,17 +554,17 @@ Module CFDI33
                 dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
                 taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
 
-                File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
+                File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
             End Try
-            File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
+            File.Copy(F(i).FullName, My.Settings.RutaFTP & "Backup\" & F(i).Name, True)
             File.Delete(F(i).FullName)
             contador += 1
         Next
         Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
     End Sub
 
-    Private Function SysLog(TextLogP As String)
-        Dim LogFile As String = "\" + DateTime.Now.ToString("dd-MM-yyyy") + "-" + DateTime.Now.ToString("hhmmss") + ".log"
+    Private Function SysLog(TextLogP As String, name As String)
+        Dim LogFile As String = "\" + DateTime.Now.ToString("dd-MM-yyyy") + "-" + DateTime.Now.ToString("hhmmss") + name + ".log"
         Using outputFile As New StreamWriter(My.Settings.NoPasa & "Errores\" & Convert.ToString(LogFile), True)
             outputFile.WriteLine(DateTime.Now.ToString("dd/MM/yyyy") + " " + DateTime.Now.ToString("hh:mm:ss") + " - " + TextLogP)
         End Using
@@ -652,80 +691,92 @@ Module CFDI33
         Dim CFDI As XmlNode
         Dim retorno As String = ""
 
-        CFDI = doc.DocumentElement
-
-        If nodo = "Err" Then
-            For Each Err As XmlNode In CFDI.ChildNodes
-                If Err.Name = "ErrorMessage" And nodo = "Err" Then
-                    retorno = Err.InnerText
-                    Return retorno
-                    Exit Function
-                End If
-            Next
+        If nodo = "Valida" Then
+            If doc.LastChild.Name = "Error" Then
+                retorno = "Error"
+                Return retorno
+                Exit Function
+            Else
+                retorno = "SinError"
+                Return retorno
+                Exit Function
+            End If
         End If
 
-        If nodo = "UUID" Then
-            For Each Comprobante As XmlNode In CFDI.ChildNodes
-                If Comprobante.Name = "cfdi:Complemento" And nodo = "UUID" Then
-                    For Each Complemento As XmlNode In Comprobante.ChildNodes
-                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
-                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
-                                If TimbreFiscalDigital.Name = "UUID" Then
-                                    retorno = TimbreFiscalDigital.Value.ToString
-                                    Return retorno
-                                    Exit Function
-                                End If
-                            Next
-                        End If
-                    Next
-                End If
-            Next
-        End If
+            CFDI = doc.DocumentElement
 
-        If nodo = "RFCE" Or nodo = "RFCR" Then
-            For Each Comprobante As XmlNode In CFDI.ChildNodes
-                If Comprobante.Name = "cfdi:Emisor" And nodo = "RFCE" Then
-                    For Each Emisor As XmlNode In Comprobante.Attributes
-                        'For Each Atributos As XmlNode In Emisor.Attributes
-                        If Emisor.Name = "Rfc" Then
-                            retorno = Emisor.Value.ToString
-                            Return retorno
-                            Exit Function
-                        End If
-                        'Next
-                    Next
-                End If
-                If Comprobante.Name = "cfdi:Receptor" And nodo = "RFCR" Then
-                    For Each Emisor As XmlNode In Comprobante.Attributes
-                        'For Each Atributos As XmlNode In Emisor.Attributes
-                        If Emisor.Name = "Rfc" Then
-                            retorno = Emisor.Value.ToString
-                            Return retorno
-                            Exit Function
-                        End If
-                        'Next
-                    Next
-                End If
-            Next
-        End If
+            If nodo = "Err" Then
+                For Each Err As XmlNode In CFDI.ChildNodes
+                    If Err.Name = "ErrorMessage" And nodo = "Err" Then
+                        retorno = Err.InnerText
+                        Return retorno
+                        Exit Function
+                    End If
+                Next
+            End If
 
-        If nodo = "FechaTimbrado" Then
-            For Each Comprobante As XmlNode In CFDI.ChildNodes
-                If Comprobante.Name = "cfdi:Complemento" And nodo = "FechaTimbrado" Then
-                    For Each Complemento As XmlNode In Comprobante.ChildNodes
-                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
-                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
-                                If TimbreFiscalDigital.Name = "FechaTimbrado" Then
-                                    retorno = TimbreFiscalDigital.Value.ToString
-                                    Return retorno
-                                    Exit Function
-                                End If
-                            Next
-                        End If
-                    Next
-                End If
-            Next
-        End If
+            If nodo = "UUID" Then
+                For Each Comprobante As XmlNode In CFDI.ChildNodes
+                    If Comprobante.Name = "cfdi:Complemento" And nodo = "UUID" Then
+                        For Each Complemento As XmlNode In Comprobante.ChildNodes
+                            If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                                For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                    If TimbreFiscalDigital.Name = "UUID" Then
+                                        retorno = TimbreFiscalDigital.Value.ToString
+                                        Return retorno
+                                        Exit Function
+                                    End If
+                                Next
+                            End If
+                        Next
+                    End If
+                Next
+            End If
+
+            If nodo = "RFCE" Or nodo = "RFCR" Then
+                For Each Comprobante As XmlNode In CFDI.ChildNodes
+                    If Comprobante.Name = "cfdi:Emisor" And nodo = "RFCE" Then
+                        For Each Emisor As XmlNode In Comprobante.Attributes
+                            'For Each Atributos As XmlNode In Emisor.Attributes
+                            If Emisor.Name = "Rfc" Then
+                                retorno = Emisor.Value.ToString
+                                Return retorno
+                                Exit Function
+                            End If
+                            'Next
+                        Next
+                    End If
+                    If Comprobante.Name = "cfdi:Receptor" And nodo = "RFCR" Then
+                        For Each Emisor As XmlNode In Comprobante.Attributes
+                            'For Each Atributos As XmlNode In Emisor.Attributes
+                            If Emisor.Name = "Rfc" Then
+                                retorno = Emisor.Value.ToString
+                                Return retorno
+                                Exit Function
+                            End If
+                            'Next
+                        Next
+                    End If
+                Next
+            End If
+
+            If nodo = "FechaTimbrado" Then
+                For Each Comprobante As XmlNode In CFDI.ChildNodes
+                    If Comprobante.Name = "cfdi:Complemento" And nodo = "FechaTimbrado" Then
+                        For Each Complemento As XmlNode In Comprobante.ChildNodes
+                            If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                                For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                    If TimbreFiscalDigital.Name = "FechaTimbrado" Then
+                                        retorno = TimbreFiscalDigital.Value.ToString
+                                        Return retorno
+                                        Exit Function
+                                    End If
+                                Next
+                            End If
+                        Next
+                    End If
+                Next
+            End If
 
         For Each Comprobante As XmlNode In CFDI.Attributes
             If Comprobante.Name = "Moneda" And nodo = "Moneda" Then
