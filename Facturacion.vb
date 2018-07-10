@@ -100,6 +100,7 @@ Module GneraFactura
                     Console.WriteLine("Notificaciones de cancelación...")
                     CFDI33.NotificaCANF()
                     CFDI33.NotificaCANA()
+                    FacturasSinSERIE()
                 Case "TODO_WS"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
@@ -135,6 +136,7 @@ Module GneraFactura
                     Console.WriteLine("Notificaciones de cancelación...")
                     CFDI33.NotificaCANF()
                     CFDI33.NotificaCANA()
+                    FacturasSinSERIE()
             End Select
         End If
         Console.WriteLine("Terminado...")
@@ -1971,5 +1973,15 @@ Module GneraFactura
         Next
         f1.Close()
     End Function
+
+    Sub FacturasSinSERIE()
+        Dim ta As New ProduccionDSTableAdapters.FacturasSinSerieTableAdapter
+        ta.Fill(ProductDS.FacturasSinSerie, Date.Now.AddDays(-10).ToString("yyyyMMdd"))
+        For Each r As ProduccionDS.FacturasSinSerieRow In ProductDS.FacturasSinSerie
+            EnviaError("ecacerest@finagil.com.mx", "Factura sin Serie", "Aviso:" & r.Anexo & " Aviso: " & r.Factura)
+            EnviaError("viapolo@finagil.com.mx", "Factura sin Serie", "Aviso:" & r.Anexo & " Aviso: " & r.Factura)
+        Next
+
+    End Sub
 
 End Module
