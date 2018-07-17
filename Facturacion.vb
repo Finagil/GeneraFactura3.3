@@ -44,6 +44,7 @@ Module GneraFactura
                     CFDI33.FacturarCFDI("ANTERIORES")
                     CFDI33.FacturarCFDI("PREPAGO")
                     CFDI33.FacturarCFDI("DIA")
+                    CFDI33.FacturarCFDI("MANUAL")
                 Case "FACTURAS"
                     Console.WriteLine("Generando CFDI Avio...")
                     GeneraArchivosAvio()

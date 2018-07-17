@@ -98,6 +98,8 @@ Module CFDI33
 
         ' Solo necesito saber el número de elementos que tiene el DataGridView1
         Select Case Tipo.ToUpper
+            Case "MANUAL" ' prepagos antes de su fecha de vencimiento
+                TaAvisos.FillByManual(ProdDS.AvisosCFDI)'Facturadas por el usuario
             Case "PREPAGO" ' prepagos antes de su fecha de vencimiento
                 cFechaPago = FechaProc.ToString("yyyyMMdd")
                 TaAvisos.FillByPrepagos(ProdDS.AvisosCFDI, cFechaPago, "20171201")'Fecha de Salida a Producion
@@ -128,7 +130,7 @@ Module CFDI33
                 Continue For
             End If
             If r.SaldoFac = 0 Then ' con esto no generamos facturas pagadas en una sola exhibicion
-                If TaAvisos.NumeroDePagos(r.Anexo, r.Letra) = 1 Then
+                If TaAvisos.NumeroDePagos(r.Anexo, r.Letra) = 1 And Tipo.ToUpper <> "MANUAL" Then
                     Continue For
                 End If
             End If
