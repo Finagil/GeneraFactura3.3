@@ -1164,6 +1164,7 @@ Module CFDI33
                 NewRPT.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
                 NewRPT.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat
                 Archivo = "C:\FILES\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
+                System.IO.File.Copy(Archivo, "\\server-nas\FacturasCFDI\RecibosPago\" & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 crDiskFileDestinationOptions.DiskFileName = Archivo
                 NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
                 NewRPT.Export()

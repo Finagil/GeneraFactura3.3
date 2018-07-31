@@ -51,5 +51,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=server-raid;Initial Catalog=Production;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="RutaRecPago" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
