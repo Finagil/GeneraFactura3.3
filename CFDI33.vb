@@ -1145,11 +1145,12 @@ Module CFDI33
 
                 Mensaje.To.Add("ecacerest@finagil.com.mx")
                 Mensaje.To.Add("maria.vidal@finagil.com.mx")
-                If r.EMail1.Length > 3 Then
-                    'Mensaje.To.Add(r.EMail1)
+                Mensaje.To.Add("viapolo@finagil.com.mx")
+                If r.EMail1.ToString.Trim.Length > 3 Then
+                    Mensaje.To.Add(r.EMail1)
                 End If
-                If r.EMail2.Length > 3 Then
-                    'Mensaje.To.Add(r.EMail2)
+                If r.EMail2.ToString.Trim.Length > 3 Then
+                    Mensaje.To.Add(r.EMail2)
                 End If
 
                 Mensaje.Subject = "Recibo de Pago Finagil -" & r._27_Serie_Comprobante.Trim & r._1_Folio & "(Sin valor Fiscal)"
@@ -1166,7 +1167,7 @@ Module CFDI33
                 crDiskFileDestinationOptions.DiskFileName = Archivo
                 NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
                 NewRPT.Export()
-                NewRPT.Dispose()
+                'NewRPT.Dispose()
 
                 Adjunto = New Mail.Attachment(Archivo, "PDF/pdf")
                 Mensaje.Attachments.Add(Adjunto)
@@ -1176,6 +1177,7 @@ Module CFDI33
                 Console.WriteLine("error:" & ex.Message)
             End Try
         Next
+        NewRPT.Dispose()
     End Sub
 
 End Module
