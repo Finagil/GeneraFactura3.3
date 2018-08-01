@@ -105,8 +105,11 @@ Module GneraFactura
                     CFDI33.NotificaCANA()
                     FacturasSinSERIE()
                 Case "TODO_WS"
-                    Console.WriteLine("Leyendo Folios CFDI ...")
-                    CFDI33.LeeFoliosFiscales()
+                    Console.WriteLine("Envía recibos de pago...")
+                    CFDI33.Envia_RecibosPAGO()
+
+                    'Console.WriteLine("Leyendo Folios CFDI ...")
+                    'CFDI33.LeeFoliosFiscales()
 
                     Console.WriteLine("Generando Avisos CFDI ...")
                     CFDI33.FacturarCFDI_AV(Date.Now.Date)
@@ -139,7 +142,7 @@ Module GneraFactura
                     Console.WriteLine("Notificaciones de cancelación...")
                     CFDI33.NotificaCANF()
                     CFDI33.NotificaCANA()
-                    Envia_RecibosPAGO()
+
                     FacturasSinSERIE()
             End Select
         End If
