@@ -51,8 +51,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=server-raid;Initial Catalog=Production;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="RutaXML" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\server-nas\Contabilidad CFDI\ARCHIVOS ADD CONTPAQi\CFDI_CLI\</Value>
+    </Setting>
     <Setting Name="RutaRecPago" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\RecibosPago\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

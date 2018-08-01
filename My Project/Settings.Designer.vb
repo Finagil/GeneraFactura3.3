@@ -207,7 +207,19 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\Contabilidad CFDI\ARCHIVOS ADD CONTPAQi\CFDI_CLI\")>  _
+        Public Property RutaXML() As String
+            Get
+                Return CType(Me("RutaXML"),String)
+            End Get
+            Set
+                Me("RutaXML") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\RecibosPago\")>  _
         Public Property RutaRecPago() As String
             Get
                 Return CType(Me("RutaRecPago"),String)

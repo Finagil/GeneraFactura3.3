@@ -6,6 +6,7 @@ Imports System.Net
 Imports System.Math
 Imports System.WeakReference
 Imports System.Xml
+Imports System.Text
 Module CFDI33
     Dim drUdis As DataRowCollection
     Dim nIDSerieA As Decimal = 0
@@ -453,6 +454,7 @@ Module CFDI33
         Dim F As System.IO.FileInfo()
         Dim contador As Integer
 
+
         If Directory.Exists(My.Settings.RutaFTP) = False Then
             Directory.CreateDirectory(My.Settings.RutaFTP)
         End If
@@ -477,6 +479,23 @@ Module CFDI33
                 If leeXML(resultado, "Valida").ToString = "SinError" Then
                     taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
                     taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
+
+                    Dim fecha As String = leeXML(resultado, "Fecha")
+                    Dim anio As Integer = CDate(fecha).Year
+                    Dim mes As Integer = CDate(fecha).Month
+                    Dim files As StreamWriter = Nothing
+
+                    If Directory.Exists(My.Settings.RutaXML & anio & "\" & mes) Then
+                        files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                        files.Write(resultado)
+                        files.Close()
+                    Else
+                        System.IO.Directory.CreateDirectory(My.Settings.RutaXML & anio & "\" & mes)
+                        files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                        files.Write(resultado)
+                        files.Close()
+                    End If
+
                 ElseIf leeXML(resultado, "Valida").ToString = "Error" Then
                     Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
                     rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
@@ -1164,7 +1183,7 @@ Module CFDI33
                 NewRPT.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
                 NewRPT.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat
                 Archivo = "C:\FILES\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
-                System.IO.File.Copy(Archivo, "\\server-nas\FacturasCFDI\RecibosPago\" & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
+                System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 crDiskFileDestinationOptions.DiskFileName = Archivo
                 NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
                 NewRPT.Export()
