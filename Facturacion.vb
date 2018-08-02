@@ -105,8 +105,6 @@ Module GneraFactura
                     CFDI33.NotificaCANA()
                     FacturasSinSERIE()
                 Case "TODO_WS"
-                    Console.WriteLine("Envía recibos de pago...")
-                    CFDI33.Envia_RecibosPAGO()
 
                     'Console.WriteLine("Leyendo Folios CFDI ...")
                     'CFDI33.LeeFoliosFiscales()

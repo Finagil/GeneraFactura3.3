@@ -1183,8 +1183,7 @@ Module CFDI33
                 NewRPT.SetDataSource(ds)
                 NewRPT.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
                 NewRPT.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat
-                Archivo = "C:\FILES\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
-                System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
+                Archivo = "C:\Files\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
                 crDiskFileDestinationOptions.DiskFileName = Archivo
                 NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
                 NewRPT.Export()
@@ -1192,6 +1191,7 @@ Module CFDI33
                 Adjunto = New Mail.Attachment(Archivo, "PDF/pdf")
                 Mensaje.Attachments.Add(Adjunto)
                 Servidor.Send(Mensaje)
+                System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 Console.WriteLine("Envio Exsitoso :" & Archivo)
             Catch ex As Exception
                 Console.WriteLine("error:" & ex.Message)
