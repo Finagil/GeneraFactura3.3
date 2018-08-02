@@ -479,25 +479,26 @@ Module CFDI33
                 If leeXML(resultado, "Valida").ToString = "SinError" Then
                     taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
                     taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
+                    If nombre_a(1) = "FIN940905AX7" Then
+                        Dim fecha As String = leeXML(resultado, "Fecha")
+                        Dim anio As Integer = CDate(fecha).Year
+                        Dim mes As Integer = CDate(fecha).Month
+                        Dim files As StreamWriter = Nothing
 
-                    Dim fecha As String = leeXML(resultado, "Fecha")
-                    Dim anio As Integer = CDate(fecha).Year
-                    Dim mes As Integer = CDate(fecha).Month
-                    Dim files As StreamWriter = Nothing
-
-                    If Directory.Exists(My.Settings.RutaXML & anio & "\" & mes) Then
-                        files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
-                        files.Write(resultado)
-                        files.Close()
-                    Else
-                        System.IO.Directory.CreateDirectory(My.Settings.RutaXML & anio & "\" & mes)
-                        files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
-                        files.Write(resultado)
-                        files.Close()
+                        If Directory.Exists(My.Settings.RutaXML & anio & "\" & mes) Then
+                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                            files.Write(resultado)
+                            files.Close()
+                        Else
+                            System.IO.Directory.CreateDirectory(My.Settings.RutaXML & anio & "\" & mes)
+                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                            files.Write(resultado)
+                            files.Close()
+                        End If
                     End If
 
                 ElseIf leeXML(resultado, "Valida").ToString = "Error" Then
-                    Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                        Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
                     rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                     rowMail.De = "CFDI@Finagil.com.mx"
