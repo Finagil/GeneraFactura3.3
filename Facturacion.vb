@@ -46,8 +46,9 @@ Module GneraFactura
                     CFDI33.FacturarCFDI("DIA")
                     CFDI33.FacturarCFDI("MANUAL")
                 Case "FACTURAS"
-                    Console.WriteLine("Generando CFDI Avio...")
-                    GeneraArchivosAvio()
+                    'Comenta AVio
+                    'Console.WriteLine("Generando CFDI Avio...")
+                    'GeneraArchivosAvio()
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
                     Console.WriteLine("Generando CFDI Finagil...")
@@ -79,8 +80,9 @@ Module GneraFactura
                     CFDI33.FacturarCFDI("PREPAGO")
                     CFDI33.FacturarCFDI("DIA")
 
-                    Console.WriteLine("Generando CFDI Avio...")
-                    GeneraArchivosAvio()
+                    'Comenta Avio
+                    'Console.WriteLine("Generando CFDI Avio...")
+                    'GeneraArchivosAvio()
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -116,8 +118,9 @@ Module GneraFactura
                     CFDI33.FacturarCFDI("PREPAGO")
                     CFDI33.FacturarCFDI("DIA")
 
-                    Console.WriteLine("Generando CFDI Avio...")
-                    GeneraArchivosAvio()
+                    'Comenta Avio
+                    'Console.WriteLine("Generando CFDI Avio...")
+                    'GeneraArchivosAvio()
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
