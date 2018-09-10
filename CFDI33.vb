@@ -840,6 +840,7 @@ Module CFDI33
         Dim TotalImpuestoEXE As Decimal = 0
         Dim Encabezado As ProduccionDS.CFDI_EncabezadoRow
         Dim Detalle As ProduccionDS.CFDI_DetalleRow
+        Dim Imp_Adic As ProduccionDS.CFDI_Impuestos_AdicionalesRow
         Dim f As StreamWriter
         Dim Col As DataColumn
         Dim i As Integer = 0
@@ -852,6 +853,7 @@ Module CFDI33
         Dim vTipoImpuesto As String = ""
         Dim vExento As String = ""
         Dim vLimpia As String = ""
+        Dim cad_imp_adic_total As String = ""
 
         CFDI_EncabezadoTableAdapter.FillByNoProcesadosFACT(Production_AUXDataSet.CFDI_Encabezado) 'LLENO ENCABEZADO
 
@@ -880,8 +882,14 @@ Module CFDI33
                 i += 1
 
                 ' Recorrido de Columnas o Campos de Tabla Encabezado 
+                Dim val As String = "SR"
                 For Each Col In Production_AUXDataSet.CFDI_Encabezado.Columns ' CONCATENO EL RENGLON DEL ENCABEZADO
 
+                    If Col.ColumnName = "192_Monto_TotalImp_Retenidos" Then
+                        If IsNothing(Encabezado(Col)) Then
+                            val = "CR"
+                        End If
+                    End If
 
                     If Col.ColumnName <> "Encabezado_Procesado" And Col.ColumnName <> "Fecha" Then
                         If Col.ColumnName <> "193_Monto_TotalImp_Trasladados" Then
@@ -893,8 +901,13 @@ Module CFDI33
                                 ' Cad += Encabezado(Col) & "|"     '   LINEA ORIGINAL SIN PIMPIAR 
                             End If
                         Else
-                            TotalImpuesto16 = Encabezado(Col)
-                            Cad += Encabezado(Col).ToString
+                            If val = "SR" Then
+                                TotalImpuesto16 = Encabezado(Col)
+                                Cad += Encabezado(Col).ToString
+                            Else
+                                'TotalImpuesto16 = Encabezado(Col)
+                                Cad += ""
+                            End If
                         End If
                         j += 1
                     End If
@@ -908,6 +921,18 @@ Module CFDI33
                 cpcero = 0
                 cexento = 0
                 For Each Detalle In Production_AUXDataSet.CFDI_Detalle.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
+
+                    ' Impuestos adicionales
+                    Dim taImpAdic As New ProduccionDSTableAdapters.CFDI_Impuestos_AdicionalesTableAdapter
+                    taImpAdic.Obt_Imp_Adic_FillBy(Production_AUXDataSet.CFDI_Impuestos_Adicionales, Encabezado._27_Serie_Comprobante, Encabezado._1_Folio)
+                    Dim cad_imp_adic As String
+
+                    If Production_AUXDataSet.CFDI_Impuestos_Adicionales.Rows.Count > 0 Then
+                        For Each Imp_Adic In Production_AUXDataSet.CFDI_Impuestos_Adicionales.Rows
+                            cad_imp_adic = "\" & Imp_Adic._1_Impuesto_TipoImpuesto & "|" & Imp_Adic._2_Impuesto_Descripcion & "|" & Imp_Adic._3_Impuesto_Monto_base & "|" & Imp_Adic._4_Impuesto_Monto_Impuesto & "|" & Imp_Adic._5_Impuesto_Clave & "|" & Imp_Adic._6_Impuesto_Tasa & "|" & Imp_Adic._7_Impuesto_Porcentaje.Trim & "||"
+                            cad_imp_adic_total = "RE|" & Imp_Adic._5_Impuesto_Clave & "|" & Imp_Adic._4_Impuesto_Monto_Impuesto & "||"
+                        Next
+                    End If
 
                     For Each Col In Production_AUXDataSet.CFDI_Detalle.Columns ' CONCATENO EL RENGLON DE DETALLE CON IMPUESTOS
 
@@ -957,6 +982,7 @@ Module CFDI33
                             End If
                         End If
                     Next
+                    Cad = Cad + cad_imp_adic
                     f.WriteLine(Cad)
                     Cad = "" 'LIPIO PARA SIGUIENTE LINEA
                 Next
@@ -974,31 +1000,35 @@ Module CFDI33
                     'f.WriteLine("¬TR|002|0.0000|0.000000|Exento")
                 End If
 
-                CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
-                If Production_AUXDataSet.CFDI_ComplementoPago.Rows.Count > 0 Then
-                    Cad = "¬*" ' PREPARO PARA DETALLES
-                    For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
-                        For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
-                            If Col.ColumnName = "18_DetalleAux_Misc16" Then
-                                Cad += Complemento(Col).ToString.Trim
-                                Exit For
-                            Else
-                                Cad += Complemento(Col).ToString.Trim & "|"
-                            End If
-                        Next
-                        f.WriteLine(Cad)
-                        Cad = "" 'LIPIO PARA SIGUIENTE LINEA
-                    Next
+                If cad_imp_adic_total <> "" Then
+                    f.WriteLine("¬" & cad_imp_adic_total)
                 End If
 
-                TotalImpuesto16 = 0
-                f.Close()
-                CFDI_EncabezadoTableAdapter.ProcesarFactura(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
-                contador += 1
-                If contador = 1 Then
-                    'Exit For
+                CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
+                    If Production_AUXDataSet.CFDI_ComplementoPago.Rows.Count > 0 Then
+                        Cad = "¬*" ' PREPARO PARA DETALLES
+                        For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
+                            For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
+                                If Col.ColumnName = "18_DetalleAux_Misc16" Then
+                                    Cad += Complemento(Col).ToString.Trim
+                                    Exit For
+                                Else
+                                    Cad += Complemento(Col).ToString.Trim & "|"
+                                End If
+                            Next
+                            f.WriteLine(Cad)
+                            Cad = "" 'LIPIO PARA SIGUIENTE LINEA
+                        Next
+                    End If
+
+                    TotalImpuesto16 = 0
+                    f.Close()
+                    CFDI_EncabezadoTableAdapter.ProcesarFactura(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
+                    contador += 1
+                    If contador = 1 Then
+                        'Exit For
+                    End If
                 End If
-            End If
         Next
 
         Console.WriteLine("Proceso Terminado, se Generaron: " + contador.ToString + " CFDI txt ")

@@ -1549,6 +1549,7 @@ Module GneraFactura
     Sub GeneraArchivosEXternas()
         Dim CFDI_H As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim CFDI_D As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
+        Dim taImprAdic As New ProduccionDSTableAdapters.CFDI_Impuestos_AdicionalesTableAdapter
         Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
         Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
         Dim ProducDS As New ProduccionDS
@@ -1721,8 +1722,13 @@ Module GneraFactura
             ROWheader._90_Cantidad_LineasFactura = NoLineas
             ROWheader._54_Monto_SubTotal = SubTT
             ROWheader._55_Monto_IVA = IVA
-            ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
-            ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
+            If taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) = 0 Then
+                ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
+                ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
+            Else
+                ROWheader._192_Monto_TotalImp_Retenidos = taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura)
+                ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA - ROWheader._192_Monto_TotalImp_Retenidos
+            End If
             ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, r.Moneda)
             ROWheader._114_Misc02 = "" ' contrato
             ROWheader._115_Misc03 = "" ' Cliente
