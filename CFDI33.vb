@@ -902,11 +902,15 @@ Module CFDI33
                             End If
                         Else
                             If val = "SR" Then
-                                TotalImpuesto16 = Encabezado(Col)
-                                Cad += Encabezado(Col).ToString
+                                If Not IsNothing(Encabezado(Col)) Then
+                                    TotalImpuesto16 = Encabezado(Col)
+                                    Cad += Encabezado(Col).ToString
+                                Else
+                                    Cad += ""
+                                End If
                             Else
-                                'TotalImpuesto16 = Encabezado(Col)
-                                Cad += ""
+                                    'TotalImpuesto16 = Encabezado(Col)
+                                    Cad += ""
                             End If
                         End If
                         j += 1
