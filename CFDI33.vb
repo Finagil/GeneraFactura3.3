@@ -1207,7 +1207,7 @@ Module CFDI33
                     Mensaje.To.Add(r.EMail2)
                 End If
 
-                Mensaje.Subject = "Recibo de Pago Finagil -" & r._27_Serie_Comprobante.Trim & r._1_Folio & "(Sin valor Fiscal)"
+                Mensaje.Subject = "Comprobante de Pago Finagil -" & r._27_Serie_Comprobante.Trim & r._1_Folio & "(Sin valor Fiscal)"
                 Mensaje.Body = "Estimado Cliente: " & r._42_Nombre_Receptor & "<br>" &
                         "Por este medio le hacemos el envio de su recibo de pago sin valor fiscal del contrato " & r._114_Misc02.Trim &
                         " por concepto de " & r._157_Misc45.Trim & "<br><br>Sin más por el momento agradecemos su atención y nos ponemos a su disposición en el teléfono 01 722 214 5533 ext. 1010 o al 01 800 727 7100, en caso de cualquier duda o comentario al respecto."
