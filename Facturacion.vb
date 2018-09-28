@@ -1195,8 +1195,8 @@ Module GneraFactura
                                 'End If
 
                                 If (Tipar = "F") And TipoPersona <> "F" Then
-                                    Select Case Mid(Datos(8), 1, 12)
-                                        Case "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
+                                    Select Case Datos(8).Trim
+                                        Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO"
                                             TipoImpuesto = "Exento"
                                     End Select
                                 End If
