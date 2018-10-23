@@ -140,8 +140,14 @@ Module GneraFactura
                     Console.WriteLine("Generando CFDI Pagos EKomercio...")
                     CFDI33.GeneraComplementoEkomercio()
 
+                    Console.WriteLine("Generando CFDI Nomina EKomercio...")
+                    CFDI33.GeneraRNominaekomercio()
+
                     Console.WriteLine("Subiendo Archivos EKomercio...")
                     CFDI33.SubeWS()
+
+                    Console.WriteLine("Subiendo Archivos Nomina EKomercio...")
+                    CFDI33.SubeWSN()
 
                     Console.WriteLine("Notificaciones de cancelación...")
                     CFDI33.NotificaCANF()
