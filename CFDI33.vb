@@ -981,7 +981,7 @@ Module CFDI33
     Sub GeneraRNominaekomercio()
         Dim Encabezado As ProduccionDS.CFDI_Encabezado_NominaRow
         Dim Complemento As ProduccionDS.CFDI_Complemento_NominaRow
-        Dim Cad_Nom As String = "~"
+
         Dim col As DataColumn
         Dim f As StreamWriter
 
@@ -991,6 +991,7 @@ Module CFDI33
         taEncabezado.Facturas_No_Procesadas_FillBy(Production_AUXDataSet.CFDI_Encabezado_Nomina)
 
         For Each Encabezado In Production_AUXDataSet.CFDI_Encabezado_Nomina.Rows
+            Dim Cad_Nom As String = "~"
             Dim subtotal As Double = 0
             Dim descuento As Double = 0
             f = New StreamWriter(My.Settings.RutaNomina & "eKomercio_" & Encabezado._3_RFC_Emisor & "_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
@@ -1043,9 +1044,9 @@ Module CFDI33
                     Cad_Nom = Cad_Nom
                 End If
             Next
+            taEncabezado.PrcesadoNomina(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
             f.WriteLine(Cad_Nom)
             f.Close()
-            taEncabezado.PrcesadoNomina(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
         Next
     End Sub
 
