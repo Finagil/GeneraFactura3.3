@@ -58,9 +58,15 @@ Module GneraFactura
                 Case "FACTURAS_EKO"
                     Console.WriteLine("Generando CFDI Facturas EKomercio...")
                     CFDI33.GeneraFacturaEkomercio()
+                Case "NOMINA_EKO"
+                    Console.WriteLine("Generando CFDI Nomina EKomercio...")
+                    CFDI33.GeneraRNominaekomercio()
                 Case "PAGOS_EKO"
                     Console.WriteLine("Generando CFDI Pagos EKomercio...")
                     CFDI33.GeneraComplementoEkomercio()
+                Case "WSKN"
+                    Console.WriteLine("Subiendo Archivos Nomina EKomercio...")
+                    CFDI33.SubeWSN()
                 Case "WSK"
                     Console.WriteLine("Subiendo Archivos EKomercio...")
                     CFDI33.SubeWS()
@@ -1666,7 +1672,7 @@ Module GneraFactura
                 NoLineas += 1
                 ROWdetail = ProducDS.CFDI_Detalle.NewCFDI_DetalleRow
                 ROWdetail._1_Linea_Descripcion = rr.Detalle
-                ROWdetail._2_Linea_Cantidad = 1
+                ROWdetail._2_Linea_Cantidad = rr.Cantidad
                 ROWdetail._3_Linea_Unidad = rr.Unidad
                 ROWdetail._4_Linea_PrecioUnitario = Math.Round(rr.Unitario, 4)
                 ROWdetail._5_Linea_Importe = Math.Round(rr.Importe, 4)

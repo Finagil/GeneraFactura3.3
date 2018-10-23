@@ -18,6 +18,7 @@ Module CFDI33
     Dim CFDI_EncabezadoTableAdapter As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
     Dim CFDI_DetalleTableAdapter As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
     Dim CFDI_ComplementoPagoTableAdapter As New ProduccionDSTableAdapters.CFDI_ComplementoPagoTableAdapter
+    Dim CFDI_EncabezadoNominaTableAdapter As New ProduccionDSTableAdapters.CFDI_Encabezado_NominaTableAdapter
 
     Sub FacturarCFDI(Tipo As String)
         Dim TaAvisos As New ProduccionDSTableAdapters.AvisosCFDITableAdapter
@@ -444,6 +445,150 @@ Module CFDI33
         Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
     End Sub
 
+    Sub SubeWSN()
+
+        Dim taFact As New ProduccionDSTableAdapters.CFDI_Encabezado_NominaTableAdapter
+        Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
+        Dim taCtrlUUID As New ProduccionDSTableAdapters.CFDI_ControlTimbresTableAdapter
+        Dim dsMail As New ProduccionDS
+
+        Dim D As System.IO.DirectoryInfo
+        Dim F As System.IO.FileInfo()
+        Dim contador As Integer
+
+
+        If Directory.Exists(My.Settings.RutaNomina) = False Then
+            Directory.CreateDirectory(My.Settings.RutaNomina)
+        End If
+
+        D = New System.IO.DirectoryInfo(My.Settings.RutaNomina)
+        F = D.GetFiles("*.txt")
+        For i As Integer = 0 To F.Length - 1
+
+            Console.WriteLine("Subiendo " & F(i).Name)
+            Dim cadena As StreamReader
+            cadena = New StreamReader(My.Settings.RutaNomina & F(i).Name)
+            Dim cadena2 As String = ""
+            cadena2 = cadena.ReadToEnd
+            Dim serv As WebReferenceNomina_Ek.WSCFDBuilderPlus
+            serv = New WebReferenceNomina_Ek.WSCFDBuilderPlus
+            Dim resultado As String = ""
+            Dim nombre_a() As String = F(i).Name.ToString.Split("_")
+            cadena.Close()
+
+
+            Try
+                resultado = serv.procesarTextoPlano("NOMCMO0616", "@NOMCMO0616", nombre_a(1), cadena2)
+                If leeXML(resultado, "Valida").ToString = "SinError" Then
+                    taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
+                    taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
+
+                ElseIf leeXML(resultado, "Valida").ToString = "Error" Then
+                    Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                    rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                    rowMail.De = "CFDI@Finagil.com.mx"
+                    rowMail.Para = "viapolo@finagil.com.mx"
+                    rowMail.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
+                    If leeXML(resultado, "Err").ToString.Length > 900 Then
+                        rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    Else
+                        rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    End If
+                    rowMail.Enviado = False
+                    rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                    rowMail.Attach = ""
+
+                    dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                    taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                    Dim rowMail2 As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                    rowMail2 = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                    rowMail2.De = "CFDI@Finagil.com.mx"
+                    rowMail2.Para = "ecacerest@finagil.com.mx"
+                    rowMail2.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
+                    If leeXML(resultado, "Err").ToString.Length > 900 Then
+                        rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    Else
+                        rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    End If
+                    rowMail2.Enviado = False
+                    rowMail2.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                    rowMail2.Attach = ""
+
+                    dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
+                    taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                    File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
+                End If
+            Catch ex As Exception
+                Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                rowMail.De = "CFDI@Finagil.com.mx"
+                rowMail.Para = "viapolo@finagil.com.mx"
+                rowMail.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
+                SysLog(ex.ToString, (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
+                If leeXML(resultado, "Err").ToString.Length > 900 Then
+                    rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, 900), (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
+                Else
+                    rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                    SysLog(leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1), (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
+                End If
+                rowMail.Enviado = False
+                rowMail.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail.Attach = ""
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                Dim rowMail2 As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                rowMail2 = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
+
+                rowMail2.De = "CFDI@Finagil.com.mx"
+                rowMail2.Para = "ecacerest@finagil.com.mx"
+                rowMail2.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
+                If leeXML(resultado, "Err").ToString.Length > 900 Then
+                    rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
+                Else
+                    rowMail2.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, leeXML(resultado, "Err").ToString.Length - 1)
+                End If
+                rowMail2.Enviado = False
+                rowMail2.fecha = Date.Now.Date.ToString("yyyy-MM-dd hh:mm:ss.fff")
+                rowMail2.Attach = ""
+
+                dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
+                taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
+            End Try
+            File.Copy(F(i).FullName, My.Settings.RutaNomina & "Backup\" & F(i).Name, True)
+            File.Delete(F(i).FullName)
+            contador += 1
+        Next
+        Console.WriteLine("Subieron: " + contador.ToString + " CFDI txt ")
+
+
+        '****Try
+        'resultado = serv.procesarTextoPlano("ekomercio", "aserri", nombre_a(1), encode(cadena2))
+        'resultado = serv.procesarTextoPlano("ekomercio", "aserri", "FGM790801SD7", cadena2)
+        'resultado = serv.procesarTextoPlano("ekomercio", "aserri", nombre_a(1), cadena2)
+        'Catch e As Exception
+        'End Try
+        'Next
+    End Sub
+
+    Public Function encode(ByVal str As String)
+        Dim utf8Encoding As New System.Text.UTF8Encoding
+        Dim encodedString() As Byte
+
+        encodedString = utf8Encoding.GetBytes(str)
+
+        Return encodedString.ToString()
+    End Function
+
     Sub SubeWS()
         Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
@@ -833,6 +978,77 @@ Module CFDI33
         Next
     End Function
 
+    Sub GeneraRNominaekomercio()
+        Dim Encabezado As ProduccionDS.CFDI_Encabezado_NominaRow
+        Dim Complemento As ProduccionDS.CFDI_Complemento_NominaRow
+        Dim Cad_Nom As String = "~"
+        Dim col As DataColumn
+        Dim f As StreamWriter
+
+        Dim taEncabezado As New ProduccionDSTableAdapters.CFDI_Encabezado_NominaTableAdapter
+        Dim taComplemento As New ProduccionDSTableAdapters.CFDI_Complemento_NominaTableAdapter
+
+        taEncabezado.Facturas_No_Procesadas_FillBy(Production_AUXDataSet.CFDI_Encabezado_Nomina)
+
+        For Each Encabezado In Production_AUXDataSet.CFDI_Encabezado_Nomina.Rows
+            Dim subtotal As Double = 0
+            Dim descuento As Double = 0
+            f = New StreamWriter(My.Settings.RutaNomina & "eKomercio_" & Encabezado._3_RFC_Emisor & "_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
+            For Each col In Production_AUXDataSet.CFDI_Encabezado_Nomina.Columns
+                If col.ColumnName <> "Encabezado_Procesado" And col.ColumnName <> "Fecha" Then
+
+                    If col.ColumnName = "31_Hora" Then
+                        'Encabezado(col) = "[Hora]"
+                    ElseIf col.ColumnName = "55_Monto_IVA" Then
+                        Encabezado(col) = "0"
+                    ElseIf col.ColumnName = "144_Misc32" Then
+                        Encabezado(col) = "P01"
+                    End If
+
+                    If col.ColumnName <> "193_Monto_TotalImp_Trasladados" Then
+                        If col.ColumnName <> "Guid" Then
+                            Cad_Nom += Encabezado(col).ToString + "|"
+                        End If
+                    Else
+                        If col.ColumnName <> "Guid" Then
+                            Cad_Nom += Encabezado(col).ToString
+                        End If
+                    End If
+                    If col.ColumnName = "54_Monto_SubTotal" Then
+                        subtotal = Encabezado(col).ToString
+                    ElseIf col.ColumnName = "89_Monto_Descuento" Then
+                        descuento = Encabezado(col).ToString
+                    End If
+                End If
+            Next
+            'Cad_Nom = Cad_Nom + "[@@CRLF]¬Pago de nómina|1|ACT|" + subtotal.ToString + "|" + subtotal.ToString + "|||||||||||84111505|||" + descuento.ToString + "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||[@@CRLF]"
+            Cad_Nom = Cad_Nom + "[@@CRLF]¬Pago de nómina|1|ACT|" + subtotal.ToString + "|" + subtotal.ToString + "|||||||||||84111505|||" + descuento.ToString + "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||[@@CRLF]"
+            taComplemento.Obtien_FAC_FillBy(Production_AUXDataSet.CFDI_Complemento_Nomina, Encabezado._27_Serie_Comprobante, Encabezado._1_Folio)
+            Dim cont As Integer = 0
+            For Each Complemento In Production_AUXDataSet.CFDI_Complemento_Nomina.Rows
+                cont += 1
+                For Each col In Production_AUXDataSet.CFDI_Complemento_Nomina.Columns
+                    If col.ColumnName <> "id" And col.ColumnName <> "serie" And col.ColumnName <> "folio" Then
+                        If col.ColumnName <> "Comp_18" Then
+                            Cad_Nom += Complemento(col).ToString + "|"
+                        Else
+                            Cad_Nom += Complemento(col).ToString
+                        End If
+                    End If
+                Next
+
+                If Production_AUXDataSet.CFDI_Complemento_Nomina.Rows.Count <> cont Then
+                    Cad_Nom = Cad_Nom + "[@@CRLF]"
+                Else
+                    Cad_Nom = Cad_Nom
+                End If
+            Next
+            f.WriteLine(Cad_Nom)
+            f.Close()
+            taEncabezado.PrcesadoNomina(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
+        Next
+    End Sub
+
     Sub GeneraFacturaEkomercio()
         Dim Cad As String = "~"
         Dim TotalImpuesto16 As Decimal = 0.0
@@ -993,10 +1209,14 @@ Module CFDI33
                 'MsgBox(" Filas: " + cfilas.ToString + " Exentas: " + cexento.ToString)
 
                 If ctasa > 0 Then
-                    f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.160000|Tasa")
+                    If TotalImpuesto16 > 0 Then
+                        f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.160000|Tasa")
+                    Else
+                        f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.000000|Tasa")
+                    End If
                 End If
 
-                If cpcero > 0 Then
+                    If cpcero > 0 Then
                     f.WriteLine("¬TR|002|0.0000|0.000000|Tasa")
                 End If
 

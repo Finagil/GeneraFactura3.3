@@ -105,8 +105,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid\;Initial Catalog=Production;Persist Security Info=True;Us"& _ 
-            "er ID=User_PRO;Password=User_PRO2015")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid;Initial Catalog=Production;Persist Security Info=True;Use"& _ 
+            "r ID=User_PRO;Password=User_PRO2015")>  _
         Public ReadOnly Property ConnectionStringFACTURA() As String
             Get
                 Return CType(Me("ConnectionStringFACTURA"),String)
@@ -198,8 +198,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-RAID\;Initial Catalog=Production;User ID=User_PRO;Password=Use"& _ 
-            "r_PRO2015")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid;Initial Catalog=Production;User ID=finagil;Password=finag"& _ 
+            "il")>  _
         Public ReadOnly Property ProductionConnectionString() As String
             Get
                 Return CType(Me("ProductionConnectionString"),String)
@@ -220,7 +220,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\RecibosPago\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\RecibosPago\")>  _
         Public Property RutaRecPago() As String
             Get
                 Return CType(Me("RutaRecPago"),String)
@@ -228,6 +228,28 @@ Namespace My
             Set
                 Me("RutaRecPago") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FTPEkomercioNomina\")>  _
+        Public Property RutaNomina() As String
+            Get
+                Return CType(Me("RutaNomina"),String)
+            End Get
+            Set
+                Me("RutaNomina") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx")>  _
+        Public ReadOnly Property GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus() As String
+            Get
+                Return CType(Me("GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus"),String)
+            End Get
         End Property
     End Class
 End Namespace

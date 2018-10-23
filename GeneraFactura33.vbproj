@@ -127,6 +127,11 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Web References\WebReferenceNomina_Ek\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\WebReference_Ek\Reference.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +175,14 @@
     <None Include="ProduccionDS.xss">
       <DependentUpon>ProduccionDS.xsd</DependentUpon>
     </None>
+    <None Include="Web References\WebReferenceNomina_Ek\EnValidacionCertificado.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WebReferenceNomina_Ek\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Web References\WebReferenceNomina_Ek\WSCFDBuilderPlus.wsdl" />
     <None Include="Web References\WebReference_Ek\EnValidacionCertificado.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -193,6 +206,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebReferenceNomina_Ek\</RelPath>
+      <UpdateFromURL>http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>MySettings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\WebReference_Ek\</RelPath>
@@ -210,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\WebReferenceNomina_Ek\WSCFDBuilderPlus.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
