@@ -106,11 +106,7 @@ Module CFDI33
                 cFechaPago = FechaProc.ToString("yyyyMMdd")
                 TaAvisos.FillByPrepagos(ProdDS.AvisosCFDI, cFechaPago, "20171201")'Fecha de Salida a Producion
             Case "DIA" 'avisos de vencimiento del dia
-                If Date.Now.Hour >= 21 Then 'se factura todo lo que resta y no se aplico nada
-                    cFechaPago = FechaProc.ToString("yyyyMMdd")
-                Else
-                    cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd")
-                End If
+                cFechaPago = FechaProc.AddDays(-1).ToString("yyyyMMdd") 'se factura todo lo que resta y no se aplico nada de un dia antes de la fecha de trabajo
                 TaAvisos.FillporDIA(ProdDS.AvisosCFDI, cFechaPago)
             Case "ANTERIORES" ' avisos generados despues de su vencimiento
                 If Date.Now.Hour >= 21 Then 'se factura todo lo que resta y no se aplico nada
