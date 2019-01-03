@@ -9,8 +9,8 @@ Imports System.Xml
 Imports System.Text
 Module CFDI33
     Dim drUdis As DataRowCollection
-    Dim nIDSerieA As Decimal = 0
-    Dim nIDSerieMXL As Decimal = 0
+    'Dim nIDSerieA As Decimal = 0
+    'Dim nIDSerieMXL As Decimal = 0
     Dim cSerie As String = ""
     Dim cSucursal As String = ""
     Dim nTasaIVACliente As Decimal = 0
@@ -19,6 +19,7 @@ Module CFDI33
     Dim CFDI_DetalleTableAdapter As New ProduccionDSTableAdapters.CFDI_DetalleTableAdapter
     Dim CFDI_ComplementoPagoTableAdapter As New ProduccionDSTableAdapters.CFDI_ComplementoPagoTableAdapter
     Dim CFDI_EncabezadoNominaTableAdapter As New ProduccionDSTableAdapters.CFDI_Encabezado_NominaTableAdapter
+    Dim Tafolios As New ProduccionDSTableAdapters.TraspasosAvioCCTableAdapter
 
     Sub FacturarCFDI(Tipo As String)
         Dim TaAvisos As New ProduccionDSTableAdapters.AvisosCFDITableAdapter
@@ -95,8 +96,8 @@ Module CFDI33
         ' Toma el número consecutivo de facturas de pago -que depende de la Serie- y lo incrementa en uno
 
         drSerie = dsAgil.Tables("Series").Rows(0)
-        nIDSerieA = drSerie("IDSerieA")
-        nIDSerieMXL = drSerie("IDSerieMXL")
+        'nIDSerieA = drSerie("IDSerieA")
+        'nIDSerieMXL = drSerie("IDSerieMXL")
 
         ' Solo necesito saber el número de elementos que tiene el DataGridView1
         Select Case Tipo.ToUpper
@@ -172,20 +173,22 @@ Module CFDI33
 
             If nMontoPago > 3 Then
                 If cSerie = "A" Then
-                    nIDSerieA = nIDSerieA + 1
-                    nRecibo = nIDSerieA
+                    'nIDSerieA = nIDSerieA + 1
+                    nRecibo = Tafolios.SerieA
                 ElseIf cSerie = "MXL" Then
-                    nIDSerieMXL = nIDSerieMXL + 1
-                    nRecibo = nIDSerieMXL
+                    'nIDSerieMXL = nIDSerieMXL + 1
+                    nRecibo = Tafolios.SerieMXL
                 End If
                 MetodoPago = "PPD"
                 cLetra = r.Letra
                 Acepagov(cAnexo, cLetra, nMontoPago, nMoratorios, nIvaMoratorios, cBanco, cCheque, dtMovimientos, cFechaPago, cFechaPago, cSerie, nRecibo, InstrumentoMonetario, FechaProc, MetodoPago)
 
                 If cSerie = "A" And nRecibo <> 0 Then
-                    strUpdate = "UPDATE Llaves SET IDSerieA = " & nRecibo
+                    'strUpdate = "UPDATE Llaves SET IDSerieA = " & nRecibo
+                    Tafolios.ConsumeSerieA()
                 ElseIf cSerie = "MXL" And nRecibo <> 0 Then
-                    strUpdate = "UPDATE Llaves SET IDSerieMXL = " & nRecibo
+                    'strUpdate = "UPDATE Llaves SET IDSerieMXL = " & nRecibo
+                    Tafolios.ConsumeSerieMXL()
                 End If
                 TaAvisos.FacturarAviso(True, cSerie.Trim, nRecibo, r.Factura, r.Anexo)
                 cm1 = New SqlCommand(strUpdate, cnAgil)
@@ -203,20 +206,20 @@ Module CFDI33
     End Sub
 
     Sub FacturarCFDI_AV(FechaProc As Date)
-        Dim Ta As New ProduccionDSTableAdapters.TraspasosAvioCCTableAdapter
+
         Dim t As New ProduccionDS.TraspasosAvioCCDataTable
         Dim nRecibo As Integer
         Dim cRenglon As String
         Dim FechaS As String = FechaProc.ToString("yyyyMMdd")
 
-        Ta.Fill(t, FechaS)
+        Tafolios.Fill(t, FechaS)
         For Each r As ProduccionDS.TraspasosAvioCCRow In t.Rows
             If r.Sucursal = "04" Then
                 cSerie = "MXL"
-                nRecibo = Ta.SerieMXL
+                nRecibo = Tafolios.SerieMXL
             Else
                 cSerie = "A"
-                nRecibo = Ta.SerieA
+                nRecibo = Tafolios.SerieA
             End If
 
 
@@ -275,11 +278,11 @@ Module CFDI33
             stmWriter.Close()
 
             If r.Sucursal = "04" Then
-                Ta.ConsumeSerieMXL()
+                Tafolios.ConsumeSerieMXL()
             Else
-                Ta.ConsumeSerieA()
+                Tafolios.ConsumeSerieA()
             End If
-            Ta.FacturarTraspaso(True, cSerie, nRecibo, r.id_Traspaso)
+            Tafolios.FacturarTraspaso(True, cSerie, nRecibo, r.id_Traspaso)
         Next
     End Sub
 
