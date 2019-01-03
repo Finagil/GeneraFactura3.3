@@ -484,6 +484,8 @@ Module GneraFactura
         Dim DatosFinagil() As String
         Dim f2 As System.IO.StreamReader
         Dim fecha As New DateTime
+        Dim fecha_pago As New DateTime
+        fecha_pago = Nothing
         Dim horas As Integer
         Dim IvaAux As Decimal
         Dim Tipar As String = ""
@@ -584,6 +586,9 @@ Module GneraFactura
                             End If
                             Metodo_Pago = Datos(2)
                             FormaPago = Datos(3)
+                            If Datos.Length > 5 Then
+                                fecha_pago = Datos(5)
+                            End If
                         Case "H3"
                             'Aviso = CFDI_H.SacaAvisoCFDI(SerieORG, FolioORG)
                             If Datos(2).Length <> 10 Then
@@ -913,9 +918,13 @@ Module GneraFactura
                         NoPago = CFDI_H.NoPago(GUID)
 
                         'CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, "REF_NO OPRACION", "RFC CEUNTA CLIENTE", "banco cliente", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                            'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                            CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        If fecha_pago <> Nothing Then
+                            CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha_pago.ToString("yyyy/MM/dd") + "T12:00:00", FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        Else
+                            CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        End If
+                        'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
                             'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                             CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                             'CFDI_H.ConsumeFolio()
