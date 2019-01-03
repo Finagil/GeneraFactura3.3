@@ -184,7 +184,11 @@ Module GneraFactura
         Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
         Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
 
-        fecha = Date.Now.AddDays(-1)
+        If Date.Now.Day <= 3 Then
+            fecha = Date.Now.AddDays(Date.Now.Day * -1)
+        Else
+            fecha = Date.Now.AddDays(-1)
+        End If
         Detalles.QuitarPagosEfectivo()
         '***************************************************************
         'quita seguros que nos sean de guanajuato y michoacan haste que se hagan dos conceptos de seguros
