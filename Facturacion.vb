@@ -77,13 +77,14 @@ Module GneraFactura
                 Case "TODO_FTP"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
-
-                    Console.WriteLine("Generando Avisos CFDI ...")
-                    CFDI33.FacturarCFDI_AV(Date.Now.Date)
-                    CFDI33.FacturarCFDI("PORVENCER")
-                    CFDI33.FacturarCFDI("ANTERIORES")
-                    CFDI33.FacturarCFDI("PREPAGO")
-                    CFDI33.FacturarCFDI("DIA")
+                    If Date.Now.Hour >= 20 Then 'se ocupa despues de las 8pm
+                        Console.WriteLine("Generando Avisos CFDI ...")
+                        CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                        CFDI33.FacturarCFDI("PORVENCER")
+                        CFDI33.FacturarCFDI("ANTERIORES")
+                        CFDI33.FacturarCFDI("PREPAGO")
+                        CFDI33.FacturarCFDI("DIA")
+                    End If
 
                     Console.WriteLine("Generando CFDI Avio...")
                     GeneraArchivosAvio()
@@ -114,13 +115,14 @@ Module GneraFactura
 
                     'Console.WriteLine("Leyendo Folios CFDI ...")
                     'CFDI33.LeeFoliosFiscales()
-
-                    Console.WriteLine("Generando Avisos CFDI ...")
-                    CFDI33.FacturarCFDI_AV(Date.Now.Date)
-                    CFDI33.FacturarCFDI("PORVENCER")
-                    CFDI33.FacturarCFDI("ANTERIORES")
-                    CFDI33.FacturarCFDI("PREPAGO")
-                    CFDI33.FacturarCFDI("DIA")
+                    If Date.Now.Hour >= 20 Then 'se ocupa despues de las 8pm
+                        Console.WriteLine("Generando Avisos CFDI ...")
+                        CFDI33.FacturarCFDI_AV(Date.Now.Date)
+                        CFDI33.FacturarCFDI("PORVENCER")
+                        CFDI33.FacturarCFDI("ANTERIORES")
+                        CFDI33.FacturarCFDI("PREPAGO")
+                        CFDI33.FacturarCFDI("DIA")
+                    End If
 
                     Console.WriteLine("Generando CFDI Avio...")
                     GeneraArchivosAvio()
