@@ -191,10 +191,10 @@ Module CFDI33
                     Tafolios.ConsumeSerieMXL()
                 End If
                 TaAvisos.FacturarAviso(True, cSerie.Trim, nRecibo, r.Factura, r.Anexo)
-                cm1 = New SqlCommand(strUpdate, cnAgil)
-                cnAgil.Open()
-                cm1.ExecuteNonQuery()
-                cnAgil.Close()
+                'cm1 = New SqlCommand(strUpdate, cnAgil)
+                'cnAgil.Open()
+                'cm1.ExecuteNonQuery()
+                'cnAgil.Close()
             End If
         Next
 

@@ -937,7 +937,7 @@ Module GneraFactura
                         File.Delete(F(i).FullName)
 
                     Catch ex As Exception
-                        EnviaCorreoFASE("Desarrollo", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo)
+                        EnviaCorreoFASE("Desarrollo", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "Error Factura TipoCredito : " & Tipar & vbCrLf & " Anexo : " & cAnexo & " " & ex.Message)
                         ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                     End Try
@@ -1227,8 +1227,8 @@ Module GneraFactura
                                 'End If
 
                                 If (Tipar = "F") And TipoPersona <> "F" Then
-                                    Select Case Datos(8).Trim
-                                        Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO"
+                                    Select Case Concepto.Trim
+                                        Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO", "INTERES SEGURO VENCIMIENTO"
                                             TipoImpuesto = "Exento"
                                     End Select
                                 End If
