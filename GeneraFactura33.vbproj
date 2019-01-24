@@ -183,6 +183,9 @@
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
     <None Include="Web References\WebReferenceNomina_Ek\WSCFDBuilderPlus.wsdl" />
+    <None Include="Web References\WebReference_Ek\clsRespuestaConsultaAcuses_DIAN.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\WebReference_Ek\EnValidacionCertificado.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>

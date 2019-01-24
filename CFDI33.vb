@@ -616,10 +616,19 @@ Module CFDI33
             serv = New WebReference_Ek.WSCFDBuilderPlus
             Dim resultado As String = ""
             Dim nombre_a() As String = F(i).Name.ToString.Split("_")
+            Dim time_inicio, time_final As DateTime
+            Dim file_log As New System.IO.FileStream(My.Settings.RutaFTP & "eventos_ws.log", FileMode.Append, FileAccess.Write)
+            Dim objStream As New StreamWriter(file_log)
             cadena.Close()
 
             Try
+                time_inicio = Date.Now.ToLongTimeString
                 resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
+                time_final = Date.Now.ToLongTimeString
+
+
+
+
                 If leeXML(resultado, "Valida").ToString = "SinError" Then
                     taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
                     taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
@@ -641,8 +650,12 @@ Module CFDI33
                         End If
                     End If
 
+                    objStream.WriteLine("Archivo procesado: " & F(i).Name & " Inicio: " & time_inicio.ToString & " Fin: " & time_final.ToString)
+                    objStream.Close()
+                    file_log.Close()
+
                 ElseIf leeXML(resultado, "Valida").ToString = "Error" Then
-                        Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
+                    Dim rowMail As ProduccionDS.GEN_Correos_SistemaFinagilRow
                     rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                     rowMail.De = "CFDI@Finagil.com.mx"
@@ -677,6 +690,10 @@ Module CFDI33
 
                     dsMail.GEN_Correos_SistemaFinagil.Rows.Add(rowMail2)
                     taMail.Update(dsMail.GEN_Correos_SistemaFinagil)
+
+                    objStream.WriteLine("Archivo procesado: " & F(i).Name & " Inicio: " & time_inicio.ToString & " Fin: " & time_final.ToString & " Error: " & resultado)
+                    objStream.Close()
+                    file_log.Close()
 
                     File.Copy(F(i).FullName, My.Settings.NoPasa & "Errores\" & F(i).Name, True)
                 End If
