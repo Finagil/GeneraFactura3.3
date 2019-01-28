@@ -77,7 +77,7 @@ Module GneraFactura
                 Case "TODO_FTP"
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
-                    If Date.Now.Hour >= 18 And Date.Now.Hour <= 9 Then 'se ocupa despues de las 6pm y antes de las 9 am
+                    If Date.Now.Hour >= 18 Or Date.Now.Hour <= 9 Then 'se ocupa despues de las 6pm y antes de las 9 am
                         Console.WriteLine("Generando Avisos CFDI ...")
                         CFDI33.FacturarCFDI_AV(Date.Now.Date)
                         CFDI33.FacturarCFDI("PORVENCER")
@@ -115,7 +115,7 @@ Module GneraFactura
 
                     'Console.WriteLine("Leyendo Folios CFDI ...")
                     'CFDI33.LeeFoliosFiscales()
-                    If Date.Now.Hour >= 18 And Date.Now.Hour <= 9 Then 'se ocupa despues de las 6pm y antes de las 9 am
+                    If Date.Now.Hour >= 18 Or Date.Now.Hour <= 9 Then 'se ocupa despues de las 6pm y antes de las 9 am
                         Console.WriteLine("Generando Avisos CFDI ...")
                         CFDI33.FacturarCFDI_AV(Date.Now.Date)
                         CFDI33.FacturarCFDI("PORVENCER")
