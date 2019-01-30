@@ -1228,7 +1228,7 @@ Module GneraFactura
 
                                 If (Tipar = "F") And TipoPersona <> "F" Then
                                     Select Case Concepto.Trim
-                                        Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO", "INTERES SEGURO VENCIMIENTO"
+                                        Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO", "INTERES SEGURO VENCIMIENTO", "INTERES OTROS ADEUDOS VENCIMIENTO"
                                             TipoImpuesto = "Exento"
                                     End Select
                                 End If
