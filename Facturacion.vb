@@ -48,10 +48,8 @@ Module GneraFactura
                     CFDI33.FacturarCFDI("DIA")
                     CFDI33.FacturarCFDI("MANUAL")
                 Case "FACTURAS"
-
-                    '//**Bloqueo de avios
-                    'Console.WriteLine("Generando CFDI Avio...")
-                    'GeneraArchivosAvio()
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -91,9 +89,8 @@ Module GneraFactura
                         CFDI33.FacturarCFDI("DIA")
                     End If
 
-                    '//**Bloqueo de avios
-                    'Console.WriteLine("Generando CFDI Avio...")
-                    'GeneraArchivosAvio()
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -130,9 +127,8 @@ Module GneraFactura
                         CFDI33.FacturarCFDI("DIA")
                     End If
 
-                    '//**Bloqueo de avios
-                    'Console.WriteLine("Generando CFDI Avio...")
-                    'GeneraArchivosAvio()
+                    Console.WriteLine("Generando CFDI Avio...")
+                    GeneraArchivosAvio()
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -196,14 +192,14 @@ Module GneraFactura
         If Date.Now.Day <= 3 Then
             fecha = Date.Now.AddDays(Date.Now.Day * -1)
         Else
-            fecha = Date.Now.AddDays(-1)
+            fecha = Date.Now
         End If
         Detalles.QuitarPagosEfectivo()
         '***************************************************************
         'quita seguros que nos sean de guanajuato y michoacan haste que se hagan dos conceptos de seguros
         Detalles.FillBySeguro(DET)
         For Each rr As GeneraFactura.ProduccionDS.FacturasAvioDetalleRow In DET.Rows
-            Detalles.Facturar("N/A", rr.Anexo, rr.Ciclo, rr.FechaFinal, rr.Concepto)
+            Detalles.Facturar(False, "N/A", rr.Anexo, rr.Ciclo, rr.FechaFinal, rr.Concepto)
         Next
         '***************************************************************
         Detalles.QuitarPagosEfectivo()
@@ -294,7 +290,8 @@ Module GneraFactura
                     Or Trim(rr.Concepto) = "VALE" _
                     Or Trim(rr.Concepto) = "ASISTENCIA" _
                     Or Trim(rr.Concepto) = "INTEGRACION" _
-                    Or Trim(rr.Concepto) = "ANALISIS DE SUELOS" Then
+                    Or Trim(rr.Concepto) = "ANALISIS DE SUELOS" _
+                    Or Trim(rr.Factura) = "N/A" Then
                     Fega += rr.FEGA
                 Else
                     ContLin += 1
@@ -366,7 +363,7 @@ Module GneraFactura
                     ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
                 End If
 
-                RegAfec = Detalles.Facturar("AV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, rr.FechaFinal, Trim(rr.Concepto))
+                RegAfec = Detalles.Facturar(True, "AV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, rr.FechaFinal, Trim(rr.Concepto))
                 If RegAfec = 0 Then
                     'EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
                 End If
