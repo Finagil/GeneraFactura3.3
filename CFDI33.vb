@@ -592,6 +592,7 @@ Module CFDI33
         Dim taFact As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim taMail As New ProduccionDSTableAdapters.GEN_Correos_SistemaFinagilTableAdapter
         Dim taCtrlUUID As New ProduccionDSTableAdapters.CFDI_ControlTimbresTableAdapter
+        Dim taInfo100n As New Info100DSTableAdapters.CFDI_EXTERNOTableAdapter
         Dim dsMail As New ProduccionDS
 
         Dim D As System.IO.DirectoryInfo
@@ -626,11 +627,11 @@ Module CFDI33
                 resultado = serv.procesarTextoPlano("CFDICMO0617", "@CFDICMO0617", nombre_a(1), cadena2)
                 time_final = Date.Now.ToLongTimeString
 
-
-
-
                 If leeXML(resultado, "Valida").ToString = "SinError" Then
                     taFact.UpdateGUID(leeXML(resultado, "UUID"), leeXML(resultado, "Folio"), leeXML(resultado, "Serie"))
+                    If leeXML(resultado, "Serie") = "F" Then
+                        taInfo100n.ActualizaUUID_UpdateQuery(leeXML(resultado, "UUID"), leeXML(resultado, "Serie"), leeXML(resultado, "Folio"))
+                    End If
                     taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
                     If nombre_a(1) = "FIN940905AX7" Then
                         Dim fecha As String = leeXML(resultado, "Fecha")

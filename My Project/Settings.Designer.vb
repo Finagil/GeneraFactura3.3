@@ -251,6 +251,17 @@ Namespace My
                 Return CType(Me("GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid2;Initial Catalog=ComunInfo100;Persist Security Info=True;"& _ 
+            "User ID=sa;Password=c3r0&v4n")>  _
+        Public ReadOnly Property ComunInfo100cs() As String
+            Get
+                Return CType(Me("ComunInfo100cs"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

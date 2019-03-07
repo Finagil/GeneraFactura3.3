@@ -97,6 +97,11 @@
     <Compile Include="CFDI33.vb" />
     <Compile Include="Funciones.vb" />
     <Compile Include="Facturacion.vb" />
+    <Compile Include="Info100DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Info100DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="mAcePagoV.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -153,6 +158,17 @@
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Info100DS.xsc">
+      <DependentUpon>Info100DS.xsd</DependentUpon>
+    </None>
+    <None Include="Info100DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Info100DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Info100DS.xss">
+      <DependentUpon>Info100DS.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

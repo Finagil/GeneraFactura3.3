@@ -63,5 +63,13 @@
     <Setting Name="GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</Value>
     </Setting>
+    <Setting Name="ComunInfo100cs" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=server-raid2;Initial Catalog=ComunInfo100;Persist Security Info=True;User ID=sa;Password=c3r0&amp;amp;v4n&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=server-raid2;Initial Catalog=ComunInfo100;Persist Security Info=True;User ID=sa;Password=c3r0&amp;v4n</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
