@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\CFDIbackup\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\CFDIbackup\")>  _
         Public Property RutaBackup() As String
             Get
                 Return CType(Me("RutaBackup"),String)
@@ -80,7 +80,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\")>  _
         Public Property NoPasa() As String
             Get
                 Return CType(Me("NoPasa"),String)
@@ -92,7 +92,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("r:\ORGtxt\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\ORGtxt\")>  _
         Public Property RutaOrigen() As String
             Get
                 Return CType(Me("RutaOrigen"),String)
@@ -115,7 +115,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("r:\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\")>  _
         Public Property Raiz() As String
             Get
                 Return CType(Me("Raiz"),String)
@@ -127,7 +127,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\ORGtxt\Complementos\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\ORGtxt\Complementos\")>  _
         Public Property Complementos() As String
             Get
                 Return CType(Me("Complementos"),String)
@@ -139,7 +139,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FTPEkomercio\Backup\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\FTPEkomercio\Backup\")>  _
         Public Property BackupEKO() As String
             Get
                 Return CType(Me("BackupEKO"),String)
@@ -151,7 +151,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FTPEkomercio\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\FTPEkomercio\")>  _
         Public Property FtpDatos() As String
             Get
                 Return CType(Me("FtpDatos"),String)
@@ -163,7 +163,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FoliosEkomercio\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\FoliosEkomercio\")>  _
         Public Property RutaFolios() As String
             Get
                 Return CType(Me("RutaFolios"),String)
@@ -175,7 +175,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FTPEkomercio\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\FTPEkomercio\")>  _
         Public Property RutaFTP() As String
             Get
                 Return CType(Me("RutaFTP"),String)
@@ -198,8 +198,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid;Initial Catalog=Production;User ID=finagil;Password=finag"& _ 
-            "il")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=server-raid2;Initial Catalog=Production;User ID=finagil;Password=fina"& _ 
+            "gil")>  _
         Public ReadOnly Property ProductionConnectionString() As String
             Get
                 Return CType(Me("ProductionConnectionString"),String)
@@ -220,7 +220,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\RecibosPago\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\RecibosPago\")>  _
         Public Property RutaRecPago() As String
             Get
                 Return CType(Me("RutaRecPago"),String)
@@ -232,7 +232,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("R:\FacturasCFDI\FTPEkomercioNomina\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-nas\FacturasCFDI\FTPEkomercioNomina\")>  _
         Public Property RutaNomina() As String
             Get
                 Return CType(Me("RutaNomina"),String)

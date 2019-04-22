@@ -6,13 +6,13 @@
       <Value Profile="(Default)">ecacerest@finagil.com.mx</Value>
     </Setting>
     <Setting Name="RutaBackup" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\CFDIbackup\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\CFDIbackup\</Value>
     </Setting>
     <Setting Name="NoPasa" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\</Value>
     </Setting>
     <Setting Name="RutaOrigen" Type="System.String" Scope="User">
-      <Value Profile="(Default)">r:\ORGtxt\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\ORGtxt\</Value>
     </Setting>
     <Setting Name="ConnectionStringFACTURA" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -23,22 +23,22 @@
       <Value Profile="(Default)">Data Source=server-raid2;Initial Catalog=Production;Persist Security Info=True;User ID=User_PRO;Password=User_PRO2015</Value>
     </Setting>
     <Setting Name="Raiz" Type="System.String" Scope="User">
-      <Value Profile="(Default)">r:\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\</Value>
     </Setting>
     <Setting Name="Complementos" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\ORGtxt\Complementos\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\ORGtxt\Complementos\</Value>
     </Setting>
     <Setting Name="BackupEKO" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\FTPEkomercio\Backup\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\FTPEkomercio\Backup\</Value>
     </Setting>
     <Setting Name="FtpDatos" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\FTPEkomercio\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\FTPEkomercio\</Value>
     </Setting>
     <Setting Name="RutaFolios" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\FoliosEkomercio\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\FoliosEkomercio\</Value>
     </Setting>
     <Setting Name="RutaFTP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\FTPEkomercio\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\FTPEkomercio\</Value>
     </Setting>
     <Setting Name="GeneraFactura33_WebReference_Ek_WSCFDBuilderPlus" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://wslamoderna.ekomercio.com/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</Value>
@@ -46,19 +46,19 @@
     <Setting Name="ProductionConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=server-raid;Initial Catalog=Production;User ID=finagil;Password=finagil&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=server-raid2;Initial Catalog=Production;User ID=finagil;Password=finagil&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=server-raid;Initial Catalog=Production;User ID=finagil;Password=finagil</Value>
+      <Value Profile="(Default)">Data Source=server-raid2;Initial Catalog=Production;User ID=finagil;Password=finagil</Value>
     </Setting>
     <Setting Name="RutaXML" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\server-nas\Contabilidad CFDI\ARCHIVOS ADD CONTPAQi\CFDI_CLI\</Value>
     </Setting>
     <Setting Name="RutaRecPago" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\RecibosPago\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\RecibosPago\</Value>
     </Setting>
     <Setting Name="RutaNomina" Type="System.String" Scope="User">
-      <Value Profile="(Default)">R:\FacturasCFDI\FTPEkomercioNomina\</Value>
+      <Value Profile="(Default)">\\server-nas\FacturasCFDI\FTPEkomercioNomina\</Value>
     </Setting>
     <Setting Name="GeneraFactura33_WebReferenceNomina_Ek_WSCFDBuilderPlus" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://148.244.217.118/WSCFDIBuilderPlus/WSCFDBuilderPlus.asmx</Value>

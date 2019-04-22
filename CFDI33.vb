@@ -1420,8 +1420,8 @@ Module CFDI33
         Dim t As New ProduccionDS.RecibosDePagoDataTable
         Dim crDiskFileDestinationOptions As New DiskFileDestinationOptions()
 
-        Servidor.Host = "smtp01.cmoderna.com"
-        Servidor.Port = "26"
+        Servidor.Host = "192.168.110.1"
+        Servidor.Port = "25"
         TaRec.RecibosProcesados()
         TaRec.Fill_Recibos(t)
 
