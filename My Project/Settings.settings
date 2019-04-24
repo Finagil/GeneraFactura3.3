@@ -71,5 +71,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=server-raid2;Initial Catalog=ComunInfo100;Persist Security Info=True;User ID=sa;Password=c3r0&amp;v4n</Value>
     </Setting>
+    <Setting Name="RutaTmp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\server-raid2\TmpFinagil\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

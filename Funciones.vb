@@ -306,7 +306,7 @@ Module Funciones
         Try
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
-                Dim Att As New Attachment("\\server-raid\TmpFinagil\" & Attach)
+                Dim Att As New Attachment(My.Settings.RutaTmp & Attach)
                 Mensage.Attachments.Add(Att)
             End If
             Cliente.Send(Mensage)
