@@ -156,10 +156,10 @@ Module CFDI33
             ' Traigo la Sucursal y la Tasa de IVA que aplica al cliente a efecto de poder determinar la Serie a utilizar
 
             cSucursal = r.Sucursal
-            nTasaIVACliente = r.TasaIVACliente
+            nTasaIVACliente = r.TasaIVA
 
 
-            If cSucursal = "04" Or nTasaIVACliente = 11 Then
+            If cSucursal = "04" Or cSucursal = "08" Or nTasaIVACliente = 11 Then
                 cSerie = "MXL"
             Else
                 cSerie = "A"
@@ -214,7 +214,7 @@ Module CFDI33
 
         Tafolios.Fill(t, FechaS)
         For Each r As ProduccionDS.TraspasosAvioCCRow In t.Rows
-            If r.Sucursal = "04" Then
+            If r.Sucursal = "04" Or r.Sucursal = "08" Then
                 cSerie = "MXL"
                 nRecibo = Tafolios.SerieMXL
             Else

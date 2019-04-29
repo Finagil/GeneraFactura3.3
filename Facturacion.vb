@@ -206,7 +206,7 @@ Module GneraFactura
         Facturas.Fill(FAC, fecha.ToString("yyyyMMdd"))
 
         For Each r As GeneraFactura.ProduccionDS.FacturasAvioRow In FAC.Rows
-            TasaIVACliente = taCli.SacaTasaIVACliente(r.Cliente)
+            TasaIVACliente = r.IvaAnexo
             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
             ROWheader._1_Folio = Folios.SerieGVA
             Console.WriteLine("Generando CFDI AVIO..." & r.Anexo & " " & ROWheader._1_Folio)
@@ -605,7 +605,7 @@ Module GneraFactura
 
                             TipoPersona = taTipar.TipoPersona(Datos(1))
                             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
-                            TasaIVACliente = taCli.SacaTasaIVACliente(Datos(1))
+                            TasaIVACliente = taCli.SacaTasaIvaAnexo(cAnexo)
                             ROWheader._1_Folio = Folio
                             ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
                             ROWheader._3_RFC_Emisor = "FIN940905AX7"
@@ -1032,7 +1032,7 @@ Module GneraFactura
                                 TipoPersona = "M"
                             End If
                             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
-                            TasaIVACliente = taCli.SacaTasaIVACliente(Datos(1))
+                            TasaIVACliente = taCli.SacaTasaIvaAnexo(cAnexo)
                             ROWheader._1_Folio = Val(Datos(4))
                             ROWheader._2_Nombre_Emisor = "FINAGIL S.A. DE C.V, SOFOM E.N.R"
                             ROWheader._3_RFC_Emisor = "FIN940905AX7"
