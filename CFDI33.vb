@@ -1075,6 +1075,7 @@ Module CFDI33
         Dim Encabezado As ProduccionDS.CFDI_EncabezadoRow
         Dim Detalle As ProduccionDS.CFDI_DetalleRow
         Dim Imp_Adic As ProduccionDS.CFDI_Impuestos_AdicionalesRow
+        Dim taAnexo As New ProduccionDSTableAdapters.CFDI_EncabezadoTableAdapter
         Dim f As StreamWriter
         Dim Col As DataColumn
         Dim i As Integer = 0
@@ -1088,12 +1089,20 @@ Module CFDI33
         Dim vExento As String = ""
         Dim vLimpia As String = ""
         Dim cad_imp_adic_total As String = ""
+        Dim T16 As Decimal = 0
+        Dim T00 As Decimal = 0
+        Dim T08 As Decimal = 0
+        Dim bT16 As String = "NA"
+        Dim bT00 As String = "NA"
+        Dim bT08 As String = "NA"
 
         CFDI_EncabezadoTableAdapter.FillByNoProcesadosFACT(Production_AUXDataSet.CFDI_Encabezado) 'LLENO ENCABEZADO
 
         ' Recorrido de Renglones de Tabla Encabezado 
         For Each Encabezado In Production_AUXDataSet.CFDI_Encabezado.Rows() 'RECORRO FACTURAS SIN PROCESAR
-
+            T00 = 0
+            T16 = 0
+            T08 = 0
             CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
 
             If Production_AUXDataSet.CFDI_Detalle.Rows.Count > 0 Then
@@ -1110,6 +1119,14 @@ Module CFDI33
                 'Formato para activo fijo
                 If Encabezado._3_RFC_Emisor = "FIN940905AX7" And Encabezado._27_Serie_Comprobante = "B" Then
                     Encabezado._113_Misc01 = "[AFIN]"
+                End If
+                'Cambia CP por incetivo del 8% Zona fronteriza
+                If Encabezado._114_Misc02 <> "" Then
+                    'MsgBox(Encabezado._114_Misc02.Substring(0, 10))
+                    'MsgBox(taAnexo.ObtieneImpEst8pc_ScalarQuery(Encabezado._114_Misc02.Substring(0, 10)).ToString)
+                    If taAnexo.ObtieneImpEst8pc_ScalarQuery(Encabezado._114_Misc02.Substring(0, 10)) = "8.0000" Then
+                        Encabezado._180_LugarExpedicion = "21384"
+                    End If
                 End If
 
                 Cad = "~"
@@ -1204,6 +1221,14 @@ Module CFDI33
                                             If Col.ColumnName = "7_Impuesto_Porcentaje" Then
                                                 If Detalle(Col).ToString = "0.0000" Then
                                                     cpcero += 1
+                                                    T00 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
+                                                    bT00 = "SA"
+                                                ElseIf Detalle(Col).ToString = "0.1600" Then
+                                                    T16 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
+                                                    bT16 = "SA"
+                                                ElseIf Detalle(Col).ToString = "0.0800" Then
+                                                    T08 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
+                                                    bT08 = "SA"
                                                 End If
                                             End If
                                         End If
@@ -1227,10 +1252,17 @@ Module CFDI33
                 'MsgBox(" Filas: " + cfilas.ToString + " Exentas: " + cexento.ToString)
 
                 If ctasa > 0 Then
-                    If TotalImpuesto16 > 0 Then
-                        f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.160000|Tasa")
-                    Else
-                        f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.000000|Tasa")
+                    'If TotalImpuesto16 > 0 Then
+                    '    f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.160000|Tasa")
+                    'Else
+                    '    f.WriteLine("¬TR|002|" & TotalImpuesto16 & "|0.000000|Tasa")
+                    'End If
+                    If bT00 = "SA" Then
+                        f.WriteLine("¬TR|002|" & T00 & "|0.000000|Tasa")
+                    ElseIf bT08 = "SA" Then
+                        f.WriteLine("¬TR|002|" & T08 & "|0.080000|Tasa")
+                    ElseIf bT16 = "SA" Then
+                        f.WriteLine("¬TR|002|" & T16 & "|0.160000|Tasa")
                     End If
                 End If
 
