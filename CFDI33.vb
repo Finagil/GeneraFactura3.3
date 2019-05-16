@@ -1422,6 +1422,7 @@ Module CFDI33
 
         Servidor.Host = "192.168.110.1"
         Servidor.Port = "25"
+        Servidor.Credentials = New System.Net.NetworkCredential("ecacerest", "c4c3r1t0s", "cmoderna")
         TaRec.RecibosProcesados()
         TaRec.Fill_Recibos(t)
 
