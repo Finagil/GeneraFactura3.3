@@ -1103,6 +1103,9 @@ Module CFDI33
             T00 = 0
             T16 = 0
             T08 = 0
+            bT00 = "NA"
+            bT08 = "NA"
+            bT16 = "NA"
             CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
 
             If Production_AUXDataSet.CFDI_Detalle.Rows.Count > 0 Then
