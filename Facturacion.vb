@@ -1567,8 +1567,10 @@ Module GneraFactura
     Private Sub EnviaError(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String)
         If InStr(Mensaje, "No se ha encontrado la ruta de acceso de la red") = 0 Then
             Dim Mensage As New MailMessage("InternoBI2008@cmoderna.com", Trim(Para), Trim(Asunto), Mensaje)
-            Dim Cliente As New SmtpClient("192.168.110.1", 25)
+            Dim Cliente As New SmtpClient(My.Settings.SMTP, My.Settings.SMTP_port)
             Try
+                Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
+                Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))
                 Cliente.Send(Mensage)
             Catch ex As Exception
                 ReportError(ex)

@@ -274,6 +274,42 @@ Namespace My
                 Me("RutaTmp") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("192.168.110.1")>  _
+        Public Property SMTP() As String
+            Get
+                Return CType(Me("SMTP"),String)
+            End Get
+            Set
+                Me("SMTP") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("26")>  _
+        Public Property SMTP_port() As String
+            Get
+                Return CType(Me("SMTP_port"),String)
+            End Get
+            Set
+                Me("SMTP_port") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ecacerest,c4c3r1t0s,cmoderna")>  _
+        Public Property SMTP_creden() As String
+            Get
+                Return CType(Me("SMTP_creden"),String)
+            End Get
+            Set
+                Me("SMTP_creden") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
