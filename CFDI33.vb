@@ -1455,9 +1455,10 @@ Module CFDI33
         Dim t As New ProduccionDS.RecibosDePagoDataTable
         Dim crDiskFileDestinationOptions As New DiskFileDestinationOptions()
 
-        Servidor.Host = "192.168.110.1"
-        Servidor.Port = "25"
-        Servidor.Credentials = New System.Net.NetworkCredential("ecacerest", "c4c3r1t0s", "cmoderna")
+        Servidor.Host = My.Settings.SMTP
+        Servidor.Port = My.Settings.SMTP_port
+        Dim Cred() As String = My.Settings.SMTP_creden.Split(",")
+        Servidor.Credentials = New System.Net.NetworkCredential(Cred(0), Cred(1), Cred(2))
         TaRec.RecibosProcesados()
         TaRec.Fill_Recibos(t)
 
