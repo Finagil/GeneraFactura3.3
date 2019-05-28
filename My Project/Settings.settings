@@ -75,7 +75,7 @@
       <Value Profile="(Default)">\\server-raid2\TmpFinagil\</Value>
     </Setting>
     <Setting Name="SMTP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.110.1</Value>
+      <Value Profile="(Default)">smtp85.cmoderna.com</Value>
     </Setting>
     <Setting Name="SMTP_port" Type="System.String" Scope="User">
       <Value Profile="(Default)">26</Value>

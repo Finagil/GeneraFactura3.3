@@ -302,8 +302,10 @@ Module Funciones
 
     Public Sub EnviacORREO(ByVal Para As String, ByVal Mensaje As String, ByVal Asunto As String, de As String, Optional Attach As String = "")
         Dim Mensage As New MailMessage(Trim(de), Trim(Para), Trim(Asunto), Mensaje)
-        Dim Cliente As New SmtpClient("192.168.110.1", 25)
+        Dim Cliente As New SmtpClient(My.Settings.SMTP, My.Settings.SMTP_port)
         Try
+            Dim Credenciales As String() = My.Settings.SMTP_creden.Split(",")
+            Cliente.Credentials = New System.Net.NetworkCredential(Credenciales(0), Credenciales(1), Credenciales(2))
             Mensage.IsBodyHtml = True
             If Attach.Trim.Length > 0 Then
                 Dim Att As New Attachment(My.Settings.RutaTmp & Attach)
