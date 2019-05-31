@@ -1226,7 +1226,7 @@ Module CFDI33
                                                     cpcero += 1
                                                     T00 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
                                                     bT00 = "SA"
-                                                ElseIf Detalle(Col).ToString = "0.1600" Then
+                                                ElseIf Detalle(Col).ToString = "0.1600" Or Detalle(Col).ToString = "0.16" Or Detalle(Col).ToString = "0.160000" Then
                                                     T16 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
                                                     bT16 = "SA"
                                                 ElseIf Detalle(Col).ToString = "0.0800" Then
