@@ -1158,7 +1158,11 @@ Module CFDI33
                             If val = "SR" Then
                                 If Not IsNothing(Encabezado(Col)) Then
                                     TotalImpuesto16 = Encabezado(Col)
-                                    Cad += Encabezado(Col).ToString
+                                    If CDec(Encabezado(Col) = -1) Then
+                                        Cad += ""
+                                    Else
+                                        Cad += Encabezado(Col).ToString
+                                    End If
                                 Else
                                     Cad += ""
                                 End If
@@ -1192,6 +1196,8 @@ Module CFDI33
                         Next
                     End If
 
+                    Dim val_ImpTraslados As String = "NA"
+
                     For Each Col In Production_AUXDataSet.CFDI_Detalle.Columns ' CONCATENO EL RENGLON DE DETALLE CON IMPUESTOS
 
                         If Col.ColumnName = "1_Impuesto_TipoImpuesto" Then
@@ -1215,6 +1221,7 @@ Module CFDI33
                                         ' 21 Noviembre
                                         If Col.ColumnName = "6_Impuesto_Tasa" Then
                                             If Detalle(Col).ToString = "Exento" Then
+                                                val_ImpTraslados = "NA"
                                                 cexento += 1
                                             End If
                                             If Detalle(Col).ToString = "Tasa" Then

@@ -1703,6 +1703,8 @@ Module GneraFactura
             End If
             ROWheader._58_TipoCFD = "FA"
 
+            Dim var_TotalTrasladosExcentos As String = "NA"
+
             Detalles.Fill(DET, r.Serie, r.Factura)
             For Each rr As GeneraFactura.ProduccionDS.FacturasExternasDETRow In DET.Rows
                 NoLineas += 1
@@ -1725,6 +1727,7 @@ Module GneraFactura
                     ROWdetail._7_Impuesto_Porcentaje = ""
                     ROWdetail._4_Impuesto_Monto_Impuesto = ""
                     ROWdetail._6_Impuesto_Tasa = "Exento"
+                    var_TotalTrasladosExcentos = "SI"
                 ElseIf rr.TasaIva = "No Objeto" Then
                     ROWdetail._7_Impuesto_Porcentaje = ""
                     ROWdetail._4_Impuesto_Monto_Impuesto = ""
@@ -1779,6 +1782,11 @@ Module GneraFactura
             ROWheader._161_Misc49 = ""
             ROWheader.Encabezado_Procesado = False
             ROWheader._162_Misc50 = r.Mail1.Trim
+
+            If var_TotalTrasladosExcentos = "SI" Then
+                ROWheader._193_Monto_TotalImp_Trasladados = -1
+            End If
+
             If r.Mail2.Trim.Length > 3 Then ROWheader._162_Misc50 += ";" & r.Mail2.Trim
             ROWheader._162_Misc50 += ";lhernandez@finagil.com.mx"
             ProducDS.CFDI_Encabezado.AddCFDI_EncabezadoRow(ROWheader)
