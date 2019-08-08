@@ -1704,6 +1704,7 @@ Module GneraFactura
             ROWheader._58_TipoCFD = "FA"
 
             Dim var_TotalTrasladosExcentos As String = "NA"
+            Dim contadorTraslados As Integer = 0
 
             Detalles.Fill(DET, r.Serie, r.Factura)
             For Each rr As GeneraFactura.ProduccionDS.FacturasExternasDETRow In DET.Rows
@@ -1733,6 +1734,7 @@ Module GneraFactura
                     ROWdetail._4_Impuesto_Monto_Impuesto = ""
                     ROWdetail._6_Impuesto_Tasa = rr.TasaIva
                 Else
+                    contadorTraslados += 1
                     TasaIVACliente = Val(rr.TasaIva.Substring(0, 2)) / 100
                     ROWdetail._7_Impuesto_Porcentaje = TasaIVACliente
                     If TasaIVACliente = 0 Then
@@ -1783,7 +1785,7 @@ Module GneraFactura
             ROWheader.Encabezado_Procesado = False
             ROWheader._162_Misc50 = r.Mail1.Trim
 
-            If var_TotalTrasladosExcentos = "SI" Then
+            If var_TotalTrasladosExcentos = "SI" And contadorTraslados = 0 Then
                 ROWheader._193_Monto_TotalImp_Trasladados = -1
             End If
 
