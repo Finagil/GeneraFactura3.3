@@ -627,9 +627,9 @@ Module GneraFactura
                             ROWheader._26_Version = "3.3"
                             ROWheader._27_Serie_Comprobante = Serie
                             ROWheader._29_FormaPago = "" 'FormaPago '"27" '27 A satisfacción del acreedor
-                            ROWheader._30_Fecha = fecha.Date.ToString("yyyy-MM-dd")
+                            ROWheader._30_Fecha = Today.Date.ToString("yyyy-MM-dd") ' se manda con fecha y hora de ejecucion
+                            ROWheader._31_Hora = Today.ToString("HH:mm:ss") ' se manda con fecha y hora de ejecucion
                             ROWheader.Fecha = fecha.Date
-                            ROWheader._31_Hora = fecha.ToString("HH:mm:ss")
                             ROWheader._41_Dom_LugarExpide_codigoPostal = "50070"
 
                             If Moneda = "WWW" Then
