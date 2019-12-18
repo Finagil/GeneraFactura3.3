@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Mail
+Imports System.Text.RegularExpressions
 Module Funciones
 
     Public Function Letras(ByVal numero As String, ByVal moneda As String) As String
@@ -341,5 +342,10 @@ Module Funciones
 
         Next
     End Sub
+
+    Function validar_Mail(ByVal sMail As String) As Boolean
+        ' retorna true o false   
+        Return Regex.IsMatch(sMail, "^([\w-]+\.)*?[\w-]+@[\w-]+\.([\w-]+\.)*?[\w]+$")
+    End Function
 
 End Module

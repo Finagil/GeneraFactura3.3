@@ -1466,7 +1466,7 @@ Module CFDI33
         Servidor.Port = My.Settings.SMTP_port
         Dim Cred() As String = My.Settings.SMTP_creden.Split(",")
         Servidor.Credentials = New System.Net.NetworkCredential(Cred(0), Cred(1), Cred(2))
-        TaRec.RecibosProcesados()
+        TaRec.MarcarComoRecibos()
         TaRec.Fill_Recibos(t)
 
 
@@ -1484,10 +1484,14 @@ Module CFDI33
                 Mensaje.To.Add("viapolo@finagil.com.mx")
                 Mensaje.To.Add("denise.gonzalez@finagil.com.mx")
                 If r.EMail1.ToString.Trim.Length > 3 Then
-                    Mensaje.To.Add(r.EMail1)
+                    If validar_Mail(r.EMail1) Then
+                        Mensaje.To.Add(r.EMail1)
+                    End If
                 End If
                 If r.EMail2.ToString.Trim.Length > 3 Then
-                    Mensaje.To.Add(r.EMail2)
+                    If validar_Mail(r.EMail2) Then
+                        Mensaje.To.Add(r.EMail2)
+                    End If
                 End If
 
                 Mensaje.Subject = "Comprobante de Pago Finagil -" & r._27_Serie_Comprobante.Trim & r._1_Folio & "(Sin valor Fiscal)"
@@ -1509,7 +1513,7 @@ Module CFDI33
                 Mensaje.Attachments.Add(Adjunto)
                 Servidor.Send(Mensaje)
                 System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
-                Console.WriteLine("Envio Exsitoso :" & Archivo)
+                Console.WriteLine("Envio Exitoso :" & Archivo)
             Catch ex As Exception
                 Console.WriteLine("error:" & ex.Message)
             End Try
