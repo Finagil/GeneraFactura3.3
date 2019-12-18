@@ -1116,7 +1116,7 @@ Module CFDI33
 
                 If Not IsNothing(Encabezado._157_Misc45) Then
                     If Encabezado._157_Misc45.ToString <> "" Then
-                        Encabezado._155_Misc43 = "[Addenda_Finagil]"
+                        'Encabezado._155_Misc43 = "[Addenda_Finagil]"
                     End If
                 End If
                 'Formato para activo fijo
@@ -1481,7 +1481,8 @@ Module CFDI33
 
                 Mensaje.To.Add("ecacerest@finagil.com.mx")
                 Mensaje.To.Add("maria.vidal@finagil.com.mx")
-                Mensaje.To.Add("viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx")
+                Mensaje.To.Add("viapolo@finagil.com.mx")
+                Mensaje.To.Add("denise.gonzalez@finagil.com.mx")
                 If r.EMail1.ToString.Trim.Length > 3 Then
                     Mensaje.To.Add(r.EMail1)
                 End If
