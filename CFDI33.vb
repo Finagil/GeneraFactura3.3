@@ -487,7 +487,7 @@ Module CFDI33
                     rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                     rowMail.De = "CFDI@Finagil.com.mx"
-                    rowMail.Para = "viapolo@finagil.com.mx"
+                    rowMail.Para = "viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx"
                     rowMail.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
                     If leeXML(resultado, "Err").ToString.Length > 900 Then
                         rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
@@ -526,7 +526,7 @@ Module CFDI33
                 rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                 rowMail.De = "CFDI@Finagil.com.mx"
-                rowMail.Para = "viapolo@finagil.com.mx"
+                rowMail.Para = "viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx"
                 rowMail.Asunto = "Error al certificar comprobante de nómina" + F(i).Name
                 SysLog(ex.ToString, (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
                 If leeXML(resultado, "Err").ToString.Length > 900 Then
@@ -660,7 +660,7 @@ Module CFDI33
                     rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                     rowMail.De = "CFDI@Finagil.com.mx"
-                    rowMail.Para = "viapolo@finagil.com.mx"
+                    rowMail.Para = "viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx"
                     rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
                     If leeXML(resultado, "Err").ToString.Length > 900 Then
                         rowMail.Mensaje = leeXML(resultado, "Err").ToString.Substring(0, 900)
@@ -703,7 +703,7 @@ Module CFDI33
                 rowMail = dsMail.GEN_Correos_SistemaFinagil.NewGEN_Correos_SistemaFinagilRow()
 
                 rowMail.De = "CFDI@Finagil.com.mx"
-                rowMail.Para = "viapolo@finagil.com.mx"
+                rowMail.Para = "viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx"
                 rowMail.Asunto = "Error al certificar comprobante" + F(i).Name
                 SysLog(ex.ToString, (leeXML(resultado, "Serie").ToString + leeXML(resultado, "Folio").ToString))
                 If leeXML(resultado, "Err").ToString.Length > 900 Then
@@ -1167,8 +1167,8 @@ Module CFDI33
                                     Cad += ""
                                 End If
                             Else
-                                    'TotalImpuesto16 = Encabezado(Col)
-                                    Cad += ""
+                                'TotalImpuesto16 = Encabezado(Col)
+                                Cad += ""
                             End If
                         End If
                         j += 1
@@ -1276,7 +1276,7 @@ Module CFDI33
                     End If
                 End If
 
-                    If cpcero > 0 Then
+                If cpcero > 0 Then
                     f.WriteLine("¬TR|002|0.0000|0.000000|Tasa")
                 End If
 
@@ -1289,30 +1289,30 @@ Module CFDI33
                 End If
 
                 CFDI_ComplementoPagoTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_ComplementoPago, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
-                    If Production_AUXDataSet.CFDI_ComplementoPago.Rows.Count > 0 Then
-                        Cad = "¬*" ' PREPARO PARA DETALLES
-                        For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
-                            For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
-                                If Col.ColumnName = "18_DetalleAux_Misc16" Then
-                                    Cad += Complemento(Col).ToString.Trim
-                                    Exit For
-                                Else
-                                    Cad += Complemento(Col).ToString.Trim & "|"
-                                End If
-                            Next
-                            f.WriteLine(Cad)
-                            Cad = "" 'LIPIO PARA SIGUIENTE LINEA
+                If Production_AUXDataSet.CFDI_ComplementoPago.Rows.Count > 0 Then
+                    Cad = "¬*" ' PREPARO PARA DETALLES
+                    For Each Complemento As ProduccionDS.CFDI_ComplementoPagoRow In Production_AUXDataSet.CFDI_ComplementoPago.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
+                        For Each Col In Production_AUXDataSet.CFDI_ComplementoPago.Columns
+                            If Col.ColumnName = "18_DetalleAux_Misc16" Then
+                                Cad += Complemento(Col).ToString.Trim
+                                Exit For
+                            Else
+                                Cad += Complemento(Col).ToString.Trim & "|"
+                            End If
                         Next
-                    End If
-
-                    TotalImpuesto16 = 0
-                    f.Close()
-                    CFDI_EncabezadoTableAdapter.ProcesarFactura(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
-                    contador += 1
-                    If contador = 1 Then
-                        'Exit For
-                    End If
+                        f.WriteLine(Cad)
+                        Cad = "" 'LIPIO PARA SIGUIENTE LINEA
+                    Next
                 End If
+
+                TotalImpuesto16 = 0
+                f.Close()
+                CFDI_EncabezadoTableAdapter.ProcesarFactura(True, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante)
+                contador += 1
+                If contador = 1 Then
+                    'Exit For
+                End If
+            End If
         Next
 
         Console.WriteLine("Proceso Terminado, se Generaron: " + contador.ToString + " CFDI txt ")
@@ -1481,7 +1481,7 @@ Module CFDI33
 
                 Mensaje.To.Add("ecacerest@finagil.com.mx")
                 Mensaje.To.Add("maria.vidal@finagil.com.mx")
-                Mensaje.To.Add("viapolo@finagil.com.mx")
+                Mensaje.To.Add("viapolo@finagil.com.mx;denise.gonzalez@finagil.com.mx")
                 If r.EMail1.ToString.Trim.Length > 3 Then
                     Mensaje.To.Add(r.EMail1)
                 End If

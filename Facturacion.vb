@@ -2043,6 +2043,7 @@ Module GneraFactura
         For Each r As ProduccionDS.FacturasSinSerieRow In ProductDS.FacturasSinSerie
             EnviaError("ecacerest@finagil.com.mx", "Factura sin Serie", "Aviso:" & r.Anexo & " Aviso: " & r.Factura)
             EnviaError("viapolo@finagil.com.mx", "Factura sin Serie", "Aviso:" & r.Anexo & " Aviso: " & r.Factura)
+            EnviaError("denise.gonzalez@finagil.com.mx", "Factura sin Serie", "Aviso:" & r.Anexo & " Aviso: " & r.Factura)
         Next
 
     End Sub
