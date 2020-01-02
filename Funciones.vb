@@ -1,4 +1,5 @@
-﻿Imports System.Net.Mail
+﻿Imports System.IO
+Imports System.Net.Mail
 Imports System.Text.RegularExpressions
 Module Funciones
 
@@ -347,5 +348,24 @@ Module Funciones
         ' retorna true o false   
         Return Regex.IsMatch(sMail, "^([\w-]+\.)*?[\w-]+@[\w-]+\.([\w-]+\.)*?[\w]+$")
     End Function
+
+    Sub Organiza_Backup(Ruta)
+        Dim folder As New DirectoryInfo(Ruta)
+        Dim Anio, Mes As Integer
+
+        For Each f As FileInfo In folder.GetFiles("*.txt")
+            Console.WriteLine(f.Name)
+            Anio = f.LastWriteTimeUtc.Year
+            Mes = f.LastWriteTimeUtc.Month
+            If Not Directory.Exists(folder.FullName & Anio.ToString) Then
+                Directory.CreateDirectory(folder.FullName & Anio.ToString)
+            End If
+            If Not Directory.Exists(folder.FullName & Anio.ToString & "\" & Mes) Then
+                Directory.CreateDirectory(folder.FullName & Anio.ToString & "\" & Mes)
+            End If
+            f.MoveTo(folder.FullName & Anio.ToString & "\" & Mes & "\" & f.Name)
+        Next
+
+    End Sub
 
 End Module

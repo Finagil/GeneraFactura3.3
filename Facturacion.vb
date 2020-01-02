@@ -163,6 +163,10 @@ Module GneraFactura
                     CFDI33.NotificaCANA()
 
                     FacturasSinSERIE()
+                Case "ORGANIZA_BACKUP"
+                    Console.WriteLine("Orgaizando...")
+                    Organiza_Backup(My.Settings.RutaBackup)
+                    Organiza_Backup(My.Settings.BackupEKO)
             End Select
         End If
         Console.WriteLine("Terminado...")
