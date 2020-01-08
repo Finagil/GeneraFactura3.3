@@ -363,7 +363,8 @@ Module Funciones
             If Not Directory.Exists(folder.FullName & Anio.ToString & "\" & Mes) Then
                 Directory.CreateDirectory(folder.FullName & Anio.ToString & "\" & Mes)
             End If
-            f.MoveTo(folder.FullName & Anio.ToString & "\" & Mes & "\" & f.Name)
+            f.CopyTo(folder.FullName & Anio.ToString & "\" & Mes & "\" & f.Name, True)
+            f.Delete()
         Next
 
     End Sub
