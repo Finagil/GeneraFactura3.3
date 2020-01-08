@@ -1090,6 +1090,7 @@ Module CFDI33
         Dim vExento As String = ""
         Dim vLimpia As String = ""
         Dim cad_imp_adic_total As String = ""
+        Dim Tasa_RET As String = ""
         Dim T16 As Decimal = 0
         Dim T00 As Decimal = 0
         Dim T08 As Decimal = 0
@@ -1183,6 +1184,7 @@ Module CFDI33
                 ctasa = 0
                 cpcero = 0
                 cexento = 0
+                Tasa_RET = ""
                 For Each Detalle In Production_AUXDataSet.CFDI_Detalle.Rows 'RECORRO DETALLE DE LA FACTURA EN CUESTION
 
                     ' Impuestos adicionales
@@ -1221,6 +1223,7 @@ Module CFDI33
                                     ElseIf Col.ColumnName = "8_Retencion_Tasa" Then
                                         If Not Detalle.Is_8_Retencion_TasaNull Then ' Retenciones de IVA
                                             Cad_Retencion = "\Impuesto|RE|" & Detalle._9_Retencion_Monto_Base & "|" & Detalle._10_Retencion_Monto & "|" & Detalle._5_Impuesto_Clave & "|Tasa|" & Detalle._8_Retencion_Tasa & "||"
+                                            Tasa_RET = Detalle._8_Retencion_Tasa
                                         End If
                                     ElseIf Col.ColumnName = "9_Retencion_Monto_Base" Then
                                         'campo no considerado en el layout de salida
@@ -1289,7 +1292,7 @@ Module CFDI33
 
                 If Not Encabezado.Is_192_Monto_TotalImp_RetenidosNull Then ' retenciones
                     If Encabezado._192_Monto_TotalImp_Retenidos > 0 Then
-                        f.WriteLine(SeccionImpuesto & "RE|002|" & Encabezado._192_Monto_TotalImp_Retenidos & "||")
+                        f.WriteLine(SeccionImpuesto & "RE|002|" & Encabezado._192_Monto_TotalImp_Retenidos & "|" & Tasa_RET & "|Tasa")
                         SeccionImpuesto = ""
                     End If
                 End If
