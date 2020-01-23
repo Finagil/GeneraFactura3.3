@@ -1604,6 +1604,7 @@ Module GneraFactura
         Dim RFC As String = ""
         Dim Razon As String = ""
         Dim SubTT As Double
+        Dim RetencionT As Double
         Dim IVA As Double
         Dim TOt As Double
         Dim Fec As Date
@@ -1626,6 +1627,7 @@ Module GneraFactura
             SubTT = 0
             TOt = 0
             IVA = 0
+            RetencionT = 0
             Errores = False
             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
             ROWheader._1_Folio = Val(r.Factura)
@@ -1749,6 +1751,10 @@ Module GneraFactura
                         If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base Then
                             ROWdetail._3_Impuesto_Monto_base = MontoBaseIVA
                         End If
+                        ROWdetail._8_Retencion_Tasa = rr.RetencionTasa
+                        ROWdetail._9_Retencion_Monto_Base = rr.RetencionBase
+                        ROWdetail._10_Retencion_Monto = rr.RetencionMonto
+                        RetencionT += rr.RetencionMonto
                     End If
                 End If
 
@@ -1763,23 +1769,20 @@ Module GneraFactura
                     ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
                 Catch ex As Exception
                     Errores = True
-                    EnviacORREO("ecacerest@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                    EnviacORREO("martin.dorantes@finagil.com.mx", ex.Message, "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                    EnviaCorreoFASE("SISTEMAS_CFDI", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante)
                 End Try
                 Facturas.Facturar(r.Serie, r.Factura, rr.Consec)
             Next
 
-
+            ROWheader._192_Monto_TotalImp_Retenidos = RetencionT
             ROWheader._90_Cantidad_LineasFactura = NoLineas
             ROWheader._54_Monto_SubTotal = SubTT
             ROWheader._55_Monto_IVA = IVA
-            If taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) = 0 Then
-                ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
-                ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
-            Else
-                ROWheader._192_Monto_TotalImp_Retenidos = taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura)
-                ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA - ROWheader._192_Monto_TotalImp_Retenidos
+            ROWheader._193_Monto_TotalImp_Trasladados = IVA
+            If taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) > 0 Then
+                ROWheader._192_Monto_TotalImp_Retenidos += taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) ' Acumula Retencion de ISR + IVA
             End If
+            ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA - ROWheader._192_Monto_TotalImp_Retenidos
             ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, r.Moneda)
             ROWheader._114_Misc02 = "" ' contrato
             ROWheader._115_Misc03 = "" ' Cliente
@@ -1807,8 +1810,7 @@ Module GneraFactura
                     ProducDS.CFDI_Detalle.Clear()
 
                 Catch ex As Exception
-                    EnviacORREO("ecacerest@finagil.com.mx", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
-                    EnviacORREO("martin.dorantes@finagil.com.mx", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, "CFDI33@finagil.com.mx")
+                    EnviaCorreoFASE("SISTEMAS_CFDI", "Error Factura TipoCredito : EXTERNA", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante)
                     ProducDS.CFDI_Encabezado.Clear()
                     ProducDS.CFDI_Detalle.Clear()
                 End Try

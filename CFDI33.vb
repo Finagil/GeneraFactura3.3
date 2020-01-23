@@ -1222,8 +1222,12 @@ Module CFDI33
                                         End If
                                     ElseIf Col.ColumnName = "8_Retencion_Tasa" Then
                                         If Not Detalle.Is_8_Retencion_TasaNull Then ' Retenciones de IVA
-                                            Cad_Retencion = "\Impuesto|RE|" & Detalle._9_Retencion_Monto_Base & "|" & Detalle._10_Retencion_Monto & "|" & Detalle._5_Impuesto_Clave & "|Tasa|" & Detalle._8_Retencion_Tasa & "||"
-                                            Tasa_RET = Detalle._8_Retencion_Tasa
+                                            If Detalle._10_Retencion_Monto > 0 Then
+                                                Cad_Retencion = "\Impuesto|RE|" & Detalle._9_Retencion_Monto_Base & "|" & Detalle._10_Retencion_Monto & "|" & Detalle._5_Impuesto_Clave & "|Tasa|" & Detalle._8_Retencion_Tasa & "||"
+                                                Tasa_RET = Detalle._8_Retencion_Tasa
+                                            Else
+                                                Cad_Retencion = ""
+                                            End If
                                         End If
                                     ElseIf Col.ColumnName = "9_Retencion_Monto_Base" Then
                                         'campo no considerado en el layout de salida
