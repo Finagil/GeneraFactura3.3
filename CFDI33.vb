@@ -1112,7 +1112,9 @@ Module CFDI33
 
             If Production_AUXDataSet.CFDI_Detalle.Rows.Count > 0 Then
                 f = New StreamWriter(My.Settings.RutaFTP & "eKomercio_" & Encabezado._3_RFC_Emisor & "_" & Encabezado._27_Serie_Comprobante & Encabezado._1_Folio & ".txt", False)
-                If CDate(Encabezado._30_Fecha) < Date.Now.Date Then
+                If CDate(Encabezado._30_Fecha).Date = Date.Now.Date Then
+                    Encabezado._31_Hora = Date.Now.ToString("HH:mm:ss")
+                ElseIf CDate(Encabezado._30_Fecha) < Date.Now.Date Then
                     Encabezado._31_Hora = Date.Now.AddHours(2).ToString("HH:mm:ss")
                 End If
 
