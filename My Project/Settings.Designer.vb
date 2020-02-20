@@ -265,7 +265,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("\\server-raid2\TmpFinagil\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\server-NAS\TmpFinagil\")>  _
         Public Property RutaTmp() As String
             Get
                 Return CType(Me("RutaTmp"),String)
