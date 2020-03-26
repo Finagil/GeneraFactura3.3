@@ -277,7 +277,7 @@ Module CFDI33
             stmWriter.WriteLine(cRenglon)
             stmWriter.Close()
 
-            If r.Sucursal = "04" Then
+            If r.Sucursal = "04" Or r.Sucursal = "08" Then
                 Tafolios.ConsumeSerieMXL()
             Else
                 Tafolios.ConsumeSerieA()
