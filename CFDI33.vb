@@ -1146,6 +1146,8 @@ Module CFDI33
                     If Col.ColumnName = "192_Monto_TotalImp_Retenidos" Then
                         If IsNothing(Encabezado(Col)) Then
                             val = "CR"
+                        Else
+                            Cad += "*"
                         End If
                     End If
 
@@ -1178,7 +1180,7 @@ Module CFDI33
                         j += 1
                     End If
                 Next
-                f.WriteLine(Cad)
+                f.WriteLine(Cad.Replace("*0.0000", "").Replace("|*|", "||"))
 
                 Cad = "¬" ' PREPARO PARA DETALLES
                 CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE

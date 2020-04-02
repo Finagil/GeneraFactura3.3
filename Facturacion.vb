@@ -1781,6 +1781,8 @@ Module GneraFactura
             ROWheader._193_Monto_TotalImp_Trasladados = IVA
             If taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) > 0 Then
                 ROWheader._192_Monto_TotalImp_Retenidos += taImprAdic.Obt_Iporte_Ret_ScalarQuery(r.Serie, r.Factura) ' Acumula Retencion de ISR + IVA
+            Else
+                ROWheader._192_Monto_TotalImp_Retenidos = Nothing
             End If
             ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA - ROWheader._192_Monto_TotalImp_Retenidos
             ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, r.Moneda)
