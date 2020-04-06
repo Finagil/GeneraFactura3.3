@@ -1180,7 +1180,7 @@ Module CFDI33
                         j += 1
                     End If
                 Next
-                f.WriteLine(Cad.Replace("*0.0000", "").Replace("|*|", "||"))
+                f.WriteLine(Cad.Replace("*0.0000", "").Replace("|*|", "||").Replace("|*", "|"))
 
                 Cad = "¬" ' PREPARO PARA DETALLES
                 CFDI_DetalleTableAdapter.FillByFactura(Production_AUXDataSet.CFDI_Detalle, Encabezado._1_Folio, Encabezado._27_Serie_Comprobante) 'LLENO DETALLE
