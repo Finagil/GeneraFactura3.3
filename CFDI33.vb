@@ -1531,12 +1531,15 @@ Module CFDI33
                 crDiskFileDestinationOptions.DiskFileName = Archivo
                 NewRPT.ExportOptions.DestinationOptions = crDiskFileDestinationOptions
                 NewRPT.Export()
+                NewRPT.Dispose()
 
                 Adjunto = New Mail.Attachment(Archivo, "PDF/pdf")
                 Mensaje.Attachments.Add(Adjunto)
                 Servidor.Send(Mensaje)
+                Adjunto.Dispose()
                 System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 Console.WriteLine("Envio Exitoso :" & Archivo)
+                System.IO.File.Delete(Archivo)
             Catch ex As Exception
                 Console.WriteLine("error:" & ex.Message)
             End Try
