@@ -922,8 +922,24 @@ Module CFDI33
                         End If
                     Next
                 End If
+
+
+                If ComprobanteP1.Name = "cfdi:Complemento" And nodo = "UUID" Then
+                    For Each Complemento As XmlNode In ComprobanteP1.ChildNodes
+                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                If TimbreFiscalDigital.Name = "UUID" Then
+                                    retorno = TimbreFiscalDigital.Value.ToString
+                                    Return retorno
+                                    Exit Function
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
             Next
         End If
+
 
         If nodo = "RFCE" Or nodo = "RFCR" Then
             For Each ComprobanteP1 As XmlNode In CFDI.ChildNodes
@@ -957,11 +973,34 @@ Module CFDI33
                         End If
                     Next
                 End If
+
+                If ComprobanteP1.Name = "cfdi:Emisor" And nodo = "RFCE" Then
+                    For Each Emisor As XmlNode In ComprobanteP1.Attributes
+                        'For Each Atributos As XmlNode In Emisor.Attributes
+                        If Emisor.Name = "Rfc" Then
+                            retorno = Emisor.Value.ToString
+                            Return retorno
+                            Exit Function
+                        End If
+                        'Next
+                    Next
+                End If
+                If ComprobanteP1.Name = "cfdi:Receptor" And nodo = "RFCR" Then
+                    For Each Emisor As XmlNode In ComprobanteP1.Attributes
+                        'For Each Atributos As XmlNode In Emisor.Attributes
+                        If Emisor.Name = "Rfc" Then
+                            retorno = Emisor.Value.ToString
+                            Return retorno
+                            Exit Function
+                        End If
+                        'Next
+                    Next
+                End If
             Next
         End If
 
         If nodo = "FechaTimbrado" Then
-                For Each ComprobanteP1 As XmlNode In CFDI.ChildNodes
+            For Each ComprobanteP1 As XmlNode In CFDI.ChildNodes
                 If ComprobanteP1.Name = "XMLTimbrado" Then
                     For Each ComprobanteP2 As XmlNode In ComprobanteP1.ChildNodes
                         If ComprobanteP2.Name = "cfdi:Comprobante" Then
@@ -983,8 +1022,55 @@ Module CFDI33
                         End If
                     Next
                 End If
+
+                If ComprobanteP1.Name = "cfdi:Complemento" And nodo = "FechaTimbrado" Then
+                    For Each Complemento As XmlNode In ComprobanteP1.ChildNodes
+                        If Complemento.Name = "tfd:TimbreFiscalDigital" Then
+                            For Each TimbreFiscalDigital As XmlNode In Complemento.Attributes
+                                If TimbreFiscalDigital.Name = "FechaTimbrado" Then
+                                    retorno = TimbreFiscalDigital.Value.ToString
+                                    Return retorno
+                                    Exit Function
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
             Next
+        End If
+
+
+        For Each Comprobante As XmlNode In CFDI.Attributes
+            If Comprobante.Name = "Moneda" And nodo = "Moneda" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf Comprobante.Name = "TipoCambio" And nodo = "TipoCambio" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Total" Or Comprobante.Name = "total") And nodo = "Total" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "MetodoPago" Or Comprobante.Name = "metodoDePago") And nodo = "MetodoPago" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Serie" Or Comprobante.Name = "serie") And nodo = "Serie" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf (Comprobante.Name = "Folio" Or Comprobante.Name = "folio") And nodo = "Folio" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
+            ElseIf Comprobante.Name = "Fecha" And nodo = "Fecha" Then
+                retorno = Comprobante.Value.ToString
+                Return retorno
+                Exit Function
             End If
+        Next
 
         For Each ComprobanteP1 As XmlNode In CFDI.ChildNodes
             If ComprobanteP1.Name = "XMLTimbrado" Then
@@ -1024,6 +1110,8 @@ Module CFDI33
                     End If
                 Next
             End If
+
+
         Next
     End Function
 
