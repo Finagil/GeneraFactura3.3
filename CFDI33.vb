@@ -1247,7 +1247,7 @@ Module CFDI33
                                             End If
                                         Else
                                             If Col.ColumnName = "7_Impuesto_Porcentaje" Then
-                                                If Detalle(Col).ToString = "0.0000" Then
+                                                If Detalle(Col).ToString = "0.0000" Or Detalle(Col).ToString = "0" Then
                                                     cpcero += 1
                                                     T00 += CDec(Detalle._4_Impuesto_Monto_Impuesto)
                                                     bT00 = "SA"

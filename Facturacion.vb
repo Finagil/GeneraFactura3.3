@@ -1165,8 +1165,26 @@ Module GneraFactura
                                     End If
                                 End If
                                 ROWdetail = ProducDS.CFDI_Detalle.NewCFDI_DetalleRow
-                                TasaIVA = TasaIVACliente / 100
-                                TipoImpuesto = TasaIVACliente
+                                If ROWheader._27_Serie_Comprobante = "B" Then
+                                    Dim TasaIvaCapital As Decimal
+                                    Select Case IVACapital
+                                        Case "0%", "EXE"
+                                            TasaIvaCapital = 0
+                                        Case "8%"
+                                            TasaIvaCapital = 8
+                                        Case "16%"
+                                            TasaIvaCapital = 16
+                                        Case Else
+                                            TasaIvaCapital = TasaIVACliente
+                                    End Select
+                                    TasaIVA = TasaIvaCapital / 100
+                                    TipoImpuesto = TasaIvaCapital
+                                Else
+                                    TasaIVA = TasaIVACliente / 100
+                                    TipoImpuesto = TasaIVACliente
+                                End If
+
+
                                 NoLineas += 1
 
                                 If InStr(Datos(8), "Comisión del") And ROWheader._27_Serie_Comprobante = "F" Then
