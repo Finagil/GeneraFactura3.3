@@ -633,7 +633,7 @@ Module CFDI33
                         taInfo100n.ActualizaUUID_UpdateQuery(leeXML(resultado, "UUID"), leeXML(resultado, "Serie"), leeXML(resultado, "Folio"))
                     End If
                     taCtrlUUID.Insert(leeXML(resultado, "Serie").ToString, leeXML(resultado, "Folio").ToString, leeXML(resultado, "UUID").ToString, leeXML(resultado, "Fecha").ToString, leeXML(resultado, "FechaTimbrado").ToString, leeXML(resultado, "RFCE").ToString, leeXML(resultado, "RFCR").ToString, resultado.ToString)
-                    If nombre_a(1) = "FIN940905AX7" Then
+                    If leeXML(resultado, "RFCE").ToString = "FIN940905AX7" Then
                         Dim fecha As String = leeXML(resultado, "Fecha")
                         Dim anio As Integer = CDate(fecha).Year
                         Dim mes As Integer = CDate(fecha).Month
