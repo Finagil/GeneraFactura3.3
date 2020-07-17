@@ -637,15 +637,16 @@ Module CFDI33
                         Dim fecha As String = leeXML(resultado, "Fecha")
                         Dim anio As Integer = CDate(fecha).Year
                         Dim mes As Integer = CDate(fecha).Month
+                        Dim dia As Integer = CDate(fecha).Day
                         Dim files As StreamWriter = Nothing
 
-                        If Directory.Exists(My.Settings.RutaXML & anio & "\" & mes) Then
-                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                        If Directory.Exists(My.Settings.RutaXML & anio & "\" & mes & "\" & dia) Then
+                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & dia & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
                             files.Write(resultado)
                             files.Close()
                         Else
-                            System.IO.Directory.CreateDirectory(My.Settings.RutaXML & anio & "\" & mes)
-                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
+                            System.IO.Directory.CreateDirectory(My.Settings.RutaXML & anio & "\" & mes & "\" & dia)
+                            files = New StreamWriter(My.Settings.RutaXML & anio & "\" & mes & "\" & dia & "\" & leeXML(resultado, "Folio") & "-" & leeXML(resultado, "Serie") & "-" & leeXML(resultado, "UUID") & ".xml", False, Encoding.UTF8)
                             files.Write(resultado)
                             files.Close()
                         End If
