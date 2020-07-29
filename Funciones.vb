@@ -338,7 +338,7 @@ Module Funciones
                 Correos(1) = Correos(1).Substring(0, Correos(1).Length - 1)
             End If
             If InStr(Correos(1), "@") > 0 Then
-                EnviacORREO(Correos(1), Mensaje, Asunto, "CFDI33@finagil.com.mx")
+                EnviacORREO(Correos(1), Mensaje, Asunto, "CFDI33@cmoderna.com")
             End If
 
         Next

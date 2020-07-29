@@ -1619,7 +1619,7 @@ Module CFDI33
                 Console.WriteLine("Recibo de pago : " & CadenaGUID)
                 Mensaje = New Mail.MailMessage
                 Mensaje.IsBodyHtml = True
-                Mensaje.From = New Mail.MailAddress("CFDI@Finagil.com.mx", "FINAGIL envíos automáticos")
+                Mensaje.From = New Mail.MailAddress("CFDI@cmoderna.com", "FINAGIL envíos automáticos")
                 Mensaje.ReplyTo = New Mail.MailAddress("maria.vidal@finagil.com.mx", "Maria Vidal    (Finagil)")
 
                 Mensaje.To.Add("ecacerest@finagil.com.mx")
