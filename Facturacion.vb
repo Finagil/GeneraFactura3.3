@@ -759,13 +759,33 @@ Module GneraFactura
                                             TipoImpuesto = "Exento"
                                     End Select
                                 End If
-                                If (Tipar = "R" Or Tipar = "S") And TipoPersona <> "F" Then
+                                If (Tipar = "R") And TipoPersona <> "F" Then
                                     Select Case Mid(Datos(8), 1, 12)
                                         Case "MORATORIOS V"
                                             TipoImpuesto = "Exento"
                                         Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
                                             TipoImpuesto = "Exento"
                                     End Select
+                                End If
+                                If (Tipar = "S") And TipoPersona <> "F" Then
+                                    If TipoPersona = "E" Then 'debe contar con autorizacion
+                                        If CFDI_H.AutorizarIVA_Interes(cAnexo, "") > 0 Then
+                                            Select Case Mid(Datos(8), 1, 12)
+                                                Case "MORATORIOS V"
+                                                    TipoImpuesto = "Exento"
+                                                Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
+                                                    TipoImpuesto = "Exento"
+                                            End Select
+                                        End If
+                                    Else
+                                        Select Case Mid(Datos(8), 1, 12)
+                                            Case "MORATORIOS V"
+                                                TipoImpuesto = "Exento"
+                                            Case "INTERESES VE", "INTERES OTRO", "INTERES SEGU", "INTERESES PO"
+                                                TipoImpuesto = "Exento"
+                                        End Select
+                                    End If
+
                                 End If
                                 If Tipar = "F" And cAnexo = "038240001" Then
                                     TipoImpuesto = "Exento"
