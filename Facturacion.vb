@@ -1031,6 +1031,9 @@ Module GneraFactura
                             If SerieORG = "PUE" Then
                                 Metodo_Pago = SerieORG
                             End If
+                            If Datos.Length > 5 Then
+                                fecha_pago = Datos(5)
+                            End If
                         Case "H3"
                             If Datos(2).Length <> 10 Then
                                 cAnexo = Mid(cAnexoAux, 1, 5) & Mid(cAnexoAux, 7, 4)
