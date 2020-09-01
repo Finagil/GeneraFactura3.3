@@ -1595,15 +1595,16 @@ Module CFDI33
     End Sub
 
     Sub Envia_RecibosPAGO()
-        Dim NewRPT As New GeneraFactura.CR_Recibo
+
         Dim Guid As Guid
         Dim Servidor As New Mail.SmtpClient
         Dim Mensaje As Mail.MailMessage
         Dim Adjunto As Mail.Attachment
         Dim CadenaGUID, Archivo As String
         Dim TaRec As New ProduccionDSTableAdapters.RecibosDePagoTableAdapter
-        Dim ds As New ProduccionDS
+
         Dim t As New ProduccionDS.RecibosDePagoDataTable
+        Dim t2 As New ProduccionDS.RecibosDePagoDataTable
         Dim crDiskFileDestinationOptions As New DiskFileDestinationOptions()
 
         Servidor.Host = My.Settings.SMTP
@@ -1613,8 +1614,10 @@ Module CFDI33
         TaRec.MarcarComoRecibos()
         TaRec.Fill_Recibos(t)
 
-
         For Each r As ProduccionDS.RecibosDePagoRow In t.Rows
+            Dim NewRPT As New GeneraFactura.CR_Recibo
+            Dim ds As New ProduccionDS
+            Dim TaRec2 As New ProduccionDSTableAdapters.RecibosDePagoTableAdapter
             Try
                 CadenaGUID = Guid.NewGuid.ToString.ToUpper
                 Console.WriteLine("Recibo de pago : " & CadenaGUID)
@@ -1642,10 +1645,13 @@ Module CFDI33
                 Mensaje.Body = "Estimado Cliente: " & r._42_Nombre_Receptor & "<br>" &
                         "Por este medio le hacemos el envio de su recibo de pago sin valor fiscal del contrato " & r._114_Misc02.Trim &
                         " por concepto de " & r._157_Misc45.Trim & "<br><br>Sin más por el momento agradecemos su atención y nos ponemos a su disposición en el teléfono 01 722 214 5533 ext. 1010 o al 01 800 727 7100, en caso de cualquier duda o comentario al respecto."
-                TaRec.ReciboEnviado(CadenaGUID, "Recibo de Pago", r._1_Folio, r._27_Serie_Comprobante)
 
-                TaRec.FillByGUID(ds.RecibosDePago, CadenaGUID)
+
+                TaRec2.FillByGUID(ds.RecibosDePago, r._1_Folio, r._27_Serie_Comprobante)
+                ds.WriteXml("C:\Files\dsRec.xml", XmlWriteMode.WriteSchema)
                 NewRPT.SetDataSource(ds)
+                ds.Dispose()
+                NewRPT.Refresh()
                 NewRPT.ExportOptions.ExportDestinationType = ExportDestinationType.DiskFile
                 NewRPT.ExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat
                 Archivo = "C:\Files\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf"
@@ -1658,6 +1664,9 @@ Module CFDI33
                 Mensaje.Attachments.Add(Adjunto)
                 Servidor.Send(Mensaje)
                 Adjunto.Dispose()
+
+                TaRec.ReciboEnviado(CadenaGUID, "Recibo de Pago", r._1_Folio, r._27_Serie_Comprobante)
+
                 System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 Console.WriteLine("Envio Exitoso :" & Archivo)
                 System.IO.File.Delete(Archivo)
@@ -1665,7 +1674,7 @@ Module CFDI33
                 Console.WriteLine("error:" & ex.Message)
             End Try
         Next
-        NewRPT.Dispose()
+        'NewRPT.Dispose()
     End Sub
 
 End Module
