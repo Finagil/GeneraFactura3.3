@@ -112,7 +112,17 @@ WHERE        (Anexo = @Anexo)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaID_Metodo" Modifier="Public" Name="SacaID_Metodo" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="SacaID_Metodo">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeFolioIntAV" Modifier="Public" Name="ConsumeFolioIntAV" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ConsumeFolioIntAV">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       Llaves
+SET                IDSerieIntAV = IDSerieIntAV + 1; 
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaID_Metodo" Modifier="Public" Name="SacaID_Metodo" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SacaID_Metodo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        isnull(MAX(id_metodo),'NA') AS ID_metodo
@@ -124,7 +134,7 @@ WHERE        (Metodo = @Metodo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaIvaCapital" Modifier="Public" Name="SacaIvaCapital" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SacaIvaCapital">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaIvaCapital" Modifier="Public" Name="SacaIvaCapital" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SacaIvaCapital">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(TasaIvaCapital), '') AS Cap
@@ -136,7 +146,7 @@ WHERE        (Anexo = @Anexo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaMetodo" Modifier="Public" Name="SacaMetodo" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SacaMetodo">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaMetodo" Modifier="Public" Name="SacaMetodo" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="SacaMetodo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Metodo), 'NA No Aplica') AS metodo
@@ -148,7 +158,7 @@ WHERE        (id_metodo = @idMetodo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaMoneda" Modifier="Public" Name="SacaMoneda" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="SacaMoneda">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaMoneda" Modifier="Public" Name="SacaMoneda" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="SacaMoneda">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(moneda), 'WWW') AS moneda
@@ -160,7 +170,7 @@ WHERE        (AnexoCon = @AnexoCon)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieGVA" Modifier="Public" Name="SerieGVA" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="SerieGVA">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieGVA" Modifier="Public" Name="SerieGVA" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="SerieGVA">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT MAX(idSERIEgav)+1 FROM Llaves</CommandText>
@@ -168,7 +178,16 @@ WHERE        (AnexoCon = @AnexoCon)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipaR" Modifier="Public" Name="TipaR" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="TipaR">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieIntAV" Modifier="Public" Name="SerieIntAV" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="SerieIntAV">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        MAX(IDSerieIntAV) + 1 AS Expr1
+FROM            Llaves</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipaR" Modifier="Public" Name="TipaR" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="TipaR">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Tipar), 'X') AS Expr1
@@ -180,7 +199,7 @@ WHERE        (AnexoCon = @Anexo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipoCredito" Modifier="Public" Name="TipoCredito" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="TipoCredito">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipoCredito" Modifier="Public" Name="TipoCredito" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="TipoCredito">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Producto), '') AS Producto
@@ -192,7 +211,7 @@ WHERE        (Tipar = @Tipar)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipoPersona" Modifier="Public" Name="TipoPersona" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="TipoPersona">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TipoPersona" Modifier="Public" Name="TipoPersona" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="TipoPersona">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(Tipo) AS TipoPersona
@@ -1861,7 +1880,7 @@ SELECT [1_Folio], [2_Nombre_Emisor], [3_RFC_Emisor], [4_Dom_Emisor_calle], [5_Do
               <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AutorizarIVA_Interes" Modifier="Public" Name="AutorizarIVA_Interes" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="AutorizarIVA_Interes">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AutorizarIVA_Interes" Modifier="Public" Name="AutorizarIVA_Interes" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AutorizarIVA_Interes">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        COUNT(*) AS Expr1
@@ -1990,7 +2009,7 @@ WHERE        (Guid IS NULL OR
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="NoPago" Modifier="Public" Name="NoPago" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="NoPago">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="NoPago" Modifier="Public" Name="NoPago" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="NoPago">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        COUNT(*) + 1 AS NoPago
@@ -2002,7 +2021,7 @@ WHERE        ([4_DetalleAux_Misc02] = @GUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_FechaEmi" Modifier="Public" Name="Obtiene_FechaEmi" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Obtiene_FechaEmi">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_FechaEmi" Modifier="Public" Name="Obtiene_FechaEmi" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Obtiene_FechaEmi">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [30_Fecha]
@@ -2014,7 +2033,7 @@ WHERE        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Folio" Modifier="Public" Name="Obtiene_Folio" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="Obtiene_Folio">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Folio" Modifier="Public" Name="Obtiene_Folio" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="Obtiene_Folio">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [1_Folio]
@@ -2026,7 +2045,7 @@ WHERE        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Mail" Modifier="Public" Name="Obtiene_Mail" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="Obtiene_Mail">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Mail" Modifier="Public" Name="Obtiene_Mail" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="Obtiene_Mail">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [162_Misc50]
@@ -2038,7 +2057,7 @@ WHERE        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_RFC_Rec" Modifier="Public" Name="Obtiene_RFC_Rec" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="Obtiene_RFC_Rec">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_RFC_Rec" Modifier="Public" Name="Obtiene_RFC_Rec" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="Obtiene_RFC_Rec">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [43_RFC_Receptor]
@@ -2050,7 +2069,7 @@ WHERE (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_RS_Rec" Modifier="Public" Name="Obtiene_RS_Rec" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="Obtiene_RS_Rec">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_RS_Rec" Modifier="Public" Name="Obtiene_RS_Rec" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="Obtiene_RS_Rec">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [42_Nombre_Receptor]
@@ -2062,7 +2081,7 @@ WHERE        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Serie" Modifier="Public" Name="Obtiene_Serie" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="Obtiene_Serie">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production_AUX.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="Obtiene_Serie" Modifier="Public" Name="Obtiene_Serie" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="Obtiene_Serie">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [27_Serie_Comprobante]
@@ -2074,7 +2093,7 @@ WHERE        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ObtieneImpEst8pc_ScalarQuery" Modifier="Public" Name="ObtieneImpEst8pc_ScalarQuery" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="ObtieneImpEst8pc_ScalarQuery">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ObtieneImpEst8pc_ScalarQuery" Modifier="Public" Name="ObtieneImpEst8pc_ScalarQuery" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="ObtieneImpEst8pc_ScalarQuery">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(IvaAnexo), 0) AS Impuesto
@@ -2086,7 +2105,7 @@ WHERE        (AnexoCon = @Anexo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="ObtieneTC" Modifier="Public" Name="ObtieneTC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="ObtieneTC">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="Production.dbo.CFDI_Encabezado" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="ObtieneTC" Modifier="Public" Name="ObtieneTC" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="ObtieneTC">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        [177_Tasa_Divisa]
@@ -2099,7 +2118,7 @@ HAVING        (Guid = @UUID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ProcesarFactura" Modifier="Public" Name="ProcesarFactura" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="ProcesarFactura">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ProcesarFactura" Modifier="Public" Name="ProcesarFactura" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="ProcesarFactura">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CFDI_Encabezado
@@ -2113,7 +2132,7 @@ WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie)</Command
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAviso" Modifier="Public" Name="SacaAviso" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="SacaAviso">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAviso" Modifier="Public" Name="SacaAviso" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="SacaAviso">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Factura), 0) AS Aviso
@@ -2126,7 +2145,7 @@ WHERE        (Anexo = @Anexo) AND (Letra = @Letra)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoAV" Modifier="Public" Name="SacaAvisoAV" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="SacaAvisoAV">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoAV" Modifier="Public" Name="SacaAvisoAV" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="SacaAvisoAV">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(CicloPagare) AS CicloPagare
@@ -2139,7 +2158,7 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoCFDI" Modifier="Public" Name="SacaAvisoCFDI" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="SacaAvisoCFDI">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoCFDI" Modifier="Public" Name="SacaAvisoCFDI" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="SacaAvisoCFDI">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX([159_Misc47]) AS Aviso
@@ -2152,7 +2171,7 @@ WHERE        ([27_Serie_Comprobante] = @Serie) AND ([1_Folio] = @Folio)</Command
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFecha" Modifier="Public" Name="SacaAvisoFecha" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="SacaAvisoFecha">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFecha" Modifier="Public" Name="SacaAvisoFecha" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="SacaAvisoFecha">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        CONVERT(datetime, ISNULL(MAX(Feven), N'19000101'), 112) AS Fecha
@@ -2165,7 +2184,7 @@ WHERE        (Anexo = @Anexo) AND (Letra = @Letra)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFechaAV" Modifier="Public" Name="SacaAvisoFechaAV" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="SacaAvisoFechaAV">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaAvisoFechaAV" Modifier="Public" Name="SacaAvisoFechaAV" QueryType="Scalar" ScalarCallRetval="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="SacaAvisoFechaAV">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        CONVERT(datetime, ISNULL(MAX(FechaTerminacion), N'19000101'), 112) AS Fecha
@@ -2178,7 +2197,7 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioORG" Modifier="Public" Name="SacaFolioORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="SacaFolioORG">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioORG" Modifier="Public" Name="SacaFolioORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="SacaFolioORG">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX([1_Folio]), 0) AS Folio
@@ -2191,7 +2210,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Ser
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioPago" Modifier="Public" Name="SacaFolioPago" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="SacaFolioPago">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaFolioPago" Modifier="Public" Name="SacaFolioPago" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="SacaFolioPago">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(CFDI_Pago) + 1 AS CFD_Pago
@@ -2200,7 +2219,7 @@ FROM            Llaves</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="sacaGUID" Modifier="Public" Name="sacaGUID" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="sacaGUID">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="sacaGUID" Modifier="Public" Name="sacaGUID" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="sacaGUID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX(Guid), 'SIN FOLIO FISCAL') AS Guid
@@ -2213,7 +2232,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Ser
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="SacaSerieORG">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="SacaSerieORG">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie
@@ -2226,7 +2245,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Ser
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="TieneFactura33">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="TieneFactura33">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        COUNT(*) AS Expr1
@@ -2239,7 +2258,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="UpdateGUID">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="UpdateGUID">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CFDI_Encabezado
@@ -7304,6 +7323,137 @@ WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie);  </Comm
                 </UpdateCommand>
               </DbSource>
             </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FacturasAvioInteresTableAdapter" GeneratorDataComponentClassName="FacturasAvioInteresTableAdapter" Name="FacturasAvioInteres" UserDataComponentName="FacturasAvioInteresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_AvioInteresXfacturar" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Anexo, Ciclo, FechaFinal, Cliente, Nombre, Calle, Colonia, Delegacion, Copos, RFC, EMail1, EMail2, Concepto, AnexoCon, Estado, Intereses, Tipar, CicloPagare, Sucursal, Tipo, Factura, IvaAnexo, Moneda, Facturado, 
+                         PorFacturar
+FROM            Vw_AvioInteresXfacturar
+WHERE        (PorFacturar &gt; 0)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Anexo" DataSetColumn="Anexo" />
+              <Mapping SourceColumn="Ciclo" DataSetColumn="Ciclo" />
+              <Mapping SourceColumn="FechaFinal" DataSetColumn="FechaFinal" />
+              <Mapping SourceColumn="Cliente" DataSetColumn="Cliente" />
+              <Mapping SourceColumn="Nombre" DataSetColumn="Nombre" />
+              <Mapping SourceColumn="Calle" DataSetColumn="Calle" />
+              <Mapping SourceColumn="Colonia" DataSetColumn="Colonia" />
+              <Mapping SourceColumn="Delegacion" DataSetColumn="Delegacion" />
+              <Mapping SourceColumn="Copos" DataSetColumn="Copos" />
+              <Mapping SourceColumn="RFC" DataSetColumn="RFC" />
+              <Mapping SourceColumn="EMail1" DataSetColumn="EMail1" />
+              <Mapping SourceColumn="EMail2" DataSetColumn="EMail2" />
+              <Mapping SourceColumn="Concepto" DataSetColumn="Concepto" />
+              <Mapping SourceColumn="AnexoCon" DataSetColumn="AnexoCon" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="Intereses" DataSetColumn="Intereses" />
+              <Mapping SourceColumn="Tipar" DataSetColumn="Tipar" />
+              <Mapping SourceColumn="CicloPagare" DataSetColumn="CicloPagare" />
+              <Mapping SourceColumn="Sucursal" DataSetColumn="Sucursal" />
+              <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
+              <Mapping SourceColumn="Factura" DataSetColumn="Factura" />
+              <Mapping SourceColumn="IvaAnexo" DataSetColumn="IvaAnexo" />
+              <Mapping SourceColumn="Moneda" DataSetColumn="Moneda" />
+              <Mapping SourceColumn="Facturado" DataSetColumn="Facturado" />
+              <Mapping SourceColumn="PorFacturar" DataSetColumn="PorFacturar" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturarInteres" Modifier="Public" Name="FacturarInteres" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FacturarInteres">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       DetalleFINAGIL
+SET                Facturado = 1, Factura = @Factura
+WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Concepto = N'INTERESES') AND (Facturado = 0 OR
+                         Facturado IS NULL)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Factura" ColumnName="Factura" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Factura" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Factura" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Anexo" ColumnName="Anexo" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="nchar(9)" DbType="String" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="9" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Ciclo" ColumnName="Ciclo" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="nchar(2)" DbType="String" Direction="Input" ParameterName="@Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="2" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AVI_InteresFacturadoPagadoTableAdapter" GeneratorDataComponentClassName="AVI_InteresFacturadoPagadoTableAdapter" Name="AVI_InteresFacturadoPagado" UserDataComponentName="AVI_InteresFacturadoPagadoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.AVI_InteresFacturadoPagado" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [AVI_InteresFacturadoPagado] WHERE (([Anexo] = @Original_Anexo) AND ([Ciclo] = @Original_Ciclo) AND ([Fecha] = @Original_Fecha) AND ((@IsNull_Interes = 1 AND [Interes] IS NULL) OR ([Interes] = @Original_Interes)) AND ((@IsNull_Tipo = 1 AND [Tipo] IS NULL) OR ([Tipo] = @Original_Tipo)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_Fecha" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Interes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Interes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_Interes" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Interes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Tipo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [AVI_InteresFacturadoPagado] ([Anexo], [Ciclo], [Fecha], [Interes], [Tipo]) VALUES (@Anexo, @Ciclo, @Fecha, @Interes, @Tipo);
+SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Fecha = @Fecha)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Interes" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Interes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Anexo, Ciclo, Fecha, Interes, Tipo
+FROM            AVI_InteresFacturadoPagado
+WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Anexo" ColumnName="Anexo" DataSourceName="Production.dbo.AVI_InteresFacturadoPagado" DataTypeServer="nchar(9)" DbType="String" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="9" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Ciclo" ColumnName="Ciclo" DataSourceName="Production.dbo.AVI_InteresFacturadoPagado" DataTypeServer="nchar(2)" DbType="String" Direction="Input" ParameterName="@Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="2" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [AVI_InteresFacturadoPagado] SET [Anexo] = @Anexo, [Ciclo] = @Ciclo, [Fecha] = @Fecha, [Interes] = @Interes, [Tipo] = @Tipo WHERE (([Anexo] = @Original_Anexo) AND ([Ciclo] = @Original_Ciclo) AND ([Fecha] = @Original_Fecha) AND ((@IsNull_Interes = 1 AND [Interes] IS NULL) OR ([Interes] = @Original_Interes)) AND ((@IsNull_Tipo = 1 AND [Tipo] IS NULL) OR ([Tipo] = @Original_Tipo)));
+SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Fecha = @Fecha)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Interes" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Interes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_Fecha" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Fecha" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Interes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Interes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_Interes" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="Interes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Tipo" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Tipo" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Tipo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Anexo" DataSetColumn="Anexo" />
+              <Mapping SourceColumn="Ciclo" DataSetColumn="Ciclo" />
+              <Mapping SourceColumn="Fecha" DataSetColumn="Fecha" />
+              <Mapping SourceColumn="Interes" DataSetColumn="Interes" />
+              <Mapping SourceColumn="Tipo" DataSetColumn="Tipo" />
+            </Mappings>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -13715,6 +13865,192 @@ WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie);  </Comm
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="FacturasAvioInteres" msprop:Generator_TableClassName="FacturasAvioInteresDataTable" msprop:Generator_TableVarName="tableFacturasAvioInteres" msprop:Generator_RowChangedName="FacturasAvioInteresRowChanged" msprop:Generator_TablePropName="FacturasAvioInteres" msprop:Generator_RowDeletingName="FacturasAvioInteresRowDeleting" msprop:Generator_RowChangingName="FacturasAvioInteresRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioInteresRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioInteresRowDeleted" msprop:Generator_RowClassName="FacturasAvioInteresRow" msprop:Generator_UserTableName="FacturasAvioInteres" msprop:Generator_RowEvArgName="FacturasAvioInteresRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ciclo" msprop:Generator_ColumnVarNameInTable="columnCiclo" msprop:Generator_ColumnPropNameInRow="Ciclo" msprop:Generator_ColumnPropNameInTable="CicloColumn" msprop:Generator_UserColumnName="Ciclo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FechaFinal" msprop:Generator_ColumnVarNameInTable="columnFechaFinal" msprop:Generator_ColumnPropNameInRow="FechaFinal" msprop:Generator_ColumnPropNameInTable="FechaFinalColumn" msprop:Generator_UserColumnName="FechaFinal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Calle" msprop:Generator_ColumnVarNameInTable="columnCalle" msprop:Generator_ColumnPropNameInRow="Calle" msprop:Generator_ColumnPropNameInTable="CalleColumn" msprop:Generator_UserColumnName="Calle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Colonia" msprop:Generator_ColumnVarNameInTable="columnColonia" msprop:Generator_ColumnPropNameInRow="Colonia" msprop:Generator_ColumnPropNameInTable="ColoniaColumn" msprop:Generator_UserColumnName="Colonia">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Delegacion" msprop:Generator_ColumnVarNameInTable="columnDelegacion" msprop:Generator_ColumnPropNameInRow="Delegacion" msprop:Generator_ColumnPropNameInTable="DelegacionColumn" msprop:Generator_UserColumnName="Delegacion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Copos" msprop:Generator_ColumnVarNameInTable="columnCopos" msprop:Generator_ColumnPropNameInRow="Copos" msprop:Generator_ColumnPropNameInTable="CoposColumn" msprop:Generator_UserColumnName="Copos">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RFC" msprop:Generator_ColumnVarNameInTable="columnRFC" msprop:Generator_ColumnPropNameInRow="RFC" msprop:Generator_ColumnPropNameInTable="RFCColumn" msprop:Generator_UserColumnName="RFC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMail1" msprop:Generator_ColumnVarNameInTable="columnEMail1" msprop:Generator_ColumnPropNameInRow="EMail1" msprop:Generator_ColumnPropNameInTable="EMail1Column" msprop:Generator_UserColumnName="EMail1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMail2" msprop:Generator_ColumnVarNameInTable="columnEMail2" msprop:Generator_ColumnPropNameInRow="EMail2" msprop:Generator_ColumnPropNameInTable="EMail2Column" msprop:Generator_UserColumnName="EMail2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Concepto" msprop:Generator_ColumnVarNameInTable="columnConcepto" msprop:Generator_ColumnPropNameInRow="Concepto" msprop:Generator_ColumnPropNameInTable="ConceptoColumn" msprop:Generator_UserColumnName="Concepto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AnexoCon" msprop:Generator_ColumnVarNameInTable="columnAnexoCon" msprop:Generator_ColumnPropNameInRow="AnexoCon" msprop:Generator_ColumnPropNameInTable="AnexoConColumn" msprop:Generator_UserColumnName="AnexoCon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Intereses" msprop:Generator_ColumnVarNameInTable="columnIntereses" msprop:Generator_ColumnPropNameInRow="Intereses" msprop:Generator_ColumnPropNameInTable="InteresesColumn" msprop:Generator_UserColumnName="Intereses" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tipar" msprop:Generator_ColumnVarNameInTable="columnTipar" msprop:Generator_ColumnPropNameInRow="Tipar" msprop:Generator_ColumnPropNameInTable="TiparColumn" msprop:Generator_UserColumnName="Tipar">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CicloPagare" msprop:Generator_ColumnVarNameInTable="columnCicloPagare" msprop:Generator_ColumnPropNameInRow="CicloPagare" msprop:Generator_ColumnPropNameInTable="CicloPagareColumn" msprop:Generator_UserColumnName="CicloPagare" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sucursal" msprop:Generator_ColumnVarNameInTable="columnSucursal" msprop:Generator_ColumnPropNameInRow="Sucursal" msprop:Generator_ColumnPropNameInTable="SucursalColumn" msprop:Generator_UserColumnName="Sucursal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Factura" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IvaAnexo" msprop:Generator_ColumnVarNameInTable="columnIvaAnexo" msprop:Generator_ColumnPropNameInRow="IvaAnexo" msprop:Generator_ColumnPropNameInTable="IvaAnexoColumn" msprop:Generator_UserColumnName="IvaAnexo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Moneda" msprop:Generator_ColumnVarNameInTable="columnMoneda" msprop:Generator_ColumnPropNameInRow="Moneda" msprop:Generator_ColumnPropNameInTable="MonedaColumn" msprop:Generator_UserColumnName="Moneda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Facturado" msprop:Generator_ColumnVarNameInTable="columnFacturado" msprop:Generator_ColumnPropNameInRow="Facturado" msprop:Generator_ColumnPropNameInTable="FacturadoColumn" msprop:Generator_UserColumnName="Facturado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PorFacturar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPorFacturar" msprop:Generator_ColumnPropNameInRow="PorFacturar" msprop:Generator_ColumnPropNameInTable="PorFacturarColumn" msprop:Generator_UserColumnName="PorFacturar" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AVI_InteresFacturadoPagado" msprop:Generator_TableClassName="AVI_InteresFacturadoPagadoDataTable" msprop:Generator_TableVarName="tableAVI_InteresFacturadoPagado" msprop:Generator_RowChangedName="AVI_InteresFacturadoPagadoRowChanged" msprop:Generator_TablePropName="AVI_InteresFacturadoPagado" msprop:Generator_RowDeletingName="AVI_InteresFacturadoPagadoRowDeleting" msprop:Generator_RowChangingName="AVI_InteresFacturadoPagadoRowChanging" msprop:Generator_RowEvHandlerName="AVI_InteresFacturadoPagadoRowChangeEventHandler" msprop:Generator_RowDeletedName="AVI_InteresFacturadoPagadoRowDeleted" msprop:Generator_RowClassName="AVI_InteresFacturadoPagadoRow" msprop:Generator_UserTableName="AVI_InteresFacturadoPagado" msprop:Generator_RowEvArgName="AVI_InteresFacturadoPagadoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ciclo" msprop:Generator_ColumnVarNameInTable="columnCiclo" msprop:Generator_ColumnPropNameInRow="Ciclo" msprop:Generator_ColumnPropNameInTable="CicloColumn" msprop:Generator_UserColumnName="Ciclo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" />
+              <xs:element name="Interes" msprop:Generator_ColumnVarNameInTable="columnInteres" msprop:Generator_ColumnPropNameInRow="Interes" msprop:Generator_ColumnPropNameInTable="InteresColumn" msprop:Generator_UserColumnName="Interes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tipo" msprop:Generator_ColumnVarNameInTable="columnTipo" msprop:Generator_ColumnPropNameInRow="Tipo" msprop:Generator_ColumnPropNameInTable="TipoColumn" msprop:Generator_UserColumnName="Tipo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -13830,6 +14166,18 @@ WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie);  </Comm
       <xs:selector xpath=".//mstns:CFDI_Encabezado_Nomina" />
       <xs:field xpath="mstns:_x0031__Folio" />
       <xs:field xpath="mstns:_x0032_7_Serie_Comprobante" />
+    </xs:unique>
+    <xs:unique name="FacturasAvioInteres_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FacturasAvioInteres" />
+      <xs:field xpath="mstns:Anexo" />
+      <xs:field xpath="mstns:Ciclo" />
+      <xs:field xpath="mstns:FechaFinal" />
+    </xs:unique>
+    <xs:unique name="AVI_InteresFacturadoPagado_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AVI_InteresFacturadoPagado" />
+      <xs:field xpath="mstns:Anexo" />
+      <xs:field xpath="mstns:Ciclo" />
+      <xs:field xpath="mstns:Fecha" />
     </xs:unique>
   </xs:element>
 </xs:schema>
