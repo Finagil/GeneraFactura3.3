@@ -3,6 +3,17 @@ Imports System.Net.Mail
 Imports System.Text.RegularExpressions
 Module Funciones
 
+    Public Function CTOD(ByVal cFecha As String) As Date
+        Dim nDia, nMes, nYear As Integer
+
+        nDia = Val(Right(cFecha, 2))
+        nMes = Val(Mid(cFecha, 5, 2))
+        nYear = Val(Left(cFecha, 4))
+
+        CTOD = DateSerial(nYear, nMes, nDia)
+
+    End Function
+
     Public Function Letras(ByVal numero As String, ByVal moneda As String) As String
 
         'Declaración de variables de datos

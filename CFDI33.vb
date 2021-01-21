@@ -214,14 +214,8 @@ Module CFDI33
 
         Tafolios.Fill(t, FechaS)
         For Each r As ProduccionDS.TraspasosAvioCCRow In t.Rows
-            If r.Sucursal = "04" Or r.Sucursal = "08" Then
-                cSerie = "MXL"
-                nRecibo = Tafolios.SerieMXL
-            Else
-                cSerie = "A"
-                nRecibo = Tafolios.SerieA
-            End If
-
+            cSerie = "IAV"
+            nRecibo = Tafolios.SerieIAV
 
             Dim stmWriter As New StreamWriter(My.Settings.RutaOrigen & "FACTURA_" & cSerie & "_" & nRecibo & ".txt")
 
@@ -277,12 +271,9 @@ Module CFDI33
             stmWriter.WriteLine(cRenglon)
             stmWriter.Close()
 
-            If r.Sucursal = "04" Or r.Sucursal = "08" Then
-                Tafolios.ConsumeSerieMXL()
-            Else
-                Tafolios.ConsumeSerieA()
-            End If
+            Tafolios.ConsumeSerieIAV()
             Tafolios.FacturarTraspaso(True, cSerie, nRecibo, r.id_Traspaso)
+            Tafolios.FacturaIAV(cSerie & nRecibo, r.Anexo, r.Ciclo)
         Next
     End Sub
 

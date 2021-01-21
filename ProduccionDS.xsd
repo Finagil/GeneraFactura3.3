@@ -1918,7 +1918,7 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Autorizado = 1)</Command
                          [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cantidad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor], [94_Cod_Vendedor], [95_Nombre_Vendedor], 
                          [96_Via_Embarque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Emisor_referencia], Encabezado_Procesado, Fecha, Guid
 FROM            CFDI_Encabezado
-WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] &lt;&gt; 'REP') AND ([27_Serie_Comprobante] &lt;&gt; 'REPP') AND ([27_Serie_Comprobante] &lt;&gt; 'REPA')  AND ([27_Serie_Comprobante] &lt;&gt; 'REPF')</CommandText>
+WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] &lt;&gt; 'REP') AND ([27_Serie_Comprobante] &lt;&gt; 'REPP') AND ([27_Serie_Comprobante] &lt;&gt; 'REPA')  AND ([27_Serie_Comprobante] &lt;&gt; 'REPF') AND ([27_Serie_Comprobante] &lt;&gt; 'RIA')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1927,53 +1927,33 @@ WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] &lt;&gt; 'RE
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT DISTINCT 
-                         CFDI_Encabezado.[100_Letras_Monto_Total], CFDI_Encabezado.[101_Cantidad_Unidades], CFDI_Encabezado.[102_Cantidad_empaques], CFDI_Encabezado.[103_EAN_Receptor], CFDI_Encabezado.[104_EAN_LugarExpide], 
-                         CFDI_Encabezado.[105_IEPS_Id], CFDI_Encabezado.[106_Estatus], CFDI_Encabezado.[107_Numero_Emisor], CFDI_Encabezado.[108_Monto_Merma], CFDI_Encabezado.[109_Monto_SubTotal_ApIVA], 
-                         CFDI_Encabezado.[10_Dom_Emisor_municipio], CFDI_Encabezado.[110_Transportista], CFDI_Encabezado.[111_Numero_Solicitud], CFDI_Encabezado.[112_Desc_Moneda], CFDI_Encabezado.[113_Misc01], 
-                         CFDI_Encabezado.[114_Misc02], CFDI_Encabezado.[115_Misc03], CFDI_Encabezado.[116_Misc04], CFDI_Encabezado.[117_Misc05], CFDI_Encabezado.[118_Misc06], CFDI_Encabezado.[119_Misc07], 
-                         CFDI_Encabezado.[11_Dom_Emisor_estado], CFDI_Encabezado.[120_Misc08], CFDI_Encabezado.[121_Misc09], CFDI_Encabezado.[122_Misc10], CFDI_Encabezado.[123_Misc11], CFDI_Encabezado.[124_Misc12], 
-                         CFDI_Encabezado.[125_Misc13], CFDI_Encabezado.[126_Misc14], CFDI_Encabezado.[127_Misc15], CFDI_Encabezado.[128_Misc16], CFDI_Encabezado.[129_Misc17], CFDI_Encabezado.[12_Dom_Emisor_pais], 
-                         CFDI_Encabezado.[130_Misc18], CFDI_Encabezado.[131_Misc19], CFDI_Encabezado.[132_Misc20], CFDI_Encabezado.[133_Misc21], CFDI_Encabezado.[134_Misc22], CFDI_Encabezado.[135_Misc23], 
-                         CFDI_Encabezado.[136_Misc24], CFDI_Encabezado.[137_Misc25], CFDI_Encabezado.[138_Misc26], CFDI_Encabezado.[139_Misc27], CFDI_Encabezado.[13_Dom_Emisor_codigoPostal], CFDI_Encabezado.[140_Misc28], 
-                         CFDI_Encabezado.[141_Misc29], CFDI_Encabezado.[142_Misc30], CFDI_Encabezado.[143_Misc31], CFDI_Encabezado.[144_Misc32], CFDI_Encabezado.[145_Misc33], CFDI_Encabezado.[146_Misc34], 
-                         CFDI_Encabezado.[147_Misc35], CFDI_Encabezado.[148_Misc36], CFDI_Encabezado.[149_Misc37], CFDI_Encabezado.[14_Tel_Emisor], CFDI_Encabezado.[150_Misc38], CFDI_Encabezado.[151_Misc39], 
-                         CFDI_Encabezado.[152_Misc40], CFDI_Encabezado.[153_Misc41], CFDI_Encabezado.[154_Misc42], CFDI_Encabezado.[155_Misc43], CFDI_Encabezado.[156_Misc44], CFDI_Encabezado.[157_Misc45], 
-                         CFDI_Encabezado.[158_Misc46], CFDI_Encabezado.[159_Misc47], CFDI_Encabezado.[15_Dom_Sucursal_calle], CFDI_Encabezado.[160_Misc48], CFDI_Encabezado.[161_Misc49], CFDI_Encabezado.[162_Misc50], 
-                         CFDI_Encabezado.[163_Porc_IVA], CFDI_Encabezado.[164_Monto_IEPS], CFDI_Encabezado.[165_Document_Status], CFDI_Encabezado.[166_Delivery_Date], CFDI_Encabezado.[167_RegimentFiscal], 
-                         CFDI_Encabezado.[168_Num_CtaPago], CFDI_Encabezado.[169_Num_contrarecibo], CFDI_Encabezado.[16_Dom_Sucursal_noExterior], CFDI_Encabezado.[170_Fecha_Num_contrarecibo], 
-                         CFDI_Encabezado.[171_Contacto_Comprar], CFDI_Encabezado.[172_Customs_gln], CFDI_Encabezado.[173_Alternante_identificacion_gln], CFDI_Encabezado.[174_Nombre_Aduana], 
-                         CFDI_Encabezado.[175_Nombre_Aduana_Ciudad], CFDI_Encabezado.[176_Func_Divisa], CFDI_Encabezado.[177_Tasa_Divisa], CFDI_Encabezado.[178_Ref_Tiempo_Pago], 
-                         CFDI_Encabezado.[179_Ref_Termino_Tiempo_Pago], CFDI_Encabezado.[17_Dom_Sucursal_noInterior], CFDI_Encabezado.[180_LugarExpedicion], CFDI_Encabezado.[181_SerieFolioFiscalOrig], 
-                         CFDI_Encabezado.[182_Tipo_Especial_de_Servicio], CFDI_Encabezado.[183_FechaFolioFiscalOrig], CFDI_Encabezado.[184_Porcentaje_no_aplicado], CFDI_Encabezado.[185_MontoFolioFiscalOrig], 
-                         CFDI_Encabezado.[186_Monto_Total_Descuentos], CFDI_Encabezado.[187_Monto_Total_Pagar], CFDI_Encabezado.[188_Ano_Aprobacion], CFDI_Encabezado.[189_Motivo_Descuento], 
-                         CFDI_Encabezado.[18_Dom_Sucursal_colonia], CFDI_Encabezado.[190_Metodo_Pago], CFDI_Encabezado.[191_Efecto_Comprobante], CFDI_Encabezado.[192_Monto_TotalImp_Retenidos], 
-                         CFDI_Encabezado.[193_Monto_TotalImp_Trasladados], CFDI_Encabezado.[19_Dom_Sucursal_localidad], CFDI_Encabezado.[1_Folio], CFDI_Encabezado.[20_Dom_Sucursal_referencia], 
-                         CFDI_Encabezado.[21_Dom_Sucursal_municipio], CFDI_Encabezado.[22_Dom_Sucursal_estado], CFDI_Encabezado.[23_Dom_Sucursal_pais], CFDI_Encabezado.[24_Dom_Sucursal_codigoPostal], 
-                         CFDI_Encabezado.[25_Tel_sucursal], CFDI_Encabezado.[26_Version], CFDI_Encabezado.[27_Serie_Comprobante], CFDI_Encabezado.[28_Numero_Aprobacion], CFDI_Encabezado.[29_FormaPago], 
-                         CFDI_Encabezado.[2_Nombre_Emisor], CFDI_Encabezado.[30_Fecha], CFDI_Encabezado.[31_Hora], CFDI_Encabezado.[32_Dom_LugarExpide_calle], CFDI_Encabezado.[33_Dom_LugarExpide_noExterior], 
-                         CFDI_Encabezado.[34_Dom_LugarExpide_noInterior], CFDI_Encabezado.[35_Dom_LugarExpide_colonia], CFDI_Encabezado.[36_Dom_LugarExpide_localidad], CFDI_Encabezado.[37_Dom_LugarExpide_referencia], 
-                         CFDI_Encabezado.[38_Dom_LugarExpide_municipio], CFDI_Encabezado.[39_Dom_LugarExpide_estado], CFDI_Encabezado.[3_RFC_Emisor], CFDI_Encabezado.[40_Dom_LugarExpide_pais], 
-                         CFDI_Encabezado.[41_Dom_LugarExpide_codigoPostal], CFDI_Encabezado.[42_Nombre_Receptor], CFDI_Encabezado.[43_RFC_Receptor], CFDI_Encabezado.[44_Dom_Receptor_calle], 
-                         CFDI_Encabezado.[45_Dom_Receptor_noExterior], CFDI_Encabezado.[46_Dom_Receptor_noInterior], CFDI_Encabezado.[47_Dom_Receptor_colonia], CFDI_Encabezado.[48_Dom_Receptor_localidad], 
-                         CFDI_Encabezado.[49_Dom_Receptor_referencia], CFDI_Encabezado.[4_Dom_Emisor_calle], CFDI_Encabezado.[50_Dom_Receptor_municipio], CFDI_Encabezado.[51_Dom_Receptor_estado], 
-                         CFDI_Encabezado.[52_Dom_Receptor_pais], CFDI_Encabezado.[53_Dom_Receptor_codigoPostal], CFDI_Encabezado.[54_Monto_SubTotal], CFDI_Encabezado.[55_Monto_IVA], CFDI_Encabezado.[56_Monto_Total], 
-                         CFDI_Encabezado.[57_Estado], CFDI_Encabezado.[58_TipoCFD], CFDI_Encabezado.[59_Notas], CFDI_Encabezado.[5_Dom_Emisor_noExterior], CFDI_Encabezado.[60_Notas02], CFDI_Encabezado.[61_Notas03], 
-                         CFDI_Encabezado.[62_TradingPartner_Prov], CFDI_Encabezado.[63_Calif_TradingPartner_Prov], CFDI_Encabezado.[64_EAN_Proveedor], CFDI_Encabezado.[65_Numero_Factura], 
-                         CFDI_Encabezado.[66_Numero_OrdenCompra], CFDI_Encabezado.[67_Fecha_OrdenCompra], CFDI_Encabezado.[68_Numero_Proveedor], CFDI_Encabezado.[69_EAN_Tienda], CFDI_Encabezado.[6_Dom_Emisor_noInterior], 
-                         CFDI_Encabezado.[70_Numero_Tienda], CFDI_Encabezado.[71_Nombre_Tienda], CFDI_Encabezado.[72_Dom_Tienda_calle], CFDI_Encabezado.[73_Dom_Tienda_noExterior], CFDI_Encabezado.[74_Dom_Tienda_noInterior], 
-                         CFDI_Encabezado.[75_Dom_Tienda_colonia], CFDI_Encabezado.[76_Dom_Tienda_localidad], CFDI_Encabezado.[77_Dom_Tienda_referencia], CFDI_Encabezado.[78_Dom_Tienda_municipio], 
-                         CFDI_Encabezado.[79_Dom_Tienda_estado], CFDI_Encabezado.[7_Dom_Emisor_colonia], CFDI_Encabezado.[80_Dom_Tienda_pais], CFDI_Encabezado.[81_Dom_Tienda_codigoPostal], CFDI_Encabezado.[82_RFC_Tienda], 
-                         CFDI_Encabezado.[83_Cod_Moneda], CFDI_Encabezado.[84_Dias_Pago], CFDI_Encabezado.[85_Porc_Desc_ProntoPago], CFDI_Encabezado.[86_Monto_Desc_ProntoPago], CFDI_Encabezado.[87_Cod_Descuento], 
-                         CFDI_Encabezado.[88_Porc_Descuento], CFDI_Encabezado.[89_Monto_Descuento], CFDI_Encabezado.[8_Dom_Emisor_localidad], CFDI_Encabezado.[90_Cantidad_LineasFactura], CFDI_Encabezado.[91_Fecha_Vencimiento], 
-                         CFDI_Encabezado.[92_Cod_Zona], CFDI_Encabezado.[93_Numero_Receptor], CFDI_Encabezado.[94_Cod_Vendedor], CFDI_Encabezado.[95_Nombre_Vendedor], CFDI_Encabezado.[96_Via_Embarque], 
-                         CFDI_Encabezado.[97_Condiciones_Pago], CFDI_Encabezado.[98_Numero_Pedido], CFDI_Encabezado.[99_Fecha_Pedido], CFDI_Encabezado.[9_Dom_Emisor_referencia], CFDI_Encabezado.Encabezado_Procesado, 
-                         CFDI_Encabezado.Fecha, CFDI_Encabezado.Guid
-FROM            CFDI_Encabezado INNER JOIN
-                         CFDI_Encabezado AS CFDI_Encabezado_1 ON CFDI_Encabezado.[1_Folio] = CFDI_Encabezado_1.[1_Folio] AND CFDI_Encabezado.[27_Serie_Comprobante] = CFDI_Encabezado_1.[27_Serie_Comprobante]
-WHERE        (CFDI_Encabezado.Encabezado_Procesado = 0) AND (CFDI_Encabezado.[27_Serie_Comprobante] = 'REP' OR
-                         CFDI_Encabezado.[27_Serie_Comprobante] = 'REPP' OR
-                         CFDI_Encabezado.[27_Serie_Comprobante] = 'REPA' OR
-                         CFDI_Encabezado.[27_Serie_Comprobante] = 'REPF')</CommandText>
+                         [100_Letras_Monto_Total], [101_Cantidad_Unidades], [102_Cantidad_empaques], [103_EAN_Receptor], [104_EAN_LugarExpide], [105_IEPS_Id], [106_Estatus], [107_Numero_Emisor], [108_Monto_Merma], 
+                         [109_Monto_SubTotal_ApIVA], [10_Dom_Emisor_municipio], [110_Transportista], [111_Numero_Solicitud], [112_Desc_Moneda], [113_Misc01], [114_Misc02], [115_Misc03], [116_Misc04], [117_Misc05], [118_Misc06], 
+                         [119_Misc07], [11_Dom_Emisor_estado], [120_Misc08], [121_Misc09], [122_Misc10], [123_Misc11], [124_Misc12], [125_Misc13], [126_Misc14], [127_Misc15], [128_Misc16], [129_Misc17], [12_Dom_Emisor_pais], [130_Misc18],
+                          [131_Misc19], [132_Misc20], [133_Misc21], [134_Misc22], [135_Misc23], [136_Misc24], [137_Misc25], [138_Misc26], [139_Misc27], [13_Dom_Emisor_codigoPostal], [140_Misc28], [141_Misc29], [142_Misc30], [143_Misc31], 
+                         [144_Misc32], [145_Misc33], [146_Misc34], [147_Misc35], [148_Misc36], [149_Misc37], [14_Tel_Emisor], [150_Misc38], [151_Misc39], [152_Misc40], [153_Misc41], [154_Misc42], [155_Misc43], [156_Misc44], [157_Misc45], 
+                         [158_Misc46], [159_Misc47], [15_Dom_Sucursal_calle], [160_Misc48], [161_Misc49], [162_Misc50], [163_Porc_IVA], [164_Monto_IEPS], [165_Document_Status], [166_Delivery_Date], [167_RegimentFiscal], [168_Num_CtaPago], 
+                         [169_Num_contrarecibo], [16_Dom_Sucursal_noExterior], [170_Fecha_Num_contrarecibo], [171_Contacto_Comprar], [172_Customs_gln], [173_Alternante_identificacion_gln], [174_Nombre_Aduana], 
+                         [175_Nombre_Aduana_Ciudad], [176_Func_Divisa], [177_Tasa_Divisa], [178_Ref_Tiempo_Pago], [179_Ref_Termino_Tiempo_Pago], [17_Dom_Sucursal_noInterior], [180_LugarExpedicion], [181_SerieFolioFiscalOrig], 
+                         [182_Tipo_Especial_de_Servicio], [183_FechaFolioFiscalOrig], [184_Porcentaje_no_aplicado], [185_MontoFolioFiscalOrig], [186_Monto_Total_Descuentos], [187_Monto_Total_Pagar], [188_Ano_Aprobacion], 
+                         [189_Motivo_Descuento], [18_Dom_Sucursal_colonia], [190_Metodo_Pago], [191_Efecto_Comprobante], [192_Monto_TotalImp_Retenidos], [193_Monto_TotalImp_Trasladados], [19_Dom_Sucursal_localidad], [1_Folio], 
+                         [20_Dom_Sucursal_referencia], [21_Dom_Sucursal_municipio], [22_Dom_Sucursal_estado], [23_Dom_Sucursal_pais], [24_Dom_Sucursal_codigoPostal], [25_Tel_sucursal], [26_Version], [27_Serie_Comprobante], 
+                         [28_Numero_Aprobacion], [29_FormaPago], [2_Nombre_Emisor], [30_Fecha], [31_Hora], [32_Dom_LugarExpide_calle], [33_Dom_LugarExpide_noExterior], [34_Dom_LugarExpide_noInterior], [35_Dom_LugarExpide_colonia], 
+                         [36_Dom_LugarExpide_localidad], [37_Dom_LugarExpide_referencia], [38_Dom_LugarExpide_municipio], [39_Dom_LugarExpide_estado], [3_RFC_Emisor], [40_Dom_LugarExpide_pais], [41_Dom_LugarExpide_codigoPostal], 
+                         [42_Nombre_Receptor], [43_RFC_Receptor], [44_Dom_Receptor_calle], [45_Dom_Receptor_noExterior], [46_Dom_Receptor_noInterior], [47_Dom_Receptor_colonia], [48_Dom_Receptor_localidad], 
+                         [49_Dom_Receptor_referencia], [4_Dom_Emisor_calle], [50_Dom_Receptor_municipio], [51_Dom_Receptor_estado], [52_Dom_Receptor_pais], [53_Dom_Receptor_codigoPostal], [54_Monto_SubTotal], [55_Monto_IVA], 
+                         [56_Monto_Total], [57_Estado], [58_TipoCFD], [59_Notas], [5_Dom_Emisor_noExterior], [60_Notas02], [61_Notas03], [62_TradingPartner_Prov], [63_Calif_TradingPartner_Prov], [64_EAN_Proveedor], [65_Numero_Factura], 
+                         [66_Numero_OrdenCompra], [67_Fecha_OrdenCompra], [68_Numero_Proveedor], [69_EAN_Tienda], [6_Dom_Emisor_noInterior], [70_Numero_Tienda], [71_Nombre_Tienda], [72_Dom_Tienda_calle], 
+                         [73_Dom_Tienda_noExterior], [74_Dom_Tienda_noInterior], [75_Dom_Tienda_colonia], [76_Dom_Tienda_localidad], [77_Dom_Tienda_referencia], [78_Dom_Tienda_municipio], [79_Dom_Tienda_estado], 
+                         [7_Dom_Emisor_colonia], [80_Dom_Tienda_pais], [81_Dom_Tienda_codigoPostal], [82_RFC_Tienda], [83_Cod_Moneda], [84_Dias_Pago], [85_Porc_Desc_ProntoPago], [86_Monto_Desc_ProntoPago], [87_Cod_Descuento], 
+                         [88_Porc_Descuento], [89_Monto_Descuento], [8_Dom_Emisor_localidad], [90_Cantidad_LineasFactura], [91_Fecha_Vencimiento], [92_Cod_Zona], [93_Numero_Receptor], [94_Cod_Vendedor], [95_Nombre_Vendedor], 
+                         [96_Via_Embarque], [97_Condiciones_Pago], [98_Numero_Pedido], [99_Fecha_Pedido], [9_Dom_Emisor_referencia], Encabezado_Procesado, Fecha, Guid
+FROM            CFDI_Encabezado
+WHERE        (Encabezado_Procesado = 0) AND ([27_Serie_Comprobante] = 'REP' OR
+                         [27_Serie_Comprobante] = 'REPP' OR
+                         [27_Serie_Comprobante] = 'REPA' OR
+                         [27_Serie_Comprobante] = 'REPF' OR
+                         [27_Serie_Comprobante] = 'RIA')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -2232,7 +2212,21 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Ser
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="SacaSerieORG">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaIAVsinFolioFiscal" Modifier="Public" Name="SacaIAVsinFolioFiscal" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="SacaIAVsinFolioFiscal">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        COUNT(*) AS Guid
+FROM            CFDI_Encabezado
+WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Serie_Comprobante] = 'IAV') AND ([190_Metodo_Pago] = 'PPD') AND (Guid IS NULL OR
+                         Guid = '')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Aviso" ColumnName="159_Misc47" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(150)" DbType="AnsiString" Direction="Input" ParameterName="@Aviso" Precision="0" ProviderType="VarChar" Scale="0" Size="150" SourceColumn="159_Misc47" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="AnexoCon" ColumnName="114_Misc02" DataSourceName="Production.dbo.CFDI_Encabezado" DataTypeServer="varchar(150)" DbType="AnsiString" Direction="Input" ParameterName="@AnexoCon" Precision="0" ProviderType="VarChar" Scale="0" Size="150" SourceColumn="114_Misc02" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SacaSerieORG" Modifier="Public" Name="SacaSerieORG" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="SacaSerieORG">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ISNULL(MAX([27_Serie_Comprobante]), 'XX') AS Serie
@@ -2245,7 +2239,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon) AND ([27_Ser
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="TieneFactura33">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TieneFactura33" Modifier="Public" Name="TieneFactura33" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="TieneFactura33">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        COUNT(*) AS Expr1
@@ -2258,7 +2252,7 @@ WHERE        ([159_Misc47] = @Aviso) AND ([114_Misc02] = @AnexoCon)</CommandText
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="UpdateGUID">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateGUID" Modifier="Public" Name="UpdateGUID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy22" UserSourceName="UpdateGUID">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CFDI_Encabezado
@@ -3935,7 +3929,16 @@ SET                IDSerieA = IDSerieA + 1</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeSerieMXL" Modifier="Public" Name="ConsumeSerieMXL" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ConsumeSerieMXL">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeSerieIAV" Modifier="Public" Name="ConsumeSerieIAV" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="ConsumeSerieIAV">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       Llaves
+SET                IDSerieIntAV = IDSerieIntAV + 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ConsumeSerieMXL" Modifier="Public" Name="ConsumeSerieMXL" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="ConsumeSerieMXL">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       Llaves
@@ -3944,7 +3947,22 @@ SET                IDSerieMXL = IDSerieMXL + 1</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturarTraspaso" Modifier="Public" Name="FacturarTraspaso" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FacturarTraspaso">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturaIAV" Modifier="Public" Name="FacturaIAV" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="FacturaIAV">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       DetalleFINAGIL
+SET                Facturado = 1, Factura = @Factura
+WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Facturado = 0 OR
+                         Facturado IS NULL) AND (Concepto = N'INTERESES')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Factura" ColumnName="Factura" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="varchar(20)" DbType="AnsiString" Direction="Input" ParameterName="@Factura" Precision="0" ProviderType="VarChar" Scale="0" Size="20" SourceColumn="Factura" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Anexo" ColumnName="Anexo" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="nchar(9)" DbType="String" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="NChar" Scale="0" Size="9" SourceColumn="Anexo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Ciclo" ColumnName="Ciclo" DataSourceName="Production.dbo.DetalleFINAGIL" DataTypeServer="nchar(2)" DbType="String" Direction="Input" ParameterName="@Ciclo" Precision="0" ProviderType="NChar" Scale="0" Size="2" SourceColumn="Ciclo" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="FacturarTraspaso" Modifier="Public" Name="FacturarTraspaso" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="FacturarTraspaso">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       CONT_TraspasosAvioCC
@@ -3959,7 +3977,7 @@ WHERE        (id_Traspaso = @Original_id_Traspaso); </CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieA" Modifier="Public" Name="SerieA" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SerieA">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieA" Modifier="Public" Name="SerieA" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="SerieA">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        IDSerieA + 1 AS Expr1
@@ -3968,7 +3986,16 @@ FROM            Llaves</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieMXL" Modifier="Public" Name="SerieMXL" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="SerieMXL">
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieIAV" Modifier="Public" Name="SerieIAV" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="SerieIAV">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        IDSerieIntAV + 1 AS Expr1
+FROM            Llaves</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringFACTURA (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SerieMXL" Modifier="Public" Name="SerieMXL" QueryType="Scalar" ScalarCallRetval="System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="SerieMXL">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        IDSerieMXL + 1 AS Expr1
@@ -7330,10 +7357,10 @@ WHERE        ([1_Folio] = @Folio) AND ([27_Serie_Comprobante] = @Serie);  </Comm
               <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_AvioInteresXfacturar" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Anexo, Ciclo, FechaFinal, Cliente, Nombre, Calle, Colonia, Delegacion, Copos, RFC, EMail1, EMail2, Concepto, AnexoCon, Estado, Intereses, Tipar, CicloPagare, Sucursal, Tipo, Factura, IvaAnexo, Moneda, Facturado, 
-                         PorFacturar
+                    <CommandText>SELECT        Anexo, Ciclo, FechaFinal, Cliente, Nombre, Calle, Colonia, Delegacion, Copos, RFC, EMail1, EMail2, Concepto, AnexoCon, Estado, Tipar, CicloPagare, Sucursal, Tipo, Factura, IvaAnexo, Moneda, Facturado, PorFacturar
 FROM            Vw_AvioInteresXfacturar
-WHERE        (PorFacturar &gt; 0)</CommandText>
+WHERE        (PorFacturar &gt; 0) AND (Factura IS NULL OR
+                         Factura &lt;&gt; 'PAG_IAV')</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -7355,7 +7382,6 @@ WHERE        (PorFacturar &gt; 0)</CommandText>
               <Mapping SourceColumn="Concepto" DataSetColumn="Concepto" />
               <Mapping SourceColumn="AnexoCon" DataSetColumn="AnexoCon" />
               <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
-              <Mapping SourceColumn="Intereses" DataSetColumn="Intereses" />
               <Mapping SourceColumn="Tipar" DataSetColumn="Tipar" />
               <Mapping SourceColumn="CicloPagare" DataSetColumn="CicloPagare" />
               <Mapping SourceColumn="Sucursal" DataSetColumn="Sucursal" />
@@ -7381,6 +7407,16 @@ WHERE        (Anexo = @Anexo) AND (Ciclo = @Ciclo) AND (Concepto = N'INTERESES')
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_AvioInteresXfacturar" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByPago" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPago" GeneratorSourceName="FillByPago" GetMethodModifier="Public" GetMethodName="GetDataByPago" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPago" UserSourceName="FillByPago">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Anexo, Ciclo, FechaFinal, Cliente, Nombre, Calle, Colonia, Delegacion, Copos, RFC, EMail1, EMail2, Concepto, AnexoCon, Estado, Tipar, CicloPagare, Sucursal, Tipo, Factura, IvaAnexo, Moneda, Facturado, PorFacturar
+FROM            Vw_AvioInteresXfacturar
+WHERE        (PorFacturar &gt; 0) AND (Factura = 'PAG_IAV')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
               </DbSource>
             </Sources>
           </TableAdapter>
@@ -7456,6 +7492,37 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_CFDI_FacturasConSaldoIAVTableAdapter" GeneratorDataComponentClassName="Vw_CFDI_FacturasConSaldoIAVTableAdapter" Name="Vw_CFDI_FacturasConSaldoIAV" UserDataComponentName="Vw_CFDI_FacturasConSaldoIAVTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ProductionConnectionString (MySettings)" DbObjectName="Production.dbo.Vw_CFDI_FacturasConSaldo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [27_Serie_Comprobante], [1_Folio], [114_Misc02], [56_Monto_Total], SaldoFactura, FolioFiscal, NoPagos, [30_Fecha], [83_Cod_Moneda], [159_Misc47]
+FROM            Vw_CFDI_FacturasConSaldo
+WHERE        ([27_Serie_Comprobante] = 'IAV') AND ([114_Misc02] = @Anexo) AND (SaldoFactura &gt; 0) AND ([159_Misc47] = @CicloPagare)
+ORDER BY [1_Folio]</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Anexo" ColumnName="114_Misc02" DataSourceName="Production.dbo.Vw_CFDI_FacturasConSaldo" DataTypeServer="varchar(150)" DbType="AnsiString" Direction="Input" ParameterName="@Anexo" Precision="0" ProviderType="VarChar" Scale="0" Size="150" SourceColumn="114_Misc02" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CicloPagare" ColumnName="159_Misc47" DataSourceName="Production.dbo.Vw_CFDI_FacturasConSaldo" DataTypeServer="varchar(150)" DbType="AnsiString" Direction="Input" ParameterName="@CicloPagare" Precision="0" ProviderType="VarChar" Scale="0" Size="150" SourceColumn="159_Misc47" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="27_Serie_Comprobante" DataSetColumn="27_Serie_Comprobante" />
+              <Mapping SourceColumn="1_Folio" DataSetColumn="1_Folio" />
+              <Mapping SourceColumn="114_Misc02" DataSetColumn="114_Misc02" />
+              <Mapping SourceColumn="56_Monto_Total" DataSetColumn="56_Monto_Total" />
+              <Mapping SourceColumn="SaldoFactura" DataSetColumn="SaldoFactura" />
+              <Mapping SourceColumn="FolioFiscal" DataSetColumn="FolioFiscal" />
+              <Mapping SourceColumn="NoPagos" DataSetColumn="NoPagos" />
+              <Mapping SourceColumn="30_Fecha" DataSetColumn="30_Fecha" />
+              <Mapping SourceColumn="83_Cod_Moneda" DataSetColumn="83_Cod_Moneda" />
+              <Mapping SourceColumn="159_Misc47" DataSetColumn="159_Misc47" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -7464,7 +7531,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
   <xs:element name="ProduccionDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProduccionDS" msprop:Generator_UserDSName="ProduccionDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CorreosAnexos" msprop:Generator_TableClassName="CorreosAnexosDataTable" msprop:Generator_TableVarName="tableCorreosAnexos" msprop:Generator_TablePropName="CorreosAnexos" msprop:Generator_RowDeletingName="CorreosAnexosRowDeleting" msprop:Generator_RowChangingName="CorreosAnexosRowChanging" msprop:Generator_RowEvHandlerName="CorreosAnexosRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosAnexosRowDeleted" msprop:Generator_UserTableName="CorreosAnexos" msprop:Generator_RowChangedName="CorreosAnexosRowChanged" msprop:Generator_RowEvArgName="CorreosAnexosRowChangeEvent" msprop:Generator_RowClassName="CorreosAnexosRow">
+        <xs:element name="CorreosAnexos" msprop:Generator_TableClassName="CorreosAnexosDataTable" msprop:Generator_TableVarName="tableCorreosAnexos" msprop:Generator_RowChangedName="CorreosAnexosRowChanged" msprop:Generator_TablePropName="CorreosAnexos" msprop:Generator_RowDeletingName="CorreosAnexosRowDeleting" msprop:Generator_RowChangingName="CorreosAnexosRowChanging" msprop:Generator_RowEvHandlerName="CorreosAnexosRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosAnexosRowDeleted" msprop:Generator_RowClassName="CorreosAnexosRow" msprop:Generator_UserTableName="CorreosAnexos" msprop:Generator_RowEvArgName="CorreosAnexosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -7491,14 +7558,14 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Llaves" msprop:Generator_TableClassName="LlavesDataTable" msprop:Generator_TableVarName="tableLlaves" msprop:Generator_TablePropName="Llaves" msprop:Generator_RowDeletingName="LlavesRowDeleting" msprop:Generator_RowChangingName="LlavesRowChanging" msprop:Generator_RowEvHandlerName="LlavesRowChangeEventHandler" msprop:Generator_RowDeletedName="LlavesRowDeleted" msprop:Generator_UserTableName="Llaves" msprop:Generator_RowChangedName="LlavesRowChanged" msprop:Generator_RowEvArgName="LlavesRowChangeEvent" msprop:Generator_RowClassName="LlavesRow">
+        <xs:element name="Llaves" msprop:Generator_TableClassName="LlavesDataTable" msprop:Generator_TableVarName="tableLlaves" msprop:Generator_RowChangedName="LlavesRowChanged" msprop:Generator_TablePropName="Llaves" msprop:Generator_RowDeletingName="LlavesRowDeleting" msprop:Generator_RowChangingName="LlavesRowChanging" msprop:Generator_RowEvHandlerName="LlavesRowChangeEventHandler" msprop:Generator_RowDeletedName="LlavesRowDeleted" msprop:Generator_RowClassName="LlavesRow" msprop:Generator_UserTableName="Llaves" msprop:Generator_RowEvArgName="LlavesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDSerieGAV" msprop:Generator_ColumnVarNameInTable="columnIDSerieGAV" msprop:Generator_ColumnPropNameInRow="IDSerieGAV" msprop:Generator_ColumnPropNameInTable="IDSerieGAVColumn" msprop:Generator_UserColumnName="IDSerieGAV" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasAvioDetalle" msprop:Generator_TableClassName="FacturasAvioDetalleDataTable" msprop:Generator_TableVarName="tableFacturasAvioDetalle" msprop:Generator_TablePropName="FacturasAvioDetalle" msprop:Generator_RowDeletingName="FacturasAvioDetalleRowDeleting" msprop:Generator_RowChangingName="FacturasAvioDetalleRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioDetalleRowDeleted" msprop:Generator_UserTableName="FacturasAvioDetalle" msprop:Generator_RowChangedName="FacturasAvioDetalleRowChanged" msprop:Generator_RowEvArgName="FacturasAvioDetalleRowChangeEvent" msprop:Generator_RowClassName="FacturasAvioDetalleRow">
+        <xs:element name="FacturasAvioDetalle" msprop:Generator_TableClassName="FacturasAvioDetalleDataTable" msprop:Generator_TableVarName="tableFacturasAvioDetalle" msprop:Generator_RowChangedName="FacturasAvioDetalleRowChanged" msprop:Generator_TablePropName="FacturasAvioDetalle" msprop:Generator_RowDeletingName="FacturasAvioDetalleRowDeleting" msprop:Generator_RowChangingName="FacturasAvioDetalleRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioDetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioDetalleRowDeleted" msprop:Generator_RowClassName="FacturasAvioDetalleRow" msprop:Generator_UserTableName="FacturasAvioDetalle" msprop:Generator_RowEvArgName="FacturasAvioDetalleRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -7549,7 +7616,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasExternas" msprop:Generator_TableClassName="FacturasExternasDataTable" msprop:Generator_TableVarName="tableFacturasExternas" msprop:Generator_TablePropName="FacturasExternas" msprop:Generator_RowDeletingName="FacturasExternasRowDeleting" msprop:Generator_RowChangingName="FacturasExternasRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasRowDeleted" msprop:Generator_UserTableName="FacturasExternas" msprop:Generator_RowChangedName="FacturasExternasRowChanged" msprop:Generator_RowEvArgName="FacturasExternasRowChangeEvent" msprop:Generator_RowClassName="FacturasExternasRow">
+        <xs:element name="FacturasExternas" msprop:Generator_TableClassName="FacturasExternasDataTable" msprop:Generator_TableVarName="tableFacturasExternas" msprop:Generator_RowChangedName="FacturasExternasRowChanged" msprop:Generator_TablePropName="FacturasExternas" msprop:Generator_RowDeletingName="FacturasExternasRowDeleting" msprop:Generator_RowChangingName="FacturasExternasRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasRowDeleted" msprop:Generator_RowClassName="FacturasExternasRow" msprop:Generator_UserTableName="FacturasExternas" msprop:Generator_RowEvArgName="FacturasExternasRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">
@@ -7670,7 +7737,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Clientes" msprop:Generator_TableClassName="ClientesDataTable" msprop:Generator_TableVarName="tableClientes" msprop:Generator_TablePropName="Clientes" msprop:Generator_RowDeletingName="ClientesRowDeleting" msprop:Generator_RowChangingName="ClientesRowChanging" msprop:Generator_RowEvHandlerName="ClientesRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientesRowDeleted" msprop:Generator_UserTableName="Clientes" msprop:Generator_RowChangedName="ClientesRowChanged" msprop:Generator_RowEvArgName="ClientesRowChangeEvent" msprop:Generator_RowClassName="ClientesRow">
+        <xs:element name="Clientes" msprop:Generator_TableClassName="ClientesDataTable" msprop:Generator_TableVarName="tableClientes" msprop:Generator_RowChangedName="ClientesRowChanged" msprop:Generator_TablePropName="Clientes" msprop:Generator_RowDeletingName="ClientesRowDeleting" msprop:Generator_RowChangingName="ClientesRowChanging" msprop:Generator_RowEvHandlerName="ClientesRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientesRowDeleted" msprop:Generator_RowClassName="ClientesRow" msprop:Generator_UserTableName="Clientes" msprop:Generator_RowEvArgName="ClientesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_UserColumnName="Cliente">
@@ -7704,7 +7771,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Encabezado" msprop:Generator_TableClassName="CFDI_EncabezadoDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado" msprop:Generator_TablePropName="CFDI_Encabezado" msprop:Generator_RowDeletingName="CFDI_EncabezadoRowDeleting" msprop:Generator_RowChangingName="CFDI_EncabezadoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_EncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_EncabezadoRowDeleted" msprop:Generator_UserTableName="CFDI_Encabezado" msprop:Generator_RowChangedName="CFDI_EncabezadoRowChanged" msprop:Generator_RowEvArgName="CFDI_EncabezadoRowChangeEvent" msprop:Generator_RowClassName="CFDI_EncabezadoRow">
+        <xs:element name="CFDI_Encabezado" msprop:Generator_TableClassName="CFDI_EncabezadoDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado" msprop:Generator_RowChangedName="CFDI_EncabezadoRowChanged" msprop:Generator_TablePropName="CFDI_Encabezado" msprop:Generator_RowDeletingName="CFDI_EncabezadoRowDeleting" msprop:Generator_RowChangingName="CFDI_EncabezadoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_EncabezadoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_EncabezadoRowDeleted" msprop:Generator_RowClassName="CFDI_EncabezadoRow" msprop:Generator_UserTableName="CFDI_Encabezado" msprop:Generator_RowEvArgName="CFDI_EncabezadoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
@@ -8908,7 +8975,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CodigosSAT" msprop:Generator_TableClassName="CodigosSATDataTable" msprop:Generator_TableVarName="tableCodigosSAT" msprop:Generator_TablePropName="CodigosSAT" msprop:Generator_RowDeletingName="CodigosSATRowDeleting" msprop:Generator_RowChangingName="CodigosSATRowChanging" msprop:Generator_RowEvHandlerName="CodigosSATRowChangeEventHandler" msprop:Generator_RowDeletedName="CodigosSATRowDeleted" msprop:Generator_UserTableName="CodigosSAT" msprop:Generator_RowChangedName="CodigosSATRowChanged" msprop:Generator_RowEvArgName="CodigosSATRowChangeEvent" msprop:Generator_RowClassName="CodigosSATRow">
+        <xs:element name="CodigosSAT" msprop:Generator_TableClassName="CodigosSATDataTable" msprop:Generator_TableVarName="tableCodigosSAT" msprop:Generator_RowChangedName="CodigosSATRowChanged" msprop:Generator_TablePropName="CodigosSAT" msprop:Generator_RowDeletingName="CodigosSATRowDeleting" msprop:Generator_RowChangingName="CodigosSATRowChanging" msprop:Generator_RowEvHandlerName="CodigosSATRowChangeEventHandler" msprop:Generator_RowDeletedName="CodigosSATRowDeleted" msprop:Generator_RowClassName="CodigosSATRow" msprop:Generator_UserTableName="CodigosSAT" msprop:Generator_RowEvArgName="CodigosSATRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_CodigoSAT" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_CodigoSAT" msprop:Generator_ColumnPropNameInRow="id_CodigoSAT" msprop:Generator_ColumnPropNameInTable="id_CodigoSATColumn" msprop:Generator_UserColumnName="id_CodigoSAT" type="xs:decimal" />
@@ -8944,7 +9011,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_CodigosSAT_Concepto" msprop:Generator_TableClassName="CFDI_CodigosSAT_ConceptoDataTable" msprop:Generator_TableVarName="tableCFDI_CodigosSAT_Concepto" msprop:Generator_TablePropName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowDeletingName="CFDI_CodigosSAT_ConceptoRowDeleting" msprop:Generator_RowChangingName="CFDI_CodigosSAT_ConceptoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_CodigosSAT_ConceptoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_CodigosSAT_ConceptoRowDeleted" msprop:Generator_UserTableName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowChangedName="CFDI_CodigosSAT_ConceptoRowChanged" msprop:Generator_RowEvArgName="CFDI_CodigosSAT_ConceptoRowChangeEvent" msprop:Generator_RowClassName="CFDI_CodigosSAT_ConceptoRow">
+        <xs:element name="CFDI_CodigosSAT_Concepto" msprop:Generator_TableClassName="CFDI_CodigosSAT_ConceptoDataTable" msprop:Generator_TableVarName="tableCFDI_CodigosSAT_Concepto" msprop:Generator_RowChangedName="CFDI_CodigosSAT_ConceptoRowChanged" msprop:Generator_TablePropName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowDeletingName="CFDI_CodigosSAT_ConceptoRowDeleting" msprop:Generator_RowChangingName="CFDI_CodigosSAT_ConceptoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_CodigosSAT_ConceptoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_CodigosSAT_ConceptoRowDeleted" msprop:Generator_RowClassName="CFDI_CodigosSAT_ConceptoRow" msprop:Generator_UserTableName="CFDI_CodigosSAT_Concepto" msprop:Generator_RowEvArgName="CFDI_CodigosSAT_ConceptoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_CodigoSAT" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_CodigoSAT" msprop:Generator_ColumnPropNameInRow="id_CodigoSAT" msprop:Generator_ColumnPropNameInTable="id_CodigoSATColumn" msprop:Generator_UserColumnName="id_CodigoSAT" type="xs:decimal" />
@@ -8980,7 +9047,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_ComplementoPago" msprop:Generator_TableClassName="CFDI_ComplementoPagoDataTable" msprop:Generator_TableVarName="tableCFDI_ComplementoPago" msprop:Generator_TablePropName="CFDI_ComplementoPago" msprop:Generator_RowDeletingName="CFDI_ComplementoPagoRowDeleting" msprop:Generator_RowChangingName="CFDI_ComplementoPagoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ComplementoPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ComplementoPagoRowDeleted" msprop:Generator_UserTableName="CFDI_ComplementoPago" msprop:Generator_RowChangedName="CFDI_ComplementoPagoRowChanged" msprop:Generator_RowEvArgName="CFDI_ComplementoPagoRowChangeEvent" msprop:Generator_RowClassName="CFDI_ComplementoPagoRow">
+        <xs:element name="CFDI_ComplementoPago" msprop:Generator_TableClassName="CFDI_ComplementoPagoDataTable" msprop:Generator_TableVarName="tableCFDI_ComplementoPago" msprop:Generator_RowChangedName="CFDI_ComplementoPagoRowChanged" msprop:Generator_TablePropName="CFDI_ComplementoPago" msprop:Generator_RowDeletingName="CFDI_ComplementoPagoRowDeleting" msprop:Generator_RowChangingName="CFDI_ComplementoPagoRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ComplementoPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ComplementoPagoRowDeleted" msprop:Generator_RowClassName="CFDI_ComplementoPagoRow" msprop:Generator_UserTableName="CFDI_ComplementoPago" msprop:Generator_RowEvArgName="CFDI_ComplementoPagoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__DetalleAux_Tipo" msprop:Generator_ColumnVarNameInTable="column1_DetalleAux_Tipo" msprop:Generator_ColumnPropNameInRow="_1_DetalleAux_Tipo" msprop:Generator_ColumnPropNameInTable="_1_DetalleAux_TipoColumn" msprop:Generator_UserColumnName="1_DetalleAux_Tipo" minOccurs="0">
@@ -9121,7 +9188,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Detalle" msprop:Generator_TableClassName="CFDI_DetalleDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle" msprop:Generator_RowChangedName="CFDI_DetalleRowChanged" msprop:Generator_TablePropName="CFDI_Detalle" msprop:Generator_RowDeletingName="CFDI_DetalleRowDeleting" msprop:Generator_RowChangingName="CFDI_DetalleRowChanging" msprop:Generator_RowEvHandlerName="CFDI_DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_DetalleRowDeleted" msprop:Generator_RowClassName="CFDI_DetalleRow" msprop:Generator_UserTableName="CFDI_Detalle" msprop:Generator_RowEvArgName="CFDI_DetalleRowChangeEvent">
+        <xs:element name="CFDI_Detalle" msprop:Generator_TableClassName="CFDI_DetalleDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle" msprop:Generator_TablePropName="CFDI_Detalle" msprop:Generator_RowDeletingName="CFDI_DetalleRowDeleting" msprop:Generator_RowChangingName="CFDI_DetalleRowChanging" msprop:Generator_RowEvHandlerName="CFDI_DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_DetalleRowDeleted" msprop:Generator_UserTableName="CFDI_Detalle" msprop:Generator_RowChangedName="CFDI_DetalleRowChanged" msprop:Generator_RowEvArgName="CFDI_DetalleRowChangeEvent" msprop:Generator_RowClassName="CFDI_DetalleRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Linea_Descripcion" msprop:Generator_ColumnVarNameInTable="column1_Linea_Descripcion" msprop:Generator_ColumnPropNameInRow="_1_Linea_Descripcion" msprop:Generator_ColumnPropNameInTable="_1_Linea_DescripcionColumn" msprop:Generator_UserColumnName="1_Linea_Descripcion" minOccurs="0">
@@ -9779,7 +9846,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DatosCuentas" msprop:Generator_TableClassName="DatosCuentasDataTable" msprop:Generator_TableVarName="tableDatosCuentas" msprop:Generator_RowChangedName="DatosCuentasRowChanged" msprop:Generator_TablePropName="DatosCuentas" msprop:Generator_RowDeletingName="DatosCuentasRowDeleting" msprop:Generator_RowChangingName="DatosCuentasRowChanging" msprop:Generator_RowEvHandlerName="DatosCuentasRowChangeEventHandler" msprop:Generator_RowDeletedName="DatosCuentasRowDeleted" msprop:Generator_RowClassName="DatosCuentasRow" msprop:Generator_UserTableName="DatosCuentas" msprop:Generator_RowEvArgName="DatosCuentasRowChangeEvent">
+        <xs:element name="DatosCuentas" msprop:Generator_TableClassName="DatosCuentasDataTable" msprop:Generator_TableVarName="tableDatosCuentas" msprop:Generator_TablePropName="DatosCuentas" msprop:Generator_RowDeletingName="DatosCuentasRowDeleting" msprop:Generator_RowChangingName="DatosCuentasRowChanging" msprop:Generator_RowEvHandlerName="DatosCuentasRowChangeEventHandler" msprop:Generator_RowDeletedName="DatosCuentasRowDeleted" msprop:Generator_UserTableName="DatosCuentas" msprop:Generator_RowChangedName="DatosCuentasRowChanged" msprop:Generator_RowEvArgName="DatosCuentasRowChangeEvent" msprop:Generator_RowClassName="DatosCuentasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RFC_Cliente" msprop:Generator_ColumnVarNameInTable="columnRFC_Cliente" msprop:Generator_ColumnPropNameInRow="RFC_Cliente" msprop:Generator_ColumnPropNameInTable="RFC_ClienteColumn" msprop:Generator_UserColumnName="RFC_Cliente">
@@ -9813,7 +9880,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasAvio" msprop:Generator_TableClassName="FacturasAvioDataTable" msprop:Generator_TableVarName="tableFacturasAvio" msprop:Generator_TablePropName="FacturasAvio" msprop:Generator_RowDeletingName="FacturasAvioRowDeleting" msprop:Generator_RowChangingName="FacturasAvioRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioRowDeleted" msprop:Generator_UserTableName="FacturasAvio" msprop:Generator_RowChangedName="FacturasAvioRowChanged" msprop:Generator_RowEvArgName="FacturasAvioRowChangeEvent" msprop:Generator_RowClassName="FacturasAvioRow">
+        <xs:element name="FacturasAvio" msprop:Generator_TableClassName="FacturasAvioDataTable" msprop:Generator_TableVarName="tableFacturasAvio" msprop:Generator_RowChangedName="FacturasAvioRowChanged" msprop:Generator_TablePropName="FacturasAvio" msprop:Generator_RowDeletingName="FacturasAvioRowDeleting" msprop:Generator_RowChangingName="FacturasAvioRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioRowDeleted" msprop:Generator_RowClassName="FacturasAvioRow" msprop:Generator_UserTableName="FacturasAvio" msprop:Generator_RowEvArgName="FacturasAvioRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -9960,7 +10027,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_RecibosPAGO" msprop:Generator_TableClassName="CFDI_RecibosPAGODataTable" msprop:Generator_TableVarName="tableCFDI_RecibosPAGO" msprop:Generator_TablePropName="CFDI_RecibosPAGO" msprop:Generator_RowDeletingName="CFDI_RecibosPAGORowDeleting" msprop:Generator_RowChangingName="CFDI_RecibosPAGORowChanging" msprop:Generator_RowEvHandlerName="CFDI_RecibosPAGORowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_RecibosPAGORowDeleted" msprop:Generator_UserTableName="CFDI_RecibosPAGO" msprop:Generator_RowChangedName="CFDI_RecibosPAGORowChanged" msprop:Generator_RowEvArgName="CFDI_RecibosPAGORowChangeEvent" msprop:Generator_RowClassName="CFDI_RecibosPAGORow">
+        <xs:element name="CFDI_RecibosPAGO" msprop:Generator_TableClassName="CFDI_RecibosPAGODataTable" msprop:Generator_TableVarName="tableCFDI_RecibosPAGO" msprop:Generator_RowChangedName="CFDI_RecibosPAGORowChanged" msprop:Generator_TablePropName="CFDI_RecibosPAGO" msprop:Generator_RowDeletingName="CFDI_RecibosPAGORowDeleting" msprop:Generator_RowChangingName="CFDI_RecibosPAGORowChanging" msprop:Generator_RowEvHandlerName="CFDI_RecibosPAGORowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_RecibosPAGORowDeleted" msprop:Generator_RowClassName="CFDI_RecibosPAGORow" msprop:Generator_UserTableName="CFDI_RecibosPAGO" msprop:Generator_RowEvArgName="CFDI_RecibosPAGORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
@@ -10017,7 +10084,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TraeUdis" msprop:Generator_TableClassName="TraeUdisDataTable" msprop:Generator_TableVarName="tableTraeUdis" msprop:Generator_RowChangedName="TraeUdisRowChanged" msprop:Generator_TablePropName="TraeUdis" msprop:Generator_RowDeletingName="TraeUdisRowDeleting" msprop:Generator_RowChangingName="TraeUdisRowChanging" msprop:Generator_RowEvHandlerName="TraeUdisRowChangeEventHandler" msprop:Generator_RowDeletedName="TraeUdisRowDeleted" msprop:Generator_RowClassName="TraeUdisRow" msprop:Generator_UserTableName="TraeUdis" msprop:Generator_RowEvArgName="TraeUdisRowChangeEvent">
+        <xs:element name="TraeUdis" msprop:Generator_TableClassName="TraeUdisDataTable" msprop:Generator_TableVarName="tableTraeUdis" msprop:Generator_TablePropName="TraeUdis" msprop:Generator_RowDeletingName="TraeUdisRowDeleting" msprop:Generator_RowChangingName="TraeUdisRowChanging" msprop:Generator_RowEvHandlerName="TraeUdisRowChangeEventHandler" msprop:Generator_RowDeletedName="TraeUdisRowDeleted" msprop:Generator_UserTableName="TraeUdis" msprop:Generator_RowChangedName="TraeUdisRowChanged" msprop:Generator_RowEvArgName="TraeUdisRowChangeEvent" msprop:Generator_RowClassName="TraeUdisRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Vigencia" msprop:Generator_ColumnVarNameInTable="columnVigencia" msprop:Generator_ColumnPropNameInRow="Vigencia" msprop:Generator_ColumnPropNameInTable="VigenciaColumn" msprop:Generator_UserColumnName="Vigencia">
@@ -10031,7 +10098,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AvisosCFDI" msprop:Generator_TableClassName="AvisosCFDIDataTable" msprop:Generator_TableVarName="tableAvisosCFDI" msprop:Generator_RowChangedName="AvisosCFDIRowChanged" msprop:Generator_TablePropName="AvisosCFDI" msprop:Generator_RowDeletingName="AvisosCFDIRowDeleting" msprop:Generator_RowChangingName="AvisosCFDIRowChanging" msprop:Generator_RowEvHandlerName="AvisosCFDIRowChangeEventHandler" msprop:Generator_RowDeletedName="AvisosCFDIRowDeleted" msprop:Generator_RowClassName="AvisosCFDIRow" msprop:Generator_UserTableName="AvisosCFDI" msprop:Generator_RowEvArgName="AvisosCFDIRowChangeEvent">
+        <xs:element name="AvisosCFDI" msprop:Generator_TableClassName="AvisosCFDIDataTable" msprop:Generator_TableVarName="tableAvisosCFDI" msprop:Generator_TablePropName="AvisosCFDI" msprop:Generator_RowDeletingName="AvisosCFDIRowDeleting" msprop:Generator_RowChangingName="AvisosCFDIRowChanging" msprop:Generator_RowEvHandlerName="AvisosCFDIRowChangeEventHandler" msprop:Generator_RowDeletedName="AvisosCFDIRowDeleted" msprop:Generator_UserTableName="AvisosCFDI" msprop:Generator_RowChangedName="AvisosCFDIRowChanged" msprop:Generator_RowEvArgName="AvisosCFDIRowChangeEvent" msprop:Generator_RowClassName="AvisosCFDIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Factura" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" type="xs:decimal" />
@@ -10169,7 +10236,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TraspasosAvioCC" msprop:Generator_TableClassName="TraspasosAvioCCDataTable" msprop:Generator_TableVarName="tableTraspasosAvioCC" msprop:Generator_RowChangedName="TraspasosAvioCCRowChanged" msprop:Generator_TablePropName="TraspasosAvioCC" msprop:Generator_RowDeletingName="TraspasosAvioCCRowDeleting" msprop:Generator_RowChangingName="TraspasosAvioCCRowChanging" msprop:Generator_RowEvHandlerName="TraspasosAvioCCRowChangeEventHandler" msprop:Generator_RowDeletedName="TraspasosAvioCCRowDeleted" msprop:Generator_RowClassName="TraspasosAvioCCRow" msprop:Generator_UserTableName="TraspasosAvioCC" msprop:Generator_RowEvArgName="TraspasosAvioCCRowChangeEvent">
+        <xs:element name="TraspasosAvioCC" msprop:Generator_TableClassName="TraspasosAvioCCDataTable" msprop:Generator_TableVarName="tableTraspasosAvioCC" msprop:Generator_TablePropName="TraspasosAvioCC" msprop:Generator_RowDeletingName="TraspasosAvioCCRowDeleting" msprop:Generator_RowChangingName="TraspasosAvioCCRowChanging" msprop:Generator_RowEvHandlerName="TraspasosAvioCCRowChangeEventHandler" msprop:Generator_RowDeletedName="TraspasosAvioCCRowDeleted" msprop:Generator_UserTableName="TraspasosAvioCC" msprop:Generator_RowChangedName="TraspasosAvioCCRowChanged" msprop:Generator_RowEvArgName="TraspasosAvioCCRowChangeEvent" msprop:Generator_RowClassName="TraspasosAvioCCRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_Traspaso" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_Traspaso" msprop:Generator_ColumnPropNameInRow="id_Traspaso" msprop:Generator_ColumnPropNameInTable="id_TraspasoColumn" msprop:Generator_UserColumnName="id_Traspaso" type="xs:decimal" />
@@ -10325,7 +10392,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasExternasDET" msprop:Generator_TableClassName="FacturasExternasDETDataTable" msprop:Generator_TableVarName="tableFacturasExternasDET" msprop:Generator_RowChangedName="FacturasExternasDETRowChanged" msprop:Generator_TablePropName="FacturasExternasDET" msprop:Generator_RowDeletingName="FacturasExternasDETRowDeleting" msprop:Generator_RowChangingName="FacturasExternasDETRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasDETRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasDETRowDeleted" msprop:Generator_RowClassName="FacturasExternasDETRow" msprop:Generator_UserTableName="FacturasExternasDET" msprop:Generator_RowEvArgName="FacturasExternasDETRowChangeEvent">
+        <xs:element name="FacturasExternasDET" msprop:Generator_TableClassName="FacturasExternasDETDataTable" msprop:Generator_TableVarName="tableFacturasExternasDET" msprop:Generator_TablePropName="FacturasExternasDET" msprop:Generator_RowDeletingName="FacturasExternasDETRowDeleting" msprop:Generator_RowChangingName="FacturasExternasDETRowChanging" msprop:Generator_RowEvHandlerName="FacturasExternasDETRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasExternasDETRowDeleted" msprop:Generator_UserTableName="FacturasExternasDET" msprop:Generator_RowChangedName="FacturasExternasDETRowChanged" msprop:Generator_RowEvArgName="FacturasExternasDETRowChangeEvent" msprop:Generator_RowClassName="FacturasExternasDETRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Serie" msprop:Generator_ColumnVarNameInTable="columnSerie" msprop:Generator_ColumnPropNameInRow="Serie" msprop:Generator_ColumnPropNameInTable="SerieColumn" msprop:Generator_UserColumnName="Serie">
@@ -10396,7 +10463,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RecibosDePago" msprop:Generator_TableClassName="RecibosDePagoDataTable" msprop:Generator_TableVarName="tableRecibosDePago" msprop:Generator_RowChangedName="RecibosDePagoRowChanged" msprop:Generator_TablePropName="RecibosDePago" msprop:Generator_RowDeletingName="RecibosDePagoRowDeleting" msprop:Generator_RowChangingName="RecibosDePagoRowChanging" msprop:Generator_RowEvHandlerName="RecibosDePagoRowChangeEventHandler" msprop:Generator_RowDeletedName="RecibosDePagoRowDeleted" msprop:Generator_RowClassName="RecibosDePagoRow" msprop:Generator_UserTableName="RecibosDePago" msprop:Generator_RowEvArgName="RecibosDePagoRowChangeEvent">
+        <xs:element name="RecibosDePago" msprop:Generator_TableClassName="RecibosDePagoDataTable" msprop:Generator_TableVarName="tableRecibosDePago" msprop:Generator_TablePropName="RecibosDePago" msprop:Generator_RowDeletingName="RecibosDePagoRowDeleting" msprop:Generator_RowChangingName="RecibosDePagoRowChanging" msprop:Generator_RowEvHandlerName="RecibosDePagoRowChangeEventHandler" msprop:Generator_RowDeletedName="RecibosDePagoRowDeleted" msprop:Generator_UserTableName="RecibosDePago" msprop:Generator_RowChangedName="RecibosDePagoRowChanged" msprop:Generator_RowEvArgName="RecibosDePagoRowChangeEvent" msprop:Generator_RowClassName="RecibosDePagoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
@@ -11614,7 +11681,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CorreosFases" msprop:Generator_TableClassName="CorreosFasesDataTable" msprop:Generator_TableVarName="tableCorreosFases" msprop:Generator_RowChangedName="CorreosFasesRowChanged" msprop:Generator_TablePropName="CorreosFases" msprop:Generator_RowDeletingName="CorreosFasesRowDeleting" msprop:Generator_RowChangingName="CorreosFasesRowChanging" msprop:Generator_RowEvHandlerName="CorreosFasesRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosFasesRowDeleted" msprop:Generator_RowClassName="CorreosFasesRow" msprop:Generator_UserTableName="CorreosFases" msprop:Generator_RowEvArgName="CorreosFasesRowChangeEvent">
+        <xs:element name="CorreosFases" msprop:Generator_TableClassName="CorreosFasesDataTable" msprop:Generator_TableVarName="tableCorreosFases" msprop:Generator_TablePropName="CorreosFases" msprop:Generator_RowDeletingName="CorreosFasesRowDeleting" msprop:Generator_RowChangingName="CorreosFasesRowChanging" msprop:Generator_RowEvHandlerName="CorreosFasesRowChangeEventHandler" msprop:Generator_RowDeletedName="CorreosFasesRowDeleted" msprop:Generator_UserTableName="CorreosFases" msprop:Generator_RowChangedName="CorreosFasesRowChanged" msprop:Generator_RowEvArgName="CorreosFasesRowChangeEvent" msprop:Generator_RowClassName="CorreosFasesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_correo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_correo" msprop:Generator_ColumnPropNameInRow="id_correo" msprop:Generator_ColumnPropNameInTable="id_correoColumn" msprop:Generator_UserColumnName="id_correo" type="xs:decimal" />
@@ -11649,7 +11716,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_Correos_SistemaFinagil" msprop:Generator_TableClassName="GEN_Correos_SistemaFinagilDataTable" msprop:Generator_TableVarName="tableGEN_Correos_SistemaFinagil" msprop:Generator_TablePropName="GEN_Correos_SistemaFinagil" msprop:Generator_RowDeletingName="GEN_Correos_SistemaFinagilRowDeleting" msprop:Generator_RowChangingName="GEN_Correos_SistemaFinagilRowChanging" msprop:Generator_RowEvHandlerName="GEN_Correos_SistemaFinagilRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_Correos_SistemaFinagilRowDeleted" msprop:Generator_UserTableName="GEN_Correos_SistemaFinagil" msprop:Generator_RowChangedName="GEN_Correos_SistemaFinagilRowChanged" msprop:Generator_RowEvArgName="GEN_Correos_SistemaFinagilRowChangeEvent" msprop:Generator_RowClassName="GEN_Correos_SistemaFinagilRow">
+        <xs:element name="GEN_Correos_SistemaFinagil" msprop:Generator_TableClassName="GEN_Correos_SistemaFinagilDataTable" msprop:Generator_TableVarName="tableGEN_Correos_SistemaFinagil" msprop:Generator_RowChangedName="GEN_Correos_SistemaFinagilRowChanged" msprop:Generator_TablePropName="GEN_Correos_SistemaFinagil" msprop:Generator_RowDeletingName="GEN_Correos_SistemaFinagilRowDeleting" msprop:Generator_RowChangingName="GEN_Correos_SistemaFinagilRowChanging" msprop:Generator_RowEvHandlerName="GEN_Correos_SistemaFinagilRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_Correos_SistemaFinagilRowDeleted" msprop:Generator_RowClassName="GEN_Correos_SistemaFinagilRow" msprop:Generator_UserTableName="GEN_Correos_SistemaFinagil" msprop:Generator_RowEvArgName="GEN_Correos_SistemaFinagilRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_Correo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_Correo" msprop:Generator_ColumnPropNameInRow="id_Correo" msprop:Generator_ColumnPropNameInTable="id_CorreoColumn" msprop:Generator_UserColumnName="id_Correo" type="xs:decimal" />
@@ -11693,7 +11760,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_ControlTimbres" msprop:Generator_TableClassName="CFDI_ControlTimbresDataTable" msprop:Generator_TableVarName="tableCFDI_ControlTimbres" msprop:Generator_TablePropName="CFDI_ControlTimbres" msprop:Generator_RowDeletingName="CFDI_ControlTimbresRowDeleting" msprop:Generator_RowChangingName="CFDI_ControlTimbresRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ControlTimbresRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ControlTimbresRowDeleted" msprop:Generator_UserTableName="CFDI_ControlTimbres" msprop:Generator_RowChangedName="CFDI_ControlTimbresRowChanged" msprop:Generator_RowEvArgName="CFDI_ControlTimbresRowChangeEvent" msprop:Generator_RowClassName="CFDI_ControlTimbresRow">
+        <xs:element name="CFDI_ControlTimbres" msprop:Generator_TableClassName="CFDI_ControlTimbresDataTable" msprop:Generator_TableVarName="tableCFDI_ControlTimbres" msprop:Generator_RowChangedName="CFDI_ControlTimbresRowChanged" msprop:Generator_TablePropName="CFDI_ControlTimbres" msprop:Generator_RowDeletingName="CFDI_ControlTimbresRowDeleting" msprop:Generator_RowChangingName="CFDI_ControlTimbresRowChanging" msprop:Generator_RowEvHandlerName="CFDI_ControlTimbresRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_ControlTimbresRowDeleted" msprop:Generator_RowClassName="CFDI_ControlTimbresRow" msprop:Generator_UserTableName="CFDI_ControlTimbres" msprop:Generator_RowEvArgName="CFDI_ControlTimbresRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id_timbre" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid_timbre" msprop:Generator_ColumnPropNameInRow="id_timbre" msprop:Generator_ColumnPropNameInTable="id_timbreColumn" msprop:Generator_UserColumnName="id_timbre" type="xs:decimal" />
@@ -11756,7 +11823,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasSinSerie" msprop:Generator_TableClassName="FacturasSinSerieDataTable" msprop:Generator_TableVarName="tableFacturasSinSerie" msprop:Generator_RowChangedName="FacturasSinSerieRowChanged" msprop:Generator_TablePropName="FacturasSinSerie" msprop:Generator_RowDeletingName="FacturasSinSerieRowDeleting" msprop:Generator_RowChangingName="FacturasSinSerieRowChanging" msprop:Generator_RowEvHandlerName="FacturasSinSerieRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasSinSerieRowDeleted" msprop:Generator_RowClassName="FacturasSinSerieRow" msprop:Generator_UserTableName="FacturasSinSerie" msprop:Generator_RowEvArgName="FacturasSinSerieRowChangeEvent">
+        <xs:element name="FacturasSinSerie" msprop:Generator_TableClassName="FacturasSinSerieDataTable" msprop:Generator_TableVarName="tableFacturasSinSerie" msprop:Generator_TablePropName="FacturasSinSerie" msprop:Generator_RowDeletingName="FacturasSinSerieRowDeleting" msprop:Generator_RowChangingName="FacturasSinSerieRowChanging" msprop:Generator_RowEvHandlerName="FacturasSinSerieRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasSinSerieRowDeleted" msprop:Generator_UserTableName="FacturasSinSerie" msprop:Generator_RowChangedName="FacturasSinSerieRowChanged" msprop:Generator_RowEvArgName="FacturasSinSerieRowChangeEvent" msprop:Generator_RowClassName="FacturasSinSerieRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Factura" msprop:Generator_ColumnVarNameInTable="columnFactura" msprop:Generator_ColumnPropNameInRow="Factura" msprop:Generator_ColumnPropNameInTable="FacturaColumn" msprop:Generator_UserColumnName="Factura" type="xs:decimal" />
@@ -11793,7 +11860,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Impuestos_Adicionales" msprop:Generator_TableClassName="CFDI_Impuestos_AdicionalesDataTable" msprop:Generator_TableVarName="tableCFDI_Impuestos_Adicionales" msprop:Generator_RowChangedName="CFDI_Impuestos_AdicionalesRowChanged" msprop:Generator_TablePropName="CFDI_Impuestos_Adicionales" msprop:Generator_RowDeletingName="CFDI_Impuestos_AdicionalesRowDeleting" msprop:Generator_RowChangingName="CFDI_Impuestos_AdicionalesRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Impuestos_AdicionalesRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Impuestos_AdicionalesRowDeleted" msprop:Generator_RowClassName="CFDI_Impuestos_AdicionalesRow" msprop:Generator_UserTableName="CFDI_Impuestos_Adicionales" msprop:Generator_RowEvArgName="CFDI_Impuestos_AdicionalesRowChangeEvent">
+        <xs:element name="CFDI_Impuestos_Adicionales" msprop:Generator_TableClassName="CFDI_Impuestos_AdicionalesDataTable" msprop:Generator_TableVarName="tableCFDI_Impuestos_Adicionales" msprop:Generator_TablePropName="CFDI_Impuestos_Adicionales" msprop:Generator_RowDeletingName="CFDI_Impuestos_AdicionalesRowDeleting" msprop:Generator_RowChangingName="CFDI_Impuestos_AdicionalesRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Impuestos_AdicionalesRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Impuestos_AdicionalesRowDeleted" msprop:Generator_UserTableName="CFDI_Impuestos_Adicionales" msprop:Generator_RowChangedName="CFDI_Impuestos_AdicionalesRowChanged" msprop:Generator_RowEvArgName="CFDI_Impuestos_AdicionalesRowChangeEvent" msprop:Generator_RowClassName="CFDI_Impuestos_AdicionalesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
@@ -11872,7 +11939,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Complemento_Nomina" msprop:Generator_TableClassName="CFDI_Complemento_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Complemento_Nomina" msprop:Generator_RowChangedName="CFDI_Complemento_NominaRowChanged" msprop:Generator_TablePropName="CFDI_Complemento_Nomina" msprop:Generator_RowDeletingName="CFDI_Complemento_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Complemento_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Complemento_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Complemento_NominaRowDeleted" msprop:Generator_RowClassName="CFDI_Complemento_NominaRow" msprop:Generator_UserTableName="CFDI_Complemento_Nomina" msprop:Generator_RowEvArgName="CFDI_Complemento_NominaRowChangeEvent">
+        <xs:element name="CFDI_Complemento_Nomina" msprop:Generator_TableClassName="CFDI_Complemento_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Complemento_Nomina" msprop:Generator_TablePropName="CFDI_Complemento_Nomina" msprop:Generator_RowDeletingName="CFDI_Complemento_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Complemento_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Complemento_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Complemento_NominaRowDeleted" msprop:Generator_UserTableName="CFDI_Complemento_Nomina" msprop:Generator_RowChangedName="CFDI_Complemento_NominaRowChanged" msprop:Generator_RowEvArgName="CFDI_Complemento_NominaRowChangeEvent" msprop:Generator_RowClassName="CFDI_Complemento_NominaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Comp_1" msprop:Generator_ColumnVarNameInTable="columnComp_1" msprop:Generator_ColumnPropNameInRow="Comp_1" msprop:Generator_ColumnPropNameInTable="Comp_1Column" msprop:Generator_UserColumnName="Comp_1" minOccurs="0">
@@ -12013,7 +12080,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Detalle_Nomina" msprop:Generator_TableClassName="CFDI_Detalle_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle_Nomina" msprop:Generator_RowChangedName="CFDI_Detalle_NominaRowChanged" msprop:Generator_TablePropName="CFDI_Detalle_Nomina" msprop:Generator_RowDeletingName="CFDI_Detalle_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Detalle_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Detalle_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Detalle_NominaRowDeleted" msprop:Generator_RowClassName="CFDI_Detalle_NominaRow" msprop:Generator_UserTableName="CFDI_Detalle_Nomina" msprop:Generator_RowEvArgName="CFDI_Detalle_NominaRowChangeEvent">
+        <xs:element name="CFDI_Detalle_Nomina" msprop:Generator_TableClassName="CFDI_Detalle_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Detalle_Nomina" msprop:Generator_TablePropName="CFDI_Detalle_Nomina" msprop:Generator_RowDeletingName="CFDI_Detalle_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Detalle_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Detalle_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Detalle_NominaRowDeleted" msprop:Generator_UserTableName="CFDI_Detalle_Nomina" msprop:Generator_RowChangedName="CFDI_Detalle_NominaRowChanged" msprop:Generator_RowEvArgName="CFDI_Detalle_NominaRowChangeEvent" msprop:Generator_RowClassName="CFDI_Detalle_NominaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Linea_Descripcion" msprop:Generator_ColumnVarNameInTable="column1_Linea_Descripcion" msprop:Generator_ColumnPropNameInRow="_1_Linea_Descripcion" msprop:Generator_ColumnPropNameInTable="_1_Linea_DescripcionColumn" msprop:Generator_UserColumnName="1_Linea_Descripcion" minOccurs="0">
@@ -12662,7 +12729,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CFDI_Encabezado_Nomina" msprop:Generator_TableClassName="CFDI_Encabezado_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado_Nomina" msprop:Generator_RowChangedName="CFDI_Encabezado_NominaRowChanged" msprop:Generator_TablePropName="CFDI_Encabezado_Nomina" msprop:Generator_RowDeletingName="CFDI_Encabezado_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Encabezado_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Encabezado_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Encabezado_NominaRowDeleted" msprop:Generator_RowClassName="CFDI_Encabezado_NominaRow" msprop:Generator_UserTableName="CFDI_Encabezado_Nomina" msprop:Generator_RowEvArgName="CFDI_Encabezado_NominaRowChangeEvent">
+        <xs:element name="CFDI_Encabezado_Nomina" msprop:Generator_TableClassName="CFDI_Encabezado_NominaDataTable" msprop:Generator_TableVarName="tableCFDI_Encabezado_Nomina" msprop:Generator_TablePropName="CFDI_Encabezado_Nomina" msprop:Generator_RowDeletingName="CFDI_Encabezado_NominaRowDeleting" msprop:Generator_RowChangingName="CFDI_Encabezado_NominaRowChanging" msprop:Generator_RowEvHandlerName="CFDI_Encabezado_NominaRowChangeEventHandler" msprop:Generator_RowDeletedName="CFDI_Encabezado_NominaRowDeleted" msprop:Generator_UserTableName="CFDI_Encabezado_Nomina" msprop:Generator_RowChangedName="CFDI_Encabezado_NominaRowChanged" msprop:Generator_RowEvArgName="CFDI_Encabezado_NominaRowChangeEvent" msprop:Generator_RowClassName="CFDI_Encabezado_NominaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
@@ -13866,7 +13933,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FacturasAvioInteres" msprop:Generator_TableClassName="FacturasAvioInteresDataTable" msprop:Generator_TableVarName="tableFacturasAvioInteres" msprop:Generator_RowChangedName="FacturasAvioInteresRowChanged" msprop:Generator_TablePropName="FacturasAvioInteres" msprop:Generator_RowDeletingName="FacturasAvioInteresRowDeleting" msprop:Generator_RowChangingName="FacturasAvioInteresRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioInteresRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioInteresRowDeleted" msprop:Generator_RowClassName="FacturasAvioInteresRow" msprop:Generator_UserTableName="FacturasAvioInteres" msprop:Generator_RowEvArgName="FacturasAvioInteresRowChangeEvent">
+        <xs:element name="FacturasAvioInteres" msprop:Generator_TableClassName="FacturasAvioInteresDataTable" msprop:Generator_TableVarName="tableFacturasAvioInteres" msprop:Generator_TablePropName="FacturasAvioInteres" msprop:Generator_RowDeletingName="FacturasAvioInteresRowDeleting" msprop:Generator_RowChangingName="FacturasAvioInteresRowChanging" msprop:Generator_RowEvHandlerName="FacturasAvioInteresRowChangeEventHandler" msprop:Generator_RowDeletedName="FacturasAvioInteresRowDeleted" msprop:Generator_UserTableName="FacturasAvioInteres" msprop:Generator_RowChangedName="FacturasAvioInteresRowChanged" msprop:Generator_RowEvArgName="FacturasAvioInteresRowChangeEvent" msprop:Generator_RowClassName="FacturasAvioInteresRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -13883,7 +13950,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="FechaFinal" msprop:Generator_ColumnVarNameInTable="columnFechaFinal" msprop:Generator_ColumnPropNameInRow="FechaFinal" msprop:Generator_ColumnPropNameInTable="FechaFinalColumn" msprop:Generator_UserColumnName="FechaFinal" minOccurs="0">
+              <xs:element name="FechaFinal" msprop:Generator_ColumnVarNameInTable="columnFechaFinal" msprop:Generator_ColumnPropNameInRow="FechaFinal" msprop:Generator_ColumnPropNameInTable="FechaFinalColumn" msprop:Generator_UserColumnName="FechaFinal">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
@@ -13974,7 +14041,6 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Intereses" msprop:Generator_ColumnVarNameInTable="columnIntereses" msprop:Generator_ColumnPropNameInRow="Intereses" msprop:Generator_ColumnPropNameInTable="InteresesColumn" msprop:Generator_UserColumnName="Intereses" type="xs:decimal" minOccurs="0" />
               <xs:element name="Tipar" msprop:Generator_ColumnVarNameInTable="columnTipar" msprop:Generator_ColumnPropNameInRow="Tipar" msprop:Generator_ColumnPropNameInTable="TiparColumn" msprop:Generator_UserColumnName="Tipar">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -14023,7 +14089,7 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AVI_InteresFacturadoPagado" msprop:Generator_TableClassName="AVI_InteresFacturadoPagadoDataTable" msprop:Generator_TableVarName="tableAVI_InteresFacturadoPagado" msprop:Generator_RowChangedName="AVI_InteresFacturadoPagadoRowChanged" msprop:Generator_TablePropName="AVI_InteresFacturadoPagado" msprop:Generator_RowDeletingName="AVI_InteresFacturadoPagadoRowDeleting" msprop:Generator_RowChangingName="AVI_InteresFacturadoPagadoRowChanging" msprop:Generator_RowEvHandlerName="AVI_InteresFacturadoPagadoRowChangeEventHandler" msprop:Generator_RowDeletedName="AVI_InteresFacturadoPagadoRowDeleted" msprop:Generator_RowClassName="AVI_InteresFacturadoPagadoRow" msprop:Generator_UserTableName="AVI_InteresFacturadoPagado" msprop:Generator_RowEvArgName="AVI_InteresFacturadoPagadoRowChangeEvent">
+        <xs:element name="AVI_InteresFacturadoPagado" msprop:Generator_TableClassName="AVI_InteresFacturadoPagadoDataTable" msprop:Generator_TableVarName="tableAVI_InteresFacturadoPagado" msprop:Generator_TablePropName="AVI_InteresFacturadoPagado" msprop:Generator_RowDeletingName="AVI_InteresFacturadoPagadoRowDeleting" msprop:Generator_RowChangingName="AVI_InteresFacturadoPagadoRowChanging" msprop:Generator_RowEvHandlerName="AVI_InteresFacturadoPagadoRowChangeEventHandler" msprop:Generator_RowDeletedName="AVI_InteresFacturadoPagadoRowDeleted" msprop:Generator_UserTableName="AVI_InteresFacturadoPagado" msprop:Generator_RowChangedName="AVI_InteresFacturadoPagadoRowChanged" msprop:Generator_RowEvArgName="AVI_InteresFacturadoPagadoRowChangeEvent" msprop:Generator_RowClassName="AVI_InteresFacturadoPagadoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Anexo" msprop:Generator_ColumnVarNameInTable="columnAnexo" msprop:Generator_ColumnPropNameInRow="Anexo" msprop:Generator_ColumnPropNameInTable="AnexoColumn" msprop:Generator_UserColumnName="Anexo">
@@ -14046,6 +14112,58 @@ SELECT Anexo, Ciclo, Fecha, Interes, Tipo FROM AVI_InteresFacturadoPagado WHERE 
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vw_CFDI_FacturasConSaldoIAV" msprop:Generator_TableClassName="Vw_CFDI_FacturasConSaldoIAVDataTable" msprop:Generator_TableVarName="tableVw_CFDI_FacturasConSaldoIAV" msprop:Generator_TablePropName="Vw_CFDI_FacturasConSaldoIAV" msprop:Generator_RowDeletingName="Vw_CFDI_FacturasConSaldoIAVRowDeleting" msprop:Generator_RowChangingName="Vw_CFDI_FacturasConSaldoIAVRowChanging" msprop:Generator_RowEvHandlerName="Vw_CFDI_FacturasConSaldoIAVRowChangeEventHandler" msprop:Generator_RowDeletedName="Vw_CFDI_FacturasConSaldoIAVRowDeleted" msprop:Generator_UserTableName="Vw_CFDI_FacturasConSaldoIAV" msprop:Generator_RowChangedName="Vw_CFDI_FacturasConSaldoIAVRowChanged" msprop:Generator_RowEvArgName="Vw_CFDI_FacturasConSaldoIAVRowChangeEvent" msprop:Generator_RowClassName="Vw_CFDI_FacturasConSaldoIAVRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="_x0032_7_Serie_Comprobante" msprop:Generator_ColumnVarNameInTable="column27_Serie_Comprobante" msprop:Generator_ColumnPropNameInRow="_27_Serie_Comprobante" msprop:Generator_ColumnPropNameInTable="_27_Serie_ComprobanteColumn" msprop:Generator_UserColumnName="27_Serie_Comprobante">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031__Folio" msprop:Generator_ColumnVarNameInTable="column1_Folio" msprop:Generator_ColumnPropNameInRow="_1_Folio" msprop:Generator_ColumnPropNameInTable="_1_FolioColumn" msprop:Generator_UserColumnName="1_Folio" type="xs:int" />
+              <xs:element name="_x0031_14_Misc02" msprop:Generator_ColumnVarNameInTable="column114_Misc02" msprop:Generator_ColumnPropNameInRow="_114_Misc02" msprop:Generator_ColumnPropNameInTable="_114_Misc02Column" msprop:Generator_UserColumnName="114_Misc02" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0035_6_Monto_Total" msprop:Generator_ColumnVarNameInTable="column56_Monto_Total" msprop:Generator_ColumnPropNameInRow="_56_Monto_Total" msprop:Generator_ColumnPropNameInTable="_56_Monto_TotalColumn" msprop:Generator_UserColumnName="56_Monto_Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SaldoFactura" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSaldoFactura" msprop:Generator_ColumnPropNameInRow="SaldoFactura" msprop:Generator_ColumnPropNameInTable="SaldoFacturaColumn" msprop:Generator_UserColumnName="SaldoFactura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FolioFiscal" msprop:Generator_ColumnVarNameInTable="columnFolioFiscal" msprop:Generator_ColumnPropNameInRow="FolioFiscal" msprop:Generator_ColumnPropNameInTable="FolioFiscalColumn" msprop:Generator_UserColumnName="FolioFiscal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="36" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoPagos" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNoPagos" msprop:Generator_ColumnPropNameInRow="NoPagos" msprop:Generator_ColumnPropNameInTable="NoPagosColumn" msprop:Generator_UserColumnName="NoPagos" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0033_0_Fecha" msprop:Generator_ColumnVarNameInTable="column30_Fecha" msprop:Generator_ColumnPropNameInRow="_30_Fecha" msprop:Generator_ColumnPropNameInTable="_30_FechaColumn" msprop:Generator_UserColumnName="30_Fecha" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0038_3_Cod_Moneda" msprop:Generator_ColumnVarNameInTable="column83_Cod_Moneda" msprop:Generator_ColumnPropNameInRow="_83_Cod_Moneda" msprop:Generator_ColumnPropNameInTable="_83_Cod_MonedaColumn" msprop:Generator_UserColumnName="83_Cod_Moneda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="55" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="_x0031_59_Misc47" msprop:Generator_ColumnVarNameInTable="column159_Misc47" msprop:Generator_ColumnPropNameInRow="_159_Misc47" msprop:Generator_ColumnPropNameInTable="_159_Misc47Column" msprop:Generator_UserColumnName="159_Misc47" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -17,7 +17,7 @@ Module GneraFactura
     Dim Arg() As String
 
     Sub Main()
-        'LecturaPreviaAUX()
+        CreaDirectorios()
 
         Dim mf As Date = Date.Now.AddHours(-72)
         Console.WriteLine("Inicia proceso")
@@ -29,7 +29,7 @@ Module GneraFactura
         If Arg.Length > 1 Then
             Select Case UCase(Arg(1))
                 Case "FACTURA_INTERES_AV"
-                    GeneraArchivosAvioInteres()
+                    GeneraArchivosAvioInteres(False)' Falso para corte de inetres
                 Case "ACUSES_CAN"
                     NotificaCANF()
                     NotificaCANA()
@@ -94,7 +94,8 @@ Module GneraFactura
                         GeneraArchivosAvio()
                     End If
 
-
+                    Console.WriteLine("Generando CFDI IAV...")
+                    GeneraArchivosAvioInteres(True) 'factura solo pagos
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -134,7 +135,8 @@ Module GneraFactura
                         GeneraArchivosAvio()
                     End If
 
-
+                    Console.WriteLine("Generando CFDI IAV...")
+                    GeneraArchivosAvioInteres(True) 'factura solo pagos
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -216,6 +218,7 @@ Module GneraFactura
         Facturas.Fill(FAC, fecha.ToString("yyyyMMdd"))
 
         For Each r As GeneraFactura.ProduccionDS.FacturasAvioRow In FAC.Rows
+
             TasaIVACliente = r.IvaAnexo
             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
             ROWheader._1_Folio = Folios.SerieGVA
@@ -459,6 +462,7 @@ Module GneraFactura
         Dim Folio, FolioORG As Integer
         Dim Serie As String = ""
         Dim GUID As String = ""
+        Dim FormaPagoIAV As String = ""
         Dim taCli As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
         Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioTableAdapter
         Dim FAC As New GeneraFactura.ProduccionDS.FacturasAvioDataTable
@@ -548,14 +552,7 @@ Module GneraFactura
             SpeiCert = ""
             SpeiCadOrg = ""
             SpeiSello = ""
-            LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsFactura, EsPago, SerieORG, FolioORG, GUID, Referencia, Aviso, IVACapital)
-            'If LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsPago) Then
-            '    File.Copy(F(i).FullName, GeneraFactura.My.Settings.Raiz & F(i).Name, True)
-            '    File.Delete(F(i).FullName)
-            '    Continue For
-            'Else
-            '    Continue For
-            'End If
+            LecturaPrevia(F(i).FullName, F(i).Name, Moneda, Tipar, Folio, Serie, EsFactura, EsPago, SerieORG, FolioORG, GUID, Referencia, Aviso, IVACapital, FormaPagoIAV)
             If EsPago = True And EsFactura = False And Serie <> "C" Then
 #Region "Espago"
                 If GUID = "SIN FOLIO FISCAL" Then
@@ -942,30 +939,51 @@ Module GneraFactura
                         Dim SaldoFactura, SaldoInsolFactura As Decimal
                         Dim NoPago As Integer = 0
                         SaldoFactura = CFDI_P.SaldoFactura(FolioORG, SerieORG)
-                        'SaldoFactura = Total 'LINEA DE PRUEBAS
-                        SaldoInsolFactura = SaldoFactura - Total
-                        If SaldoInsolFactura < 0 Then
-                            SaldoInsolFactura = 0
-                        End If
+
                         ProducDS.CFDI_Encabezado.GetChanges()
                         ProducDS.CFDI_Detalle.GetChanges()
                         CFDI_D.Update(ProducDS.CFDI_Detalle)
                         CFDI_H.Update(ProducDS.CFDI_Encabezado)
                         NoPago = CFDI_H.NoPago(GUID)
 
-                        'CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, "REF_NO OPRACION", "RFC CEUNTA CLIENTE", "banco cliente", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        If fecha_pago <> Nothing Then
-                            CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha_pago.ToString("yyyy/MM/dd") + "T12:00:00", FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                        If SerieORG <> "IAV" Then
+                            SaldoInsolFactura = SaldoFactura - Total
+                            If SaldoInsolFactura < 0 Then
+                                SaldoInsolFactura = 0
+                            End If
+                            If fecha_pago <> Nothing Then
+                                CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha_pago.ToString("yyyy/MM/dd") + "T12:00:00", FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            Else
+                                CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            End If
+                            CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
                         Else
-                            CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        End If
-                        'CFDI_P.Insert("CPG", "Pago", "HD", "no cuenta cliete", "rfcBancoCeuntaFinagil", "cunetafinagil", "tipo de adena de pago 01 spei", "certificadopago", "cadenaorg", "sello", "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        'CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, Serie, Folio, Moneda, TipoCambioSTR, "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                        CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", GUID, SerieORG, FolioORG, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
-                            'CFDI_H.ConsumeFolio()
+                            If fecha_pago <> Nothing Then
+                                CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha_pago.ToString("yyyy/MM/dd") + "T12:00:00", FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            Else
+                                CFDI_P.Insert("CPG", "Pagos", "HD", "1.0", fecha.ToString("yyyy/MM/ddThh:mm:ss"), FormaPago, Moneda, TipoCambioSTR, Total, Referencia, RFC_BancoCliente, NombreBancoCliente, "", "", "", "", "", "", Folio, Serie, Folio, Serie)
+                            End If
+                            CFDI_P.Insert("CPG", "Pago", "HD", NoCuentaCliente, RFC_BancoFinagil, CuentaFinagil, Spei, SpeiCert, SpeiCadOrg, SpeiSello, "", "", "", "", "", "", "", "", Folio, Serie, Folio, Serie)
 
-                            ProducDS.CFDI_Encabezado.Clear()
+                            Dim taIAV As New ProduccionDSTableAdapters.Vw_CFDI_FacturasConSaldoIAVTableAdapter
+                            taIAV.Fill(ProducDS.Vw_CFDI_FacturasConSaldoIAV, cAnexoAux, Aviso.Trim)
+
+                            For Each rx As ProduccionDS.Vw_CFDI_FacturasConSaldoIAVRow In ProducDS.Vw_CFDI_FacturasConSaldoIAV.Rows
+                                SaldoFactura = CFDI_P.SaldoFactura(rx._1_Folio, rx._27_Serie_Comprobante)
+                                If SaldoFactura >= Total Then
+                                    SaldoInsolFactura = SaldoFactura - Total
+                                    CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", rx.FolioFiscal, rx._27_Serie_Comprobante, rx._1_Folio, Moneda, "", "PPD", NoPago, SaldoFactura, Total, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
+                                    Exit For
+                                Else
+                                    SaldoInsolFactura = 0
+                                    CFDI_P.Insert("CPG", "DoctoRelacionado", "HD", rx.FolioFiscal, rx._27_Serie_Comprobante, rx._1_Folio, Moneda, "", "PPD", NoPago, SaldoFactura, SaldoFactura, SaldoInsolFactura, "", "", "", "", "", Folio, Serie, Folio, Serie)
+                                    Total -= SaldoFactura
+                                End If
+                            Next
+                        End If
+
+                        ProducDS.CFDI_Encabezado.Clear()
                         ProducDS.CFDI_Detalle.Clear()
                         File.Copy(F(i).FullName, GeneraFactura.My.Settings.RutaBackup & F(i).Name, True)
                         File.Delete(F(i).FullName)
@@ -1263,24 +1281,6 @@ Module GneraFactura
                                     TipoImpuesto = "Exento"
                                     ROWheader._29_FormaPago = "03"
                                 End If
-
-
-                                'If Tipar <> "F" And Tipar <> "P" Then 'se puede borrar
-                                '    Select Case Datos(8)
-                                '        Case "ADELANTO CAPITAL EQUIPO"
-                                '            Datos(8) = "ADELANTO CAPITAL"
-                                '        Case "SALDO INSOLUTO EQUIPO"
-                                '            Datos(8) = "SALDO INSOLUTO"
-                                '        Case "SALDO INSOLUTO DEL EQUIPO"
-                                '            Datos(8) = "SALDO INSOLUTO"
-                                '        Case "CAPITAL EQUIPO"
-                                '            Datos(8) = "CAPITAL"
-                                '    End Select
-                                '    If InStr(Datos(8), "CAPITAL EQUIPO VEN") > 0 Then
-                                '        Datos(8) = "CAPITAL VENCIMIENTO" '& Right(Datos(8), 7)
-                                '    End If
-                                'End If
-
                                 If (Tipar = "F") And TipoPersona <> "F" Then
                                     Select Case Concepto.Trim
                                         Case "INTERES OTROS ADEUDOS", "INTERES SEGURO", "INTERESES POR PREPAGO SEGURO", "INTERES SEGURO VENCIMIENTO", "INTERES OTROS ADEUDOS VENCIMIENTO"
@@ -1375,143 +1375,143 @@ Module GneraFactura
                                 End If
 
                                 If Tipar = "B" Then
-                                        Select Case Mid(Datos(8), 1, 11)
-                                            Case "MENSUALIDAD"
-                                                Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
-                                            Case "MORATORIOS "
-                                                TipoImpuesto = "Exento"
-                                        End Select
-                                    End If
+                                    Select Case Mid(Datos(8), 1, 11)
+                                        Case "MENSUALIDAD"
+                                            Datos(8) = "SERVICIO DE TRANSPORTE EJECUTIVO EMPRESARIAL, " & Datos(8)
+                                        Case "MORATORIOS "
+                                            TipoImpuesto = "Exento"
+                                    End Select
+                                End If
 
-                                    If Datos(8) = "AJUSTE INTERES" Then
-                                        TipoImpuesto = "Exento"
-                                    End If
+                                If Datos(8) = "AJUSTE INTERES" Then
+                                    TipoImpuesto = "Exento"
+                                End If
 
-                                    taCodigo.Fill(tCodigo, Tipar, Concepto)
-                                    If tCodigo.Rows.Count > 0 Then
-                                        rCod = tCodigo.Rows(0)
-                                        Unidad = rCod.Unidad
-                                        Codigo = rCod.Codigo
+                                taCodigo.Fill(tCodigo, Tipar, Concepto)
+                                If tCodigo.Rows.Count > 0 Then
+                                    rCod = tCodigo.Rows(0)
+                                    Unidad = rCod.Unidad
+                                    Codigo = rCod.Codigo
+                                    If Codigo = "" Then
+                                        If Tipar = "P" Then
+                                            Codigo = taCodigo.SacaCodigoAnexo(cAnexo)
+                                        End If
                                         If Codigo = "" Then
-                                            If Tipar = "P" Then
-                                                Codigo = taCodigo.SacaCodigoAnexo(cAnexo)
-                                            End If
-                                            If Codigo = "" Then
-                                                Codigo = "84101700"
-                                                Errores = True
-                                                ErrorMSG = "Falta codigo "
-                                            End If
+                                            Codigo = "84101700"
+                                            Errores = True
+                                            ErrorMSG = "Falta codigo "
                                         End If
-                                        If Unidad = "" Then
-                                            If Tipar = "P" Then
-                                                Unidad = "E48"
-                                            Else
-                                                Unidad = "E48"
-                                                Errores = True
-                                                ErrorMSG = "Falta Unidad "
-                                            End If
-
-                                        End If
-                                        If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
-                                            'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                        End If
-                                        If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
-                                            'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
-                                        End If
-
-                                    Else
+                                    End If
+                                    If Unidad = "" Then
                                         If Tipar = "P" Then
                                             Unidad = "E48"
-                                            If Codigo = "" Then
-                                                If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
-                                                    taCodigo.Insert(Tipar, Concepto, "", "", False)
-                                                End If
-                                                Errores = True
-                                                ErrorMSG = "Falta Concepto "
-                                            End If
                                         Else
-
-                                        End If
-                                        If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
-                                            taCodigo.Insert(Tipar, Concepto, "", "", False)
-                                        End If
-                                        Unidad = "E48"
-                                        Codigo = "84101700"
-                                        Errores = True
-                                        ErrorMSG = "Falta codigo "
-                                        If ROWheader._27_Serie_Comprobante = "B" Then
-                                            Errores = False 'quitamos el error
-                                            Codigo = Datos(12)
-                                            ROWheader._144_Misc32 = Datos(13)
-                                            Unidad = Datos(14)
-                                        End If
-                                        If Serie = "F" Then
-                                            Errores = True ' quitamos el error de factoraje
+                                            Unidad = "E48"
+                                            Errores = True
+                                            ErrorMSG = "Falta Unidad "
                                         End If
 
                                     End If
+                                    If Errores = True And (Tipar = "F" Or Tipar = "S") And Concepto = "CAPITAL EQUIPO VENCIMIENTO" Then
+                                        'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                    End If
+                                    If Errores = True And Tipar = "P" And Concepto = "PAGO DE RENTA VENCIMIENTO" Then
+                                        'Errores = False 'SE QUITA CUANDO ESTE CONFIGURADOS LOS ARTICULOS Y UNIDADES
+                                    End If
+
+                                Else
+                                    If Tipar = "P" Then
+                                        Unidad = "E48"
+                                        If Codigo = "" Then
+                                            If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
+                                                taCodigo.Insert(Tipar, Concepto, "", "", False)
+                                            End If
+                                            Errores = True
+                                            ErrorMSG = "Falta Concepto "
+                                        End If
+                                    Else
+
+                                    End If
+                                    If taCodigo.ExisteConcepto(Tipar, Concepto) <= 0 And ROWheader._27_Serie_Comprobante <> "B" Then
+                                        taCodigo.Insert(Tipar, Concepto, "", "", False)
+                                    End If
+                                    Unidad = "E48"
+                                    Codigo = "84101700"
+                                    Errores = True
+                                    ErrorMSG = "Falta codigo "
+                                    If ROWheader._27_Serie_Comprobante = "B" Then
+                                        Errores = False 'quitamos el error
+                                        Codigo = Datos(12)
+                                        ROWheader._144_Misc32 = Datos(13)
+                                        Unidad = Datos(14)
+                                    End If
+                                    If Serie = "F" Then
+                                        Errores = True ' quitamos el error de factoraje
+                                    End If
+
+                                End If
                                 If Errores = True Then
                                     EnviaCorreoFASE("Contabilidad", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, ErrorMSG & "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo)
                                     EnviaCorreoFASE("Desarrollo", "Factura sin Procesar " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, ErrorMSG & "Concepto: " & Concepto & " TipoCredito : " & Tipar & " Anexo : " & cAnexo)
                                 End If
 
                                 ROWdetail._1_Linea_Descripcion = Datos(8).Trim
-                                    ROWdetail._2_Linea_Cantidad = 1
-                                    ROWdetail._3_Linea_Unidad = Unidad
-                                    ROWdetail._4_Linea_PrecioUnitario = CDec(Datos(10)).ToString("n2")
-                                    ROWdetail._5_Linea_Importe = CDec(Datos(10)).ToString("n2")
-                                    ROWdetail._16_Linea_Cod_Articulo = Codigo ' Manejo de deuda
-                                    ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
-                                    ROWdetail._2_Impuesto_Descripcion = "TR"
-                                    ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
-                                    ROWdetail._5_Impuesto_Clave = "002"
-                                    ROWdetail._6_Impuesto_Tasa = "Tasa"
+                                ROWdetail._2_Linea_Cantidad = 1
+                                ROWdetail._3_Linea_Unidad = Unidad
+                                ROWdetail._4_Linea_PrecioUnitario = CDec(Datos(10)).ToString("n2")
+                                ROWdetail._5_Linea_Importe = CDec(Datos(10)).ToString("n2")
+                                ROWdetail._16_Linea_Cod_Articulo = Codigo ' Manejo de deuda
+                                ROWdetail._1_Impuesto_TipoImpuesto = "Impuesto"
+                                ROWdetail._2_Impuesto_Descripcion = "TR"
+                                ROWdetail._3_Impuesto_Monto_base = CDec(Datos(10)).ToString("n2")
+                                ROWdetail._5_Impuesto_Clave = "002"
+                                ROWdetail._6_Impuesto_Tasa = "Tasa"
                                 If Datos(6).Trim = "" Or Serie = "F" Then
                                     Datos(6) = "SER"
                                 End If
                                 ROWdetail._11_Linea_Notas = Datos(6)
                                 ROWdetail._53_Linea_Misc22 = Datos(6)
-                                    Try
-                                        If TipoImpuesto = "Exento" Then
-                                            ROWdetail._7_Impuesto_Porcentaje = ""
-                                            ROWdetail._4_Impuesto_Monto_Impuesto = ""
-                                            ROWdetail._6_Impuesto_Tasa = TipoImpuesto
-                                        ElseIf TipoImpuesto = "No Objeto" Then
-                                            ROWdetail._7_Impuesto_Porcentaje = ""
-                                            ROWdetail._4_Impuesto_Monto_Impuesto = ""
-                                            ROWdetail._6_Impuesto_Tasa = TipoImpuesto
+                                Try
+                                    If TipoImpuesto = "Exento" Then
+                                        ROWdetail._7_Impuesto_Porcentaje = ""
+                                        ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
+                                    ElseIf TipoImpuesto = "No Objeto" Then
+                                        ROWdetail._7_Impuesto_Porcentaje = ""
+                                        ROWdetail._4_Impuesto_Monto_Impuesto = ""
+                                        ROWdetail._6_Impuesto_Tasa = TipoImpuesto
+                                    Else
+                                        ROWdetail._7_Impuesto_Porcentaje = TasaIVA
+                                        If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = 0
                                         Else
-                                            ROWdetail._7_Impuesto_Porcentaje = TasaIVA
-                                            If TasaIVA = 0 Or CDec(Datos(11)) = 0 Then
-                                                ROWdetail._4_Impuesto_Monto_Impuesto = 0
-                                            Else
-                                                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(CDec(Datos(11)), 2)
-                                                MontoBaseIVA = CDec(Datos(11)) / TasaIVA
-                                                If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
-                                                    ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
-                                                End If
-                                                IvaAux = Math.Round(ROWdetail._4_Impuesto_Monto_Impuesto / ROWdetail._3_Impuesto_Monto_base, 3)
-                                                If IvaAux > TasaIVA Then
-                                                    ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(ROWdetail._3_Impuesto_Monto_base * TasaIVA, 2)
-                                                End If
+                                            ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(CDec(Datos(11)), 2)
+                                            MontoBaseIVA = CDec(Datos(11)) / TasaIVA
+                                            If MontoBaseIVA < ROWdetail._3_Impuesto_Monto_base And (Mid(Datos(8), 1, 7) = "INTERES" Or InStr(Datos(8), "MORATORIOS VENCIMIENTO")) Then
+                                                ROWdetail._3_Impuesto_Monto_base = Math.Round(MontoBaseIVA, 2)
+                                            End If
+                                            IvaAux = Math.Round(ROWdetail._4_Impuesto_Monto_Impuesto / ROWdetail._3_Impuesto_Monto_base, 3)
+                                            If IvaAux > TasaIVA Then
+                                                ROWdetail._4_Impuesto_Monto_Impuesto = Math.Round(ROWdetail._3_Impuesto_Monto_base * TasaIVA, 2)
                                             End If
                                         End If
+                                    End If
 
-                                        SubTT += ROWdetail._5_Linea_Importe
-                                        If IsNumeric(ROWdetail._4_Impuesto_Monto_Impuesto) Then
-                                            IVA += CDec(ROWdetail._4_Impuesto_Monto_Impuesto).ToString("n2")
-                                        End If
+                                    SubTT += ROWdetail._5_Linea_Importe
+                                    If IsNumeric(ROWdetail._4_Impuesto_Monto_Impuesto) Then
+                                        IVA += CDec(ROWdetail._4_Impuesto_Monto_Impuesto).ToString("n2")
+                                    End If
 
-                                        ROWdetail.Detalle_Folio = ROWheader._1_Folio
-                                        ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
+                                    ROWdetail.Detalle_Folio = ROWheader._1_Folio
+                                    ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
 
-                                        ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
-                                    Catch ex As Exception
-                                        Errores = True
+                                    ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
+                                Catch ex As Exception
+                                    Errores = True
                                     EnviaCorreoFASE("Desarrollo", "Error de Factura " & ROWheader._1_Folio & ROWheader._27_Serie_Comprobante, ex.Message & " " & ErrorMSG)
                                 End Try
 
-                                End If
+                            End If
                     End Select
                 End While
                 If Datos(0) <> "X" Then
@@ -1867,7 +1867,7 @@ Module GneraFactura
 
     Function LecturaPrevia(RutaArchivo As String, NombreArchivo As String, ByRef Moneda As String, ByRef Tipar As String, ByRef Folio As Integer, ByRef Serie As String,
                            ByRef EsFactura As Boolean, ByRef EsPAgo As Boolean, ByRef SerieORG As String, ByRef FolioORG As Integer, ByRef GUID As String,
-                           ByRef Referencia As String, Optional ByRef aviso As String = "", Optional ByRef IVACapital As String = "") As Boolean
+                           ByRef Referencia As String, Optional ByRef aviso As String = "", Optional ByRef IVACapital As String = "", Optional ByRef FormaPagoIAV As String = "") As Boolean
         OpcionCompraAF = ""
         Dim Numero As Integer = 1
         Dim f2 As System.IO.StreamReader
@@ -1890,11 +1890,12 @@ Module GneraFactura
                         Else
                             Referencia = ""
                         End If
+                        FormaPagoIAV = Datos(2)
                     Case "H3"
                         Anexo = Mid(Datos(2), 1, 5) & Mid(Datos(2), 7, 4)
                         Folio = Val(Datos(4))
                         Serie = Datos(3)
-                        If Serie = "REP" Or Serie = "REPP" Then
+                        If Serie = "REP" Or Serie = "REPP" Or Serie = "RIA" Then
                             EsPAgo = True
                         Else
                             EsPAgo = False
@@ -1916,6 +1917,7 @@ Module GneraFactura
                                 aviso = CFDI_H.SacaAvisoAV(Datos(28), Datos(29)).Trim
                             Else
                                 aviso = CFDI_H.SacaAviso(Datos(28), Datos(29))
+                                FormaPagoIAV = ""
                             End If
                             If aviso = "0" Then
                                 aviso = ""
@@ -1928,10 +1930,14 @@ Module GneraFactura
                                         EsPAgo = False
                                         EsFactura = False
                                     End If
-                                    'Folio = CFDI_H.SacaFolioPago()
-                                    'Serie = "REP"
                                     GUID = CFDI_H.sacaGUID(aviso, Datos(2))
                                     GUID = GUID.ToUpper
+                                    If SerieORG = "IAV" Then
+                                        FechaAviso = CFDI_H.SacaAvisoFechaAV(Datos(28), Datos(29))
+                                        If CFDI_H.SacaIAVsinFolioFiscal(aviso, Datos(2)) > 0 Then
+                                            GUID = "SIN FOLIO FISCAL"
+                                        End If
+                                    End If
                                 End If
                             End If
                         Else
@@ -2097,7 +2103,7 @@ Module GneraFactura
 
     End Sub
 
-    Sub GeneraArchivosAvioInteres()
+    Sub GeneraArchivosAvioInteres(bPago As Boolean)
         Dim TasaIVACliente As Decimal
         Dim RFC As String
         Dim SubTT As Double
@@ -2120,14 +2126,21 @@ Module GneraFactura
         Dim ROWheader As ProduccionDS.CFDI_EncabezadoRow
         Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
 
-        If Date.Now.Day <= 3 Then
-            fecha = Date.Now.AddDays(Date.Now.Day * -1)
-        Else
-            fecha = Date.Now
-        End If
         '***************************************************************
-        Facturas.Fill(FAC)
+        If bPago = True Then
+            Facturas.FillByPago(FAC)
+        Else
+            Facturas.Fill(FAC)
+        End If
+        If FAC.Rows.Count > 0 Then
+            EnviaCorreoFASE("SISTEMAS", "Generando CFDI AVIO INTERES..." & FAC.Rows.Count, "Generando CFDI AVIO INTERES... " & FAC.Rows.Count)
+        End If
         For Each r As GeneraFactura.ProduccionDS.FacturasAvioInteresRow In FAC.Rows
+            fecha = CTOD(r.FechaFinal)
+            If fecha < Date.Now.AddHours(-72) Then
+                fecha = Date.Now.AddHours(-70)
+            End If
+
             TasaIVACliente = r.IvaAnexo
             ROWheader = ProducDS.CFDI_Encabezado.NewCFDI_EncabezadoRow
             ROWheader._1_Folio = Folios.SerieIntAV
@@ -2165,7 +2178,6 @@ Module GneraFactura
             Else
                 Razon = r.Nombre
             End If
-
 
             ROWheader._42_Nombre_Receptor = Razon.Trim
             ROWheader._43_RFC_Receptor = RFC.Trim
@@ -2253,7 +2265,8 @@ Module GneraFactura
             ROWheader._56_Monto_Total = ROWheader._54_Monto_SubTotal + ROWheader._55_Monto_IVA
             ROWheader._193_Monto_TotalImp_Trasladados = ROWheader._55_Monto_IVA
             ROWheader._100_Letras_Monto_Total = Letras(ROWheader._56_Monto_Total, "MXN")
-            ROWheader._114_Misc02 = r.AnexoCon & " " & r.CicloPagare
+            ROWheader._114_Misc02 = r.AnexoCon
+            ROWheader._159_Misc47 = r.CicloPagare
             ROWheader._115_Misc03 = r.Anexo & "-" & r.Ciclo & "-" & r.FechaFinal
             ROWheader._162_Misc50 = ""
             ROWheader.Encabezado_Procesado = False
@@ -2284,6 +2297,22 @@ Module GneraFactura
             Folios.ConsumeFolioIntAV()
         Next
 
+    End Sub
+
+    Sub CreaDirectorios()
+        If Not Directory.Exists(GeneraFactura.My.Settings.Raiz) Then Directory.CreateDirectory(GeneraFactura.My.Settings.Raiz)
+        If Not Directory.Exists(GeneraFactura.My.Settings.Complementos) Then Directory.CreateDirectory(GeneraFactura.My.Settings.Complementos)
+        If Not Directory.Exists(GeneraFactura.My.Settings.BackupEKO) Then Directory.CreateDirectory(GeneraFactura.My.Settings.BackupEKO)
+        If Not Directory.Exists(GeneraFactura.My.Settings.NoPasa) Then Directory.CreateDirectory(GeneraFactura.My.Settings.NoPasa)
+        If Not Directory.Exists(GeneraFactura.My.Settings.FtpDatos) Then Directory.CreateDirectory(GeneraFactura.My.Settings.FtpDatos)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaOrigen) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaOrigen)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaBackup) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaBackup)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaFolios) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaFolios)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaFTP) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaFTP)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaNomina) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaNomina)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaRecPago) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaRecPago)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaTmp) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaTmp)
+        If Not Directory.Exists(GeneraFactura.My.Settings.RutaXML) Then Directory.CreateDirectory(GeneraFactura.My.Settings.RutaXML)
     End Sub
 
 End Module
