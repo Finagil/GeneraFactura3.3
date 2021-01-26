@@ -240,7 +240,7 @@ Module CFDI33
             stmWriter.WriteLine(cRenglon)
 
 
-            cRenglon = "D1|" & r.Cliente & "|" & Mid(r.Anexo, 1, 5) & "/" & Mid(r.Anexo, 6, 4) & "|" & cSerie & "|" & nRecibo & "|1|||INTERESES AVIO||" & r.Intereses + r.InteresesDias & "|0"
+            cRenglon = "D1|" & r.Cliente & "|" & Mid(r.Anexo, 1, 5) & "/" & Mid(r.Anexo, 6, 4) & "|" & cSerie & "|" & nRecibo & "|1|||INTERESES AVIO||" & r.InteresesDias & "|0"
             cRenglon = cRenglon.Replace("Ñ", Chr(165))
             cRenglon = cRenglon.Replace("ñ", Chr(164))
             cRenglon = cRenglon.Replace("á", Chr(160))
