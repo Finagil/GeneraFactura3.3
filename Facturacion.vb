@@ -80,6 +80,9 @@ Module GneraFactura
                 'Console.WriteLine("Subiendo Archivos EKomercio...")
                 'CFDI33.SubeFTP()
                 Case "TODO_FTP"
+                    Console.WriteLine("Generando CFDI IAV...")
+                    GeneraArchivosAvioInteres(True) 'factura solo pagos
+
                     Console.WriteLine("Leyendo Folios CFDI ...")
                     CFDI33.LeeFoliosFiscales()
                     If Date.Now.Hour >= 20 Or Date.Now.Hour <= 9 Then 'se ocupa despues de las 8pm y antes de las 9 am
@@ -93,9 +96,6 @@ Module GneraFactura
                         Console.WriteLine("Generando CFDI Avio...")
                         GeneraArchivosAvio()
                     End If
-
-                    Console.WriteLine("Generando CFDI IAV...")
-                    GeneraArchivosAvioInteres(True) 'factura solo pagos
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -120,7 +120,8 @@ Module GneraFactura
                     CFDI33.NotificaCANA()
                     FacturasSinSERIE()
                 Case "TODO_WS"
-
+                    Console.WriteLine("Generando CFDI IAV...")
+                    GeneraArchivosAvioInteres(True) 'factura solo pagos
                     'Console.WriteLine("Leyendo Folios CFDI ...")
                     'CFDI33.LeeFoliosFiscales()
                     If Date.Now.Hour >= 20 Or Date.Now.Hour <= 9 Then 'se ocupa despues de las 8pm y antes de las 9 am
@@ -134,9 +135,6 @@ Module GneraFactura
                         Console.WriteLine("Generando CFDI Avio...")
                         GeneraArchivosAvio()
                     End If
-
-                    Console.WriteLine("Generando CFDI IAV...")
-                    GeneraArchivosAvioInteres(True) 'factura solo pagos
 
                     Console.WriteLine("Generando CFDI Externas...")
                     GeneraArchivosEXternas()
@@ -2129,6 +2127,7 @@ Module GneraFactura
         '***************************************************************
         If bPago = True Then
             Facturas.FillByPago(FAC)
+            Facturas.FacturarPAG_IAV()
         Else
             Facturas.Fill(FAC)
         End If
