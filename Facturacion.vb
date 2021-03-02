@@ -29,7 +29,7 @@ Module GneraFactura
         If Arg.Length > 1 Then
             Select Case UCase(Arg(1))
                 Case "FACTURA_INTERES_AV"
-                    GeneraArchivosAvioInteres(False)' Falso para corte de inetres
+                    GeneraArchivosAvioInteres(False)' Falso para corte de interes
                 Case "ACUSES_CAN"
                     NotificaCANF()
                     NotificaCANA()
@@ -2129,6 +2129,7 @@ Module GneraFactura
             Facturas.FillByPago(FAC)
             Facturas.FacturarPAG_IAV()
         Else
+            Facturas.FacturasMEnsualesIAV()
             Facturas.Fill(FAC)
         End If
         If FAC.Rows.Count > 0 Then
