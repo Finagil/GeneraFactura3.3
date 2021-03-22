@@ -2109,8 +2109,8 @@ Module GneraFactura
         Dim Razon As String
         Dim fecha As New DateTime
         Dim taCli As New GeneraFactura.ProduccionDSTableAdapters.ClientesTableAdapter
-        Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.FacturasAvioInteresTableAdapter
-        Dim FAC As New GeneraFactura.ProduccionDS.FacturasAvioInteresDataTable
+        Dim Facturas As New GeneraFactura.ProduccionDSTableAdapters.sp_AvioInteresXfacturarTableAdapter
+        Dim FAC As New GeneraFactura.ProduccionDS.sp_AvioInteresXfacturarDataTable
         Dim Folios As New GeneraFactura.ProduccionDSTableAdapters.LlavesTableAdapter
         Dim taFacturado As New ProduccionDSTableAdapters.AVI_InteresFacturadoPagadoTableAdapter
 
@@ -2129,13 +2129,13 @@ Module GneraFactura
             Facturas.FillByPago(FAC)
             Facturas.FacturarPAG_IAV()
         Else
-            Facturas.FacturasMEnsualesIAV()
-            Facturas.Fill(FAC)
+            Facturas.FacturasMensualesIAV(Date.Now.AddDays(Date.Now.Date.Day * -1).ToString("yyyyMMdd"))
+            Facturas.Fill(FAC, Date.Now.AddDays(Date.Now.Date.Day * -1).ToString("yyyyMMdd"))
         End If
         If FAC.Rows.Count > 0 Then
             EnviaCorreoFASE("SISTEMAS", "Generando CFDI AVIO INTERES..." & FAC.Rows.Count, "Generando CFDI AVIO INTERES... " & FAC.Rows.Count)
         End If
-        For Each r As GeneraFactura.ProduccionDS.FacturasAvioInteresRow In FAC.Rows
+        For Each r As GeneraFactura.ProduccionDS.sp_AvioInteresXfacturarRow In FAC.Rows
             fecha = CTOD(r.FechaFinal)
             If fecha < Date.Now.AddHours(-72) Then
                 fecha = Date.Now.AddHours(-70)
@@ -2252,7 +2252,7 @@ Module GneraFactura
             ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
             ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
 
-            RegAfec = Facturas.FacturarInteres("IAV" & ROWheader._1_Folio, r.Anexo, r.Ciclo)
+            RegAfec = Facturas.FacturarInteres("IAV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, Date.Now.AddDays(Date.Now.Date.Day * -1).ToString("yyyyMMdd"))
             taFacturado.Insert(r.Anexo, r.Ciclo, fecha, r.PorFacturar, "FACTURADO")
             If RegAfec = 0 Then
                 'EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
