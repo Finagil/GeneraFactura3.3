@@ -2125,6 +2125,7 @@ Module GneraFactura
         Dim ROWdetail As ProduccionDS.CFDI_DetalleRow
 
         '***************************************************************
+        Facturas.QuitaPAG_IAV_Efectivo()
         If bPago = True Then
             Facturas.FillByPago(FAC)
             Facturas.FacturarPAG_IAV()
@@ -2252,7 +2253,11 @@ Module GneraFactura
             ROWdetail.Detalle_Serie = ROWheader._27_Serie_Comprobante
             ProducDS.CFDI_Detalle.AddCFDI_DetalleRow(ROWdetail)
 
-            RegAfec = Facturas.FacturarInteres("IAV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, Date.Now.AddDays(Date.Now.Date.Day * -1).ToString("yyyyMMdd"))
+            If bPago = True Then
+                RegAfec = Facturas.FacturarInteres("IAV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, "20990101")
+            Else
+                RegAfec = Facturas.FacturarInteres("IAV" & ROWheader._1_Folio, r.Anexo, r.Ciclo, Date.Now.AddDays(Date.Now.Date.Day * -1).ToString("yyyyMMdd"))
+            End If
             taFacturado.Insert(r.Anexo, r.Ciclo, fecha, r.PorFacturar, "FACTURADO")
             If RegAfec = 0 Then
                 'EnviaError(GeneraFactura.My.Settings.MailError, "Error Factura sin Afectar", "Error Factura sin Afectar" & r.Anexo)
