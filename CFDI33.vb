@@ -1624,6 +1624,7 @@ Module CFDI33
                 If r.EMail1.ToString.Trim.Length > 3 Then
                     If validar_Mail(r.EMail1) Then
                         Mensaje.To.Add(r.EMail1)
+
                     End If
                 End If
                 If r.EMail2.ToString.Trim.Length > 3 Then
@@ -1651,18 +1652,27 @@ Module CFDI33
                 NewRPT.Export()
                 NewRPT.Dispose()
 
+
+
+                TaRec.ReciboEnviado(CadenaGUID, "Recibo de Pago", r._1_Folio, r._27_Serie_Comprobante)
+
+                If Directory.Exists(GeneraFactura.My.Settings.RutaRecPago & Date.Now.Year.ToString & "-" & MonthName(Date.Now.Month) & "-" & String.Format("{0:00}", Date.Now.Day)) = False Then
+                    Directory.CreateDirectory(GeneraFactura.My.Settings.RutaRecPago & Date.Now.Year.ToString & "-" & MonthName(Date.Now.Month) & "-" & String.Format("{0:00}", Date.Now.Day))
+                End If
+
+                System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & Date.Now.Year.ToString & "-" & MonthName(Date.Now.Month) & "-" & String.Format("{0:00}", Date.Now.Day) & "\Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
+
                 Adjunto = New Mail.Attachment(Archivo, "PDF/pdf")
                 Mensaje.Attachments.Add(Adjunto)
                 Servidor.Send(Mensaje)
                 Adjunto.Dispose()
 
-                TaRec.ReciboEnviado(CadenaGUID, "Recibo de Pago", r._1_Folio, r._27_Serie_Comprobante)
-
-                System.IO.File.Copy(Archivo, GeneraFactura.My.Settings.RutaRecPago & "Recibo_" & CStr(r._1_Folio) & r._27_Serie_Comprobante.Trim & ".pdf")
                 Console.WriteLine("Envio Exitoso :" & Archivo)
                 System.IO.File.Delete(Archivo)
             Catch ex As Exception
                 Console.WriteLine("error:" & ex.Message)
+                Adjunto.Dispose()
+                System.IO.File.Delete(Archivo)
             End Try
         Next
         'NewRPT.Dispose()
